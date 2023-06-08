@@ -1,0 +1,53 @@
+\contentsline {chapter}{ACKNOWLEDGEMENTS}{iii}{}%
+\contentsline {chapter}{ABSTRACT}{iv}{}%
+\contentsline {chapter}{\"OZET}{v}{}%
+\contentsline {chapter}{LIST OF FIGURES}{viii}{}%
+\contentsline {chapter}{LIST OF TABLES}{ix}{}%
+\contentsline {chapter}{LIST OF SYMBOLS}{x}{}%
+\contentsline {chapter}{LIST OF ACRONYMS/ABBREVIATIONS}{xi}{}%
+\contentsline {chapter}{\numberline {1.}INTRODUCTION}{1}{}%
+\contentsline {chapter}{\numberline {2.}FORMAT}{2}{}%
+\contentsline {section}{\numberline {2.1.} Character Fonts}{2}{}%
+\contentsline {section}{\numberline {2.2.} Spacing}{2}{}%
+\contentsline {section}{\numberline {2.3.} Centering}{3}{}%
+\contentsline {section}{\numberline {2.4.} Margins}{4}{}%
+\contentsline {section}{\numberline {2.5.} Pagination}{4}{}%
+\contentsline {section}{\numberline {2.6.} Headings}{5}{}%
+\contentsline {subsection}{\numberline {2.6.1.} Main Headings}{6}{}%
+\contentsline {subsection}{\numberline {2.6.2.} Second Headings}{7}{}%
+\contentsline {subsection}{\numberline {2.6.3.} First Subheadings}{7}{}%
+\contentsline {subsection}{\numberline {2.6.4.} Second Subheadings}{7}{}%
+\contentsline {subsection}{\numberline {2.6.5.} Special Captions}{8}{}%
+\contentsline {section}{\numberline {2.7.} Paragraphs}{9}{}%
+\contentsline {section}{\numberline {2.8.} List Items}{9}{}%
+\contentsline {section}{\numberline {2.9.} Footnotes}{9}{}%
+\contentsline {section}{\numberline {2.10.} Bibliographical Material}{10}{}%
+\contentsline {subsection}{\numberline {2.10.1.} Enumerated Reference Lists}{10}{}%
+\contentsline {subsection}{\numberline {2.10.2.} Surname Reference Lists}{14}{}%
+\contentsline {section}{\numberline {2.11.} Mathematical Expressions}{17}{}%
+\contentsline {section}{\numberline {2.12.} Tables and Figures}{18}{}%
+\contentsline {chapter}{\numberline {3.}ARRANGEMENT}{20}{}%
+\contentsline {section}{\numberline {3.1.} Title Page}{20}{}%
+\contentsline {section}{\numberline {3.2.} Approval Page}{20}{}%
+\contentsline {section}{\numberline {3.3.} Dedication}{21}{}%
+\contentsline {section}{\numberline {3.4.} Acknowledgements}{21}{}%
+\contentsline {section}{\numberline {3.5.} Abstract}{21}{}%
+\contentsline {section}{\numberline {3.6.} Table of Contents, List of Figures, List of Tables, List of Symbols and List of Acronyms/Abbreviations}{22}{}%
+\contentsline {section}{\numberline {3.7.} The Main Body of the Thesis}{22}{}%
+\contentsline {section}{\numberline {3.8.} Appendices}{23}{}%
+\contentsline {chapter}{\numberline {4.}PREPARATION OF THE FINAL COPIES}{24}{}%
+\contentsline {section}{\numberline {4.1.} Typesetting}{24}{}%
+\contentsline {section}{\numberline {4.2.} Paper Quality}{24}{}%
+\contentsline {section}{\numberline {4.3.} Printer}{24}{}%
+\contentsline {section}{\numberline {4.4.} Reproduction}{24}{}%
+\contentsline {section}{\numberline {4.5.} Binding}{25}{}%
+\contentsline {chapter}{\numberline {5.}PUBLICATION OF THESES}{26}{}%
+\contentsline {section}{\numberline {5.1.} Use of Copyrighted Material}{26}{}%
+\contentsline {section}{\numberline {5.2.} Publications}{26}{}%
+\contentsline {chapter}{\numberline {6.}EXAMPLES}{27}{}%
+\contentsline {section}{\numberline {6.1.} Sample Section}{27}{}%
+\contentsline {chapter}{\numberline {7.}CONCLUSION}{37}{}%
+\contentsline {chapter}{REFERENCES}{38}{}%
+\contentsline {chapter}{REFERENCES FOR APA STYLE}{39}{}%
+\noindent APPENDIX\ A:\hspace {1.6ex}AN APPENDIX TITLE THAT IS LONG AND THEREFORE\\ \hspace *{2.95cm} NEEDS MANUAL ADJUSTMENT IN LATEX CODE TO FIT\\ \hspace *{2.95cm} PROPERLY IN TABLE OF CONTENTS \nobreak \leaders \hbox {$\mathsurround \z@ \mkern 4.5mu.\mkern 4.5mu$} \hfill \nobreak \hbox to1.55em{\hss 40}\par 
+\noindent APPENDIX\ B:\hspace {1.6ex}SAMPLE PAGES \nobreak \leaders \hbox {$\mathsurround \z@ \mkern 4.5mu.\mkern 4.5mu$} \hfill \nobreak \hbox to1.55em{\hss 41}\par 

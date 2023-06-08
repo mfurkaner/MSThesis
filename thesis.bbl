@@ -1,0 +1,45 @@
+\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{{\tt #1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{}\fi
+
+\bibitem{ArticleRef}
+Maiers, J. and Y.~Sherif, \enquote{Application of Fuzzy Set Theory}, {\em IEEE
+  Transactions on Systems, Man, and Cybernatics\/}, Vol.~15, No.~1, pp. 41--48,
+  1985.
+
+\bibitem{BookRef}
+Ang, A.-S., W.~Tang and S.~Ross, {\em Probability Concepts in Engineering\/},
+  John Wiley \& Sons, New Jersey, 2007.
+
+\bibitem{ConferenceRef}
+Brown, D. and D.~Clair, \enquote{Integrated R-transportation}, {\em {14th
+  International Conference of Transportation Logistics}\/}, Istanbul, Turkey,
+  2008.
+
+\bibitem{Webref}
+Sarp, B., \enquote{Observations}, 2013,
+  \urlprefix\url{http://sarp.com.tr/obs.html}, accessed on November 21, 2015.
+
+\bibitem{ThesisRef}
+İşgüder, E., {\em Human Computer Interaction in the 21st Century\/},
+  Master's Thesis, Boğaziçi University, 2015.
+
+\bibitem{PatentRef}
+Shatner, W., L.~a.~Christel, D.~A. Borkholder and S.~J. Young,
+  \enquote{Apparatus for Analysis of a Nucleic Acid Amplification Reaction},
+  U.S. Patent 6942971 B2, 13 September 2005,
+  \urlprefix\url{https://www.google.com/patents/US6942971}, accessed on
+  December 12, 2017.
+
+\bibitem{ManualRef}
+\enquote{The MakerBot Replicator Desktop 3D Printer (Fifth Generation Model)
+  User Manual}, MakerBot Industries, Brooklyn, NY, 2014.
+
+\bibitem{PreprintRef}
+J., N. and C.~Nettelblad, \enquote{TannyFS: Opportunistically Maximizing I/O
+  Throughput Exploiting the Transactional Nature of Batch-Mode Data
+  Processing}, ArXiv:1612.06830 [cs], 2016.
+
+\end{thebibliography}
