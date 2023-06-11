@@ -1,0 +1,78 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{wrapfig,lipsum}
+\usepackage{svg}
+\usepackage{mathtools}
+\usepackage{tabu}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+\begin{document}
+
+
+\newcommand{\vecthreeBF}[1]{\vec{\textbf{#1}}}
+\newcommand{\vecthree}[1]{\vec{#1}}
+
+\newcommand{\parDeriv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\parDerivS}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\derivS}[2]{\frac{d^2 #1}{d#2^2}}
+
+\newcommand{\dotProdBF}[2]{\vecthreeBF{#1} \cdot \vecthreeBF{#2}}
+\newcommand{\dotProd}[2]{\vecthree{#1} \cdot \vecthree{#2}}
+
+\newcommand{\crossProdBF}[2]{\vecthreeBF{#1} \times \vecthreeBF{#2}}
+\newcommand{\crossProd}[2]{\vecthree{#1} \times \vecthree{#2}}
+
+
+\newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
+\newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
+
+
+\section{Theory}
+
+\subsection{Numerical Integration Methods}
+
+\subsubsection{Leap Frog}
+Leapfrog is a method that is used to numarically intergenerate that are in the form of
+
+\begin{equation*}
+    \ddot{x} = \derivS{x}{t} = f(x)
+\end{equation*}
+
+It is also known as the Störmer-Verlet method, commonly used to numerically calculate the trejectory of particles. 
+The name comes from the fact that calculation of updated $\textbf{x}$ and $\textbf{v}$ are done in some order and calculated for different time slices. 
+The energy is approximately conserved during the calculation. 
+It is stable in oscillatory motion as long as the time-step $\Delta t$ is constant, and satisfies $\Delta t\leq 2/\omega$ \cite{leapfrog_osc}.
+The idea is straight forward; in the time interval $\Delta t$, 
+
+\begin{eqnarray}
+    a(t_0) &=& f(x_0) \nonumber \\
+    x(t_0 + \Delta t) &=& x(t_0) + v(t_0)\Delta t + a(t_0)\frac{\Delta t^2}{2} \label{eq:leapfrog_sync_x}\\
+    v(t_0 + \Delta t) &=& v(t_0) + \{ a(t_0) + a(t_0 + \Delta t)\}\frac{\Delta t}{2}  \label{eq:leapfrog_sync_v}
+\end{eqnarray}
+
+For more stability, this version can be rearranged to what is called 'kick-drift-kick' form,
+
+\begin{eqnarray} \label{eq:leapfrog}
+    v(t_0 + \Delta t/2) &=& v(t_0) +  a(t_0)\frac{\Delta t}{2} \nonumber \\
+    x(t_0 + \Delta t) &=& x(t_0) + v(t_0 + \Delta t/2)\Delta t \\
+    v(t_0 + \Delta t) &=& v(t_0 + \Delta t/2) + a(t_0 + \Delta t)\frac{\Delta t}{2}  \nonumber
+\end{eqnarray}
+
+This version provides more time resolution to our calculation; however, it increases the number of calculations needed by about $50\%$.
+
+\subsubsection{Runge Kutta}
+
+Runge Kutta is another numerical integration method that is 
+
+
+
+\begin{thebibliography}{9}
+\bibitem{leapfrog_osc}
+C. K. Birdsall and A. B. Langdon, \emph{Plasma Physics via Computer Simulations}, McGraw-Hill Book Company, 1985, p. 56.
+\end{thebibliography}
+
+\end{document}
