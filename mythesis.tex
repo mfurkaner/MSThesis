@@ -1,0 +1,346 @@
+\documentclass[a4paper,oneside,12pt]{report}
+\usepackage{styles/fbe_tez}
+\usepackage[utf8x]{inputenc} % To use Unicode (e.g. Turkish) characters
+\usepackage{amsmath, amsthm} % Some extra symbols
+\usepackage[bottom]{footmisc}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subfigure}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{amssymb,bm,cite,graphicx, fixmath, texdraw}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{subfigure} % 
+\usepackage{amsmath}
+\usepackage{notoccite}
+
+\interdisplaylinepenalty=2500
+\hyphenation{lists} \makeatletter
+
+\newcommand{\field}[1]{\mathbb{#1} }
+\newcommand{\beq}{\begin{equation} \setlength\abovedisplayskip{5pt} 
+\setlength\belowdisplayskip{5pt}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\defn}{\stackrel{\triangle}{=}}
+\newcommand{\nn}{\nonumber}
+\newcommand{\nnl}{\nonumber \\}
+\renewcommand{\theequation}{\arabic{equation}}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\def\ifundefined{\@ifundefined}
+\def\bfat{\left[ \begin{array}}
+\def\emat{\end{array} \right]}
+\def\bfatt{\left\{ \begin{array}}
+\def\ematt{\end{array} \right.}
+\def\bset{\left\{ \begin{array}}
+\def\eset{\end{array} \right\}}
+\def\bpar{\left( \begin{array}}
+\def\epar{\end{array} \right)}
+
+\graphicspath{{figures/}} % Graphics will be here
+
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+
+\numberwithin{equation}{chapter}
+
+% COVER PAGE
+\title{THESIS TITLE}
+\turkcebaslik{TEZ BAŞLIĞI}
+\degree{B.S., Program Name, Boğaziçi University, 2010\\
+	M.S., Program Name, Boğaziçi University, 2013}
+\author{Name Surname}
+\program{Program Name}
+\subyear{2019}
+
+% APPROVED BY PAGE
+\supervisor{Prof. Name Surname}
+%\cosuperi{Title and Name of Cosupervisor I}
+%\cosuperii{Title and Name of Cosupervisor II}
+\examineri{Assoc. Prof. Name Surname}
+\examinerii{Assist. Prof. Name Surname}
+\examineriii{Name Surname, Ph.D.}
+%\examineriv{}
+%\examinerv{}
+\dateofapproval{DD.MM.YYYY}
+
+% BEGIN OF DOCS
+\begin{document}
+\pagenumbering{roman}
+\makemstitle % M.S. thesis
+\makeapprovalpage
+
+% ACK PAGE
+\begin{acknowledgements}
+Acknowledgements come here...
+\end{acknowledgements}
+
+% ABS PAGE
+\begin{abstract}
+One page abstract will come here.  
+\end{abstract}
+
+% OZET PAGE
+\begin{ozet}
+Bir sayfa uzunluğunda özet gelecektir.
+\end{ozet}
+
+% CONTENTS AND LIST OF FIG AND TABLE PAGES
+\tableofcontents
+\listoffigures
+\listoftables
+
+% LIST OF SYMBOLS PAGE
+\begin{symbols}
+% The title will be typeset as "LIST OF SYMBOLS".
+% Use a separate \sym command for each symbols definition.
+% First, Latin symbols in alphabetical order
+\sym{$a_{ij}$}{Description of $a_{ij}$}
+\sym{$\mathbf{A}$}{State transition matrix of a hidden Markov model}
+% 1 EMPTY LINE BETWEEN LATIN AND GREEK SYMBOLS GROUP!!!
+\sym{}{}
+% Then Greek symbols in alphabetical order
+\sym{$\alpha$}{Blending parameter \textit{or} scale}
+\sym{$\beta_t(i)$}{Backward variable}
+\sym{$\Theta$}{Parameter set}
+\sym{ }{}
+\end{symbols}
+
+
+
+\newcommand{\vecthreeBF}[1]{\vec{\textbf{#1}}}
+\newcommand{\vecthree}[1]{\vec{#1}}
+
+\newcommand{\parDeriv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\parDerivS}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\derivS}[2]{\frac{d^2 #1}{d#2^2}}
+
+\newcommand{\dotProdBF}[2]{\vecthreeBF{#1} \cdot \vecthreeBF{#2}}
+\newcommand{\dotProd}[2]{\vecthree{#1} \cdot \vecthree{#2}}
+
+\newcommand{\crossProdBF}[2]{\vecthreeBF{#1} \times \vecthreeBF{#2}}
+\newcommand{\crossProd}[2]{\vecthree{#1} \times \vecthree{#2}}
+
+
+\newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
+\newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
+
+\newpage
+\chapter{THEORY}
+
+\section{Relation between momentum and acceleration}
+In classical mechanics, Newton's second law defines momentum and states 
+\begin{equation}
+    \vecthreeBF{F} = \frac{\partial \vecthreeBF{p}}{\partial t} = m \frac{\partial \vecthreeBF{v}}{\partial t} = m \vecthreeBF{a}
+\end{equation}
+In special relativity however, relativistic momentum is defined as $\vecthree{p} = \gamma m_0 \vecthree{v} $ where gamma is the Lorentz Factor;
+\begin{equation*}
+    \gamma = \frac{1}{\sqrt{1-v^2 / c^2}} = \frac{1}{\sqrt{1-\beta^2}}
+\end{equation*}
+Considering these two statements, we can find the relation between momentum and acceleration as follows
+\begin{eqnarray*}
+    \parDeriv{\vecthree{p}}{t} &=& m_0 \parDeriv{(\gamma \vecthree{v})}{t} = m_0 \{  \parDeriv{\gamma}{t}\vecthree{v} + \gamma \parDeriv{\vecthree{v}}{t}  \} \\
+    \parDeriv{\gamma}{t} &=& \gamma^3 \dotProd{\beta}{\parDeriv{\beta}{t}} = \frac{\gamma^3}{c} \dotProd{\beta}{a} \\
+    \parDeriv{\vecthree{p}}{t}  &=& m_0 \{   \frac{\gamma^3}{c} (\dotProd{\beta}{a} )\vecthree{v} + \gamma \parDeriv{\vecthree{v}}{t}  \} 
+\end{eqnarray*}
+\begin{equation} \label{eq:Frel}
+    \vecthreeBF{F}  = \gamma m_0 \{ \vecthreeBF{a} + \gamma^2(\dotProd{\beta}{\textbf{a}})\vecthree{\beta} \}
+\end{equation}
+It is clear that acceleration is not necessarily parallel to the force. To start seperating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and  $\vecthreeBF{F}_{||}$;
+\begin{equation} \label{eq:a_F_parallels}
+    \begin{aligned}
+        \vecthreeBF{a}_{||} = \frac{(\dotProd{a}{\beta})}{\beta^2}\beta 
+    \end{aligned}
+    \qquad \qquad
+    \begin{aligned}
+        \vecthreeBF{F}_{||} = \frac{(\dotProd{F}{\beta})}{\beta^2}\beta 
+    \end{aligned}
+\end{equation}
+\begin{eqnarray*}
+    \dotProd{\textbf{F}}{\beta} &=& \gamma m_0 \{ \dotProd{\textbf{a}}{\beta} + \gamma^2(\dotProd{\beta}{\textbf{a}})\beta^2 \} \\
+                                &=& \gamma m_0 (\dotProd{\textbf{a}}{\beta}) \{ \gamma^2\beta^2  + 1\} 
+\end{eqnarray*}
+Using $\gamma^2 \beta^2 + 1 = \gamma^2 $ we have,
+\begin{equation*}
+    \dotProd{\textbf{F}}{\beta} = m_0 \gamma^3 (\dotProd{\textbf{a}}{\beta} )
+\end{equation*}
+Inserting this
+\begin{eqnarray}
+    \vecthreeBF{F}_{||} &=& \frac{(\dotProd{\textbf{F}}{\beta})}{\beta^2} \vec{\beta} \nonumber \\
+                        &=& m_0 \gamma^3 \frac{(\dotProd{\textbf{a}}{\beta} )}{\beta^2} \vec{\beta} \nonumber \\
+                        &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \label{eq:Frel_parallel}
+\end{eqnarray}
+Therefore from \fromeqs{Frel}{Frel_parallel}
+\begin{eqnarray*}
+    \vecthreeBF{F}  &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \beta^2 + m_0 \gamma \vecthreeBF{a} \\
+                    &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \beta^2 + m_0 \gamma \{ \vecthreeBF{a}_{||} +  \vecthreeBF{a}_{\perp} \} \\
+                    &=& m_0 \vecthreeBF{a}_{||} \gamma \{ \gamma^2\beta^2 + 1 \} + m_0 \gamma \vecthreeBF{a}_{\perp} \\
+                    &=& m_0 \vecthreeBF{a}_{||} \gamma^3 + m_0 \gamma \vecthreeBF{a}_{\perp} \\
+                    &=& \vecthreeBF{F}_{||} + m_0 \gamma \vecthreeBF{a}_{\perp}
+\end{eqnarray*}
+\begin{equation} \label{eq:Frel_para_and_perp}
+    \begin{aligned}
+        \vecthreeBF{F}_{||} = \gamma^3  m_0 \vecthreeBF{a}_{||}
+    \end{aligned}
+    \qquad \qquad
+    \begin{aligned}
+        \vecthreeBF{F}_{\perp} = \gamma  m_0\vecthreeBF{a}_{\perp}
+    \end{aligned}
+\end{equation}
+
+
+\section{Lorentz Force}
+Force acting on a charged particle moving in electromagnetic fields is called Lorentz Force and is given by the formula
+\newline
+\begin{equation} \label{eq:lf}
+    \frac{\partial \vecthree{p}}{\partial t} = \vecthree{F}_L=q(\vecthree{E}+ \vecthree{v} \times \vecthree{B})
+\end{equation}
+\newline
+where the $q$ is the charge and $\vecthree{v}$ is the velocity of the particle. 
+
+\section{Relativistic Lorentz Force}
+Similar to non-relativistic version, relativistic Lorentz Force is given by the following 4-vector equality
+\begin{equation}
+    \frac{\partial p^{\mu}}{\partial \tau} = q F^{\mu \nu} u_{\nu}
+\end{equation}
+Where $ \partial \tau = \partial t / \gamma $,
+\begin{equation}
+    \begin{aligned}
+        p^{\mu} = 
+        \begin{bmatrix}
+            W/c \\
+            p_x         \\
+            p_y \\
+            p_z
+        \end{bmatrix}    
+    \end{aligned}
+    \qquad\qquad
+    \begin{aligned}
+        F^{\mu\nu} = 
+        \begin{bmatrix}
+                0       & -E_x/c   & -E_y/c    & -E_z/c \\
+                E_x/c   &   0      & -B_z      & B_y     \\
+                E_y/c   &   B_z    &  0        & -B_x     \\
+                E_z/c   &   -B_y   & B_x       & 0   
+        \end{bmatrix} 
+    \end{aligned}
+    \qquad\qquad
+    \begin{aligned}
+        u_{\nu} = \gamma
+        \begin{bmatrix}
+                 c \\
+                -v_x \\
+                -v_y \\
+                -v_z \\
+        \end{bmatrix} 
+    \end{aligned}
+\end{equation}
+Where $W$ is the energy of the particle and $\gamma = 1 / \sqrt{1 - v^2 / c^2}$ is the lorentz factor.
+\newline
+
+For $ \mu = 0 $, we have the time component of the equation;
+\begin{eqnarray}
+    \frac{\gamma}{c}\frac{\partial W}{\partial t} &=& \frac{q \gamma \vecthree{E}\cdot \vecthree{v}}{c} = \frac{q \gamma}{c}  \frac{\vecthree{E}  \cdot \partial \vecthree{r}}{\partial t} \\
+    \frac{\partial W}{\partial t} &=& q \frac{\vecthree{E}\cdot \partial \vecthree{r}} {\partial t}
+\end{eqnarray}
+This is the definition of work done by an electric field. For $ \mu = 1,2,3 $, we have the spacial components;
+\begin{equation*}
+    \frac{\partial \vecthree{p}}{\partial \tau} = \gamma \frac{\partial \vecthree{p}}{\partial t} = q \gamma (\vecthree{E} + \vecthree{v} \times \vecthree{B})
+\end{equation*}
+Which simplifies to non-relativistic Lorentz Force in \fromeq{lf}.
+
+
+\section{Acceleration caused by lorentz force}
+Due to the nature of the cross product, lorentz force caused by a magnetic field is always perpendicular to the velocity of the particle. 
+Therefore the acceleration of the magnetic field is straightforward
+\begin{equation*}
+    \vecthreeBF{F}_B = \vecthreeBF{F}_{\perp} = \gamma  m_0\vecthreeBF{a}_{\perp} = \gamma  m_0\vecthreeBF{a}_{B}
+\end{equation*}
+The same thing cannot be said about electric field however. 
+It can create force in any direction with respect to velocity. Therefore, we have the following equality;
+\begin{equation} \label{eq:para_and_perp_acc_of_lorentz_force}
+    \begin{aligned}
+        \vecthreeBF{a}_{||} = \frac{q }{\gamma^3 m_0} \vecthreeBF{E}_{||}
+    \end{aligned}
+    \qquad \qquad
+    \begin{aligned}
+        \vecthreeBF{a}_{\perp} = \frac{q}{\gamma m_0} \{ \vecthreeBF{E}_{\perp} + \crossProdBF{v}{B}   \}
+    \end{aligned}    
+\end{equation}
+Acceleration due to electric field can be simplified as;
+\begin{eqnarray*}
+    \vecthreeBF{a}_{\{B=0\}} = \vecthreeBF{a}_{E}   &=&  \vecthreeBF{a}_{||} + \vecthreeBF{a}_{\perp \{B=0\}} \\
+                                &=& \frac{q}{m_0 \gamma} \{ \frac{\vecthreeBF{E}_{||}}{\gamma^2} + \vecthreeBF{E}_{\perp} \} \\
+                                &=& \frac{q}{m_0 \gamma} \{ \{1 - \beta^2\}\vecthreeBF{E}_{||} + \vecthreeBF{E}_{\perp} \} \\
+                                &=& \frac{q}{m_0 \gamma} \{ \vecthreeBF{E}_{||} + \vecthreeBF{E}_{\perp}-\beta^2\vecthreeBF{E}_{||} \} \\
+                                &=& \frac{q}{m_0 \gamma} \{ \vecthreeBF{E} - \beta^2\vecthreeBF{E}_{||} \} \\
+\end{eqnarray*}
+Using the fact that $\vecthreeBF{E}_{||} = \vec{\beta}(\dotProd{\textbf{E}}{\beta})/\beta^2 $, we finally have
+\begin{equation} \label{eq:acc_of_E_and_B}
+    \begin{aligned}
+        \vecthreeBF{a}_{E} = \frac{q}{m_0 \gamma} \{ \vecthreeBF{E} - \vecthreeBF{v}\frac{(\dotProdBF{E}{v})}{c^2} \}
+    \end{aligned}
+    \qquad \qquad
+    \begin{aligned}
+        \vecthreeBF{a}_{B} = \frac{q}{\gamma m_0} ( \crossProdBF{v}{B} )
+    \end{aligned}
+\end{equation}
+
+\section{Numerical Integration Methods}
+
+\subsection{Leapfrog} \label{sec:leapfrog}
+The Leapfrog method is a numerical method commonly used to solve ordinary differential equations (ODEs) that involve second-order time derivatives. Such an ODE is shown below:
+
+\begin{equation}
+    \ddot{x} = \derivS{x}{t} = f(x) \label{eq:second-order-ODE}
+\end{equation}
+\newline
+The Leapfrog method is a variant of the finite difference method, and it approximates the solution of an ODE by discretizing both time and space. The method gets its name from the way it calculates the values of the solution at each time step, which resembles a "leapfrogging" motion. 
+It is a simple and efficient algorithm that is often used in simulations of physical systems, such as celestial mechanics or molecular dynamics.
+The idea is straight forward; in the time interval $\Delta t$, 
+\begin{eqnarray}
+    a(t_0) &=& f(x_0) \nonumber \\
+    x(t_0 + \Delta t) &=& x(t_0) + v(t_0)\Delta t + a(t_0)\frac{\Delta t^2}{2} \label{eq:leapfrog_sync_x}\\
+    v(t_0 + \Delta t) &=& v(t_0) + \{ a(t_0) + a(t_0 + \Delta t)\}\frac{\Delta t}{2}  \label{eq:leapfrog_sync_v}
+\end{eqnarray}
+
+For more stability, this version can be rearranged to what is called 'kick-drift-kick' form,
+\begin{eqnarray} \label{eq:leapfrog}
+    v(t_0 + \Delta t/2) &=& v(t_0) +  a(t_0)\frac{\Delta t}{2} \nonumber \\
+    x(t_0 + \Delta t) &=& x(t_0) + v(t_0 + \Delta t/2)\Delta t \\
+    v(t_0 + \Delta t) &=& v(t_0 + \Delta t/2) + a(t_0 + \Delta t)\frac{\Delta t}{2}  \nonumber
+\end{eqnarray}
+
+This version provides more time resolution to our calculation; however, it increases the number of calculations needed by about $50\%$.
+
+\subsection{Runge Kutta}
+
+The Runge-Kutta method is another numerical method used to solve ordinary differential equations (ODEs) numerically (see $\fromeq{second-order-ODE}$). It's named after the German mathematicians Carl Runge and Martin Wilhelm Kutta.
+
+The basic idea behind the Runge-Kutta method is to approximate the solution of an ODE by taking small steps and using a weighted average of function evaluations at different points within each step. 
+This weighted average improves the accuracy of the approximation compared to simpler methods like Leapfrog (see $\textit{section \ref{sec:leapfrog}}$).
+% TODO: ADD GENERAL FORM OF RK HERE
+\newline
+The most commonly used version of the Runge-Kutta method is the fourth-order Runge-Kutta method, also known as RK4. The RK4 method involves four function evaluations per step and has an error term that is proportional to the step size raised to the fifth power.
+
+% TODO: ADD RK4 HERE  
+
+
+\begin{thebibliography}{9}
+\bibitem{leapfrog_osc}
+C. K. Birdsall and A. B. Langdon, \emph{Plasma Physics via Computer Simulations}, McGraw-Hill Book Company, 1985, p. 56.
+\end{thebibliography}
+
+\end{document}

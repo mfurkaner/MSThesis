@@ -1,6 +1,6 @@
-PWD c:\Users\user\Repos\MSThesis\subsections
+PWD c:\Users\user\Repos\MSThesis\subsections\theory\numericalmethods
 INPUT C:\Users\user\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\user\Repos\MSThesis\subsections\leap-frog-runge-kutta.tex
+INPUT c:\Users\user\Repos\MSThesis\subsections\theory\numericalmethods\leap-frog-runge-kutta.tex
 OUTPUT leap-frog-runge-kutta.log
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
@@ -336,9 +336,9 @@ INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
-INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
-INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti7.tfm
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti7.tfm
 OUTPUT leap-frog-runge-kutta.pdf
 INPUT C:\Users\user\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT leap-frog-runge-kutta.aux

@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.2)  11 JUN 2023 20:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.2)  11 JUN 2023 22:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/user/Repos/MSThesis/subsections/leap-frog-runge-kutta.tex
-(c:/Users/user/Repos/MSThesis/subsections/leap-frog-runge-kutta.tex
+**c:/Users/user/Repos/MSThesis/subsections/theory/numericalmethods/leap-frog-runge-kutta.tex
+(c:/Users/user/Repos/MSThesis/subsections/theory/numericalmethods/leap-frog-runge-kutta.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-05-15> (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -525,19 +525,19 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 
 [1
 
-{C:/Users/user/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (leap-frog-runge-kutta.aux) ) 
+{C:/Users/user/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] (leap-frog-runge-kutta.aux) ) 
 Here is how much of TeX's memory you used:
  16403 strings out of 476411
- 336370 string characters out of 5789607
- 1859845 words of memory out of 5000000
- 36468 multiletter control sequences out of 15000+600000
- 515224 words of font info for 42 fonts, out of 8000000 for 9000
+ 336560 string characters out of 5789607
+ 1861845 words of memory out of 5000000
+ 36469 multiletter control sequences out of 15000+600000
+ 515303 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,6n,92p,461b,165s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,6n,92p,485b,138s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on leap-frog-runge-kutta.pdf (1 page, 95177 bytes).
+Output written on leap-frog-runge-kutta.pdf (2 pages, 96996 bytes).
 PDF statistics:
- 44 PDF objects out of 1000 (max. 8388607)
+ 47 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

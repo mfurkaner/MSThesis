@@ -35,19 +35,16 @@
 
 \subsection{Numerical Integration Methods}
 
-\subsubsection{Leap Frog}
-Leapfrog is a method that is used to numarically intergenerate that are in the form of
+\subsubsection{Leapfrog} \label{sec:leapfrog}
+The Leapfrog method is a numerical method commonly used to solve ordinary differential equations (ODEs) that involve second-order time derivatives. Such an ODE is shown below:
 
-\begin{equation*}
-    \ddot{x} = \derivS{x}{t} = f(x)
-\end{equation*}
-
-It is also known as the Störmer-Verlet method, commonly used to numerically calculate the trejectory of particles. 
-The name comes from the fact that calculation of updated $\textbf{x}$ and $\textbf{v}$ are done in some order and calculated for different time slices. 
-The energy is approximately conserved during the calculation. 
-It is stable in oscillatory motion as long as the time-step $\Delta t$ is constant, and satisfies $\Delta t\leq 2/\omega$ \cite{leapfrog_osc}.
+\begin{equation}
+    \ddot{x} = \derivS{x}{t} = f(x) \label{eq:second-order-ODE}
+\end{equation}
+\newline
+The Leapfrog method is a variant of the finite difference method, and it approximates the solution of an ODE by discretizing both time and space. The method gets its name from the way it calculates the values of the solution at each time step, which resembles a "leapfrogging" motion. 
+It is a simple and efficient algorithm that is often used in simulations of physical systems, such as celestial mechanics or molecular dynamics.
 The idea is straight forward; in the time interval $\Delta t$, 
-
 \begin{eqnarray}
     a(t_0) &=& f(x_0) \nonumber \\
     x(t_0 + \Delta t) &=& x(t_0) + v(t_0)\Delta t + a(t_0)\frac{\Delta t^2}{2} \label{eq:leapfrog_sync_x}\\
@@ -55,7 +52,6 @@ The idea is straight forward; in the time interval $\Delta t$,
 \end{eqnarray}
 
 For more stability, this version can be rearranged to what is called 'kick-drift-kick' form,
-
 \begin{eqnarray} \label{eq:leapfrog}
     v(t_0 + \Delta t/2) &=& v(t_0) +  a(t_0)\frac{\Delta t}{2} \nonumber \\
     x(t_0 + \Delta t) &=& x(t_0) + v(t_0 + \Delta t/2)\Delta t \\
@@ -66,7 +62,15 @@ This version provides more time resolution to our calculation; however, it incre
 
 \subsubsection{Runge Kutta}
 
-Runge Kutta is another numerical integration method that is 
+The Runge-Kutta method is another numerical method used to solve ordinary differential equations (ODEs) numerically (see $\fromeq{second-order-ODE}$). It's named after the German mathematicians Carl Runge and Martin Wilhelm Kutta.
+
+The basic idea behind the Runge-Kutta method is to approximate the solution of an ODE by taking small steps and using a weighted average of function evaluations at different points within each step. 
+This weighted average improves the accuracy of the approximation compared to simpler methods like Leapfrog (see $\textit{section \ref{sec:leapfrog}}$).
+% TODO: ADD GENERAL FORM OF RK HERE
+\newline
+The most commonly used version of the Runge-Kutta method is the fourth-order Runge-Kutta method, also known as RK4. The RK4 method involves four function evaluations per step and has an error term that is proportional to the step size raised to the fifth power.
+
+% TODO: ADD RK4 HERE  
 
 
 

@@ -1,6 +1,6 @@
-PWD c:\Users\user\Repos\MSThesis\subsections
+PWD c:\Users\user\Repos\MSThesis\subsections\theory\temel-theory
 INPUT C:\Users\user\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\user\Repos\MSThesis\subsections\relative-lorentz-force.tex
+INPUT c:\Users\user\Repos\MSThesis\subsections\theory\temel-theory\relative-lorentz-force.tex
 OUTPUT relative-lorentz-force.log
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
@@ -329,8 +329,6 @@ INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sy
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
-INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
-INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
