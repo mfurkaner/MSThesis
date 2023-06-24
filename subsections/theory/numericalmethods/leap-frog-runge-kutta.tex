@@ -30,12 +30,11 @@
 \newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
 \newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
 
+%%%%%%
 
-\section{Theory}
+\section{Numerical Integration Methods}
 
-\subsection{Numerical Integration Methods}
-
-\subsubsection{Leapfrog} \label{sec:leapfrog}
+\subsection{Leapfrog} \label{sec:leapfrog}
 The Leapfrog method is a numerical method commonly used to solve ordinary differential equations (ODEs) that involve second-order time derivatives. Such an ODE is shown below:
 
 \begin{equation}
@@ -60,7 +59,7 @@ For more stability, this version can be rearranged to what is called 'kick-drift
 
 This version provides more time resolution to our calculation; however, it increases the number of calculations needed by about $50\%$.
 
-\subsubsection{Runge Kutta}
+\subsection{Runge Kutta}
 
 The Runge-Kutta method is another numerical method used to solve ordinary differential equations (ODEs) numerically (see $\fromeq{second-order-ODE}$). It's named after the German mathematicians Carl Runge and Martin Wilhelm Kutta.
 
@@ -72,6 +71,7 @@ The most commonly used version of the Runge-Kutta method is the fourth-order Run
 
 % TODO: ADD RK4 HERE  
 
+%%%%%%
 
 
 \begin{thebibliography}{9}

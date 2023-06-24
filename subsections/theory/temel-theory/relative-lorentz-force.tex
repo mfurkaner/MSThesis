@@ -1,5 +1,4 @@
 \documentclass{article}
-
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -28,9 +27,11 @@
 \newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
 \newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
 
+%%%%%%
 
+\section{Accelerating Charged Particles}
 
-\section{Relation between momentum and acceleration}
+\subsection{Relation between momentum and acceleration}
 In classical mechanics, Newton's second law defines momentum and states 
 \begin{equation}
     \vecthreeBF{F} = \frac{\partial \vecthreeBF{p}}{\partial t} = m \frac{\partial \vecthreeBF{v}}{\partial t} = m \vecthreeBF{a}
@@ -91,7 +92,7 @@ Therefore from \fromeqs{Frel}{Frel_parallel}
 \end{equation}
 
 
-\section{Lorentz Force}
+\subsection{Lorentz Force}
 Force acting on a charged particle moving in electromagnetic fields is called Lorentz Force and is given by the formula
 \newline
 \begin{equation} \label{eq:lf}
@@ -100,7 +101,7 @@ Force acting on a charged particle moving in electromagnetic fields is called Lo
 \newline
 where the $q$ is the charge and $\vecthree{v}$ is the velocity of the particle. 
 
-\section{Relativistic Lorentz Force}
+\subsection{Relativistic Lorentz Force}
 Similar to non-relativistic version, relativistic Lorentz Force is given by the following 4-vector equality
 \begin{equation}
     \frac{\partial p^{\mu}}{\partial \tau} = q F^{\mu \nu} u_{\nu}
@@ -152,7 +153,7 @@ This is the definition of work done by an electric field. For $ \mu = 1,2,3 $, w
 Which simplifies to non-relativistic Lorentz Force in \fromeq{lf}.
 
 
-\section{Acceleration caused by lorentz force}
+\subsection{Acceleration caused by lorentz force}
 Due to the nature of the cross product, lorentz force caused by a magnetic field is always perpendicular to the velocity of the particle. 
 Therefore the acceleration of the magnetic field is straightforward
 \begin{equation*}
@@ -187,6 +188,6 @@ Using the fact that $\vecthreeBF{E}_{||} = \vec{\beta}(\dotProd{\textbf{E}}{\bet
         \vecthreeBF{a}_{B} = \frac{q}{\gamma m_0} ( \crossProdBF{v}{B} )
     \end{aligned}
 \end{equation}
-
+%%%%%%
 
 \end{document}
