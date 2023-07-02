@@ -8,6 +8,7 @@
 \usepackage{svg}
 \usepackage{mathtools}
 \usepackage{tabu}
+\usepackage{subcaption}
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 
 \begin{document}
@@ -29,6 +30,9 @@
 
 \newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
 \newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
+
+\newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
+
 
 %%%%%%
 
@@ -61,15 +65,105 @@ This version provides more time resolution to our calculation; however, it incre
 
 \subsection{Runge Kutta}
 
-The Runge-Kutta method is another numerical method used to solve ordinary differential equations (ODEs) numerically (see $\fromeq{second-order-ODE}$). It's named after the German mathematicians Carl Runge and Martin Wilhelm Kutta.
+The Runge-Kutta methods, named after the German mathematicians Carl Runge and Martin Wilhelm Kutta, family of numerical methods
+used to solve ordinary differential equations (ODEs) that are in the following form
 
-The basic idea behind the Runge-Kutta method is to approximate the solution of an ODE by taking small steps and using a weighted average of function evaluations at different points within each step. 
-This weighted average improves the accuracy of the approximation compared to simpler methods like Leapfrog (see $\textit{section \ref{sec:leapfrog}}$).
-% TODO: ADD GENERAL FORM OF RK HERE
-\newline
-The most commonly used version of the Runge-Kutta method is the fourth-order Runge-Kutta method, also known as RK4. The RK4 method involves four function evaluations per step and has an error term that is proportional to the step size raised to the fifth power.
+\begin{equation} \label{eq:first-order-ODE}
+    \parDeriv{y}{x} = f(x, y)
+\end{equation}
 
-% TODO: ADD RK4 HERE  
+
+The basic idea behind the Runge-Kutta method is to approximate the solution of an ODE by taking small steps and using a weighted average 
+of function evaluations at different points within each step.
+
+\begin{equation} \label{eq:general-rk}
+    \begin{aligned}
+        y_{n+1} = y_n + \delta x \sum_{i=1}^{m} b_i k_i
+    \end{aligned}
+    \qquad
+    \begin{aligned}
+        x_{n+1} = x_n + \delta x 
+    \end{aligned}
+\end{equation}
+
+where 
+
+\begin{eqnarray} \label{eq:general-rk-coef}
+    k_i = f(x_n + c_i \delta x, y_n + \delta x \sum_{j = 1}^{i - 1}a_{ij}k_j)
+\end{eqnarray}
+
+These \fromeqs{general-rk}{general-rk-coef} define the family of methods. To specify a perticular method, order $m$, coefficients $a_{ij}$, $b_i$ and $c_i$ should be provided.
+The coefficients of any Runge-Kutta method can be visualized by a tableau called $\textit{Butcher Tableau}$.
+
+\begin{figure}[h!]
+    \[ 
+    \begin{array} 
+        {c|cccc}
+        0\\
+        c_1 & a_{21} \\
+        c_2 & a_{31} & a_{32}\\
+        \vdots& & \cdots& \\
+        c_m & a_{m1} & a_{m2} & \cdots & a_{m,m-1}\\
+        \hline
+        & b_1 & b_2 &\cdots & b_m
+    \end{array}
+    \]
+    \caption{Butcher Tableau}
+    \label{fig:Butcher}
+\end{figure}
+
+The simplest Runge-Kutta method is the \textit{Euler's method}. Its \textit{Butcher tableau} is as follows.
+
+\[ 
+    \begin{array} 
+        {c|cccc}
+        0\\
+        \hline
+        & 1
+    \end{array}
+\]
+
+
+The most commonly used version of the Runge-Kutta method is the fourth-order Runge-Kutta method, also known as RK4. 
+The RK4 method involves four function evaluations per step and has an error term that is proportional to the step size raised to the fifth power.
+Two of the most used \textit{Butcher tableaus} for \textit{RK4} given below.
+
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \[ 
+        \begin{array} 
+            {c|cccc}
+            0\\
+            1/2 & 1/2 \\
+            1/2 & 0 & 1/2 \\
+            1   & 0 & 0 & 1\\
+            \hline
+            & 1/6 & 1/3 & 1/3 & 1/6
+        \end{array}
+        \]  
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \[ 
+        \begin{array} 
+            {c|cccc}
+            0\\
+            1/3 & 1/3 \\
+            2/3 & -1/3 & 1 \\
+            1   & 1 & -1 & 1\\
+            \hline
+            & 1/8 & 3/8 & 3/8 & 1/8
+        \end{array}
+        \]  
+    \end{subfigure}
+    \caption{Butcher Tableau for RK4}
+    \label{fig:Butcher-RK4}
+\end{figure}
+
+The second tableau in \fromfig{Butcher-RK4} is called the \textit{"3/8 rule"}. Its main advantage is that its error coefficients are smaller than the other. But it costs more floating point operations per step. 
+Resulting in slower calculations. 
+
 
 %%%%%%
 

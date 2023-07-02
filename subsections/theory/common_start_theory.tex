@@ -18,6 +18,8 @@
 \usepackage{subfigure} % 
 \usepackage{amsmath}
 \usepackage{notoccite}
+\usepackage{subcaption}
+\usepackage{tabu}
 
 \interdisplaylinepenalty=2500
 \hyphenation{lists} \makeatletter
@@ -84,5 +86,7 @@
 
 \newcommand{\crossProdBF}[2]{\vecthreeBF{#1} \times \vecthreeBF{#2}}
 \newcommand{\crossProd}[2]{\vecthree{#1} \times \vecthree{#2}}
+
+\newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
 
 \chapter{THEORY}
