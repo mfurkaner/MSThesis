@@ -30,6 +30,9 @@
 \newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
 \newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
 
+
+%----../../..++++.
+
 %%%%%%
 
 \section{Simulation}
@@ -41,11 +44,47 @@ It allows users to replicate the behavior, interactions, and outcomes of the sys
 providing insights and predictions that can be valuable for decision-making, optimization, or understanding complex phenomena.
 
 Simulation software provides a virtual environment where users can define the parameters,
-variables, and rules of the system being simulated. The software then uses mathematical models, 
+variables, and rules of the system being simulated. The software then uses mathematical and physical models, 
 algorithms, and computational techniques to simulate the behavior of the system over time.
 
-\subsection{}
+\subsection{Basic Consepts in Programming}
+
+\subsubsection{Clock Cycle}
+
+In programming, a clock cycle refers to a fundamental unit of time measurement used in computer systems. 
+It represents the basic rhythm or timing mechanism of a computer's central processing unit (CPU) and is typically measured in terms of the CPU's clock speed, expressed in hertz (Hz).
+
+A clock cycle represents one complete pulse or oscillation of the CPU's clock signal. 
+It serves as a synchronization mechanism, coordinating the execution of instructions and the timing of various operations within the CPU.
+Each clock cycle is associated with a specific duration, which is determined by the clock speed of the CPU.
+
+The concept of clock cycles is often used when considering the performance and efficiency of algorithms and code. 
+Since the execution time of instructions is influenced by the number of clock cycles required, minimizing the number of clock cycles needed for a program or algorithm can lead to faster and more efficient code execution.
+Table below shows the amount of clock cycles required for some mathematical calculations in various processors.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.9\textwidth]{../../../figures/cpu_instruction_speed.png}
+    \caption{Amount of clock cycle for mathematical operations in various processors. \cite{cpu_instruction_speed}}
+\end{figure}
+
+Note that \textit{division} is by far the most time consuming basic mathematical operation between addition, subtraction and multiplication.
+
+\subsubsection{Concurrency}
+
+Concurrency in programming refers to the ability of a program to execute multiple tasks or processes simultaneously. It allows different parts of a program to make progress independently, potentially improving performance, responsiveness, and resource utilization.
+
+Concurrency in single core can be achieved by implementing clever scheduling of list of operations called \textit{threads}. This results in non-blocking execution of multiple threads, but only one thread would be executed at any given time. 
+True concurrency on the other hand, can only be achieved by using multiple cores. Each core would be able to execute one thread at any time.
+
+Programs that implement concurrency using multiple cores executes more operations per clock cycle. However, this does not directly lead to an improved performance due to the heavy burden of scheduling and managing multiple threads.
+
 
 %%%%%%
+
+\begin{thebibliography}{9}
+    \bibitem{cpu_instruction_speed}
+    Fukushima, Toshio. (2001). \emph{Reduction of Round-off Errors in Symplectic Integrators}. The Astronomical Journal. 121. 1768-1775. 
+\end{thebibliography}
 
 \end{document}

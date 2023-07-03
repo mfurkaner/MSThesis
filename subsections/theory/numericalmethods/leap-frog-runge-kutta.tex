@@ -85,9 +85,7 @@ of function evaluations at different points within each step.
         x_{n+1} = x_n + \delta x 
     \end{aligned}
 \end{equation}
-
 where 
-
 \begin{eqnarray} \label{eq:general-rk-coef}
     k_i = f(x_n + c_i \delta x, y_n + \delta x \sum_{j = 1}^{i - 1}a_{ij}k_j)
 \end{eqnarray}
@@ -113,7 +111,6 @@ The coefficients of any Runge-Kutta method can be visualized by a tableau called
 \end{figure}
 
 The simplest Runge-Kutta method is the \textit{Euler's method}. Its \textit{Butcher tableau} is as follows.
-
 \[ 
     \begin{array} 
         {c|cccc}

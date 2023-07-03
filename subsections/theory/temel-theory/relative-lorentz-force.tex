@@ -32,11 +32,11 @@
 \section{Accelerating Charged Particles}
 
 \subsection{Relation between momentum and acceleration}
-In classical mechanics, Newton's second law defines momentum and states 
-\begin{equation}
+In classical mechanics, Newton's second law defines force and states 
+\begin{equation} \label{eq:newton_second_law}
     \vecthreeBF{F} = \frac{\partial \vecthreeBF{p}}{\partial t} = m \frac{\partial \vecthreeBF{v}}{\partial t} = m \vecthreeBF{a}
 \end{equation}
-In special relativity however, relativistic momentum is defined as $\vecthree{p} = \gamma m_0 \vecthree{v} $ where gamma is the Lorentz Factor;
+In special relativity however, relativistic momentum is defined as $\vecthree{p} = \gamma m_0 \vecthree{v} $ where $\gamma$ is the Lorentz Factor;
 \begin{equation*}
     \gamma = \frac{1}{\sqrt{1-v^2 / c^2}} = \frac{1}{\sqrt{1-\beta^2}}
 \end{equation*}
@@ -49,7 +49,7 @@ Considering these two statements, we can find the relation between momentum and 
 \begin{equation} \label{eq:Frel}
     \vecthreeBF{F}  = \gamma m_0 \{ \vecthreeBF{a} + \gamma^2(\dotProd{\beta}{\textbf{a}})\vecthree{\beta} \}
 \end{equation}
-It is clear that acceleration is not necessarily parallel to the force. To start seperating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and  $\vecthreeBF{F}_{||}$;
+It is clear that acceleration is not necessarily parallel to the force anymore. To start seperating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and  $\vecthreeBF{F}_{||}$;
 \begin{equation} \label{eq:a_F_parallels}
     \begin{aligned}
         \vecthreeBF{a}_{||} = \frac{(\dotProd{a}{\beta})}{\beta^2}\beta 
@@ -81,6 +81,7 @@ Therefore from \fromeqs{Frel}{Frel_parallel}
                     &=& m_0 \vecthreeBF{a}_{||} \gamma^3 + m_0 \gamma \vecthreeBF{a}_{\perp} \\
                     &=& \vecthreeBF{F}_{||} + m_0 \gamma \vecthreeBF{a}_{\perp}
 \end{eqnarray*}
+We finally have two seperate equations which are in similar form with \fromeq{newton_second_law}.
 \begin{equation} \label{eq:Frel_para_and_perp}
     \begin{aligned}
         \vecthreeBF{F}_{||} = \gamma^3  m_0 \vecthreeBF{a}_{||}
@@ -92,7 +93,7 @@ Therefore from \fromeqs{Frel}{Frel_parallel}
 \end{equation}
 
 
-\subsection{Lorentz Force}
+\subsection{Lorentz Force} \label{sec:lorentz-force}
 Force acting on a charged particle moving in electromagnetic fields is called Lorentz Force and is given by the formula
 \newline
 \begin{equation} \label{eq:lf}
@@ -138,7 +139,7 @@ Where $ \partial \tau = \partial t / \gamma $,
         \end{bmatrix} 
     \end{aligned}
 \end{equation}
-Where $W$ is the energy of the particle and $\gamma = 1 / \sqrt{1 - v^2 / c^2}$ is the lorentz factor.
+Where $W$ is the energy of the particle and $\gamma$ is the lorentz factor mentioned in the previous section.
 \newline
 
 For $ \mu = 0 $, we have the time component of the equation;
@@ -181,7 +182,7 @@ Acceleration due to electric field can be simplified as;
 Using the fact that $\vecthreeBF{E}_{||} = \vec{\beta}(\dotProd{\textbf{E}}{\beta})/\beta^2 $, we finally have
 \begin{equation} \label{eq:acc_of_E_and_B}
     \begin{aligned}
-        \vecthreeBF{a}_{E} = \frac{q}{m_0 \gamma} \{ \vecthreeBF{E} - \vecthreeBF{v}\frac{(\dotProdBF{E}{v})}{c^2} \}
+        \vecthreeBF{a}_{E} = \frac{q}{ \gamma m_0} \{ \vecthreeBF{E} - \vecthreeBF{v}\frac{(\dotProdBF{E}{v})}{c^2} \}
     \end{aligned}
     \qquad \qquad
     \begin{aligned}
