@@ -17,9 +17,11 @@ $numerical = (Get-Content -Path numericalmethods\out)
 $sim = (Get-Content -Path simulation\out)
 $rhodo = (Get-Content -Path rhodotron\out)
 
+$np = "\newpage" + [System.Environment]::NewLine
+
 Remove-Item -recurse .\*\ -exclude *.tex,*.ps1
 
-$theory = ($temel_theory + $rhodo + $numerical + $sim + $bib + $end)
+$theory = ($temel_theory + $np + $rhodo + $np + $numerical + $np + $sim + $np + $bib + $end)
 
 Copy-Item "common\common_start_theory.tex" -Destination "..\\..\\theory.tex"
 

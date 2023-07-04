@@ -109,7 +109,9 @@ Considering these two statements, we can find the relation between momentum and 
 \begin{equation} \label{eq:Frel}
     \vecthreeBF{F}  = \gamma m_0 \{ \vecthreeBF{a} + \gamma^2(\dotProd{\beta}{\textbf{a}})\vecthree{\beta} \}
 \end{equation}
-It is clear that acceleration is not necessarily parallel to the force anymore. To start seperating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and  $\vecthreeBF{F}_{||}$;
+It is clear that acceleration is not necessarily parallel to the force anymore. 
+
+To start seperating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and $\vecthreeBF{F}_{||}$.
 \begin{equation} \label{eq:a_F_parallels}
     \begin{aligned}
         \vecthreeBF{a}_{||} = \frac{(\dotProd{a}{\beta})}{\beta^2}\beta 
@@ -251,6 +253,8 @@ Using the fact that $\vecthreeBF{E}_{||} = \vec{\beta}(\dotProd{\textbf{E}}{\bet
 \end{equation}
 
 \newpage
+
+
 \section{Particle Accelerators}
 
 Particle accelerators are sophisticated scientific instruments designed to accelerate charged particles, such as electrons, protons, or ions, to high speeds and energies. 
@@ -275,15 +279,25 @@ Particle accelerators are essential tools for scientific research. They enable s
 Accelerators have been instrumental in discovering and characterizing fundamental particles, such as quarks, leptons, and the Higgs boson. 
 They also facilitate the production of high-intensity beams for applications in material science, radiotherapy, and industrial processes like particle irradiation and sterilization.
 
-
 % TODO : ADD CIRCULAR AND LINEAR ACCELERATOR PICTURES HERE
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \caption{A circular accelerator}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \caption{A linear accelerator}
+\end{figure}
 
 \subsection{Key Concepts}
 
 \begin{itemize}
     \item Phase Stability
     \item Phase Lag
-    \item AW
+    \item Shunt Impedance
     
 \end{itemize}
 
@@ -306,8 +320,12 @@ By carefully shaping the cavity and adjusting the electromagnetic fields, the pa
 This helps to maintain a tight and controlled beam. To ensure efficient acceleration, it is essential to maintain phase stability. 
 This means that the particles should experience the strongest electric fields at the correct time during their passage through the cavity. 
 Precise timing and synchronization of the RF power source with the particle beam are crucial to achieve phase stability and maximize energy transfer.
-
 % TODO : ADD RF CAVITY PICTURE HERE
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \caption{A rf cavity used in KAHVELab}
+\end{figure}
 
 \subsection{Steerer Magnets}
 Steerer magnets, also known as dipole magnets or bending magnets, are fundamental components used in particle accelerators to control the trajectory of charged particles. 
@@ -317,16 +335,120 @@ According to the Lorentz Force Law ( $\textit{Section \ref{sec:lorentz-force}}$ 
 vector and the magnetic field direction. This force causes the particle's trajectory to curve, resulting in a bending effect.
 
 % TODO : ADD STEERER MAGNET PICTURE HERE
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \caption{A steerer magnet used in KAHVELab}
+\end{figure}
 
 \subsection{Rhodotron Accelerator}
 
 Rhodotron Accelerator is a type of particle accelerator that was proposed by \textit{Jacques POTTIER} in his publication \textit{A new type of rf electron accelerator:The Rhodotron} in 1989 \cite{rhodo_pottier}. 
 First prototype was built at CEA Saclay later in 1992 \cite{rhodo_prototype}. Its named after the greek word for rose, \textit{rhodos}, due to the shape of the design \cite{rhodos}.
 
-The design of a rhodotron mainly consists of a coaxial cylindrical RF cavity and steerer magnets surrounding it. 
+The design of a rhodotron mainly consists of a coaxial cylindrical RF cavity and steerer magnets surrounding it. RF cavity is fed by an external RF source, accelerating the electrons entering from an attached electron gun.
+
+\subsubsection{Cavity of a Rhodotron}
+
+Coaxial design of the cavity concentrates the electric field, while the magnetic field diminishes in the middle of the cylinders. 
+Therefore the electrons are injected and accelerated in the plane of zero magnetic field where the electric field is strongest.
+% TODO : ADD SUPERFISH AND CST SIMULATIONS OF A SIMPLE RHODOTRON CAVITY
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \caption{SUPERFISH simulation of a coaxial cavity}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \caption{CST simulation of a coaxial cavity}
+\end{figure}
+
+With the expectation that the electrons will accelerate to speeds $>=0.9 c$ after the first pass, a rhodotron cavity is designed so that the length of the path between successive passes is an integer multiple of $\lambda$, wavelength of the RF field ($l=p\lambda \label{eq:lpl}$).
+This constraint helps with  phase stability and synchronization of the beam.
+
+In the table below, optimized characteristics of a rhodotron cavity can be observed. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.9\textwidth]{./figures/pottier_table1.png}
+    \caption{Optimized characteristics of a rhodotron cavity \cite{rhodo_pottier}}
+    \label{fig:pottier_table1}
+\end{figure}
+
+Here, $p$ is the integer multiplier in the equation ($l=p\lambda \label{eq:lpl}$) mentioned above, $R_1$ is the radius of the inner cylinder, $R_2$ is the radius of the outer cylinder, 
+$Z_{se}$ is effective shunt empedance, $Z_{sp}$ is practical shunt empedance which was taken to be $0.85 Z_{se}$.
+
+Energy gain after each pass can be calculated by the following formula \cite{rhodo_pottier}
+\begin{equation}
+    \label{eq:W_gain_each_pass_pottier}
+    W_1 = Z_{sp}^{1/2} P^{1/2} cos \phi  
+\end{equation}
+
+Where $P$ is the dissipated power, $\phi$ is the phase lag, taken as $15^\circ$ \cite{rhodo_pottier}. 
+
+Considering $Z_{sp} \propto \lambda^{1/2}$, \,\,\, $W_1 \propto \lambda^{1/4}$, \,\,\,   $V \propto \lambda^3$, where $V$ is the volume of the cavity, implementing the $p=1$ design in \fromfig{pottier_table1} is much more space efficient.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.9\textwidth]{./figures/pottier_table2.png}
+    \caption{Energy of a synchronous electron after each pass for both $p=1$ and $p=2$ \cite{rhodo_pottier}}
+    \label{fig:pottier_table2}
+\end{figure}
+
+Total energy gain after n passes $W$ can then be found by \fromeq{W_gain_each_pass_pottier}, taking $p=1$, i.e $R_2 = 0.27 \lambda$.
+\begin{equation}
+    \label{eq:W_total_gain_pottier}
+    W \approx 2.3 \lambda^{1/4} P^{1/2} n
+\end{equation}
+
+\subsubsection{Acceleration cycle of Rhodotron}
+
+Electrons undergo four different stages during a single pass. 
+They are accelerated between the cylinderical plates and are shielded from the changing RF field while inside the inner cylinder and outside the cavity. 
+
+\begin{description}
+    \item[First acceleration] Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity.
+    \item[Inner shielding] While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed.
+    \item[Second acceleration] Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity.
+    \item[Magnets] After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again.
+\end{description}
+
+This cycle can be repeated as long as real world constraints such as; placements and dimentions of the electromagnets, power requirements due to increasing magnetic field in order for sharper turns, can be overcomed.
+After desired amount of pass has been completed, the electrons exit the accelerator.
+
+This process is explained further in the following figures where $T$ is the period of the electric field.
+% TODO : ADD ACCELERATION PROCESS OF RHODOTRON FIGURES HERE
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \caption{$[0, \frac{T}{4}]$ time frame of a rhodotron}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \caption{$[\frac{T}{4}, \frac{T}{2}]$ time frame of a rhodotron}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \caption{$[\frac{T}{2}, \frac{3T}{4}]$ time frame of a rhodotron}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \caption{$[\frac{3T}{4}, T]$ time frame of a rhodotron}
+\end{figure}
+
+
 
 
 \newpage
+
+
 \section{Numerical Integration Methods}
 
 \subsection{Leapfrog} \label{sec:leapfrog}
@@ -427,7 +549,7 @@ Two of the most used \textit{Butcher tableaus} for \textit{RK4} given below.
             1/2 & 1/2 \\
             1/2 & 0 & 1/2 \\
             1   & 0 & 0 & 1\\
-            \hlinevvmwa
+            \hline
             & 1/6 & 1/3 & 1/3 & 1/6
         \end{array}
         \]  
@@ -455,6 +577,8 @@ Resulting in slower calculations.
 
 
 \newpage
+
+
 \section{Simulation}
 
 
@@ -500,6 +624,8 @@ True concurrency on the other hand, can only be achieved by using multiple cores
 Programs that implement concurrency using multiple cores executes more operations per clock cycle. However, this does not directly lead to an improved performance due to the heavy burden of scheduling and managing multiple threads.
 
 
+
+\newpage
 
 \begin{thebibliography}{9}
 
