@@ -14,7 +14,13 @@ $np = "\newpage" + [System.Environment]::NewLine
 
 $thesis = ($theory + $np + $design + $np + $end)
 
+Remove-Item .\*\out
+
 Copy-Item "common\common_start.tex" -Destination "..\\msthesis.tex"
 
 ($thesis) | Add-Content -Path ..\msthesis.tex
-pdflatex ..\msthesis.tex -o ..\msthesis.pdf
+Set-Location ..
+pdflatex msthesis.tex
+Start-Sleep -Seconds 10
+Remove-Item .\msthesis.* -Exclude *.tex, *.pdf
+Set-Location .\subsections
