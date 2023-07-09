@@ -65,8 +65,6 @@
 \tableofcontents
 
 \pagenumbering{arabic}
-\newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
-\newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
 
 \newcommand{\vecthreeBF}[1]{\vec{\textbf{#1}}}
 \newcommand{\vecthree}[1]{\vec{#1}}
@@ -81,9 +79,10 @@
 \newcommand{\crossProdBF}[2]{\vecthreeBF{#1} \times \vecthreeBF{#2}}
 \newcommand{\crossProd}[2]{\vecthree{#1} \times \vecthree{#2}}
 
+
+\newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
+\newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
+
 \newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
-
-%#####
-% START OF THEORY
-
-\chapter{THEORY}
+\newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
+\newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
