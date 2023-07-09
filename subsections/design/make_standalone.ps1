@@ -4,7 +4,7 @@ Set-Location .\cavity
 Set-Location ..
 
 
-$end = (Get-Content -Path common\common_end_design.tex)
+$end = (Get-Content -Path common\standalone_end_design.tex)
 $cavity = (Get-Content -Path cavity\out)
 
 $np = "\newpage" + [System.Environment]::NewLine

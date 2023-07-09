@@ -10,8 +10,6 @@ Set-Location ..\rhodotron
 Set-Location ..
 
 $start = (Get-Content -Path common\common_start_theory.tex)
-$end = (Get-Content -Path common\common_end_theory.tex)
-$bib = (Get-Content -Path common\theory_bib.tex)
 $temel_theory = (Get-Content -Path temel-theory\out)
 $numerical = (Get-Content -Path numericalmethods\out)
 $sim = (Get-Content -Path simulation\out)
@@ -21,7 +19,7 @@ $np = "\newpage" + [System.Environment]::NewLine
 
 Remove-Item -recurse .\*\ -exclude *.tex,*.ps1
 
-$theory = ($start + $temel_theory + $np + $rhodo + $np + $numerical + $np + $sim + $end)
+$theory = ($start + $temel_theory + $np + $rhodo + $np + $numerical + $np + $sim )
 
 
 $out = ""

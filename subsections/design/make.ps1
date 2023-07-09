@@ -3,15 +3,14 @@ Set-Location .\cavity
 
 Set-Location ..
 
-
-$end = (Get-Content -Path common\common_end_design.tex)
+$start = (Get-Content -Path common\common_start_design.tex)
 $cavity = (Get-Content -Path cavity\out)
 
 $np = "\newpage" + [System.Environment]::NewLine
 
 Remove-Item -recurse .\*\ -exclude *.tex,*.ps1
 
-$design = ($cavity + $np + $end)
+$design = ($start + $cavity)
 
 $out = ""
 

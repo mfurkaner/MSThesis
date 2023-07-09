@@ -10,7 +10,7 @@ Set-Location ..\rhodotron
 Set-Location ..
 
 
-$end = (Get-Content -Path common\common_end_theory.tex)
+$end = (Get-Content -Path common\standalone_end_theory.tex)
 $bib = (Get-Content -Path common\theory_bib.tex)
 $temel_theory = (Get-Content -Path temel-theory\out)
 $numerical = (Get-Content -Path numericalmethods\out)
