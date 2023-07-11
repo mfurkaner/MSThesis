@@ -1,4 +1,51 @@
 
+\appendix
+\chapter{Intermediate Codes} \label{appendix:intermediate_codes}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{\textwidth}
+        \centering
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm]{c++}
+            for(double i = 2; i < 9; i += dT_out){
+                t_dum += i;
+                double enow = gecis(r_pos, vel, Et, t_dum);
+                if( enow > maxE ){
+                  maxE = enow;
+                  t_opt = i;
+                }
+                t_dum = t;
+            }
+        \end{minted}
+    \end{subfigure} 
+    \\
+    \begin{subfigure}{\textwidth}
+        \centering
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm]{c++}
+            double gecis(double r_pos, double vel, double Et, double &t){
+                for(; r_pos >= -R2 && r_pos <= R2 ; t+=dT){
+                    vel = c*sqrt(Et*Et-E0*E0)/Et;
+                    double RelBeta  = vel/c;
+                    double RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
+                
+                    double ef=Eradial(r_pos*1000,t,RFphase*deg_to_rad);
+                
+                    double acc=ef*1E6*eQMratio/(RelGamma*RelGamma*RelGamma); 
+                
+                    r_pos = r_pos + vel * dT*ns + 1/2*acc*(dT*ns)*(dT*ns);
+                    vel=vel+acc*dT*ns;
+                    RelBeta  = vel/c;
+                    RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
+                    Et=RelGamma*E0; 
+                }
+                return Et;
+            }
+        \end{minted}
+    \end{subfigure}
+    \caption{$L_{out}$ Optimization For Single $e^-$}
+    \label{fig:lout_opt_single_e}
+\end{figure}
+
+
 \begin{thebibliography}{9}
 
     \bibitem{rhodo_pottier}
@@ -22,6 +69,13 @@
 
     \bibitem{cpu_instruction_speed}
     Fukushima, Toshio. (2001). \emph{Reduction of Round-off Errors in Symplectic Integrators}. The Astronomical Journal. 121. 1768-1775. 
+
+    \bibitem{cite:rhodo_design}
+    W.~Kleeven, M.~Abs, J.~Brison, E.~Forton, J.~Hubert and J.~Van de Walle,
+    \emph{Design and Simulation Tools for the High-Intensity Industrial Rhodotron Electron Accelerator},
+    9th International Particle Accelerator Conference,
+    2018
+    
     
 \end{thebibliography}
 

@@ -1,0 +1,27 @@
+\contentsline {chapter}{\numberline {1.}THEORY}{2}{}%
+\contentsline {section}{\numberline {1.1.} Accelerating Charged Particles}{2}{}%
+\contentsline {subsection}{\numberline {1.1.1.} Relation between momentum and acceleration}{2}{}%
+\contentsline {subsection}{\numberline {1.1.2.} Lorentz Force}{4}{}%
+\contentsline {subsection}{\numberline {1.1.3.} Relativistic Lorentz Force}{4}{}%
+\contentsline {subsection}{\numberline {1.1.4.} Acceleration caused by lorentz force}{5}{}%
+\contentsline {section}{\numberline {1.2.} Particle Accelerators}{7}{}%
+\contentsline {subsection}{\numberline {1.2.1.} Key Concepts}{8}{}%
+\contentsline {subsection}{\numberline {1.2.2.} Acceleration Cavities}{9}{}%
+\contentsline {subsection}{\numberline {1.2.3.} Steerer Magnets}{10}{}%
+\contentsline {subsection}{\numberline {1.2.4.} Rhodotron Accelerator}{11}{}%
+\contentsline {subsubsection}{\numberline {1.2.4.1.} Cavity of a Rhodotron}{11}{}%
+\contentsline {subsubsection}{\numberline {1.2.4.2.} Acceleration cycle of Rhodotron}{13}{}%
+\contentsline {section}{\numberline {1.3.} Numerical Integration Methods}{16}{}%
+\contentsline {subsection}{\numberline {1.3.1.} Leapfrog}{16}{}%
+\contentsline {subsection}{\numberline {1.3.2.} Runge Kutta}{17}{}%
+\contentsline {section}{\numberline {1.4.} Simulation}{20}{}%
+\contentsline {subsection}{\numberline {1.4.1.} Basic Consepts in Programming}{20}{}%
+\contentsline {subsubsection}{\numberline {1.4.1.1.} Clock Cycle}{20}{}%
+\contentsline {subsubsection}{\numberline {1.4.1.2.} Concurrency}{21}{}%
+\contentsline {chapter}{\numberline {2.}DESIGN}{22}{}%
+\contentsline {section}{\numberline {2.1.} Cavity Design}{22}{}%
+\contentsline {section}{\numberline {2.2.} Magnet Design}{27}{}%
+\contentsline {subsection}{\numberline {2.2.1.} $n\lambda $ Technique}{28}{}%
+\contentsline {subsection}{\numberline {2.2.2.} $L_{out}$ Parameter Sweep}{30}{}%
+\contentsline {section}{\numberline {2.3.} Initial Design at KAHVELab}{33}{}%
+\contentsline {chapter}{REFERENCES}{40}{}%

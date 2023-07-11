@@ -2,6 +2,8 @@ Set-Location .\theory
 .\make.ps1
 Set-Location ..\design
 .\make.ps1
+Set-Location ..\simulation
+.\make.ps1
 
 Set-Location ..
 
@@ -9,10 +11,11 @@ Set-Location ..
 $end = (Get-Content -Path common\common_end.tex)
 $theory = (Get-Content -Path theory\out)
 $design = (Get-Content -Path design\out)
+$sim = (Get-Content -Path simulation\out)
 
 $np = "\newpage" + [System.Environment]::NewLine
 
-$thesis = ($theory + $np + $design + $np + $end)
+$thesis = ($theory + $np + $design + $np +$sim + $np + $end)
 
 Remove-Item .\*\out
 
@@ -22,5 +25,4 @@ Copy-Item "common\common_start.tex" -Destination "..\\msthesis.tex"
 Set-Location ..
 pdflatex msthesis.tex
 Start-Sleep -Seconds 10
-Remove-Item .\msthesis.* -Exclude *.tex, *.pdf
 Set-Location .\subsections

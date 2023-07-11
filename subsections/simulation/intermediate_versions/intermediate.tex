@@ -1,0 +1,117 @@
+\documentclass{book}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{wrapfig,lipsum}
+\usepackage{svg}
+\usepackage{mathtools}
+\usepackage{tabu}
+\usepackage{subcaption}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{minted}
+
+\usemintedstyle{xcode}
+
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+
+
+
+\begin{document}
+
+
+\newcommand{\vecthreeBF}[1]{\vec{\textbf{#1}}}
+\newcommand{\vecthree}[1]{\vec{#1}}
+
+\newcommand{\parDeriv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\parDerivS}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\derivS}[2]{\frac{d^2 #1}{d#2^2}}
+
+\newcommand{\dotProdBF}[2]{\vecthreeBF{#1} \cdot \vecthreeBF{#2}}
+\newcommand{\dotProd}[2]{\vecthree{#1} \cdot \vecthree{#2}}
+
+\newcommand{\crossProdBF}[2]{\vecthreeBF{#1} \times \vecthreeBF{#2}}
+\newcommand{\crossProd}[2]{\vecthree{#1} \times \vecthree{#2}}
+
+
+\newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
+\newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
+\newcommand{\fromeqsth}[3]{\textit{equations \ref{eq:#1}, \ref{eq:#2} and \ref{eq:#3}}}
+
+\newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
+\newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
+
+\newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
+\newcommand{\fromsecs}[2]{\textit{sections \ref{sec:#1} and \ref{sec:#2}}}
+
+\newcommand{\fromapp}[1]{\textit{Appendix \ref{appendix:#1}}}
+
+%----../../..++++.
+
+
+%%%%%%
+% Start of intermediate.tex
+\section{Intermediate Versions}
+
+\subsection{$L_{out}$ Optimization For Single $e^-$}
+Initial step of improving $POC$ towards $Rhodotron Simulation$ was to implement \textit{$L_{out}$ optimizations} to help optimazing magnet designs, as discussed in \fromsec{parameter_sweep}.
+First approach was to hang the $e^-$ outside of the cavity for $t_{out} = L_{out}/v$, then inject it back to the cavity with reversed $\vecthreeBF{v}$. Then sweep the $t_{out}$ parameter to find the optimal value.
+This simple implementation can be found in \fromfig{lout_opt_single_e} of \fromapp{intermediate_codes}.
+
+Although the results from this optimization sweep were promising after they were simulated with $CST$, simulating one particle would not be sufficiently useful for designing a magnet.
+
+\subsection{From Single $e^-$ to Bunches}
+After successfully accelerating single $e^-$, next step was to implement bunches to approximate a real $e^-$ gun.
+
+%%%%%%
+
+\appendix
+\chapter{Intermediate Codes} \label{appendix:intermediate_codes}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{\textwidth}
+        \centering
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm]{c++}
+            for(double i = 2; i < 9; i += dT_out){
+                t_dum += i;
+                double enow = gecis(r_pos, vel, Et, t_dum);
+                if( enow > maxE ){
+                  maxE = enow;
+                  t_opt = i;
+                }
+                t_dum = t;
+            }
+        \end{minted}
+    \end{subfigure} 
+    \\
+    \begin{subfigure}{\textwidth}
+        \centering
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm]{c++}
+            double gecis(double r_pos, double vel, double Et, double &t){
+                for(; r_pos >= -R2 && r_pos <= R2 ; t+=dT){
+                    vel = c*sqrt(Et*Et-E0*E0)/Et;
+                    double RelBeta  = vel/c;
+                    double RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
+                
+                    double ef=Eradial(r_pos*1000,t,RFphase*deg_to_rad);
+                
+                    double acc=ef*1E6*eQMratio/(RelGamma*RelGamma*RelGamma); 
+                
+                    r_pos = r_pos + vel * dT*ns + 1/2*acc*(dT*ns)*(dT*ns);
+                    vel=vel+acc*dT*ns;
+                    RelBeta  = vel/c;
+                    RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
+                    Et=RelGamma*E0; 
+                }
+                return Et;
+            }
+        \end{minted}
+    \end{subfigure}
+    \caption{$L_{out}$ Optimization For Single $e^-$}
+    \label{fig:lout_opt_single_e}
+\end{figure}
+
+
+
+\end{document}

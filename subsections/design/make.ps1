@@ -1,16 +1,22 @@
 Set-Location .\cavity
 .\make.ps1
+Set-Location ..\magnet
+.\make.ps1
+Set-Location ..\first_design
+.\make.ps1
 
 Set-Location ..
 
 $start = (Get-Content -Path common\common_start_design.tex)
 $cavity = (Get-Content -Path cavity\out)
+$magnet = (Get-Content -Path magnet\out)
+$fd = (Get-Content -Path first_design\out)
 
 $np = "\newpage" + [System.Environment]::NewLine
 
 Remove-Item -recurse .\*\ -exclude *.tex,*.ps1
 
-$design = ($start + $cavity)
+$design = ($start + $cavity + $np + $magnet + $np + $fd)
 
 $out = ""
 

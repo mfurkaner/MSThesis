@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{wrapfig,lipsum}
+\usepackage{svg}
+\usepackage{mathtools}
+\usepackage{tabu}
+\usepackage{subcaption}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{minted}
+
+
+\begin{document}
+
+
+\newcommand{\vecthreeBF}[1]{\vec{\textbf{#1}}}
+\newcommand{\vecthree}[1]{\vec{#1}}
+
+\newcommand{\parDeriv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\parDerivS}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\derivS}[2]{\frac{d^2 #1}{d#2^2}}
+
+\newcommand{\dotProdBF}[2]{\vecthreeBF{#1} \cdot \vecthreeBF{#2}}
+\newcommand{\dotProd}[2]{\vecthree{#1} \cdot \vecthree{#2}}
+
+\newcommand{\crossProdBF}[2]{\vecthreeBF{#1} \times \vecthreeBF{#2}}
+\newcommand{\crossProd}[2]{\vecthree{#1} \times \vecthree{#2}}
+
+
+\newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
+\newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
+\newcommand{\fromeqsth}[3]{\textit{equations \ref{eq:#1}, \ref{eq:#2} and \ref{eq:#3}}}
+
+\newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
+\newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
+
+\newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
+\newcommand{\fromsecs}[2]{\textit{sections \ref{sec:#1} and \ref{sec:#2}}}
+
+%----../../..++++.
+
+
+%%%%%%
+% Start of poc.tex
+\section{Proof of Concept}
+Once the need for a custom built tool for designing and simulating a Rhodotron type accelerator was apparent, a simple 1D proof of concept was implemented.
+
+This proof of concept worked with interacting an electron with the EM field provided, at discrete time steps $dt$. The core sequence of this software is provided below.
+Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the $e^-$;
+\begin{itemize}
+    \item Get electron energy $E_{in}$
+    \item Get the RF field definitions
+    \item Get the magnet design parameters if there is any
+    \item Do following until the simulation time has ellapsed
+    \begin{enumerate}
+        \item Calculate $\vecthreeBF{E}_{||}$($\vecthreeBF{r}$)
+        \item Calculate $\vecthreeBF{a}_{E ||}$ using \fromeq{para_and_perp_acc_of_lorentz_force}
+        \item Calculate $\vecthreeBF{r}$($t+dt$) using \fromeq{leapfrog_sync_x}
+        \item Calculate $\vecthreeBF{v}$($t+dt$) using \fromeq{leapfrog_sync_y}
+        \item Calculate new $E_t$
+    \end{enumerate}
+\end{itemize}
+
+The implemenation of this logic can be observed in the following code block.
+\begin{figure}[H]
+    \begin{minted}[linenos=true]{c++}
+        for (double t=0; t<SimuTime; t+=dT){
+            double RelBeta  = v/c;
+            double RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
+        
+            double ef=Eradial(r_pos*1000,t,0); // convert position to mm
+            double acc=ef*1E6*eQMratio/(RelGamma*RelGamma*RelGamma); 
+        
+            r_pos = r_pos + v * dT*ns + 1/2*acc*(dT*ns)*(dT*ns);
+            v = v + acc*dT*ns;
+
+            RelBeta  = v/c;
+            RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
+            Et=RelGamma*E0; 
+        }
+    \end{minted}
+    \caption{Core logic loop of the POC}
+    \label{fig:POC_core_logic}
+\end{figure}
+
+After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} with $\phi_{lag}=15^\circ$ for one pass in THE CAVITY, the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} are compared.
+% 40 kW total power
+% Emax = 0.96 in old, 2.08 in new version
+% R1 = 0.1882
+% R2 = 0.753
+% f = 107.5
+\begin{eqnarray}
+    E_{Pottier} &=& 0.565 MeV \nonumber\\
+    E_{CST} &=& 0.872 MeV \label{eq:poc_E_results}\\
+    E_{POC} &=& 0.873 MeV \nonumber
+\end{eqnarray}
+
+As can be observed in \fromfig{poc_E_results}, \textit{POC software} and \textit{CST} produced very similar results.However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
+This inconsistency between $E_{Pottier}$ and $E_{CST}$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on $CST$.
+Using a single software would make the process error prone. Their results, at the end of the day, depend on the physical and mathematical models they use.
+
+After the promising results obtained from \textit{POC}, the decision was made to develop a more robust simulation software. This software was named \textit{Rhodotron Simulation} for the current stage and started development in October, 2021.
+The development and improvement efforts are still ongoing. 
+
+During the development of \textit{Rhodotron Simulation} software, several intermediate builds have been implemented and tested. The following sections in this chapter investigates their implementations further.
+
+
+%%%%%%
+
+-lout opt
+-phlag opt
+-going 3D
+-implement actual magnets instead of relying on lout
+-
+
+
+\end{document}

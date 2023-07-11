@@ -16,4 +16,4 @@ $design = ($cavity + $np + $end)
 Copy-Item "common\common_start_design.tex" -Destination "..\\design.tex"
 
 ($design) | Add-Content -Path ..\design.tex
-pdflatex ..\design.tex -o ..\design.pdf
+pdflatex ..\design.tex 

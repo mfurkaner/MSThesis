@@ -18,6 +18,10 @@
 \usepackage{notoccite}
 \usepackage{subcaption}
 \usepackage{tabu}
+\usepackage{minted}
+
+\usemintedstyle{xcode}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
 
 \interdisplaylinepenalty=2500
 \hyphenation{lists} \makeatletter
@@ -82,11 +86,15 @@
 
 \newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
 \newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
+\newcommand{\fromeqsth}[3]{\textit{equations \ref{eq:#1}, \ref{eq:#2} and \ref{eq:#3}}}
 
 \newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
 \newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
+
 \newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
-% START OF THEORY
+\newcommand{\fromsecs}[2]{\textit{sections \ref{sec:#1} and \ref{sec:#2}}}
+
+\newcommand{\fromapp}[1]{\textit{Appendix \ref{appendix:#1}}}% START OF THEORY
 
 \chapter{THEORY}
 
@@ -350,7 +358,7 @@ First prototype was built at CEA Saclay later in 1992 \cite{rhodo_prototype}. It
 
 The design of a rhodotron mainly consists of a coaxial cylindrical RF cavity and steerer magnets surrounding it. RF cavity is fed by an external RF source, accelerating the electrons entering from an attached electron gun.
 
-\subsubsection{Cavity of a Rhodotron}
+\subsubsection{Cavity of a Rhodotron} \label{sec:cavity_of_a_rhodotron}
 
 Coaxial design of the cavity concentrates the electric field, while the magnetic field diminishes in the middle of the cylinders. 
 Therefore the electrons are injected and accelerated in the plane of zero magnetic field where the electric field is strongest.
@@ -398,10 +406,10 @@ Considering $Z_{sp} \propto \lambda^{1/2}$, \,\,\, $W_1 \propto \lambda^{1/4}$, 
     \label{fig:pottier_table2}
 \end{figure}
 
-Total energy gain after n passes $W$ can then be found by \fromeq{W_gain_each_pass_pottier}, taking $p=1$, i.e $R_2 = 0.27 \lambda$.
+Total energy gain after n passes $W$ can then be found by \fromeq{W_gain_each_pass_pottier}, taking $\phi = 15^\circ$, $p=1$, i.e $R_2 = 0.27 \lambda$.
 \begin{equation}
     \label{eq:W_total_gain_pottier}
-    W \approx 2.3 \lambda^{1/4} P^{1/2} n
+    W \approx 2.14 \lambda^{1/4} P^{1/2} n \quad keV
 \end{equation}
 
 \subsubsection{Acceleration cycle of Rhodotron}
@@ -636,7 +644,7 @@ Programs that implement concurrency using multiple cores executes more operation
 
 \chapter{DESIGN}
 
-\section{Cavity Design}
+\section{Cavity Design} \label{sec:cavity_design}
 
 The first and the most important design parameter for a cavity is the operating RF frequency.
 After an operating RF frequency is set and the desired $R1/R2$ relation \fromfig{pottier_table1} is selected, design parameters of acceleration plane of the cavity is fully determined.
@@ -818,8 +826,351 @@ One can observe the shunt impedance gain between truncated and unmodified caviti
 
 
 
+\newpage
+
+
+
+\section{Magnet Design} \label{sec:magnet_design}
+Magnet design in rhodotron type accelerators depend heavily on the design of the cavities.
+Because the limiting factors usually are frequency and total volume of the accelerator, magnet design parameters are considered after cavity design has been completed.
+Considering the nature of coaxial cavity, simplest path for beams inside magnets is major segment of a circle, which was used as the reference for following discussions.
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.9\linewidth]{./figures/design/Ltot.png}
+      \caption{Geometry of the outside trajectory \\ of a rhodotron \cite{cite:rhodo_design}}
+    \end{subfigure}%
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.9\linewidth]{./figures/design/tt300_mag.png}
+      \caption{Modeling of the outside trajectory \\ of a rhodotron (TT300) \cite{cite:rhodo_design}}
+    \end{subfigure}
+    \caption{From "Design and Simulation Tools for the \\ High-Intensity Industrial Rhodotron Electron Accelerator," \\by W.Kleeven, M.Abs, J.Brison, E.Forton, J.Hubert and J.Van de Walle}
+    \label{fig:magnet_design_illustrations}
+\end{figure}
+
+In rhodotron accelerators, magnets are used for not only guiding the electron beam to desired path, but also for syncronizing them with the RF field in the cavity. 
+This syncronization, also called phase stability, is the fundamental constraint of magnet design. 
+Time spent outside of the cavity should be precisely tuned to maximize acceleration in the succeeding pass. 
+
+Two different approaches have been used to achieve phase stability.
+These approaches are discussed further in the following sections.
+
+\subsection{$n\lambda$ Technique} \label{sec:n_L_technique}
+
+First approach for phase stability considiration assumes that from the start of the current pass, $\beta_{avg} \approx 1$ for a synchronous particle. 
+
+To maintain the phase synchronization, a particle that started the current pass at $t=0$, should start the next pass at $t=nT$, where $n$ is an integer and $T$ is the period of RF field inside cavity.
+As discussed earlier, by assuming the electron is traveling at $c$, phase stability can be achieved by designing the whole trajectory to be $n \lambda$, where $\lambda$ is the wavelength of the RF field. 
+In other words, total trajectory of synchronous particle needs to satisfy the following equality;
+\begin{equation*}
+    L_{pass} = n \lambda
+\end{equation*} 
+Since $n>1$ would require unnecessarily long and expensive beam guide and magnets, $n=1$ is the most efficient choice.
+\begin{equation}
+    L_{pass} = \lambda
+\end{equation} 
+
+\begin{figure}[H]    
+    \centering
+    \includegraphics[width=.8\linewidth]{./figures/design/magnet_design.png}
+    \caption{Trejectory of a particle in single pass}
+    \label{fig:magnet_design}
+\end{figure}
+
+From \fromfig{magnet_design}, where $\gamma$ is half the angle between trajectories of successive passes, $\rho$ is the radius of the circular path inside magnet, $L$ is the length of the magnet guide, $d$ is the thickness of the cavity wall;
+\begin{eqnarray}
+    L_{in} &=& 2R_2 \nonumber\\
+    L_{out} &=& 2L + 2d + (\pi + 2\gamma)\rho \nonumber \\
+    L_{pass} &=& L_{in} + L_{out}  \nonumber \\
+    \lambda &=& 2R_2 + 2d + 2L + (\pi + 2\gamma)\rho \label{eq:magnet_lambda_constraint}
+\end{eqnarray}
+
+After the cavity design is complete, only $L$, $\gamma$ and $\rho$ remain, which are the design parameters of magnets.
+Observing the \fromfig{magnet_design} and using \fromeq{magnet_lambda_constraint},
+
+\begin{eqnarray}
+    tan(\gamma) &=& \frac{\rho}{R_2 + d + L} \nonumber \\
+    \rho &=&  tan(\gamma) (R_2 + d + L) \nonumber\\
+    2\rho &=& tan(\gamma) (\lambda - (\pi + 2\gamma)\rho) \nonumber\\
+    \rho (2 + tan(\gamma)(\pi + 2\gamma)) &=&  tan(\gamma) \lambda \nonumber\\
+    \rho &=& \frac{\lambda}{\pi + 2\gamma + \frac{2}{tan(\gamma)}} \label{eq:magnet_rho_constraint} \\
+    L + d &=& \frac{\rho}{tan(\gamma)} - R_2 \label{eq:magnet_L_constraint}
+\end{eqnarray}
+
+\textit{Equations \ref{eq:magnet_rho_constraint} and \ref{eq:magnet_L_constraint}} define 2 constraints. As already discussed, it has been assumed that cavity design is set (\textit{i.e} $R_2$, $\lambda$, $d$ are already defined).
+Therefore only the magnet design parameters $\rho$, $\gamma$ and $L$ are left. Together with the constraints, one free variable defines the whole magnet design. 
+Considering the importance of $\gamma$ for maximum number of possible passes, it will be used as the free magnet design variable in the further discussions.
+
+
+\subsection{$L_{out}$ Parameter Sweep} \label{sec:parameter_sweep}
+
+As mentioned previously in \fromsec{n_L_technique}, \fromeq{magnet_lambda_constraint} assumes that the particles are fast enough so that $\Delta t_{pass} \approx n T$. 
+This assumption is not guaranteed however, especially in the first few passes if the particles are not accelerated enough. 
+This scenario can happen when RF power is not sufficiently high. 
+
+Consider an RF supply with $f=1$ GHz, $P=50$ kW. Using \fromeq{W_total_gain_pottier}, 
+after the first pass the synchronous electron that entered the accelerator with $40$ keV and $\phi=15^\circ$ phase lag,
+\begin{eqnarray*}
+    W_{gain} &=& 2.14\times0.2998^{1/4}\times 50000^{1/2} = 354keV \\
+    W_{total} &=& 394 keV \\
+    \beta_{40keV} &\approx& 0.374 \\
+    \beta_{394keV} &\approx& 0.825
+\end{eqnarray*}
+It is clear that $\beta_{avg}$ is not fast enough to sustain phase stability if the magnet is designed for $\beta = 1$. 
+For these cases, \fromeq{magnet_lambda_constraint} fails to deliver phase stability.
+Another approach for designing a magnet would be to find a new constraint, $K$ for total path length.
+\begin{eqnarray*}
+    L_{pass} &=& K \\
+    L_{in} + L_{out} &=& K
+\end{eqnarray*}
+
+Since $L_{in}$ is set previously from cavity design, we can remove it from our equation and continue with
+\begin{equation} \label{eq:mag_sweep_constraint}
+    L_{out} = K
+\end{equation}
+
+To start, an optimization criteria for the following pass such as
+\begin{itemize}
+    \item Ensure the phase stability of the synchronous electron
+    \item Maximize the energy gain of the synchronous electron
+    \item Minimize the energy spread of the beam
+    \item Minimize the phase lag spread of the beam
+    \item All of the above with decided weights
+\end{itemize}
+needs be selected. Using a simulation software such as \textit{CST Studio Particle Module}, the optimum value of $K$ for the criteria can be found by simulating for different values of $K$ (\textit{sweeping}) and analyzing the results.
+This process can be repeated for each magnet until the desired beam characteristics in the end of the accelerator are achieved.
+
+However, one caviat of this technique is that, available simulation softwares are not well suited for this kind of process. As mentioned above, \textit{CST Studio Particle Module} has a \textit{parameter sweep} functionality.
+But the calculation times are too slow to be useful in this particular problem. \textit{A custom built software offering magnet optimizing sweep functionality will be discussed in the following chapter.}
+
+
 
 \newpage
+
+
+
+\section{Initial Design at KAHVELab} 
+
+A rhodotron with operation frequency of $107.5$ MHz was decided to be built at KAHVELab. 
+After considering the earlier simulations mentioned in \fromsecs{cavity_design}{magnet_design}, an initial design was created.
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=.5\linewidth]{./figures/cst/cst_first_design1.png}
+    \caption{Initial design of the proposed rhodotron \\ $\gamma=9^\circ$}
+    \label{fig:initial_design}
+\end{figure}
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.92\linewidth]{./figures/cst/cst_first_design3.png}
+      \caption{Axial cross section.}
+    \end{subfigure}%
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.9\linewidth]{./figures/cst/cst_first_design2.png}
+      \caption{Cross section at acceleration plane.}
+    \end{subfigure}
+    \caption{Initial design of the proposed rhodotron.}
+    \label{fig:initial_design_cross_section}
+\end{figure}
+The magnets used in this design is the simplest in terms of design parameters. It consists of an iron casing encapsulating the shape of desired magnetic field, which are created by two coils inside.
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.9\linewidth]{./figures/cst/cst_first_magnet_design1.png}
+    \end{subfigure}%
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.92\linewidth]{./figures/cst/cst_first_magnet_design2.png}
+    \end{subfigure}
+    \caption{Initial magnet design.}
+    \label{fig:initial_magnet_design}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=.8\linewidth]{./figures/cst/cst_first_magnet_design3.png}
+    \caption{Magnetic field in acceleration plate of initial magnet design.}
+    \label{fig:initial_magnet_design_B}
+\end{figure}
+
+\fromfig{initial_magnet_design_B} shows that this design provides relatively uniform magnetic field inside, although magnetic field gradient in the openings can be improved. 
+
+After adding two more magnets and using $\gamma=15^\circ$, the following second prototype design was created
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=.8\linewidth]{./figures/cst/cst_second_design2.png}
+    \caption{Initial cavity with three magnets as shown in \fromfig{initial_magnet_design} \\ $\gamma=15^\circ$}
+    \label{fig:initial_three_magnet_design}
+\end{figure}
+
+These designs, together with $40$ keV $e^-$ gun injecting with phase lag of $15^\circ$ for $0.1$ ns, was simulated at RF power of $12$ kW using \textit{CST Studio Particle Module PIC Solver}.
+Results of these simulations can be found in \fromfig{initial_designs_PIC_phase_space_monitor}.
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}[b]{.8\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{./figures/cst/cst_first_design4.png}
+      \caption{One pass simulation of \fromfig{initial_design}}
+    \end{subfigure}
+    \centering
+    \begin{subfigure}[b]{.8\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{./figures/cst/cst_second_design3.png}
+      \caption{Two pass simulation of \fromfig{initial_three_magnet_design}}
+    \end{subfigure}
+    \caption{$|r|$ vs $Energy$ simulation of initial design.}
+    \label{fig:initial_designs_PIC_phase_space_monitor}
+\end{figure}
+
+The behavior of the beam in the \fromfig{initial_designs_PIC_phase_space_monitor} after the first pass indicates that phase stability is not maintained. 
+When the simulation results are examined further, it was observed that the beam started the second pass at $t \approx 12$ ns after the injection. 
+Considering the starting phase lag $\phi_{lag}=15^\circ$, this would mean phase lag of the second pass was $\phi_{lag2}=120^\circ$.
+This result can be observed in \fromfig{initial_designs_PIC_phase_space_monitor}, as the beam decelerates after a short acceleration in the beginning of the second pass.
+
+After various similar observations in \textit{CST} similations, underlying cause of this problem was thought to be the $L_{pass} = n \lambda$ approach on magnet design failing in low energies, 
+as anticipated and discussed earlier in the \fromsec{parameter_sweep}.
+\emph{The necessity for an alternative tool, capable of aiding researchers in improving beam behavior, was deemed evident.}
+
+In KAHVELab, several improvements were made to these initial designs by \textit{Mr. Sinan ÖZ}. They include curved edges on cavity which reduce the power loss on cavity walls, and redesigned iron casing on magnets for ease of production and maintenance.
+Improved designs can be seen in the figures below.
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.9\linewidth]{./figures/cst/cst_sinan_cavity_design1.png}
+    \end{subfigure}%
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.94\linewidth]{./figures/cst/cst_sinan_cavity_design2.png}
+    \end{subfigure}
+    \caption{Improved cavity design.}
+    \label{fig:improved_cavity_design}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=.7\linewidth]{./figures/cst/cst_second_magnet_design1.png}
+    \caption{Improved magnet design.}
+    \label{fig:improved_magnet_design}
+\end{figure}
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/cst/cst_second_magnet_design2.png}
+    \end{subfigure}%
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.9\linewidth]{./figures/cst/cst_second_magnet_design3.png}
+    \end{subfigure}
+    \caption{Cross section and coils of improved magnet design.}
+    \label{fig:improved_magnet_design_cross_section}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=.8\linewidth]{./figures/cst/cst_second_magnet_design4.png}
+    \caption{Magnetic field in acceleration plate of improved magnet design.}
+    \label{fig:improved_magnet_design_B}
+\end{figure}
+
+
+From \fromfigs{initial_magnet_design_B}{improved_magnet_design_B}, it can be observed that improved magnet design reduces magnetic field leak in enter and exit openings considerably. 
+This reduction helps containing the spread of entering beam, decreasing the amount of focusing needed further into trajectory. 
+
+
+
+
+\newpage
+
+% START OF SIMULATION
+
+\chapter{SIMULATION}
+\newpage
+
+
+
+\newpage
+
+
+\appendix
+\chapter{Intermediate Codes} \label{appendix:intermediate_codes}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{\textwidth}
+        \centering
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm]{c++}
+            for(double i = 2; i < 9; i += dT_out){
+                t_dum += i;
+                double enow = gecis(r_pos, vel, Et, t_dum);
+                if( enow > maxE ){
+                  maxE = enow;
+                  t_opt = i;
+                }
+                t_dum = t;
+            }
+        \end{minted}
+    \end{subfigure} 
+    \\
+    \begin{subfigure}{\textwidth}
+        \centering
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm]{c++}
+            double gecis(double r_pos, double vel, double Et, double &t){
+                for(; r_pos >= -R2 && r_pos <= R2 ; t+=dT){
+                    vel = c*sqrt(Et*Et-E0*E0)/Et;
+                    double RelBeta  = vel/c;
+                    double RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
+                
+                    double ef=Eradial(r_pos*1000,t,RFphase*deg_to_rad);
+                
+                    double acc=ef*1E6*eQMratio/(RelGamma*RelGamma*RelGamma); 
+                
+                    r_pos = r_pos + vel * dT*ns + 1/2*acc*(dT*ns)*(dT*ns);
+                    vel=vel+acc*dT*ns;
+                    RelBeta  = vel/c;
+                    RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
+                    Et=RelGamma*E0; 
+                }
+                return Et;
+            }
+        \end{minted}
+    \end{subfigure}
+    \caption{$L_{out}$ Optimization For Single $e^-$}
+    \label{fig:lout_opt_single_e}
+\end{figure}
 
 
 \begin{thebibliography}{9}
@@ -845,6 +1196,13 @@ One can observe the shunt impedance gain between truncated and unmodified caviti
 
     \bibitem{cpu_instruction_speed}
     Fukushima, Toshio. (2001). \emph{Reduction of Round-off Errors in Symplectic Integrators}. The Astronomical Journal. 121. 1768-1775. 
+
+    \bibitem{cite:rhodo_design}
+    W.~Kleeven, M.~Abs, J.~Brison, E.~Forton, J.~Hubert and J.~Van de Walle,
+    \emph{Design and Simulation Tools for the High-Intensity Industrial Rhodotron Electron Accelerator},
+    9th International Particle Accelerator Conference,
+    2018
+    
     
 \end{thebibliography}
 

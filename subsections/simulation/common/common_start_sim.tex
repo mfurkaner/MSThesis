@@ -1,0 +1,96 @@
+\documentclass[a4paper,oneside,12pt]{report}
+\usepackage{styles/fbe_tez}
+\usepackage[utf8x]{inputenc} % To use Unicode (e.g. Turkish) characters
+\usepackage{amsmath, amsthm} % Some extra symbols
+\usepackage[bottom]{footmisc}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{amssymb,bm,cite,graphicx, fixmath, texdraw}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{amsmath}
+\usepackage{notoccite}
+\usepackage{subcaption}
+\usepackage{tabu}
+
+\interdisplaylinepenalty=2500
+\hyphenation{lists} \makeatletter
+
+\newcommand{\field}[1]{\mathbb{#1} }
+\newcommand{\beq}{\begin{equation} \setlength\abovedisplayskip{5pt} 
+\setlength\belowdisplayskip{5pt}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\defn}{\stackrel{\triangle}{=}}
+\newcommand{\nn}{\nonumber}
+\newcommand{\nnl}{\nonumber \\}
+\renewcommand{\theequation}{\arabic{equation}}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\def\ifundefined{\@ifundefined}
+\def\bfat{\left[ \begin{array}}
+\def\emat{\end{array} \right]}
+\def\bfatt{\left\{ \begin{array}}
+\def\ematt{\end{array} \right.}
+\def\bset{\left\{ \begin{array}}
+\def\eset{\end{array} \right\}}
+\def\bpar{\left( \begin{array}}
+\def\epar{\end{array} \right)}
+
+\graphicspath{{figures/}} % Graphics will be here
+
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+
+\numberwithin{equation}{chapter}
+
+% BEGIN OF DOCS
+\begin{document}
+\pagenumbering{roman}
+
+
+% CONTENTS AND LIST OF FIG AND TABLE PAGES
+\tableofcontents
+
+\pagenumbering{arabic}
+
+\newcommand{\vecthreeBF}[1]{\vec{\textbf{#1}}}
+\newcommand{\vecthree}[1]{\vec{#1}}
+
+\newcommand{\parDeriv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\parDerivS}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\derivS}[2]{\frac{d^2 #1}{d#2^2}}
+
+\newcommand{\dotProdBF}[2]{\vecthreeBF{#1} \cdot \vecthreeBF{#2}}
+\newcommand{\dotProd}[2]{\vecthree{#1} \cdot \vecthree{#2}}
+
+\newcommand{\crossProdBF}[2]{\vecthreeBF{#1} \times \vecthreeBF{#2}}
+\newcommand{\crossProd}[2]{\vecthree{#1} \times \vecthree{#2}}
+
+
+\newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
+\newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
+\newcommand{\fromeqsth}[3]{\textit{equations \ref{eq:#1}, \ref{eq:#2} and \ref{eq:#3}}}
+
+\newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
+\newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
+
+\newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
+\newcommand{\fromsecs}[2]{\textit{sections \ref{sec:#1} and \ref{sec:#2}}}
+
+%#####
+% START OF SIMULATION
+
+\chapter{SIMULATION}
