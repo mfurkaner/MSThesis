@@ -6,8 +6,8 @@ Set-Location ..\intermediate_versions
 Set-Location ..
 
 $start = (Get-Content -Path common\common_start_sim.tex)
-$poc = (Get-Content -Path cavity\out)
-$int = (Get-Content -Path magnet\out)
+$poc = (Get-Content -Path poc\out)
+$int = (Get-Content -Path intermediate_versions\out)
 
 $np = "\newpage" + [System.Environment]::NewLine
 

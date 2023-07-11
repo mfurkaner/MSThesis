@@ -58,7 +58,7 @@ Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the 
         \item Calculate $\vecthreeBF{E}_{||}$($\vecthreeBF{r}$)
         \item Calculate $\vecthreeBF{a}_{E ||}$ using \fromeq{para_and_perp_acc_of_lorentz_force}
         \item Calculate $\vecthreeBF{r}$($t+dt$) using \fromeq{leapfrog_sync_x}
-        \item Calculate $\vecthreeBF{v}$($t+dt$) using \fromeq{leapfrog_sync_y}
+        \item Calculate $\vecthreeBF{v}$($t+dt$) using \fromeq{leapfrog_sync_v}
         \item Calculate new $E_t$
     \end{enumerate}
 \end{itemize}
@@ -97,9 +97,9 @@ After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_
     E_{POC} &=& 0.873 MeV \nonumber
 \end{eqnarray}
 
-As can be observed in \fromfig{poc_E_results}, \textit{POC software} and \textit{CST} produced very similar results.However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
+As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced very similar results. However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
 This inconsistency between $E_{Pottier}$ and $E_{CST}$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on $CST$.
-Using a single software would make the process error prone. Their results, at the end of the day, depend on the physical and mathematical models they use.
+Using a single software would have made the process error prone. Their results, at the end of the day, depend heavily on the physical and mathematical models they use.
 
 After the promising results obtained from \textit{POC}, the decision was made to develop a more robust simulation software. This software was named \textit{Rhodotron Simulation} for the current stage and started development in October, 2021.
 The development and improvement efforts are still ongoing. 

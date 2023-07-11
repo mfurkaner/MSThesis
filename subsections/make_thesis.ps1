@@ -23,6 +23,6 @@ Copy-Item "common\common_start.tex" -Destination "..\\msthesis.tex"
 
 ($thesis) | Add-Content -Path ..\msthesis.tex
 Set-Location ..
-pdflatex msthesis.tex
+pdflatex msthesis.tex --shell-escape
 Start-Sleep -Seconds 10
 Set-Location .\subsections

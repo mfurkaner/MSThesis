@@ -61,8 +61,53 @@ This simple implementation can be found in \fromfig{lout_opt_single_e} of \froma
 
 Although the results from this optimization sweep were promising after they were simulated with $CST$, simulating one particle would not be sufficiently useful for designing a magnet.
 
-\subsection{From Single $e^-$ to Bunches}
-After successfully accelerating single $e^-$, next step was to implement bunches to approximate a real $e^-$ gun.
+\subsection{$\phi_{lag}$ Optimization For Bunches}
+After successfully accelerating single $e^-$, particle bunches were implemented to approximate a real $e^-$ gun. 
+They were modeled as $N$ electrons fired from an $e^-$ gun at even time intervals. This approach was taken because the amount of time gun fires, defined as \textit{Gun Active Time, $t_g$}, is a crucial part of pulsing $e^-$ gun design.
+
+Addition of bunches would immediately proven useful when finding optimal gun phase lag.
+$\phi_{lag}$ for a bunch was defined as the RF phase when the first $e^-$ of the bunch entered the cavity, it defines the starting time of the current pass.
+To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimization}, relevant bunch characteristics are defined as follows:
+
+\begin{itemize}
+    \item $\mu E$: Average energy
+    \item $E_{RMS}$: Root mean square of energy
+    \item $r_{RMS}$: Root mean square of $e^-$ positions
+\end{itemize}
+
+Optimal $\phi_{lag}$ would produce maximum $\mu E$ while minimizing $E_{RMS}$ \& $r_{RMS}$. For the first pass, 
+$E_{RMS}$ and $r_{RMS}$ would be vaguely dependent of each other; therefore, early implementation of $\phi_{lag}$ sweep was based on minimizing $E_{RMS}$ during simulation (\textit{see \fromfig{phlag_opt}}). 
+For $\mu E$ considerations, data from the software would be analyzed either manually or by using external tools such as $ROOT$. 
+
+\begin{figure}[H]
+    \centering
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\small]{c++}
+        int phase_opt(int phase_sweep_range){
+            double minrms = 1;
+            int opt_phase;
+            for(int RFphase = -phase_sweep_range; RFphase <= phase_sweep_range; RFphase++){
+              Bunch bunch1(RFphase);
+              double t1 = 0;
+              bunch1.bunch_gecis_t(t1);
+              bunch1.reset_pos();
+        
+              if( bunch1.E_rms() < minrms ){
+                minrms = bunch1.E_rms();
+                opt_phase = RFphase;
+              }
+            }
+            return opt_phase;
+        }
+    \end{minted}
+    \caption{$\phi_{lag}$ Optimization For Initial Bunch Design}
+    \label{fig:phlag_opt}
+\end{figure}
+
+Since $\phi_{lag}$ is relatively easy to change after production, another version of \fromfig{phlag_opt} that was modified for given magnet design parameters was also implemented (\textit{see \fromfig{phlag_opt_n_pass} in \fromapp{intermediate_codes}}). 
+This version can be useful for optimizing $\phi_{lag}$ in case of production issues in magnets. 
+
+\subsection{$L_{out}$ Optimization For Bunches}
+
 
 %%%%%%
 
@@ -110,6 +155,35 @@ After successfully accelerating single $e^-$, next step was to implement bunches
     \end{subfigure}
     \caption{$L_{out}$ Optimization For Single $e^-$}
     \label{fig:lout_opt_single_e}
+\end{figure}
+
+\begin{figure}[H]
+        \centering
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\small]{c++}
+            int phase_opt(const vector<double>& Louts, int phase_sweep_range){
+                double minrms = 1;
+                int opt_phase;
+                for(int RFphase = -phase_sweep_range; RFphase <= phase_sweep_range; RFphase++){
+                    Bunch bunch1(RFphase);
+                    double t1 = 0;
+                    bunch1.bunch_gecis_t(t1);
+                    bunch1.reset_pos();
+            
+                    for(int i = 0; i < Louts.size(); i++){
+                        bunch1.bunch_gecis_d(Louts[i]);
+                        bunch1.reset_pos();
+                    }
+                        
+                    if( bunch1.E_rms() < minrms ){
+                        minrms = bunch1.E_rms();
+                        opt_phase = RFphase;
+                    }
+                }
+                return opt_phase;
+            }
+        \end{minted}
+    \caption{$\phi_{lag}$ Optimization For Tnitial Bunch Design}
+    \label{fig:phlag_opt_n_pass}
 \end{figure}
 
 

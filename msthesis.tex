@@ -19,6 +19,7 @@
 \usepackage{subcaption}
 \usepackage{tabu}
 \usepackage{minted}
+\usepackage{xcolor}
 
 \usemintedstyle{xcode}
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
@@ -351,7 +352,7 @@ vector and the magnetic field direction. This force causes the particle's trajec
     \caption{A steerer magnet used in KAHVELab}
 \end{figure}
 
-\subsection{Rhodotron Accelerator}
+\subsection{Rhodotron Accelerator} \label{sec:theory_rhodo}
 
 Rhodotron Accelerator is a type of particle accelerator that was proposed by \textit{Jacques POTTIER} in his publication \textit{A new type of rf electron accelerator:The Rhodotron} in 1989 \cite{rhodo_pottier}. 
 First prototype was built at CEA Saclay later in 1992 \cite{rhodo_prototype}. Its named after the greek word for rose, \textit{rhodos}, due to the shape of the design \cite{rhodos}.
@@ -1119,12 +1120,137 @@ This reduction helps containing the spread of entering beam, decreasing the amou
 % START OF SIMULATION
 
 \chapter{SIMULATION}
-\newpage
+% Start of poc.tex
+\section{Proof of Concept}
+Once the need for a custom built tool for designing and simulating a Rhodotron type accelerator was apparent, a simple 1D proof of concept was implemented.
+
+This proof of concept worked with interacting an electron with the EM field provided, at discrete time steps $dt$. The core sequence of this software is provided below.
+Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the $e^-$;
+\begin{itemize}
+    \item Get electron energy $E_{in}$
+    \item Get the RF field definitions
+    \item Get the magnet design parameters if there is any
+    \item Do following until the simulation time has ellapsed
+    \begin{enumerate}
+        \item Calculate $\vecthreeBF{E}_{||}$($\vecthreeBF{r}$)
+        \item Calculate $\vecthreeBF{a}_{E ||}$ using \fromeq{para_and_perp_acc_of_lorentz_force}
+        \item Calculate $\vecthreeBF{r}$($t+dt$) using \fromeq{leapfrog_sync_x}
+        \item Calculate $\vecthreeBF{v}$($t+dt$) using \fromeq{leapfrog_sync_v}
+        \item Calculate new $E_t$
+    \end{enumerate}
+\end{itemize}
+
+The implemenation of this logic can be observed in the following code block.
+\begin{figure}[H]
+    \begin{minted}[linenos=true]{c++}
+        for (double t=0; t<SimuTime; t+=dT){
+            double RelBeta  = v/c;
+            double RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
+        
+            double ef=Eradial(r_pos*1000,t,0); // convert position to mm
+            double acc=ef*1E6*eQMratio/(RelGamma*RelGamma*RelGamma); 
+        
+            r_pos = r_pos + v * dT*ns + 1/2*acc*(dT*ns)*(dT*ns);
+            v = v + acc*dT*ns;
+
+            RelBeta  = v/c;
+            RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
+            Et=RelGamma*E0; 
+        }
+    \end{minted}
+    \caption{Core logic loop of the POC}
+    \label{fig:POC_core_logic}
+\end{figure}
+
+After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} with $\phi_{lag}=15^\circ$ for one pass in THE CAVITY, the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} are compared.
+% 40 kW total power
+% Emax = 0.96 in old, 2.08 in new version
+% R1 = 0.1882
+% R2 = 0.753
+% f = 107.5
+\begin{eqnarray}
+    E_{Pottier} &=& 0.565 MeV \nonumber\\
+    E_{CST} &=& 0.872 MeV \label{eq:poc_E_results}\\
+    E_{POC} &=& 0.873 MeV \nonumber
+\end{eqnarray}
+
+As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced very similar results. However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
+This inconsistency between $E_{Pottier}$ and $E_{CST}$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on $CST$.
+Using a single software would have made the process error prone. Their results, at the end of the day, depend heavily on the physical and mathematical models they use.
+
+After the promising results obtained from \textit{POC}, the decision was made to develop a more robust simulation software. This software was named \textit{Rhodotron Simulation} for the current stage and started development in October, 2021.
+The development and improvement efforts are still ongoing. 
+
+During the development of \textit{Rhodotron Simulation} software, several intermediate builds have been implemented and tested. The following sections in this chapter investigates their implementations further.
 
 
 
 \newpage
 
+
+% Start of intermediate.tex
+\section{Intermediate Versions}
+
+\subsection{$L_{out}$ Optimization For Single $e^-$}
+Initial step of improving $POC$ towards $Rhodotron Simulation$ was to implement \textit{$L_{out}$ optimizations} to help optimazing magnet designs, as discussed in \fromsec{parameter_sweep}.
+First approach was to hang the $e^-$ outside of the cavity for $t_{out} = L_{out}/v$, then inject it back to the cavity with reversed $\vecthreeBF{v}$. Then sweep the $t_{out}$ parameter to find the optimal value.
+This simple implementation can be found in \fromfig{lout_opt_single_e} of \fromapp{intermediate_codes}.
+
+Although the results from this optimization sweep were promising after they were simulated with $CST$, simulating one particle would not be sufficiently useful for designing a magnet.
+
+\subsection{$\phi_{lag}$ Optimization For Bunches}
+After successfully accelerating single $e^-$, particle bunches were implemented to approximate a real $e^-$ gun. 
+They were modeled as $N$ electrons fired from an $e^-$ gun at even time intervals. This approach was taken because the amount of time gun fires, defined as \textit{Gun Active Time, $t_g$}, is a crucial part of pulsing $e^-$ gun design.
+
+Addition of bunches would immediately proven useful when finding optimal gun phase lag.
+$\phi_{lag}$ for a bunch was defined as the RF phase when the first $e^-$ of the bunch entered the cavity, it defines the starting time of the current pass.
+To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimization}, relevant bunch characteristics are defined as follows:
+
+\begin{itemize}
+    \item $\mu E$: Average energy
+    \item $E_{RMS}$: Root mean square of energy
+    \item $r_{RMS}$: Root mean square of $e^-$ positions
+\end{itemize}
+
+Optimal $\phi_{lag}$ would produce maximum $\mu E$ while minimizing $E_{RMS}$ \& $r_{RMS}$. For the first pass, 
+$E_{RMS}$ and $r_{RMS}$ would be vaguely dependent of each other; therefore, early implementation of $\phi_{lag}$ sweep was based on minimizing $E_{RMS}$ during simulation (\textit{see \fromfig{phlag_opt}}). 
+For $\mu E$ considerations, data from the software would be analyzed either manually or by using external tools such as $ROOT$. 
+
+\begin{figure}[H]
+    \centering
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\small]{c++}
+        int phase_opt(int phase_sweep_range){
+            double minrms = 1;
+            int opt_phase;
+            for(int RFphase = -phase_sweep_range; RFphase <= phase_sweep_range; RFphase++){
+              Bunch bunch1(RFphase);
+              double t1 = 0;
+              bunch1.bunch_gecis_t(t1);
+              bunch1.reset_pos();
+        
+              if( bunch1.E_rms() < minrms ){
+                minrms = bunch1.E_rms();
+                opt_phase = RFphase;
+              }
+            }
+            return opt_phase;
+        }
+    \end{minted}
+    \caption{$\phi_{lag}$ Optimization For Initial Bunch Design}
+    \label{fig:phlag_opt}
+\end{figure}
+
+Since $\phi_{lag}$ is relatively easy to change after production, another version of \fromfig{phlag_opt} that was modified for given magnet design parameters was also implemented (\textit{see \fromfig{phlag_opt_n_pass} in \fromapp{intermediate_codes}}). 
+This version can be useful for optimizing $\phi_{lag}$ in case of production issues in magnets. 
+
+\subsection{$L_{out}$ Optimization For Bunches}
+
+
+
+
+\newpage
+
+% START OF APPENDIX
 
 \appendix
 \chapter{Intermediate Codes} \label{appendix:intermediate_codes}
@@ -1172,6 +1298,39 @@ This reduction helps containing the spread of entering beam, decreasing the amou
     \label{fig:lout_opt_single_e}
 \end{figure}
 
+\begin{figure}[H]
+        \centering
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm]{c++}
+            int phase_opt(const vector<double>& Louts, int phase_sweep_range){
+                double minrms = 1;
+                int opt_phase;
+                for(int RFphase = -phase_sweep_range; RFphase <= phase_sweep_range; RFphase++){
+                    Bunch bunch1(RFphase);
+                    double t1 = 0;
+                    bunch1.bunch_gecis_t(t1);
+                    bunch1.reset_pos();
+            
+                    for(int i = 0; i < Louts.size(); i++){
+                        bunch1.bunch_gecis_d(Louts[i]);
+                        bunch1.reset_pos();
+                    }
+                        
+                    if( bunch1.E_rms() < minrms ){
+                        minrms = bunch1.E_rms();
+                        opt_phase = RFphase;
+                    }
+                }
+                return opt_phase;
+            }
+        \end{minted}
+    \caption{$\phi_{lag}$ Optimization For Tnitial Bunch Design}
+    \label{fig:phlag_opt_n_pass}
+\end{figure}
+
+
+% END OF APPENDIX
+
+% START OF BIBLIOGRAPHY
 
 \begin{thebibliography}{9}
 
@@ -1205,5 +1364,7 @@ This reduction helps containing the spread of entering beam, decreasing the amou
     
     
 \end{thebibliography}
+
+% END OF BIBLIOGRAPHY
 
 \end{document}
