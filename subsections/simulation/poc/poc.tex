@@ -63,9 +63,9 @@ Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the 
     \end{enumerate}
 \end{itemize}
 
-The implemenation of this logic can be observed in the following code block.
+The implemenation of this logic can be observed in \fromfig{POC_core_logic}. 
 \begin{figure}[H]
-    \begin{minted}[linenos=true]{c++}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
         for (double t=0; t<SimuTime; t+=dT){
             double RelBeta  = v/c;
             double RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
@@ -91,11 +91,15 @@ After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_
 % R1 = 0.1882
 % R2 = 0.753
 % f = 107.5
-\begin{eqnarray}
-    E_{Pottier} &=& 0.565 MeV \nonumber\\
-    E_{CST} &=& 0.872 MeV \label{eq:poc_E_results}\\
-    E_{POC} &=& 0.873 MeV \nonumber
-\end{eqnarray}
+\begin{figure}[H]
+    \begin{eqnarray}
+        E_{Pottier} &=& 0.565 MeV \nonumber\\
+        E_{CST} &=& 0.872 MeV  \label{eq:poc_E_results}\\
+        E_{POC} &=& 0.873 MeV \nonumber
+    \end{eqnarray}
+    \caption*{$P=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz}
+\end{figure}
+
 
 As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced very similar results. However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
 This inconsistency between $E_{Pottier}$ and $E_{CST}$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on $CST$.

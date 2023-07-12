@@ -25,4 +25,5 @@ Copy-Item "common\common_start.tex" -Destination "..\\msthesis.tex"
 Set-Location ..
 pdflatex msthesis.tex --shell-escape
 Start-Sleep -Seconds 10
+Remove-Item .\*.aux, .\*.fdb_latexmk,.\*.fls, .\*.log, .\*.toc
 Set-Location .\subsections
