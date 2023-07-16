@@ -324,15 +324,15 @@ To also measure the variance in simulation completion times, $T_{sim}$, set of $
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
     \centering
-    \begin{subfigure}{0.8\textwidth}
+    \begin{subfigure}{0.9\textwidth}
         \centering
-        \includegraphics[width=0.5\linewidth]{../../../figures/analiz/staticE_lf_rk2_dt-E.png}
+        \includegraphics[width=\linewidth]{../../../figures/analiz/staticE_lf_rk2_dt-E.png}
         \caption*{$dt$ vs $\Delta E$}
     \end{subfigure}
     
-    \begin{subfigure}{0.8\textwidth}
+    \begin{subfigure}{0.9\textwidth}
         \centering
-        \includegraphics[width=0.5\linewidth]{../../../figures/analiz/staticE_lf_rk2_dt-Tsim.png}
+        \includegraphics[width=\linewidth]{../../../figures/analiz/staticE_lf_rk2_dt-Tsim.png}
         \caption*{$dt$ vs $T_{sim}$}
     \end{subfigure}
     \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns}
@@ -343,15 +343,15 @@ To also measure the variance in simulation completion times, $T_{sim}$, set of $
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
     \centering
-    \begin{subfigure}{0.8\textwidth}
+    \begin{subfigure}{0.9\textwidth}
         \centering
-        \includegraphics[width=0.5\linewidth]{../../../figures/to_be_added.png}
+        \includegraphics[width=\linewidth]{../../../figures/analiz/90staticE_lf_rk2_dt-E_3.png}
         \caption*{$dt$ vs $\Delta E$}
     \end{subfigure}
     
-    \begin{subfigure}{0.8\textwidth}
+    \begin{subfigure}{0.9\textwidth}
         \centering
-        \includegraphics[width=0.5\linewidth]{../../../figures/to_be_added.png}
+        \includegraphics[width=\linewidth]{../../../figures/analiz/90staticE_lf_rk2_dt-Tsim.png}
         \caption*{$dt$ vs $T_{sim}$}
     \end{subfigure}
     \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\perp}$=4MV, $t_{end}=6$ns}
@@ -408,7 +408,7 @@ nevertheless, \textbf{Architecture 4} was chosed to be implemented.
 
 \subsection{Graphical User Interface}
 Until this point, \textit{Rhodotron Simulation} could be used with a configration file, defining the problem that would be simulated.
-An exapmle of this configuration file can be found in \fromfig{config_file} of \fromapp{example_simulation_runs}. 
+An example of this configuration file can be found in \fromfig{config_file} of \fromapp{example_simulation_runs}. 
 This approach was simple and fast; however, it was not suitable for the average target user since required basic knowledge of command line interface and was not up to modern standards.
 For this reason, a GUI was decided to be built, using \textit{ROOT framework}. 
 This would also enable \textit{Rhodotron simulation} to make use of analysis tools offered by \textit{ROOT}.
