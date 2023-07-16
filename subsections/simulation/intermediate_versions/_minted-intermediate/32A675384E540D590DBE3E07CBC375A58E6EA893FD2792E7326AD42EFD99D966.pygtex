@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{isInsideHalfSphere}\PYG{p}{(}\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{e\PYGZus{}position}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{r}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{hs\PYGZus{}position}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{relative}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{e\PYGZus{}position}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{hs\PYGZus{}position}\PYG{p}{;}
+\PYG{+w}{    }\PYG{c+c1}{// r/5 can be changed, use this for now}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{+w}{ }\PYG{n}{relative}\PYG{p}{.}\PYG{n}{magnitude}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{r}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{relative}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{hs\PYGZus{}position}\PYG{p}{.}\PYG{n}{direction}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{r}\PYG{o}{/}\PYG{l+m+mi}{5}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb}{false}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

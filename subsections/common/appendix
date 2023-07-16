@@ -1,0 +1,395 @@
+% START OF APPENDIX
+
+
+
+\appendix
+\chapter{Intermediate Codes} \label{appendix:intermediate_codes}
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{subfigure}{\textwidth}
+        \centering
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+            for(double i = 2; i < 9; i += dT_out){
+                t_dum += i;
+                double enow = gecis(r_pos, vel, Et, t_dum);
+                if( enow > maxE ){
+                  maxE = enow;
+                  t_opt = i;
+                }
+                t_dum = t;
+            }
+        \end{minted}
+    \end{subfigure} 
+    \\
+    \begin{subfigure}{\textwidth}
+        \centering
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm,  fontsize=\scriptsize]{c++}
+            double gecis(double r_pos, double vel, double Et, double &t){
+                for(; r_pos >= -R2 && r_pos <= R2 ; t+=dT){
+                    vel = c*sqrt(Et*Et-E0*E0)/Et;
+                    double RelBeta  = vel/c;
+                    double RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
+                
+                    double ef=Eradial(r_pos*1000,t,RFphase*deg_to_rad);
+                
+                    double acc=ef*1E6*eQMratio/(RelGamma*RelGamma*RelGamma); 
+                
+                    r_pos = r_pos + vel * dT*ns + 1/2*acc*(dT*ns)*(dT*ns);
+                    vel=vel+acc*dT*ns;
+                    RelBeta  = vel/c;
+                    RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
+                    Et=RelGamma*E0; 
+                }
+                return Et;
+            }
+        \end{minted}
+    \end{subfigure}
+    \caption{$L_{out}$ Optimization For Single $\textbf{e}^-$}
+    \label{fig:lout_opt_single_e}
+\end{figure}
+
+\begin{figure}[H]
+        \centering
+        \captionsetup{justification=centering}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+            int phase_opt(const vector<double>& Louts, int phase_sweep_range){
+                double minrms = 1;
+                int opt_phase;
+                for(int RFphase = -phase_sweep_range; RFphase <= phase_sweep_range; RFphase++){
+                    Bunch bunch1(RFphase);
+                    double t1 = 0;
+                    bunch1.bunch_gecis_t(t1);
+                    bunch1.reset_pos();
+            
+                    for(int i = 0; i < Louts.size(); i++){
+                        bunch1.bunch_gecis_d(Louts[i]);
+                        bunch1.reset_pos();
+                    }
+                        
+                    if( bunch1.E_rms() < minrms ){
+                        minrms = bunch1.E_rms();
+                        opt_phase = RFphase;
+                    }
+                }
+                return opt_phase;
+            }
+        \end{minted}
+    \caption{$\phi_{lag}$ Optimization For Initial Bunch Design}
+    \label{fig:phlag_opt_n_pass}
+\end{figure}
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \begin{subfigure}{\textwidth}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+            double vector3d::operator* (const vector3d& other){
+                double dot = 0;
+                dot += this->x * other.x;
+                dot += this->y * other.y;
+                dot += this->z * other.z;
+                return dot;
+            }
+        \end{minted}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+            vector3d vector3d::operator% (const vector3d& other){
+                double x_ = (this->y * other.z) - (this->z * other.y);
+                double y_ = (this->z * other.x) - (this->x * other.z);
+                double z_ = (this->x * other.y) - (this->y * other.x);
+                vector3d crossed(x_, y_, z_);
+                return crossed;
+            }
+        \end{minted}
+    \end{subfigure}
+    \caption{* and \% operators of \textit{vector3d} class}
+    \label{fig:vector3d_dot_cross_product}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        bool isInsideHalfSphere(vector3d e_position, double r, vector3d hs_position){
+            vector3d relative = e_position - hs_position;       
+            // r/5 can be changed, use this for now                                
+            if ( relative.magnitude() <= r && relative * hs_position.direction() >= -r/5){      
+                return true;                                                                 
+            }
+            return false;
+        }
+    \end{minted}
+\caption{Logic of is $\textbf{e}^-$ inside the shape of magnet}
+\label{fig:is_inside_halfsphere}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        vector3d Electron2D::interactB_RK(const MagneticField& B, double time_interval){
+            if (B.isInside(pos) == -1){
+                return vector3d(0,0,0);
+            }
+            Electron2D e_dummy;
+            e_dummy.Et = Et;
+            e_dummy.pos = pos;
+            e_dummy.vel = vel;
+            double time_halved = time_interval*0.5;
+            // get k1                                       
+            vector3d F_m = (e_dummy.vel % B.getField(pos))*eQMratio;                                       
+            vector3d k1 = F_m * e_dummy.gamma_inv();     
+            // get k2
+            e_dummy.move(time_halved);
+            e_dummy.accelerate(k1, time_halved);                                              
+            F_m = (e_dummy.vel % B.getField(pos))*eQMratio;                                               
+            vector3d k2 = F_m * e_dummy.gamma_inv();    
+            // get k3
+            e_dummy.vel = vel;
+            e_dummy.accelerate(k2, time_halved);
+            vector3d k3 = F_m * e_dummy.gamma_inv();   
+            // get k4
+            e_dummy.vel = vel;
+            e_dummy.move(time_halved);
+            e_dummy.accelerate(k3, time_interval);                                           
+            F_m = (e_dummy.vel % B.getField(pos))*eQMratio;  
+            vector3d k4 = F_m * e_dummy.gamma_inv();
+        
+            return (k1 + k2*2 + k3*2 + k4)/6;
+        }
+    \end{minted}
+\caption{RK4-1 implemenation of $\textbf{e}^-$-$\vecthreeBF{B}$}
+\label{fig:rk1_B}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        void Electron2D::interactRK_ActorE(const RFField& E, const MagneticField& B, double time_interval){
+            vector3d run_kut_E = interactE_RK(E, time_interval);
+            vector3d run_kut_B = interactB_RK(B, time_interval);
+        
+            vector3d acc = run_kut_E + run_kut_B;
+            
+            move(acc, time_interval/2);
+            accelerate(acc, time_interval);
+            move(acc, time_interval/2);
+        }
+    \end{minted}
+\caption{RK4-1 implemenation of $\textbf{e}^-$-\textbf{EM}}
+\label{fig:rk1_EM}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        void Electron2D::interactRK(RFField& E, MagneticField& B, const double time, double time_interval){
+            Electron2D e_dummy;
+            e_dummy.Et = Et;
+            e_dummy.pos = pos;
+            e_dummy.vel = vel;
+    
+            // Calculate k1
+            vector3d acc_E = E.actOn(e_dummy);
+            vector3d acc_B = B.actOn(e_dummy);
+            vector3d acc = acc_E + acc_B;
+            e_dummy.move(time_interval);
+            e_dummy.accelerate(acc, time_interval);
+            vector3d pos_k1 = e_dummy.pos, vel_k1 = e_dummy.vel;
+    
+            // Calculate k2
+            e_dummy.pos = (pos + pos_k1)*0.5;
+            e_dummy.vel = (vel + vel_k1)*0.5;
+            e_dummy.Et = e_dummy.gamma()*E0;
+            E.update(time + time_interval*0.5);
+    
+            acc_E = E.actOn(e_dummy);
+            acc_B = B.actOn(e_dummy);
+            acc = acc_E + acc_B;
+            e_dummy.move(time_interval);
+            e_dummy.accelerate(acc, time_interval);
+            vector3d pos_k2 = e_dummy.pos, vel_k2 = e_dummy.vel;
+    
+            // Calculate k3
+            e_dummy.pos = (pos + pos_k2)*0.5;
+            e_dummy.vel = (vel + vel_k2)*0.5;
+            e_dummy.Et = e_dummy.gamma()*E0;
+            E.update(time + time_interval*0.5);
+
+            acc_E = E.actOn(e_dummy);
+            acc_B = B.actOn(e_dummy);
+            acc = acc_E + acc_B;
+            e_dummy.move(time_interval);
+            e_dummy.accelerate(acc, time_interval);
+            vector3d pos_k3 = e_dummy.pos, vel_k3 = e_dummy.vel;
+    
+            // Calculate k4
+            E.update(time + time_interval);
+
+            acc_E = E.actOn(e_dummy);
+            acc_B = B.actOn(e_dummy);
+            acc = acc_E + acc_B;
+            e_dummy.move(time_interval);
+            e_dummy.accelerate(acc, time_interval);
+            vector3d pos_k4 = e_dummy.pos, vel_k4 = e_dummy.vel;
+    
+            E.update(time);
+            pos = (pos_k1 + pos_k2*2 + pos_k3*2 + pos_k4)/6;
+            vel = (vel_k1 + vel_k2*2 + vel_k3*2 + vel_k4)/6;
+            Et = gamma()*E0;
+    }
+    \end{minted}
+\caption{RK4-2 implemenation of $\textbf{e}^-$-\textbf{EM}}
+\label{fig:rk2_EM}
+\end{figure}
+
+
+\chapter{Example Simulation Runs} \label{appendix:example_simulation_runs}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+        Optimal phase with the least RMS : -5
+
+        Simulation settings : 
+        ph = -5 deg, gt = 1 ns, enum = 1000
+        dT = 0.001 ns, dT_out = 0.01 ns
+        
+        For the 1th magnet:
+        Optimum out path = 0.81044 m
+        Magnet guide = 0.25852 m
+        Rho = 0.088477 m
+        Drift time of the first electron in the bunch : 7.688 ns
+        Drift time of the last electron in the bunch : 7.487 ns
+        Max energy = 0.47581 MeV
+        RMS = 0.0058165 MeV
+        
+        For the 2th magnet:
+        Optimum out path = 1.0833 m
+        Magnet guide = 0.37766 m
+        Rho = 0.098898 m
+        Drift time of the first electron in the bunch : 5.597 ns
+        Drift time of the last electron in the bunch : 5.617 ns
+        Max energy = 0.89172 MeV
+        RMS = 0.0099018 MeV
+        
+        For the 3th magnet:
+        Optimum out path = 1.1705 m
+        Magnet guide = 0.41573 m
+        Rho = 0.10223 m
+        Drift time of the first electron in the bunch : 5.314 ns
+        Drift time of the last electron in the bunch : 5.325 ns
+        Max energy = 1.298 MeV
+        RMS = 0.013879 MeV
+
+        Electron with the most energy : 623) 1.6999 MeV,	RMS of bunch : 0.017981 MeV
+        
+        Total steps calculated : 12468052652
+        Simulation finished in : 632050015 us     ( 632.1 s )
+        
+    \end{minted}
+\caption{$\phi_{lag}$, $\rho$ \& $L$ optimization at \\$P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=1$ns, $E_{in}=40$KeV}
+\label{fig:lout_opt_1ns_Erms}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+        Optimal phase with the least RMS : 0
+
+        Simulation settings : 
+        ph = 0 deg, gt = 0.8 ns, enum = 1000
+        dT = 0.001 ns, dT_out = 0.01 ns
+        
+        For the 1th magnet:
+        Optimum out path = 0.80787 m
+        Magnet guide = 0.2574 m
+        Rho = 0.088379 m
+        Drift time of the first electron in the bunch : 7.629 ns
+        Drift time of the last electron in the bunch : 7.48 ns
+        Max energy = 0.47579 MeV
+        RMS = 0.0038689 MeV
+        
+        For the 2th magnet:
+        Optimum out path = 1.0833 m
+        Magnet guide = 0.37765 m
+        Rho = 0.098898 m
+        Drift time of the first electron in the bunch : 5.589 ns
+        Drift time of the last electron in the bunch : 5.605 ns
+        Max energy = 0.89169 MeV
+        RMS = 0.0068848 MeV
+        
+        For the 3th magnet:
+        Optimum out path = 1.1705 m
+        Magnet guide = 0.41573 m
+        Rho = 0.10223 m
+        Drift time of the first electron in the bunch : 5.311 ns
+        Drift time of the last electron in the bunch : 5.318 ns
+        Max energy = 1.298 MeV
+        RMS = 0.0096887 MeV
+        
+        Electron with the most energy : 629) 1.6999 MeV,	RMS of bunch : 0.012318 MeV
+        
+        Total steps calculated : 12455378454
+        Simulation finished in : 631136046 us     ( 631.1 s )        
+    \end{minted}
+\caption{$\phi_{lag}$ \& $\rho$ \& $L$ optimization at \\$P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=0.8$ns, $E_{in}=40$KeV}
+\label{fig:lout_opt_08ns_Erms}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+        $dt$(ns) & $T_{sim LF}(s)$ & $T_{sim RK1}(s)$  & $T_{sim RK2}(s)$  & $\Delta T_{LF-RK2}$\\\hline
+        $10^{-2}$ & 4.14092 & 4.146 & 4.10945 & 0.77\% \\ \hline
+        $10^{-3}$ & 4.23817 & 4.61703 & 4.30225 & -1.51\% \\ \hline
+        $10^{-4}$ & 5.04679 & 8.93529 & 6.3065 & -24.96\% \\ \hline
+        $10^{-5}$ & 13.5135 & 51.9024 & 25.4279 & -88.17\%\\ \hline
+        $10^{-6}$ & 97.6229 & 486.378 & 217.704 & -123.01\% \\ \hline
+    \end{tabular}
+    \caption{$dt$ vs $T_{sim}$ of Leap-frog, RK4-1, RK4-2 \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{tab:lf_rk1_rk2_Tsim}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+        $dt$(ns) & $\Delta E_{LF}$(MeV) & $\Delta E_{RK1}$(MeV)  & $\Delta E_{RK2}$(MeV)  & $\Delta E_{LF-RK2}$\\\hline
+        $10^{-2}$ & 2.78323 & 1.26503 & 1.04713 & 165.8\% \\ \hline
+        $10^{-3}$ & 0.11712 & 0.07469 & 0.06691 & 42.87\% \\ \hline
+        $10^{-4}$ & 0.01101 & 0.00716 & 0.00644 & 41.5\%  \\ \hline
+        $10^{-5}$ & 0.00109 & 0.00071 & 0.00064 & 41\% \\ \hline
+        $10^{-6}$ & 0.00011 & 0.00007 & 0.00006 & 45\% \\\hline
+    \end{tabular}
+    \caption{$dt$ vs $\Delta E$ of Leap-frog, RK4-1, RK4-2 \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{tab:lf_rk1_rk2_dE}
+\end{table}
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_001dt.png}
+        \caption*{$dt=10^{-2}$ns, $\Delta E=1.047$MeV}
+    \end{subfigure}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_00001dt.png}
+        \caption*{$dt=10^{-4}$ns, $\Delta E=0.006$MeV}
+    \end{subfigure}
+    \caption{Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T using RK4-2}
+    \label{fig:mag_rk_render}
+\end{figure}
+
+
+
+% END OF APPENDIX

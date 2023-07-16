@@ -1,0 +1,57 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{Electron2D::interactRK}\PYG{p}{(}\PYG{n}{RFField}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{E}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MagneticField}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{B}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{time}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{Electron2D}\PYG{+w}{ }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{Et}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Et}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{pos}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{pos}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{vel}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{vel}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c+c1}{// Calculate k1}
+\PYG{+w}{        }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{acc\PYGZus{}E}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{E}\PYG{p}{.}\PYG{n}{actOn}\PYG{p}{(}\PYG{n}{e\PYGZus{}dummy}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{acc\PYGZus{}B}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{B}\PYG{p}{.}\PYG{n}{actOn}\PYG{p}{(}\PYG{n}{e\PYGZus{}dummy}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{acc}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{acc\PYGZus{}E}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{acc\PYGZus{}B}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{move}\PYG{p}{(}\PYG{n}{time\PYGZus{}interval}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{accelerate}\PYG{p}{(}\PYG{n}{acc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}k1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{pos}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vel\PYGZus{}k1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{vel}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c+c1}{// Calculate k2}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{pos}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{pos}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}k1}\PYG{p}{)}\PYG{o}{*}\PYG{l+m+mf}{0.5}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{vel}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{vel}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{vel\PYGZus{}k1}\PYG{p}{)}\PYG{o}{*}\PYG{l+m+mf}{0.5}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{Et}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{gamma}\PYG{p}{()}\PYG{o}{*}\PYG{n}{E0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{E}\PYG{p}{.}\PYG{n}{update}\PYG{p}{(}\PYG{n}{time}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{o}{*}\PYG{l+m+mf}{0.5}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{n}{acc\PYGZus{}E}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{E}\PYG{p}{.}\PYG{n}{actOn}\PYG{p}{(}\PYG{n}{e\PYGZus{}dummy}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{acc\PYGZus{}B}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{B}\PYG{p}{.}\PYG{n}{actOn}\PYG{p}{(}\PYG{n}{e\PYGZus{}dummy}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{acc}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{acc\PYGZus{}E}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{acc\PYGZus{}B}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{move}\PYG{p}{(}\PYG{n}{time\PYGZus{}interval}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{accelerate}\PYG{p}{(}\PYG{n}{acc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}k2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{pos}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vel\PYGZus{}k2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{vel}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c+c1}{// Calculate k3}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{pos}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{pos}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}k2}\PYG{p}{)}\PYG{o}{*}\PYG{l+m+mf}{0.5}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{vel}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{vel}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{vel\PYGZus{}k2}\PYG{p}{)}\PYG{o}{*}\PYG{l+m+mf}{0.5}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{Et}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{gamma}\PYG{p}{()}\PYG{o}{*}\PYG{n}{E0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{E}\PYG{p}{.}\PYG{n}{update}\PYG{p}{(}\PYG{n}{time}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{o}{*}\PYG{l+m+mf}{0.5}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{n}{acc\PYGZus{}E}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{E}\PYG{p}{.}\PYG{n}{actOn}\PYG{p}{(}\PYG{n}{e\PYGZus{}dummy}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{acc\PYGZus{}B}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{B}\PYG{p}{.}\PYG{n}{actOn}\PYG{p}{(}\PYG{n}{e\PYGZus{}dummy}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{acc}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{acc\PYGZus{}E}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{acc\PYGZus{}B}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{move}\PYG{p}{(}\PYG{n}{time\PYGZus{}interval}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{accelerate}\PYG{p}{(}\PYG{n}{acc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}k3}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{pos}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vel\PYGZus{}k3}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{vel}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c+c1}{// Calculate k4}
+\PYG{+w}{        }\PYG{n}{E}\PYG{p}{.}\PYG{n}{update}\PYG{p}{(}\PYG{n}{time}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{n}{acc\PYGZus{}E}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{E}\PYG{p}{.}\PYG{n}{actOn}\PYG{p}{(}\PYG{n}{e\PYGZus{}dummy}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{acc\PYGZus{}B}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{B}\PYG{p}{.}\PYG{n}{actOn}\PYG{p}{(}\PYG{n}{e\PYGZus{}dummy}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{acc}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{acc\PYGZus{}E}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{acc\PYGZus{}B}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{move}\PYG{p}{(}\PYG{n}{time\PYGZus{}interval}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{accelerate}\PYG{p}{(}\PYG{n}{acc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}k4}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{pos}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vel\PYGZus{}k4}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{e\PYGZus{}dummy}\PYG{p}{.}\PYG{n}{vel}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{n}{E}\PYG{p}{.}\PYG{n}{update}\PYG{p}{(}\PYG{n}{time}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{pos}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{pos\PYGZus{}k1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}k2}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}k3}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}k4}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{6}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{vel}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{vel\PYGZus{}k1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{vel\PYGZus{}k2}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{vel\PYGZus{}k3}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{vel\PYGZus{}k4}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{6}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{Et}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{gamma}\PYG{p}{()}\PYG{o}{*}\PYG{n}{E0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

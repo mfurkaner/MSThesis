@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{9}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{n}{dT\PYGZus{}out}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{t\PYGZus{}dum}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{enow}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{gecis}\PYG{p}{(}\PYG{n}{r\PYGZus{}pos}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vel}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Et}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t\PYGZus{}dum}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{enow}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{maxE}\PYG{+w}{ }\PYG{p}{)\PYGZob{}}
+\PYG{+w}{      }\PYG{n}{maxE}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{enow}\PYG{p}{;}
+\PYG{+w}{      }\PYG{n}{t\PYGZus{}opt}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{t\PYGZus{}dum}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

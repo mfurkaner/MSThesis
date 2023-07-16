@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{phase\PYGZus{}opt}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{o}{\PYGZgt{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{Louts}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{phase\PYGZus{}sweep\PYGZus{}range}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{minrms}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{opt\PYGZus{}phase}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{RFphase}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{phase\PYGZus{}sweep\PYGZus{}range}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{RFphase}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{phase\PYGZus{}sweep\PYGZus{}range}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{RFphase}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{Bunch}\PYG{+w}{ }\PYG{n}{bunch1}\PYG{p}{(}\PYG{n}{RFphase}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{t1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{bunch1}\PYG{p}{.}\PYG{n}{bunch\PYGZus{}gecis\PYGZus{}t}\PYG{p}{(}\PYG{n}{t1}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{bunch1}\PYG{p}{.}\PYG{n}{reset\PYGZus{}pos}\PYG{p}{();}
+
+\PYG{+w}{        }\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{Louts}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{bunch1}\PYG{p}{.}\PYG{n}{bunch\PYGZus{}gecis\PYGZus{}d}\PYG{p}{(}\PYG{n}{Louts}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+\PYG{+w}{            }\PYG{n}{bunch1}\PYG{p}{.}\PYG{n}{reset\PYGZus{}pos}\PYG{p}{();}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{bunch1}\PYG{p}{.}\PYG{n}{E\PYGZus{}rms}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{minrms}\PYG{+w}{ }\PYG{p}{)\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{minrms}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{bunch1}\PYG{p}{.}\PYG{n}{E\PYGZus{}rms}\PYG{p}{();}
+\PYG{+w}{            }\PYG{n}{opt\PYGZus{}phase}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{RFphase}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{opt\PYGZus{}phase}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

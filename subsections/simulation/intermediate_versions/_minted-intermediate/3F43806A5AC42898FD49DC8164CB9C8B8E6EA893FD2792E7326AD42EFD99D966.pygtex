@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{vector3d}\PYG{o}{::}\PYG{k}{operator}\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{vector3d}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{other}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{dot}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{dot}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{other}\PYG{p}{.}\PYG{n}{x}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{dot}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{other}\PYG{p}{.}\PYG{n}{y}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{dot}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{z}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{other}\PYG{p}{.}\PYG{n}{z}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{dot}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

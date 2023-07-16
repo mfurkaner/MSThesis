@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{Electron2D::interactRK\PYGZus{}ActorE}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{RFField}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{E}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{const}\PYG{+w}{ }\PYG{n}{MagneticField}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{B}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{run\PYGZus{}kut\PYGZus{}E}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{interactE\PYGZus{}RK}\PYG{p}{(}\PYG{n}{E}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{run\PYGZus{}kut\PYGZus{}B}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{interactB\PYGZus{}RK}\PYG{p}{(}\PYG{n}{B}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{p}{);}
+
+\PYG{+w}{    }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{acc}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{run\PYGZus{}kut\PYGZus{}E}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{run\PYGZus{}kut\PYGZus{}B}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{move}\PYG{p}{(}\PYG{n}{acc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{accelerate}\PYG{p}{(}\PYG{n}{acc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{move}\PYG{p}{(}\PYG{n}{acc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{time\PYGZus{}interval}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

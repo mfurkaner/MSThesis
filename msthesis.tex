@@ -95,7 +95,10 @@
 \newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
 \newcommand{\fromsecs}[2]{\textit{sections \ref{sec:#1} and \ref{sec:#2}}}
 
-\newcommand{\fromapp}[1]{\textit{Appendix \ref{appendix:#1}}}% START OF THEORY
+\newcommand{\fromapp}[1]{\textit{Appendix \ref{appendix:#1}}}
+
+\newcommand{\fromtab}[1]{\textit{Table \ref{tab:#1}}}
+\newcommand{\fromtabs}[2]{\textit{Tables \ref{tab:#1} and \ref{tab:#2}}}% START OF THEORY
 
 \chapter{THEORY}
 
@@ -488,7 +491,7 @@ For more stability, this version can be rearranged to what is called 'kick-drift
 
 This version provides more time resolution to our calculation; however, it increases the number of calculations needed by about $50\%$.
 
-\subsection{Runge Kutta}
+\subsection{Runge Kutta} \label{sec:rungekutta}
 
 The Runge-Kutta methods, named after the German mathematicians Carl Runge and Martin Wilhelm Kutta, family of numerical methods
 used to solve ordinary differential equations (ODEs) that are in the following form
@@ -1257,7 +1260,7 @@ Although complete refactoring of the software was necessary, this upgrade was cr
 The refactoring effort included proper implementation of $OOP$, details of which can be seen in \fromapp{intermediate_codes}.
 
 Magnets were modeled as major segments of a circle, defined with $\vecthreeBF{r}_{mag}$, $\textbf{R}$ and $|\textbf{B}|$. 
-For the initial implementation, $\vecthreeBF{B}$ assumed to be uniform and has no leaks outside the magnet boundary.
+For the initial implementation, $\vecthreeBF{B}$ assumed to be uniform and has no leaks outside the magnet boundary (See \fromfig{is_inside_halfsphere} in \fromapp{intermediate_codes}).
 
 Interaction logic for $\textbf{e}^-$ - $\vecthreeBF{E}$ and $\textbf{e}^-$ - $\vecthreeBF{B}$ in 3D can be found in \fromfig{3D_e_EM_interaction_first}.
 \begin{figure}[H]
@@ -1290,13 +1293,110 @@ Interaction logic for $\textbf{e}^-$ - $\vecthreeBF{E}$ and $\textbf{e}^-$ - $\v
     \label{fig:3D_e_EM_interaction_first}
 \end{figure}
 
-Where \* and \% are, dot-product and cross-product respectably. (See \fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes})
+Where * and \% are, dot-product and cross-product respectably. (See \fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes})
+
+Simulating in 3D had one other benefit; it was now possible to visualize the results by rendering the interaction data. 
+For this purpose, \textit{gnuplot} was integrated into \textit{Rhodotron Simulation} to produce 2D visualization of acceleration plane. 
+Rendered results could be stored as \textit{gif} animations. 
+Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/rhodoSim/5ns_gnuplot.png}
+        \caption*{Unsyncronized $\textbf{e}^-$ gun period, $T_g = 5ns$}
+    \end{subfigure}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/rhodoSim/9_3ns_gnuplot.png}
+        \caption*{Syncronized $\textbf{e}^-$ gun period, $T_g = 9.3ns$}
+    \end{subfigure}
+    \caption{Example \textit{gnuplot} renders of \textit{Rhodotron Simulation}\\$P=12$kW, $f=107.5$MHz}
+    \label{fig:example_gnuplot_renders}
+\end{figure}
+
+\subsection{Acceleration in Magnetic Field}
+An issue regarding the $\textbf{e}^-$ - $\vecthreeBF{B}$ interaction became apparent when energy gain during these interactions was observed.
+A setup simulation was implemented in which a bunch of 100$\textbf{e}^-$ at $1$MeV was fired to a uniform magnetic field of $0.1$T placed in $x>0.05$m.
+Initial results at $dt=0.01$ns proved the suspicion of $\textbf{e}^-$ - $\vecthreeBF{B}$ interaction being broken. However, the energy gain would decrease tremendously as $dt$ decreased.
+
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_lf_001dt.png}
+        \caption*{$dt=10^{-2}$ns, $\Delta E=2.783$MeV}
+    \end{subfigure}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_lf_00001dt.png}
+        \caption*{$dt=10^{-4}$ns, $\Delta E=0.011$MeV}
+    \end{subfigure}
+    \caption{Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T}
+    \label{fig:mag_lf_render}
+\end{figure}
+
+Decreasing $dt$ would be the best way to increase accuracy of the results; however, this is not sustainable because time and computing power. 
+Until this point, \textit{Rhodotron Simulation} have been using \fromsec{leapfrog} for $\textbf{e}^-$ - \textbf{EM} interactions. 
+To test newer approaches, two additional version of  $\textbf{e}^-$ - \textbf{EM} interaction that are using \fromsec{rungekutta} were added.
+\subsubsection{RK4-1}
+First approach for integrating \fromsec{rungekutta} into $\textbf{e}^-$ - \textbf{EM} interaction was to calculate $\vecthreeBF{a}_{E}$ and $\vecthreeBF{a}_{B}$ from \fromeq{acc_of_E_and_B} using \textit{RK4}.
+After $\vecthreeBF{a}_{EM} = \vecthreeBF{a}_{E} + \vecthreeBF{a}_{B}$ was calculated, $\textbf{e}^-$ would move and accelerate using the \textit{Leap-frog} method. 
+The idea was to produce more refined interaction results, leading to improved accuracy especially in $\textbf{e}^-$ - $\vecthreeBF{B}$.
+RF field was kept static during the RK4 computation, due to ongoing \textit{multithreading} implementation efforts. 
+The implementation can be found in \fromfigs{rk1_B}{rk1_EM}.
+\subsubsection{RK4-2}
+Following the implementation of \textit{RK4-1}, revisions were made to the integration method for \textit{RK4} to replace \textit{Leap-frog}.
+Instead of calculating $\vecthreeBF{a}_{EM}$ using \textit{RK4}, $\vecthreeBF{r}$ and $\vecthreeBF{v}$ would be determined directly.
+
+These three methods were then tested in the same setup as \fromfig{mag_lf_render}. The results can be found in \fromfig{lf_rk1_rk2_comparison}.
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-E.png}
+        \caption*{$dt$ vs $\Delta E$}
+    \end{subfigure}
+    
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim.png}
+        \caption*{$dt$ vs $T_{sim}$}
+    \end{subfigure}
+    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on $\textbf{e}^-$ - $\vecthreeBF{B}$ interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{fig:lf_rk1_rk2_comparison}
+\end{figure}
+
+The data from these tests can be found in \fromtabs{lf_rk1_rk2_Tsim}{lf_rk1_rk2_dE} of \fromapp{example_simulation_runs}. 
+As anticipated, \textit{Leap-frog} produced the fastest yet least accurate results, whereas \textit{RK4-2} method was proved to be the best performer for accuracy.
+When $dt=10^-5$ns was taken as reference point due to providing a good balance of accuracy and computational intensity, 
+\textit{RK4-2} provides around $41\%$ less energy gain in $\vecthreeBF{B}$ with respect to the next performer \textit{Leap-frog}.
+The tradeoff is the computational intensity mentioned in \fromsec{rungekutta}; \textit{Leap-frog} being around $47\%$ faster than $\textit{RK4-2}$.
+
+This relation is not linear however; \textit{RK4-2} is not as demanding in less computationally intensitive runs and able to keep up with \textit{Leap-frog} in execution times while increasing the accuracy difference from other methods,
+whereas \textit{Leap-frog} excels at simplicity, being able to use higher time resolution for given computational power. 
+Both methods can be used in different situations, therefore both were integrated into \textit{Rhodotron Simulation} for the user to decide.
+\textit{RK4-2} renders from these test can be found in \fromfig{mag_rk_render} of \fromapp{example_simulation_runs}.
+
+
+
+
+
 
 
 
 \newpage
 
 % START OF APPENDIX
+
+
 
 \appendix
 \chapter{Intermediate Codes} \label{appendix:intermediate_codes}
@@ -1305,7 +1405,7 @@ Where \* and \% are, dot-product and cross-product respectably. (See \fromfig{ve
     \captionsetup{justification=centering}
     \begin{subfigure}{\textwidth}
         \centering
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\small]{c++}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             for(double i = 2; i < 9; i += dT_out){
                 t_dum += i;
                 double enow = gecis(r_pos, vel, Et, t_dum);
@@ -1320,7 +1420,7 @@ Where \* and \% are, dot-product and cross-product respectably. (See \fromfig{ve
     \\
     \begin{subfigure}{\textwidth}
         \centering
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm,  fontsize=\small]{c++}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm,  fontsize=\scriptsize]{c++}
             double gecis(double r_pos, double vel, double Et, double &t){
                 for(; r_pos >= -R2 && r_pos <= R2 ; t+=dT){
                     vel = c*sqrt(Et*Et-E0*E0)/Et;
@@ -1348,7 +1448,7 @@ Where \* and \% are, dot-product and cross-product respectably. (See \fromfig{ve
 \begin{figure}[H]
         \centering
         \captionsetup{justification=centering}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             int phase_opt(const vector<double>& Louts, int phase_sweep_range){
                 double minrms = 1;
                 int opt_phase;
@@ -1371,7 +1471,7 @@ Where \* and \% are, dot-product and cross-product respectably. (See \fromfig{ve
                 return opt_phase;
             }
         \end{minted}
-    \caption{$\phi_{lag}$ Optimization For Tnitial Bunch Design}
+    \caption{$\phi_{lag}$ Optimization For Initial Bunch Design}
     \label{fig:phlag_opt_n_pass}
 \end{figure}
 
@@ -1379,7 +1479,7 @@ Where \* and \% are, dot-product and cross-product respectably. (See \fromfig{ve
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
     \begin{subfigure}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\small]{c++}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             double vector3d::operator* (const vector3d& other){
                 double dot = 0;
                 dot += this->x * other.x;
@@ -1391,7 +1491,7 @@ Where \* and \% are, dot-product and cross-product respectably. (See \fromfig{ve
     \end{subfigure}
 
     \begin{subfigure}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\small]{c++}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d vector3d::operator% (const vector3d& other){
                 double x_ = (this->y * other.z) - (this->z * other.y);
                 double y_ = (this->z * other.x) - (this->x * other.z);
@@ -1404,6 +1504,145 @@ Where \* and \% are, dot-product and cross-product respectably. (See \fromfig{ve
     \caption{* and \% operators of \textit{vector3d} class}
     \label{fig:vector3d_dot_cross_product}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        bool isInsideHalfSphere(vector3d e_position, double r, vector3d hs_position){
+            vector3d relative = e_position - hs_position;       
+            // r/5 can be changed, use this for now                                
+            if ( relative.magnitude() <= r && relative * hs_position.direction() >= -r/5){      
+                return true;                                                                 
+            }
+            return false;
+        }
+    \end{minted}
+\caption{Logic of is $\textbf{e}^-$ inside the shape of magnet}
+\label{fig:is_inside_halfsphere}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        vector3d Electron2D::interactB_RK(const MagneticField& B, double time_interval){
+            if (B.isInside(pos) == -1){
+                return vector3d(0,0,0);
+            }
+            Electron2D e_dummy;
+            e_dummy.Et = Et;
+            e_dummy.pos = pos;
+            e_dummy.vel = vel;
+            double time_halved = time_interval*0.5;
+            // get k1                                       
+            vector3d F_m = (e_dummy.vel % B.getField(pos))*eQMratio;                                       
+            vector3d k1 = F_m * e_dummy.gamma_inv();     
+            // get k2
+            e_dummy.move(time_halved);
+            e_dummy.accelerate(k1, time_halved);                                              
+            F_m = (e_dummy.vel % B.getField(pos))*eQMratio;                                               
+            vector3d k2 = F_m * e_dummy.gamma_inv();    
+            // get k3
+            e_dummy.vel = vel;
+            e_dummy.accelerate(k2, time_halved);
+            vector3d k3 = F_m * e_dummy.gamma_inv();   
+            // get k4
+            e_dummy.vel = vel;
+            e_dummy.move(time_halved);
+            e_dummy.accelerate(k3, time_interval);                                           
+            F_m = (e_dummy.vel % B.getField(pos))*eQMratio;  
+            vector3d k4 = F_m * e_dummy.gamma_inv();
+        
+            return (k1 + k2*2 + k3*2 + k4)/6;
+        }
+    \end{minted}
+\caption{RK4-1 implemenation of $\textbf{e}^-$-$\vecthreeBF{B}$}
+\label{fig:rk1_B}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        void Electron2D::interactRK_ActorE(const RFField& E, const MagneticField& B, double time_interval){
+            vector3d run_kut_E = interactE_RK(E, time_interval);
+            vector3d run_kut_B = interactB_RK(B, time_interval);
+        
+            vector3d acc = run_kut_E + run_kut_B;
+            
+            move(acc, time_interval/2);
+            accelerate(acc, time_interval);
+            move(acc, time_interval/2);
+        }
+    \end{minted}
+\caption{RK4-1 implemenation of $\textbf{e}^-$-\textbf{EM}}
+\label{fig:rk1_EM}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        void Electron2D::interactRK(RFField& E, MagneticField& B, const double time, double time_interval){
+            Electron2D e_dummy;
+            e_dummy.Et = Et;
+            e_dummy.pos = pos;
+            e_dummy.vel = vel;
+    
+            // Calculate k1
+            vector3d acc_E = E.actOn(e_dummy);
+            vector3d acc_B = B.actOn(e_dummy);
+            vector3d acc = acc_E + acc_B;
+            e_dummy.move(time_interval);
+            e_dummy.accelerate(acc, time_interval);
+            vector3d pos_k1 = e_dummy.pos, vel_k1 = e_dummy.vel;
+    
+            // Calculate k2
+            e_dummy.pos = (pos + pos_k1)*0.5;
+            e_dummy.vel = (vel + vel_k1)*0.5;
+            e_dummy.Et = e_dummy.gamma()*E0;
+            E.update(time + time_interval*0.5);
+    
+            acc_E = E.actOn(e_dummy);
+            acc_B = B.actOn(e_dummy);
+            acc = acc_E + acc_B;
+            e_dummy.move(time_interval);
+            e_dummy.accelerate(acc, time_interval);
+            vector3d pos_k2 = e_dummy.pos, vel_k2 = e_dummy.vel;
+    
+            // Calculate k3
+            e_dummy.pos = (pos + pos_k2)*0.5;
+            e_dummy.vel = (vel + vel_k2)*0.5;
+            e_dummy.Et = e_dummy.gamma()*E0;
+            E.update(time + time_interval*0.5);
+
+            acc_E = E.actOn(e_dummy);
+            acc_B = B.actOn(e_dummy);
+            acc = acc_E + acc_B;
+            e_dummy.move(time_interval);
+            e_dummy.accelerate(acc, time_interval);
+            vector3d pos_k3 = e_dummy.pos, vel_k3 = e_dummy.vel;
+    
+            // Calculate k4
+            E.update(time + time_interval);
+
+            acc_E = E.actOn(e_dummy);
+            acc_B = B.actOn(e_dummy);
+            acc = acc_E + acc_B;
+            e_dummy.move(time_interval);
+            e_dummy.accelerate(acc, time_interval);
+            vector3d pos_k4 = e_dummy.pos, vel_k4 = e_dummy.vel;
+    
+            E.update(time);
+            pos = (pos_k1 + pos_k2*2 + pos_k3*2 + pos_k4)/6;
+            vel = (vel_k1 + vel_k2*2 + vel_k3*2 + vel_k4)/6;
+            Et = gamma()*E0;
+    }
+    \end{minted}
+\caption{RK4-2 implemenation of $\textbf{e}^-$-\textbf{EM}}
+\label{fig:rk2_EM}
+\end{figure}
+
 
 \chapter{Example Simulation Runs} \label{appendix:example_simulation_runs}
 
@@ -1500,9 +1739,56 @@ Where \* and \% are, dot-product and cross-product respectably. (See \fromfig{ve
 \label{fig:lout_opt_08ns_Erms}
 \end{figure}
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+        $dt$(ns) & $T_{sim LF}(s)$ & $T_{sim RK1}(s)$  & $T_{sim RK2}(s)$  & $\Delta T_{LF-RK2}$\\\hline
+        $10^{-2}$ & 4.14092 & 4.146 & 4.10945 & 0.77\% \\ \hline
+        $10^{-3}$ & 4.23817 & 4.61703 & 4.30225 & -1.51\% \\ \hline
+        $10^{-4}$ & 5.04679 & 8.93529 & 6.3065 & -24.96\% \\ \hline
+        $10^{-5}$ & 13.5135 & 51.9024 & 25.4279 & -88.17\%\\ \hline
+        $10^{-6}$ & 97.6229 & 486.378 & 217.704 & -123.01\% \\ \hline
+    \end{tabular}
+    \caption{$dt$ vs $T_{sim}$ of Leap-frog, RK4-1, RK4-2 \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{tab:lf_rk1_rk2_Tsim}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+        $dt$(ns) & $\Delta E_{LF}$(MeV) & $\Delta E_{RK1}$(MeV)  & $\Delta E_{RK2}$(MeV)  & $\Delta E_{LF-RK2}$\\\hline
+        $10^{-2}$ & 2.78323 & 1.26503 & 1.04713 & 165.8\% \\ \hline
+        $10^{-3}$ & 0.11712 & 0.07469 & 0.06691 & 42.87\% \\ \hline
+        $10^{-4}$ & 0.01101 & 0.00716 & 0.00644 & 41.5\%  \\ \hline
+        $10^{-5}$ & 0.00109 & 0.00071 & 0.00064 & 41\% \\ \hline
+        $10^{-6}$ & 0.00011 & 0.00007 & 0.00006 & 45\% \\\hline
+    \end{tabular}
+    \caption{$dt$ vs $\Delta E$ of Leap-frog, RK4-1, RK4-2 \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{tab:lf_rk1_rk2_dE}
+\end{table}
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_001dt.png}
+        \caption*{$dt=10^{-2}$ns, $\Delta E=1.047$MeV}
+    \end{subfigure}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_00001dt.png}
+        \caption*{$dt=10^{-4}$ns, $\Delta E=0.006$MeV}
+    \end{subfigure}
+    \caption{Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T using RK4-2}
+    \label{fig:mag_rk_render}
+\end{figure}
+
+
 
 % END OF APPENDIX
-
 % START OF BIBLIOGRAPHY
 
 \begin{thebibliography}{9}
@@ -1539,5 +1825,6 @@ Where \* and \% are, dot-product and cross-product respectably. (See \fromfig{ve
 \end{thebibliography}
 
 % END OF BIBLIOGRAPHY
+
 
 \end{document}

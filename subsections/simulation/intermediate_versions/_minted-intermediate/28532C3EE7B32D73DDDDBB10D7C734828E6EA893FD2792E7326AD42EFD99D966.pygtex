@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n+nf}{CoaxialRFField::actOn}\PYG{p}{(}\PYG{n}{Electron}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{e}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{Efield}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{getField}\PYG{p}{(}\PYG{n}{e}\PYG{p}{.}\PYG{n}{pos}\PYG{p}{);}\PYG{+w}{                          }\PYG{c+c1}{// Calculate E vector}
+\PYG{+w}{    }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{F\PYGZus{}m}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Efield}\PYG{o}{*}\PYG{l+m+mf}{1E6}\PYG{o}{*}\PYG{n}{eQMratio}\PYG{p}{;}\PYG{+w}{                         }\PYG{c+c1}{// Calculate F/m vector}
+\PYG{+w}{    }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{acc}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{F\PYGZus{}m}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{e}\PYG{p}{.}\PYG{n}{vel}\PYG{o}{*}\PYG{p}{(}\PYG{n}{e}\PYG{p}{.}\PYG{n}{vel}\PYG{o}{*}\PYG{n}{F\PYGZus{}m}\PYG{p}{)}\PYG{o}{/}\PYG{p}{(}\PYG{n}{c}\PYG{o}{*}\PYG{n}{c}\PYG{p}{))}\PYG{o}{/}\PYG{n}{e}\PYG{p}{.}\PYG{n}{gamma}\PYG{p}{();}\PYG{+w}{   }\PYG{c+c1}{// Calculate a vector}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{acc}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
