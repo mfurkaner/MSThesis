@@ -1,5 +1,4 @@
 
-
 \appendix
 \chapter{Intermediate Codes} \label{appendix:intermediate_codes}
 \begin{figure}[H]
@@ -245,6 +244,202 @@
 \label{fig:rk2_EM}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        void RhodotronSimulator::_runMT(){
+            gun.fireAllWithFireTimesMT();
+        
+            MTEngine.setupPool(time_interval, start_time, end_time, gun, E_field, B_field, gun.thread_bunchs);
+        
+            STEPS_TAKEN = 0;
+            simulation_time = start_time;
+            while (simulation_time < end_time + time_interval ){
+                if (STEPS_TAKEN % log_interval() == 0){
+                    E_field.update(simulation_time);
+                    logEfield(simulation_time, simulation_time + time_interval > end_time);
+                    notifyUI(MTEngine.getAverageTime());
+                }
+                simulation_time+=time_interval;
+                STEPS_TAKEN++;
+            }
+            bool end = false;
+            while (!end){
+                double time = MTEngine.getAverageTime();
+                notifyUI(time);
+                if ( time >= end_time ){
+                    end = true;
+                }
+                this_thread::yield();
+            }
+            MTEngine.join();
+            
+        }
+    \end{minted}
+    \caption{Multithreading main-thread logic.}
+    \label{fig:_runMT}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        void Gun::fireAllWithFireTimesMT(){
+            std::random_device rd;
+            std::mt19937 e2(rd());
+            std::normal_distribution<double> Edist(Ein, sEin);
+    
+            for(_fired_bunch= 0; _fired_bunch < bunch_count; _fired_bunch++){
+                for(_fired_e_in_current_bunch= 0; _fired_e_in_current_bunch < e_per_bunch; _fired_e_in_current_bunch++){
+    
+                    double E = (sEin == 0 ) ? Ein : Edist(e2);
+    
+                    double fire_time = (ns_between_each_electron_fire * _fired_e_in_current_bunch) + _fired_bunch*gun_period;
+    
+                    auto burrowed_e = bunchs[_fired_bunch].AddElectronGiveAddress(E, gunpos, gundir, fire_time);
+    
+                    int thread_index = (_fired_e_in_current_bunch + _fired_bunch*e_per_bunch)%thread_bunchs.size();
+    
+                    thread_bunchs[thread_index]->push_back(burrowed_e);
+                }
+            }
+        }
+    \end{minted}
+    \caption{Multithreading electron assign logic.}
+    \label{fig:fireAllWithFireTimesMT}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        void MultiThreadEngine::setupPool( double _time_interval, double _start_time, double _end_time, Gun& gun, 
+            CoaxialRFField& RF, MagneticField& B, vector<shared_ptr<vector<shared_ptr<Electron2D>>>>& e_list){
+            threads.reserve(thread_count);
+        
+            for(int i = 0; i < thread_count && i == threads.size(); i++){
+        
+                child_notifier_mutexes.push_back(make_shared<mutex>());
+                child_times.push_back(make_shared<double>());
+                
+                auto _E = RF.Copy();
+                auto _B = B.LightWeightCopy();
+                double time_between_fires = thread_count*gun.getGunActiveTime()/gun.getElectronsPerBunch();
+                double first_fire_time = i*gun.getGunActiveTime()/gun.getElectronsPerBunch();
+                ThreadArguments thread_arguments(i, _time_interval, _start_time, _end_time, &gun, _E, _B, e_list[i], first_fire_time, time_between_fires);
+                thread_arguments.parent_notifier_mutex = child_notifier_mutexes[i];
+                thread_arguments.current_thread_time = child_times[i];
+                threads.push_back(thread(threadLoop, thread_arguments));
+            }
+        }
+    \end{minted}
+    \caption{Multithreading worker-threads setup logic.}
+    \label{fig:setupPool}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        void threadLoop(ThreadArguments thread_arguments){
+            uint64_t count = 0;
+        
+            double sim_time = thread_arguments.start_time;
+        
+            while(sim_time < thread_arguments.end_time + thread_arguments.time_interval){
+                thread_arguments.E->update(sim_time);
+                thread_arguments.i_args.time = sim_time;
+                
+                if ( count % (unsigned long)(0.1/thread_arguments.time_interval) == 0){
+                    saveElectronInfoForSingleThread(thread_arguments.i_args);
+                    // Notifiy the main thread
+                    if(thread_arguments.parent_notifier_mutex->try_lock()){
+                        *thread_arguments.current_thread_time = sim_time;
+                        thread_arguments.parent_notifier_mutex->unlock();
+                    }
+                }
+        
+                interactForSingleThread(thread_arguments.i_args);
+                // save electron info here
+                sim_time+= thread_arguments.time_interval;
+                count++;
+            }
+            thread_arguments.parent_notifier_mutex->lock();
+            *thread_arguments.current_thread_time = sim_time;
+            thread_arguments.parent_notifier_mutex->unlock();
+        }
+    \end{minted}
+    \caption{Multithreading worker-thread logic.}
+    \label{fig:threadLoop}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        void UIThreadWork(UIThreadArgs args){
+            int UI_WORK_PIECE = SIM_WORK_MASK;
+            if ( !args.isService ) {
+                UI_WORK_PIECE = 50;
+            }
+        
+            double piece = (args.end_time - args.start_time)/UI_WORK_PIECE;
+        
+            if ( !args.isService ) {
+                std::string sim_running_msg = "...Simulation is running...";
+                for(int i = 0; i < 26 - sim_running_msg.size()/2 ; i++){
+                    std::cout << " ";
+                }
+                std::cout << sim_running_msg <<"\n";
+            }
+        
+            args.ui_mutex->lock();
+            double simtime = *(args.simulation_time);
+            args.ui_mutex->unlock();
+        
+            if ( !args.isService ) {
+                std::cout << "V";
+                for(int i = 0; i < 51; i++){
+                    std::cout << "_";
+                }
+                std::cout << "V\n[" << std::flush;
+            }
+        
+            int count = 0;
+            bool running = true;
+            while(running && (simtime < args.end_time || count < UI_WORK_PIECE )){
+                if( simtime > count * piece ){
+                    if ( !args.isService ) {
+                        std::cout << "#" << std::flush;
+                    }
+                    count++;
+                    args.state_mutex->lock();
+                    running = *args.state_ptr & SIM_RUNNING;
+                    *args.state_ptr = (*args.state_ptr & ~SIM_WORK_MASK) | (count & SIM_WORK_MASK);
+                    if (args.isService) write(args._fd, args.state_ptr, SIGNAL_SIZE);
+                    args.state_mutex->unlock();
+                }
+                std::this_thread::sleep_for(std::chrono::milliseconds(25));
+                args.ui_mutex->lock();
+                simtime = *(args.simulation_time);
+                args.ui_mutex->unlock();
+        
+            }
+            if ( !args.isService ) {
+                std::cout << "#]\n\n" << std::flush;
+                std::cout << "     ...Simulation is finished successfully...\n\n" << std::flush;
+            }
+        
+            args.state_mutex->lock();
+            *args.state_ptr |= SIM_RENDERING;
+            if ( args.isService ) write(args._fd, args.state_ptr, SIGNAL_SIZE);
+            args.state_mutex->unlock();
+        }
+    \end{minted}
+    \caption{UI-Console handler thread logic.}
+    \label{fig:ui_thread}
+\end{figure}
 
 \chapter{Example Simulation Runs} \label{appendix:example_simulation_runs}
 
@@ -424,7 +619,7 @@
         multh=1
         thcount=10     
     \end{minted}
-\caption{$\phi_{lag}$ \& $\rho$ \& $L$ optimization at \\$P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=0.8$ns, $E_{in}=40$KeV}
+\caption{An example \textit{config.in} file.}
 \label{fig:config_file}
 \end{figure}
 
