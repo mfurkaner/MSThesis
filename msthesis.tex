@@ -71,6 +71,7 @@
 
 \pagenumbering{arabic}
 
+
 \newcommand{\vecthreeBF}[1]{\vec{\textbf{#1}}}
 \newcommand{\vecthree}[1]{\vec{#1}}
 \newcommand{\vecNum}[3]{(#1, #2, #3)}
@@ -96,6 +97,7 @@
 \newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
 \newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
 \newcommand{\fromeqsth}[3]{\textit{equations \ref{eq:#1}, \ref{eq:#2} and \ref{eq:#3}}}
+\newcommand{\fromeqsf}[4]{\textit{equations \ref{eq:#1}, \ref{eq:#2}, \ref{eq:#3} and \ref{eq:#4}}}
 
 \newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
 \newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
@@ -106,7 +108,10 @@
 \newcommand{\fromapp}[1]{\textit{Appendix \ref{appendix:#1}}}
 
 \newcommand{\fromtab}[1]{\textit{Table \ref{tab:#1}}}
-\newcommand{\fromtabs}[2]{\textit{Tables \ref{tab:#1} and \ref{tab:#2}}}% START OF THEORY
+\newcommand{\fromtabs}[2]{\textit{Tables \ref{tab:#1} and \ref{tab:#2}}}
+
+
+% START OF THEORY
 
 \chapter{THEORY}
 
@@ -1363,7 +1368,12 @@ The implementation can be found in \fromfigs{rk1_B}{rk1_EM}.
 Following the implementation of \textit{RK4-1}, revisions were made to the integration method for \textit{RK4} to replace \textit{Leap-frog}.
 Instead of calculating $\vecthreeBF{a}_{EM}$ using \textit{RK4}, $\vecthreeBF{r}$ and $\vecthreeBF{v}$ would be determined directly.
 
-These three methods were then tested in the same setup as \fromfig{mag_lf_render}. The results can be found in \fromfig{lf_rk1_rk2_comparison}.
+These three methods were then tested in the same setup as \fromfig{mag_lf_render}. The results can be found in \fromfig{lf_rk1_rk2_comparison} of \fromapp{data_graph}.
+\textit{RK4-1} was decided to be abandoned as it produced the same accuracy in twice the simulation time of \textit{RK4-2}.
+
+More rigerous testing was done with \textit{Leap-frog} and \textit{RK4-2} however. 
+Still using the setup in \fromfig{mag_lf_render}, each $dt$ configuration was simulated 10 times, calculating average and standard deviations afterwards.
+Results from these tests can be observed in \fromfig{mag_lf_rk2_comparison}.
 
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
@@ -1371,30 +1381,52 @@ These three methods were then tested in the same setup as \fromfig{mag_lf_render
     \centering
     \begin{subfigure}{0.8\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-E_3.png}
+        \includegraphics[width=\linewidth]{./figures/analiz/mag_lf_rk2_dt-E.png}
         \caption*{$dt$ vs $\Delta E$}
     \end{subfigure}
     
     \begin{subfigure}{0.8\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim_3.png}
+        \includegraphics[width=\linewidth]{./figures/analiz/mag_lf_rk2_dt-Tsim.png}
         \caption*{$dt$ vs $T_{sim}$}
     \end{subfigure}
-    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
-    \label{fig:lf_rk1_rk2_comparison}
+    \caption{Comparing Leap-frog, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{fig:mag_lf_rk2_comparison}
 \end{figure}
 
-The data from these tests can be found in \fromtabs{lf_rk1_rk2_Tsim}{lf_rk1_rk2_dE} of \fromapp{example_simulation_runs}. 
-As anticipated, \textit{Leap-frog} produced the fastest yet least accurate results, whereas \textit{RK4-2} method was proved to be the best performer for accuracy.
-When $dt=10^-5$ns was taken as reference point due to providing a good balance of accuracy and computational intensity, 
-\textit{RK4-2} provides around $41\%$ less energy gain in $\vecthreeBF{B}$ with respect to the next performer \textit{Leap-frog}.
-The tradeoff is the computational intensity mentioned in \fromsec{rungekutta}; \textit{Leap-frog} being around $47\%$ faster than $\textit{RK4-2}$.
+The data from these tests can be found in \fromtabs{lf_mag_table}{rk2_mag_table} of \fromapp{data_graph}.
+To investigate the data further, one can define a performance measurement, $F$.
+\begin{eqnarray*}
+    F &\propto& 1/T \\
+    F &\propto& 1/\Delta E 
+\end{eqnarray*}
 
-This relation is not linear however; \textit{RK4-2} is not as demanding in less computationally intensitive runs and able to keep up with \textit{Leap-frog} in execution times while increasing the accuracy difference from other methods,
-whereas \textit{Leap-frog} excels at simplicity, being able to use higher time resolution for given computational power. 
-Both methods can be used in different situations, therefore both were integrated into \textit{Rhodotron Simulation} for the user to decide.
+When $dt=10^-5$ns was taken as reference point due to providing a good balance of accuracy and computational intensity,
+\begin{eqnarray} \label{eq:f_lf_rk_mag_1}
+    \Delta E_{LF} &=& 110 \times 10^{-5} MeV \nonumber\\
+    \Delta E_{RK}^1 &=& 64 \times 10^{-5} MeV \nonumber\\
+    T_{LF}^1 &=& 9.44 \pm 0.03 s \nonumber\\
+    T_{RK}^1 &=& 21.33 \pm 0.02 s \nonumber\\
+    \Delta E_{LF} \times T_{LF} &=& 104 \times 10^{-4} \pm 10^{-4} MeV s \nonumber\\ %0.003
+    \Delta E_{RK} \times T_{RK} &=& 137 \times 10^{-4} \pm 2\times 10^{-4}  MeV s \nonumber\\ %0.001
+    F_{LF}/F_{RK} &=& \frac{\Delta E_{RK} \times T_{RK} }{\Delta E_{LF} \times T_{LF}^1} = 1.32 \pm 0.01
+\end{eqnarray}
+
+Also, observing from the data,
+\begin{eqnarray} \label{eq:f_lf_rk_mag_2}
+    \Delta E_{LF} (dt=3 \times 10^{-5}) \approx \Delta E_{RK} (dt=5 \times 10^{-5}) &\approx& 32.5 \times 10^{-4} MeV \nonumber\\
+    T_{LF}(dt=3 \times 10^{-5})  &=& 3.18 \pm 0.02 s \nonumber\\ %0.0032
+    T_{RK}(dt=5 \times 10^{-5})  &=& 4.30 \pm 0.01 s \nonumber\\ %0.0022
+    F_{LF}/F_{RK} = \frac{T_{RK}(dt=5 \times 10^{-5})}{T_{LF}(dt=3 \times 10^{-5})} &=& 1.4 \pm 0.1
+\end{eqnarray}
+Uncertainty of \fromeq{f_lf_rk_mag_2} was taken high due to the approximation. After combining \fromeqs{f_lf_rk_mag_1}{f_lf_rk_mag_2}, $F$ can be calculated as
+\begin{equation}
+    F_{LF}/F_{RK} = 1.36 \pm 0.05
+\end{equation}
+
+Therefore, \textit{Leap-frog} was found to be the better choice as it provided with $1.36 \pm 0.05$ times accuracy in \eB interactions at a given time with respect to \textit{RK4}. However,
+\textit{RK4} was promising in situations where decreasing the stepsize, $dt$, is not viable. Therefore both were integrated into \textit{Rhodotron Simulation} for the user to decide.
 \textit{RK4-2} renders from these test can be found in \fromfig{mag_rk_render} of \fromapp{example_simulation_runs}.
-
 
 
 \subsection{Acceleration in Electric Field}
@@ -1460,7 +1492,6 @@ To also measure the variance in simulation completion times, $T_{sim}$, set of $
     \caption{Render of the test setups. \\ $E_{in}=1$ MeV, $t_{end}=6$ns}
 \end{figure}
 
-
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
@@ -1468,13 +1499,11 @@ To also measure the variance in simulation completion times, $T_{sim}$, set of $
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./figures/analiz/staticE_lf_rk2_dt-E.png}
-        \caption*{$dt$ vs $\Delta E$}
     \end{subfigure}
     
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./figures/analiz/staticE_lf_rk2_dt-Tsim.png}
-        \caption*{$dt$ vs $T_{sim}$}
     \end{subfigure}
     \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns}
     \label{fig:lf_rk2_par_stat_E_comparison}
@@ -1487,18 +1516,69 @@ To also measure the variance in simulation completion times, $T_{sim}$, set of $
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./figures/analiz/90staticE_lf_rk2_dt-E_3.png}
-        \caption*{$dt$ vs $\Delta E$}
     \end{subfigure}
     
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./figures/analiz/90staticE_lf_rk2_dt-Tsim.png}
-        \caption*{$dt$ vs $T_{sim}$}
     \end{subfigure}
     \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\perp}$=4MV, $t_{end}=6$ns}
     \label{fig:lf_rk2_perp_stat_E_comparison}
 \end{figure}
 
+Taking the $dt=10^{-5}$ns for the reference point as before, the relative performance can be calculated.
+\begin{eqnarray*}
+    \begin{aligned}
+        \Delta E_{LF}^1 &=& 22 \times 10^{-6} MeV \\
+        \Delta E_{RK}^1 &=& 16 \times 10^{-6} MeV \\
+        T_{LF}^1 &=& 12.40 \pm 0.04 s \\
+        T_{RK}^1 &=& 40.08 \pm 0.12 s \\
+    \end{aligned}
+    \qquad
+    \begin{aligned}
+        \Delta E_{LF}^2 &=& 15 \times 10^{-5} MeV \\
+        \Delta E_{RK}^2 &=& 9.3 \times 10^{-5} MeV \\
+        T_{LF}^2 &=& 10.75 \pm 0.04 s \\
+        T_{RK}^2 &=& 34.93 \pm 0.39 s 
+    \end{aligned}
+\end{eqnarray*}
+
+\begin{eqnarray} \label{eq:f_lf_rk_1}
+    \Delta E_{LF}^1 \times T_{LF}^1 &=& 270 \times 10^{-6} \pm 10^{-6} MeV s \nonumber\\ %0.003
+    \Delta E_{RK}^1 \times T_{RK}^1 &=& 640 \times 10^{-6} \pm 2\times 10^{-6}  MeV s \nonumber\\ %0.003
+    F_{LF}^1/F_{RK}^1 &=& \frac{\Delta E_{RK}^1 \times T_{RK}^1 }{\Delta E_{LF}^1 \times T_{LF}^1} = 2.4 \pm 0.02
+\end{eqnarray}
+
+\begin{eqnarray} \label{eq:f_lf_rk_2}
+    \Delta E_{LF}^2 \times T_{LF}^2 &=& 160 \times 10^{-5} \pm 10^{-5} MeV s \nonumber\\ %0.004
+    \Delta E_{RK}^2 \times T_{RK}^2 &=& 320 \times 10^{-5} 4 \pm 10^{-5} MeV s \nonumber\\ %0.011
+    F_{LF}^2/F_{RK}^2 &=& \frac{\Delta E_{RK}^2 \times T_{RK}^2 }{\Delta E_{LF}^2 \times T_{LF}^2} = 2.0  \pm 0.03
+\end{eqnarray}
+
+\textit{Leap-frog} provides $2.4$ times and $2.0$ times less overacceleration per simulation time than \textit{RK4} in parallel and perpendicular electric fields respectably.
+This results can be tested further with obsering from the data (see TODO),
+
+\begin{eqnarray} \label{eq:f_lf_rk_3}
+    \Delta E_{LF}^1 (dt=2 \times 10^{-5}) = \Delta E_{RK}^1 (dt=3 \times 10^{-5}) &=& 45 \times 10^{-6} MeV \nonumber\\
+    T_{LF}^1(dt=2 \times 10^{-5})  &=& 6.23 \pm 0.02 s \nonumber\\ %0.0032
+    T_{RK}^1(dt=3 \times 10^{-5})  &=& 13.40 \pm 0.03 s \nonumber\\ %0.0022
+    F_{LF}^1/F_{RK}^1 = \frac{T_{RK}^1(dt=3 \times 10^{-5})}{T_{LF}^1(dt=2 \times 10^{-5})} &=& 2.15 \pm 0.02
+\end{eqnarray}
+\begin{eqnarray} \label{eq:f_lf_rk_4}
+    \Delta E_{LF}^2 (dt=3 \times 10^{-5}) \approx \Delta E_{RK}^2 (dt=5 \times 10^{-5}) &\approx& 470 \times 10^{-6} MeV \nonumber\\
+    T_{LF}^2(dt=3 \times 10^{-5})  &=& 3.62 \nonumber\\ %0.0055
+    T_{RK}^2(dt=5 \times 10^{-5})  &=& 7.00 \nonumber\\ %0.0071 -> 0,0126
+    F_{LF}^2/F_{RK}^2 = \frac{T_{RK}^2(dt=5 \times 10^{-5})}{T_{LF}^2(dt=3 \times 10^{-5})} &=& 1.9 \pm 0.1
+\end{eqnarray}
+
+The last uncertainty was taken high due to the approximation of $467 \approx 471$. After combining \fromeqsf{f_lf_rk_1}{f_lf_rk_2}{f_lf_rk_3}{f_lf_rk_4},
+the performance of \textit{Leap-frog} relative to \textit{RK4} in \eE interaction can be calculated as in \fromeq{lf_rk_eE_relative_performance}.
+
+\begin{equation}\label{eq:lf_rk_eE_relative_performance}
+    F_{LF}/F_{RK} = 2.11 \pm 0.03
+\end{equation}
+
+Therefore, it can be concluded that \textit{Leap-frog} outperforms \textit{RK4} with the relative performance of $2.11 \pm 0.03$ in \eE interactions with static uniform $\vecthreeBF{E}$ field. 
 
 
 \subsection{Multithreading}
@@ -1570,9 +1650,8 @@ By this approach, one could also ignore the \textit{GUI} altogether and use the 
 
 
 
-
-
 \newpage
+
 
 
 \appendix
@@ -1916,45 +1995,16 @@ By this approach, one could also ignore the \textit{GUI} altogether and use the 
 \label{fig:lout_opt_08ns_Erms}
 \end{figure}
 
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
-    \hline
-        $dt$(ns) & $T_{sim LF}(s)$ & $T_{sim RK1}(s)$  & $T_{sim RK2}(s)$  & $\Delta T_{LF-RK2}$\\\hline
-        $10^{-2}$ & 4.14092 & 4.146 & 4.10945 & 0.77\% \\ \hline
-        $10^{-3}$ & 4.23817 & 4.61703 & 4.30225 & -1.51\% \\ \hline
-        $10^{-4}$ & 5.04679 & 8.93529 & 6.3065 & -24.96\% \\ \hline
-        $10^{-5}$ & 13.5135 & 51.9024 & 25.4279 & -88.17\%\\ \hline
-        $10^{-6}$ & 97.6229 & 486.378 & 217.704 & -123.01\% \\ \hline
-    \end{tabular}
-    \caption{$dt$ vs $T_{sim}$ of Leap-frog, RK4-1, RK4-2 \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
-    \label{tab:lf_rk1_rk2_Tsim}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
-    \hline
-        $dt$(ns) & $\Delta E_{LF}$(MeV) & $\Delta E_{RK1}$(MeV)  & $\Delta E_{RK2}$(MeV)  & $\Delta E_{LF-RK2}$\\\hline
-        $10^{-2}$ & 2.78323 & 1.26503 & 1.04713 & 165.8\% \\ \hline
-        $10^{-3}$ & 0.11712 & 0.07469 & 0.06691 & 42.87\% \\ \hline
-        $10^{-4}$ & 0.01101 & 0.00716 & 0.00644 & 41.5\%  \\ \hline
-        $10^{-5}$ & 0.00109 & 0.00071 & 0.00064 & 41\% \\ \hline
-        $10^{-6}$ & 0.00011 & 0.00007 & 0.00006 & 45\% \\\hline
-    \end{tabular}
-    \caption{$dt$ vs $\Delta E$ of Leap-frog, RK4-1, RK4-2 \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
-    \label{tab:lf_rk1_rk2_dE}
-\end{table}
-
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
-    \begin{subfigure}{0.48\textwidth}
+    \centering
+    \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_001dt.png}
         \caption*{$dt=10^{-2}$ns, $\Delta E=1.047$MeV}
     \end{subfigure}
-    \begin{subfigure}{0.48\textwidth}
+    \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_00001dt.png}
         \caption*{$dt=10^{-4}$ns, $\Delta E=0.006$MeV}
@@ -2061,10 +2111,86 @@ By this approach, one could also ignore the \textit{GUI} altogether and use the 
 \label{fig:console_output_running}
 \end{figure}
 
+\chapter{Data and Graphs}\label{appendix:data_graph}
 
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-E_3.png}
+    \end{subfigure}
+    
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim_3.png}
+    \end{subfigure}
+    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{fig:lf_rk1_rk2_comparison}
+\end{figure}
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
+        1e-02 & 2.783228     & 0.034660  & 0.011537 \\ \hline
+        1e-03 & 0.117124     & 0.115775  & 0.001071 \\ \hline
+        9e-04 & 0.104552     & 0.128983  & 0.001820 \\  \hline
+        8e-04 & 0.092252     & 0.143251  & 0.002585 \\ \hline
+        7e-04 & 0.080144     & 0.158808  & 0.003228 \\ \hline
+        6e-04 & 0.068258     & 0.182359  & 0.002426 \\\hline
+        5e-04 & 0.056554     & 0.215104  & 0.002807 \\\hline
+        4e-04 & 0.044931     & 0.262952  & 0.005119 \\\hline
+        3e-04 & 0.033467     & 0.341552  & 0.002610 \\\hline
+        2e-04 & 0.022158     & 0.501784  & 0.005709 \\\hline
+        1e-04 & 0.011006     & 0.973145  & 0.005849 \\\hline
+        9e-05 & 0.009899     & 1.084032  & 0.010985 \\\hline
+        8e-05 & 0.008792     & 1.216145  & 0.012486 \\\hline
+        7e-05 & 0.007688     & 1.387908  & 0.019031 \\\hline
+        6e-05 & 0.006586     & 1.604475  & 0.011775 \\\hline
+        5e-05 & 0.005485     & 1.926505  & 0.014535 \\\hline
+        4e-05 & 0.004384     & 2.395898  & 0.009702 \\\hline
+        3e-05 & 0.003286     & 3.178265  & 0.014099 \\\hline
+        2e-05 & 0.002189     & 4.740706  & 0.022709 \\\hline
+        1e-05 & 0.001094     & 9.441138  & 0.027266 \\\hline
+        1e-06 & 0.000109     & 93.888320 & 0.290820 \\ \hline
+    \end{tabular}
+    \caption{\textit{Leap-frog} data on \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{tab:lf_mag_table}
+\end{table}
 
-
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
+        1e-02 & 1.047130     & 0.048943   & 0.011642 \\\hline
+        1e-03 & 0.066912     & 0.239299   & 0.003483 \\\hline
+        9e-04 & 0.059899     & 0.268007   & 0.004530 \\\hline
+        8e-04 & 0.053028     & 0.296154   & 0.004146 \\\hline
+        7e-04 & 0.046183     & 0.333123   & 0.004259 \\\hline
+        6e-04 & 0.039452     & 0.384046   & 0.002458 \\\hline
+        5e-04 & 0.032734     & 0.456387   & 0.003888 \\\hline
+        4e-04 & 0.026072     & 0.563011   & 0.004803 \\\hline
+        3e-04 & 0.019474     & 0.742440   & 0.006169 \\\hline
+        2e-04 & 0.012926     & 1.103559   & 0.007649 \\\hline
+        1e-04 & 0.006437     & 2.178779   & 0.009733 \\\hline
+        9e-05 & 0.005791     & 2.411302   & 0.012266 \\\hline
+        8e-05 & 0.005145     & 2.704117   & 0.012683 \\\hline
+        7e-05 & 0.004500     & 3.078304   & 0.013281 \\\hline
+        6e-05 & 0.003856     & 3.589154   & 0.014472 \\\hline
+        5e-05 & 0.003212     & 4.297561   & 0.009546 \\\hline
+        4e-05 & 0.002568     & 5.369322   & 0.012127 \\\hline
+        3e-05 & 0.001925     & 7.136687   & 0.007845 \\\hline
+        2e-05 & 0.001283     & 10.679166  & 0.012126 \\\hline
+        1e-05 & 0.000641     & 21.325229  & 0.011661 \\\hline
+        1e-06 & 0.000064     & 212.824121 & 0.040967 \\\hline
+    \end{tabular}
+    \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{tab:rk2_mag_table}
+\end{table}
 
 % START OF BIBLIOGRAPHY
 

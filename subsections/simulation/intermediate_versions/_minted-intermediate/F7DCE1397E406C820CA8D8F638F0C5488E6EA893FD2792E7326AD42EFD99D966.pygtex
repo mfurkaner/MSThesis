@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{threadLoop}\PYG{p}{(}\PYG{n}{ThreadArguments}\PYG{+w}{ }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{uint64\PYGZus{}t}\PYG{+w}{ }\PYG{n}{count}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{sim\PYGZus{}time}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{start\PYGZus{}time}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{while}\PYG{p}{(}\PYG{n}{sim\PYGZus{}time}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{end\PYGZus{}time}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{time\PYGZus{}interval}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{E}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{update}\PYG{p}{(}\PYG{n}{sim\PYGZus{}time}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{i\PYGZus{}args}\PYG{p}{.}\PYG{n}{time}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sim\PYGZus{}time}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{+w}{ }\PYG{n}{count}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{unsigned}\PYG{+w}{ }\PYG{k+kt}{long}\PYG{p}{)(}\PYG{l+m+mf}{0.1}\PYG{o}{/}\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{time\PYGZus{}interval}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{saveElectronInfoForSingleThread}\PYG{p}{(}\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{i\PYGZus{}args}\PYG{p}{);}
+\PYG{+w}{            }\PYG{c+c1}{// Notifiy the main thread}
+\PYG{+w}{            }\PYG{k}{if}\PYG{p}{(}\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{parent\PYGZus{}notifier\PYGZus{}mutex}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{try\PYGZus{}lock}\PYG{p}{())\PYGZob{}}
+\PYG{+w}{                }\PYG{o}{*}\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{current\PYGZus{}thread\PYGZus{}time}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sim\PYGZus{}time}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{parent\PYGZus{}notifier\PYGZus{}mutex}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{unlock}\PYG{p}{();}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{n}{interactForSingleThread}\PYG{p}{(}\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{i\PYGZus{}args}\PYG{p}{);}
+\PYG{+w}{        }\PYG{c+c1}{// save electron info here}
+\PYG{+w}{        }\PYG{n}{sim\PYGZus{}time}\PYG{o}{+=}\PYG{+w}{ }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{time\PYGZus{}interval}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{count}\PYG{o}{++}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{parent\PYGZus{}notifier\PYGZus{}mutex}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{lock}\PYG{p}{();}
+\PYG{+w}{    }\PYG{o}{*}\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{current\PYGZus{}thread\PYGZus{}time}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sim\PYGZus{}time}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{parent\PYGZus{}notifier\PYGZus{}mutex}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{unlock}\PYG{p}{();}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{MultiThreadEngine::setupPool}\PYG{p}{(}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{\PYGZus{}time\PYGZus{}interval}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{\PYGZus{}start\PYGZus{}time}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{\PYGZus{}end\PYGZus{}time}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Gun}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{gun}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{CoaxialRFField}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{RF}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MagneticField}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{B}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{shared\PYGZus{}ptr}\PYG{o}{\PYGZlt{}}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{shared\PYGZus{}ptr}\PYG{o}{\PYGZlt{}}\PYG{n}{Electron2D}\PYG{o}{\PYGZgt{}\PYGZgt{}\PYGZgt{}\PYGZgt{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{e\PYGZus{}list}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{threads}\PYG{p}{.}\PYG{n}{reserve}\PYG{p}{(}\PYG{n}{thread\PYGZus{}count}\PYG{p}{);}
+
+\PYG{+w}{    }\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{thread\PYGZus{}count}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{threads}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+
+\PYG{+w}{        }\PYG{n}{child\PYGZus{}notifier\PYGZus{}mutexes}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{make\PYGZus{}shared}\PYG{o}{\PYGZlt{}}\PYG{n}{mutex}\PYG{o}{\PYGZgt{}}\PYG{p}{());}
+\PYG{+w}{        }\PYG{n}{child\PYGZus{}times}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{make\PYGZus{}shared}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{o}{\PYGZgt{}}\PYG{p}{());}
+
+\PYG{+w}{        }\PYG{k}{auto}\PYG{+w}{ }\PYG{n}{\PYGZus{}E}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{RF}\PYG{p}{.}\PYG{n}{Copy}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k}{auto}\PYG{+w}{ }\PYG{n}{\PYGZus{}B}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{B}\PYG{p}{.}\PYG{n}{LightWeightCopy}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{time\PYGZus{}between\PYGZus{}fires}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{thread\PYGZus{}count}\PYG{o}{*}\PYG{n}{gun}\PYG{p}{.}\PYG{n}{getGunActiveTime}\PYG{p}{()}\PYG{o}{/}\PYG{n}{gun}\PYG{p}{.}\PYG{n}{getElectronsPerBunch}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{first\PYGZus{}fire\PYGZus{}time}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{*}\PYG{n}{gun}\PYG{p}{.}\PYG{n}{getGunActiveTime}\PYG{p}{()}\PYG{o}{/}\PYG{n}{gun}\PYG{p}{.}\PYG{n}{getElectronsPerBunch}\PYG{p}{();}
+\PYG{+w}{        }\PYG{n}{ThreadArguments}\PYG{+w}{ }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{\PYGZus{}time\PYGZus{}interval}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{\PYGZus{}start\PYGZus{}time}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{\PYGZus{}end\PYGZus{}time}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{gun}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{\PYGZus{}E}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{\PYGZus{}B}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{e\PYGZus{}list}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],}\PYG{+w}{ }\PYG{n}{first\PYGZus{}fire\PYGZus{}time}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{time\PYGZus{}between\PYGZus{}fires}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{parent\PYGZus{}notifier\PYGZus{}mutex}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{child\PYGZus{}notifier\PYGZus{}mutexes}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+\PYG{+w}{        }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{.}\PYG{n}{current\PYGZus{}thread\PYGZus{}time}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{child\PYGZus{}times}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+\PYG{+w}{        }\PYG{n}{threads}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{k+kr}{thread}\PYG{p}{(}\PYG{n}{threadLoop}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{thread\PYGZus{}arguments}\PYG{p}{));}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

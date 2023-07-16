@@ -458,6 +458,24 @@
 \end{figure}
 
 \chapter{Data and Graphs}\label{appendix:data_graph}
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-E_3.png}
+    \end{subfigure}
+    
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim_3.png}
+    \end{subfigure}
+    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{fig:lf_rk1_rk2_comparison}
+\end{figure}
+
 \begin{table}[H]
     \centering
     \begin{tabular}{|l|l|l|l|}
@@ -488,7 +506,6 @@
     \caption{\textit{Leap-frog} data on \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
     \label{tab:lf_mag_table}
 \end{table}
-
 
 \begin{table}[H]
     \centering
@@ -521,21 +538,3 @@
     \label{tab:rk2_mag_table}
 \end{table}
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
-    \centering
-    \begin{subfigure}{0.8\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-E_3.png}
-        \caption*{$dt$ vs $\Delta E$}
-    \end{subfigure}
-    
-    \begin{subfigure}{0.8\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim_3.png}
-        \caption*{$dt$ vs $T_{sim}$}
-    \end{subfigure}
-    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
-    \label{fig:lf_rk1_rk2_comparison}
-\end{figure}

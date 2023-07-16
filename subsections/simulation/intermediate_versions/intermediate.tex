@@ -35,8 +35,8 @@
 \newcommand{\crossProdBF}[2]{\vecthreeBF{#1} \times \vecthreeBF{#2}}
 \newcommand{\crossProd}[2]{\vecthree{#1} \times \vecthree{#2}}
 
-\newcommand{\e}{$\textbf{e}^-$}
-\newcommand{\egun}{$\textbf{e}^-$-gun}
+\newcommand{\e}{$\textbf{e}^-$ }
+\newcommand{\egun}{$\textbf{e}^-$-gun }
 \newcommand{\eB}{$\textbf{e}^-$ - $\vecthreeBF{B}$ }
 \newcommand{\eE}{$\textbf{e}^-$ - $\vecthreeBF{E}$ }
 \newcommand{\eEM}{$\textbf{e}^-$ - \textbf{EM} }
@@ -50,6 +50,7 @@
 
 \newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
 \newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
+\newcommand{\fromfigf}[4]{\textit{figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3} and \ref{fig:#4}}}
 
 \newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
 \newcommand{\fromsecs}[2]{\textit{sections \ref{sec:#1} and \ref{sec:#2}}}
@@ -224,7 +225,7 @@ The implementation can be found in \fromfigs{rk1_B}{rk1_EM}.
 Following the implementation of \textit{RK4-1}, revisions were made to the integration method for \textit{RK4} to replace \textit{Leap-frog}.
 Instead of calculating $\vecthreeBF{a}_{EM}$ using \textit{RK4}, $\vecthreeBF{r}$ and $\vecthreeBF{v}$ would be determined directly.
 
-These three methods were then tested in the same setup as \fromfig{mag_lf_render}. The results can be found in \fromfig{lf_rk1_rk2_comparison} of \fromapp{other}.
+These three methods were then tested in the same setup as \fromfig{mag_lf_render}. The results can be found in \fromfig{lf_rk1_rk2_comparison} of \fromapp{data_graph}.
 \textit{RK4-1} was decided to be abandoned as it produced the same accuracy in twice the simulation time of \textit{RK4-2}.
 
 More rigerous testing was done with \textit{Leap-frog} and \textit{RK4-2} however. 
@@ -348,7 +349,6 @@ To also measure the variance in simulation completion times, $T_{sim}$, set of $
     \caption{Render of the test setups. \\ $E_{in}=1$ MeV, $t_{end}=6$ns}
 \end{figure}
 
-
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
@@ -356,13 +356,11 @@ To also measure the variance in simulation completion times, $T_{sim}$, set of $
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../../figures/analiz/staticE_lf_rk2_dt-E.png}
-        \caption*{$dt$ vs $\Delta E$}
     \end{subfigure}
     
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../../figures/analiz/staticE_lf_rk2_dt-Tsim.png}
-        \caption*{$dt$ vs $T_{sim}$}
     \end{subfigure}
     \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns}
     \label{fig:lf_rk2_par_stat_E_comparison}
@@ -375,13 +373,11 @@ To also measure the variance in simulation completion times, $T_{sim}$, set of $
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../../figures/analiz/90staticE_lf_rk2_dt-E_3.png}
-        \caption*{$dt$ vs $\Delta E$}
     \end{subfigure}
     
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../../figures/analiz/90staticE_lf_rk2_dt-Tsim.png}
-        \caption*{$dt$ vs $T_{sim}$}
     \end{subfigure}
     \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\perp}$=4MV, $t_{end}=6$ns}
     \label{fig:lf_rk2_perp_stat_E_comparison}
@@ -456,7 +452,8 @@ After the sizable refactoring done for 3D capabilities, this implementation was 
 \end{figure}
 
 For the current version, a main thread that spawns and manages several other worker threads would be used as can be seen in \fromfig{multh_illustration}.
-The UI-Console thread would handle incoming and outgoing communication, notifying the user about the status of simulation (see \fromfig{console_output_running} in \fromapp{example_simulation_runs}) 
+The UI-Console thread would handle incoming and outgoing communication, notifying the user about the status of simulation 
+(see \fromfig{console_output_running} in \fromapp{example_simulation_runs} for example console notification, \fromfig{ui_thread} in \fromapp{intermediate_codes} for implemenation)
 or communucating with the \textit{GUI} that will be disscussed in the next section.
 
 Focus of this section is the worker threads, also known as \eEM interaction threads.
@@ -484,8 +481,7 @@ Therefore, \textit{Architecture 4} is not ideal for fast calculations and when t
 An implementation that can use both \textbf{Architecture 2} \& \textbf{Architecture 4} when necessary would be a better approach considering these methods;
 nevertheless, \textbf{Architecture 4} was chosed to be implemented.
 
-
-
+The implemenation can be found in \fromfigf{_runMT}{fireAllWithFireTimesMT}{setupPool}{threadLoop} in \fromapp{intermediate_codes}.
 
 
 \subsection{Graphical User Interface}
@@ -500,15 +496,71 @@ The initial design of the \textit{Rhodotron Simulation GUI} can be observed in \
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{../../../figures/illustrations/RhodoSim_GUI_Draft_V02.pdf}
-    \caption{An Illustration of first GUI design.}
+    \caption{An Illustration of the first GUI design.}
     \label{fig:gui_illustration}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{../../../figures/rhodoSim/GUI_config_frame.png}
+    \caption{The configuration frame of implementated first GUI design.}
+    \label{fig:gui_config}
 \end{figure}
 
 The \textit{GUI} would be a standalone application, running the \textit{Rhodotron Simulation} as a service when needed. 
 For this reason, the now called \textit{simulation engine} was updated to be able to run as a background service of \textit{GUI}.
 By this approach, one could also ignore the \textit{GUI} altogether and use the \textit{simulation engine} as before, as these are two seperate products.
 
+In the \fromfig{gui_config}, the implemented version of \fromfig{gui_illustration} can be observed. This version of the \textit{GUI} 
+\begin{itemize}
+    \item[Configuration Frame] provides an interface for specifying, saving or loading a configuration.
+    \item[Simulation Frame] provides an interface for starting and managing the \textit{simulation engine}, displaying the progress of the simulation.
+    \item[Render Frame] provides an interface for rendering the results of a simulation.
+    \item[Analyze Frame] provides an interface for analyzing the results of a simulation.  
+    \item[Sweep Frame] provides an interface for parameter sweep functionality. 
+\end{itemize}
 
+\subsubsection{Configuration Frame}
+This frame consists of $\vecthreeBF{B}$ field, $\vecthreeBF{E}$ field, \textit{RF} description, \egun, \textit{simulation} configuration regions.
+Each one having an illustration of what the parameters are as can be seen in \fromfig{gui_config}.
+
+\subsubsection{Simulation Frame}
+This frame spawns the \textit{simulation engine}, configures and starts the simulation. 
+It has a progress bar that shows the current progress of the simulation, communucating with \textit{UI handler thread} in \textit{simulation engine}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{../../../figures/rhodoSim/GUI_simulate_frame.png}
+    \caption{Simulate frame of \textit{GUI}.}
+    \label{fig:gui_simulate_1}
+\end{figure}
+
+\subsubsection{Render Frame}
+Since the rendering capabilities of \textit{ROOT} is superior than \textit{gnuplot}, the user can render a playback of the simulation in real time, 
+see a specific time frame, export as snapshot or animated gif file.
+
+\begin{figure}
+    \centering
+    \captionsetup{justification=centering}
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[angle=270,origin=c,width=\linewidth]{../../../figures/rhodoSim/GUI_render_frame_1.png}
+    \end{subfigure} 
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[angle=270,origin=c,width=\linewidth]{../../../figures/rhodoSim/GUI_render_frame_2.png}
+    \end{subfigure} 
+    \caption{Render frame of \textit{GUI}.}
+    \label{fig:gui_render_1}
+\end{figure}
+
+\subsubsection{Analyze Frame}
+Analyze frame provides tools for analyzing and visualizing the simulation data. 
+In the current version \textbf{E} distribution histogram and \textbf(E)(t) graph of each electron are implementated into this frame.
+This frame is a work in progress and will be the focus of improvement and become a really powerfull tool in the near future.
+
+
+\subsubsection{Sweep Frame}
 
 
 %%%%%%
@@ -759,6 +811,202 @@ By this approach, one could also ignore the \textit{GUI} altogether and use the 
 \label{fig:rk2_EM}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        void RhodotronSimulator::_runMT(){
+            gun.fireAllWithFireTimesMT();
+        
+            MTEngine.setupPool(time_interval, start_time, end_time, gun, E_field, B_field, gun.thread_bunchs);
+        
+            STEPS_TAKEN = 0;
+            simulation_time = start_time;
+            while (simulation_time < end_time + time_interval ){
+                if (STEPS_TAKEN % log_interval() == 0){
+                    E_field.update(simulation_time);
+                    logEfield(simulation_time, simulation_time + time_interval > end_time);
+                    notifyUI(MTEngine.getAverageTime());
+                }
+                simulation_time+=time_interval;
+                STEPS_TAKEN++;
+            }
+            bool end = false;
+            while (!end){
+                double time = MTEngine.getAverageTime();
+                notifyUI(time);
+                if ( time >= end_time ){
+                    end = true;
+                }
+                this_thread::yield();
+            }
+            MTEngine.join();
+            
+        }
+    \end{minted}
+    \caption{Multithreading main-thread logic.}
+    \label{fig:_runMT}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        void Gun::fireAllWithFireTimesMT(){
+            std::random_device rd;
+            std::mt19937 e2(rd());
+            std::normal_distribution<double> Edist(Ein, sEin);
+    
+            for(_fired_bunch= 0; _fired_bunch < bunch_count; _fired_bunch++){
+                for(_fired_e_in_current_bunch= 0; _fired_e_in_current_bunch < e_per_bunch; _fired_e_in_current_bunch++){
+    
+                    double E = (sEin == 0 ) ? Ein : Edist(e2);
+    
+                    double fire_time = (ns_between_each_electron_fire * _fired_e_in_current_bunch) + _fired_bunch*gun_period;
+    
+                    auto burrowed_e = bunchs[_fired_bunch].AddElectronGiveAddress(E, gunpos, gundir, fire_time);
+    
+                    int thread_index = (_fired_e_in_current_bunch + _fired_bunch*e_per_bunch)%thread_bunchs.size();
+    
+                    thread_bunchs[thread_index]->push_back(burrowed_e);
+                }
+            }
+        }
+    \end{minted}
+    \caption{Multithreading electron assign logic.}
+    \label{fig:fireAllWithFireTimesMT}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        void MultiThreadEngine::setupPool( double _time_interval, double _start_time, double _end_time, Gun& gun, 
+            CoaxialRFField& RF, MagneticField& B, vector<shared_ptr<vector<shared_ptr<Electron2D>>>>& e_list){
+            threads.reserve(thread_count);
+        
+            for(int i = 0; i < thread_count && i == threads.size(); i++){
+        
+                child_notifier_mutexes.push_back(make_shared<mutex>());
+                child_times.push_back(make_shared<double>());
+                
+                auto _E = RF.Copy();
+                auto _B = B.LightWeightCopy();
+                double time_between_fires = thread_count*gun.getGunActiveTime()/gun.getElectronsPerBunch();
+                double first_fire_time = i*gun.getGunActiveTime()/gun.getElectronsPerBunch();
+                ThreadArguments thread_arguments(i, _time_interval, _start_time, _end_time, &gun, _E, _B, e_list[i], first_fire_time, time_between_fires);
+                thread_arguments.parent_notifier_mutex = child_notifier_mutexes[i];
+                thread_arguments.current_thread_time = child_times[i];
+                threads.push_back(thread(threadLoop, thread_arguments));
+            }
+        }
+    \end{minted}
+    \caption{Multithreading worker-threads setup logic.}
+    \label{fig:setupPool}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        void threadLoop(ThreadArguments thread_arguments){
+            uint64_t count = 0;
+        
+            double sim_time = thread_arguments.start_time;
+        
+            while(sim_time < thread_arguments.end_time + thread_arguments.time_interval){
+                thread_arguments.E->update(sim_time);
+                thread_arguments.i_args.time = sim_time;
+                
+                if ( count % (unsigned long)(0.1/thread_arguments.time_interval) == 0){
+                    saveElectronInfoForSingleThread(thread_arguments.i_args);
+                    // Notifiy the main thread
+                    if(thread_arguments.parent_notifier_mutex->try_lock()){
+                        *thread_arguments.current_thread_time = sim_time;
+                        thread_arguments.parent_notifier_mutex->unlock();
+                    }
+                }
+        
+                interactForSingleThread(thread_arguments.i_args);
+                // save electron info here
+                sim_time+= thread_arguments.time_interval;
+                count++;
+            }
+            thread_arguments.parent_notifier_mutex->lock();
+            *thread_arguments.current_thread_time = sim_time;
+            thread_arguments.parent_notifier_mutex->unlock();
+        }
+    \end{minted}
+    \caption{Multithreading worker-thread logic.}
+    \label{fig:threadLoop}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        void UIThreadWork(UIThreadArgs args){
+            int UI_WORK_PIECE = SIM_WORK_MASK;
+            if ( !args.isService ) {
+                UI_WORK_PIECE = 50;
+            }
+        
+            double piece = (args.end_time - args.start_time)/UI_WORK_PIECE;
+        
+            if ( !args.isService ) {
+                std::string sim_running_msg = "...Simulation is running...";
+                for(int i = 0; i < 26 - sim_running_msg.size()/2 ; i++){
+                    std::cout << " ";
+                }
+                std::cout << sim_running_msg <<"\n";
+            }
+        
+            args.ui_mutex->lock();
+            double simtime = *(args.simulation_time);
+            args.ui_mutex->unlock();
+        
+            if ( !args.isService ) {
+                std::cout << "V";
+                for(int i = 0; i < 51; i++){
+                    std::cout << "_";
+                }
+                std::cout << "V\n[" << std::flush;
+            }
+        
+            int count = 0;
+            bool running = true;
+            while(running && (simtime < args.end_time || count < UI_WORK_PIECE )){
+                if( simtime > count * piece ){
+                    if ( !args.isService ) {
+                        std::cout << "#" << std::flush;
+                    }
+                    count++;
+                    args.state_mutex->lock();
+                    running = *args.state_ptr & SIM_RUNNING;
+                    *args.state_ptr = (*args.state_ptr & ~SIM_WORK_MASK) | (count & SIM_WORK_MASK);
+                    if (args.isService) write(args._fd, args.state_ptr, SIGNAL_SIZE);
+                    args.state_mutex->unlock();
+                }
+                std::this_thread::sleep_for(std::chrono::milliseconds(25));
+                args.ui_mutex->lock();
+                simtime = *(args.simulation_time);
+                args.ui_mutex->unlock();
+        
+            }
+            if ( !args.isService ) {
+                std::cout << "#]\n\n" << std::flush;
+                std::cout << "     ...Simulation is finished successfully...\n\n" << std::flush;
+            }
+        
+            args.state_mutex->lock();
+            *args.state_ptr |= SIM_RENDERING;
+            if ( args.isService ) write(args._fd, args.state_ptr, SIGNAL_SIZE);
+            args.state_mutex->unlock();
+        }
+    \end{minted}
+    \caption{UI-Console handler thread logic.}
+    \label{fig:ui_thread}
+\end{figure}
 
 \chapter{Example Simulation Runs} \label{appendix:example_simulation_runs}
 
@@ -938,7 +1186,7 @@ By this approach, one could also ignore the \textit{GUI} altogether and use the 
         multh=1
         thcount=10     
     \end{minted}
-\caption{$\phi_{lag}$ \& $\rho$ \& $L$ optimization at \\$P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=0.8$ns, $E_{in}=40$KeV}
+\caption{An example \textit{config.in} file.}
 \label{fig:config_file}
 \end{figure}
 
@@ -972,6 +1220,24 @@ By this approach, one could also ignore the \textit{GUI} altogether and use the 
 \end{figure}
 
 \chapter{Data and Graphs}\label{appendix:data_graph}
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../../figures/analiz/lf_rk1_rk2_dt-E_3.png}
+    \end{subfigure}
+    
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../../figures/analiz/lf_rk1_rk2_dt-Tsim_3.png}
+    \end{subfigure}
+    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{fig:lf_rk1_rk2_comparison}
+\end{figure}
+
 \begin{table}[H]
     \centering
     \begin{tabular}{|l|l|l|l|}
@@ -1034,24 +1300,6 @@ By this approach, one could also ignore the \textit{GUI} altogether and use the 
     \label{tab:rk2_mag_table}
 \end{table}
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
-    \centering
-    \begin{subfigure}{0.8\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../../figures/analiz/lf_rk1_rk2_dt-E_3.png}
-        \caption*{$dt$ vs $\Delta E$}
-    \end{subfigure}
-    
-    \begin{subfigure}{0.8\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../../figures/analiz/lf_rk1_rk2_dt-Tsim_3.png}
-        \caption*{$dt$ vs $T_{sim}$}
-    \end{subfigure}
-    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
-    \label{fig:lf_rk1_rk2_comparison}
-\end{figure}
 
 \end{document}
 
