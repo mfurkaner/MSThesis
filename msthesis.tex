@@ -73,6 +73,7 @@
 
 \newcommand{\vecthreeBF}[1]{\vec{\textbf{#1}}}
 \newcommand{\vecthree}[1]{\vec{#1}}
+\newcommand{\vecNum}[3]{(#1, #2, #3)}
 
 \newcommand{\parDeriv}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\parDerivS}[2]{\frac{\partial^2 #1}{\partial #2^2}}
@@ -83,6 +84,13 @@
 
 \newcommand{\crossProdBF}[2]{\vecthreeBF{#1} \times \vecthreeBF{#2}}
 \newcommand{\crossProd}[2]{\vecthree{#1} \times \vecthree{#2}}
+
+\newcommand{\e}{$\textbf{e}^-$}
+\newcommand{\egun}{$\textbf{e}^-$-gun}
+\newcommand{\eB}{$\textbf{e}^-$ - $\vecthreeBF{B}$ }
+\newcommand{\eE}{$\textbf{e}^-$ - $\vecthreeBF{E}$ }
+\newcommand{\eEM}{$\textbf{e}^-$ - \textbf{EM} }
+\newcommand{\ee}{$\textbf{e}^-$ - $\textbf{e}^-$ }
 
 
 \newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
@@ -1198,25 +1206,25 @@ During the development of \textit{Rhodotron Simulation} software, several interm
 % Start of intermediate.tex
 \section{Intermediate Versions}
 
-\subsection{$L_{out}$ Optimization For Single $\textbf{e}^-$}
+\subsection{$L_{out}$ Optimization For Single \e}
 Initial step of improving $POC$ towards $Rhodotron Simulation$ was to implement \textit{$L_{out}$ optimizations} to help optimazing magnet designs, as discussed in \fromsec{parameter_sweep}.
-First approach was to hang the $\textbf{e}^-$ outside of the cavity for $t_{out} = L_{out}/v$, then inject it back to the cavity with reversed $\vecthreeBF{v}$. Then sweep the $t_{out}$ parameter to find the optimal value.
+First approach was to hang the \e outside of the cavity for $t_{out} = L_{out}/v$, then inject it back to the cavity with reversed $\vecthreeBF{v}$. Then sweep the $t_{out}$ parameter to find the optimal value.
 This simple implementation can be found in \fromfig{lout_opt_single_e} of \fromapp{intermediate_codes}.
 
 Although the results from this optimization sweep were promising after they were simulated with $CST$, simulating one particle would not be sufficiently useful for designing a magnet.
 
 \subsection{$\phi_{lag}$ Optimization For Bunches}
-After successfully accelerating single $\textbf{e}^-$, particle bunches were implemented to approximate a real $\textbf{e}^-$ gun. 
-They were modeled as $N$ electrons fired from an $\textbf{e}^-$ gun at even time intervals. This approach was taken because the amount of time gun fires, defined as \textit{Gun Active Time, $t_g$}, is a crucial part of pulsing $\textbf{e}^-$ gun design.
+After successfully accelerating single \e, particle bunches were implemented to approximate a real \e gun. 
+They were modeled as $N$ electrons fired from an \e gun at even time intervals. This approach was taken because the amount of time gun fires, defined as \textit{Gun Active Time, $t_g$}, is a crucial part of pulsing \e gun design.
 
 Addition of bunches would immediately proven useful when finding optimal gun phase lag.
-$\phi_{lag}$ for a bunch was defined as the RF phase when the first $\textbf{e}^-$ of the bunch entered the cavity, it defines the starting time of the current pass.
+$\phi_{lag}$ for a bunch was defined as the RF phase when the first \e of the bunch entered the cavity, it defines the starting time of the current pass.
 To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimization}, relevant bunch characteristics are defined as follows:
 
 \begin{itemize}
     \item $\mu E$: Average energy
     \item $E_{rms}$: Root mean square of energy
-    \item $R_{rms}$: Root mean square of $\textbf{e}^-$ positions
+    \item $R_{rms}$: Root mean square of \e positions
 \end{itemize}
 
 Optimal $\phi_{lag}$ would produce maximum $\mu E$ while minimizing $E_{rms}$ \& $R_{rms}$. For the first pass, 
@@ -1255,14 +1263,14 @@ After the bunch and $\phi_{lag}$ sweep implementations, $L_{out}$ sweep was also
 Two example runs can be found in \fromfigs{lout_opt_1ns_Erms}{lout_opt_08ns_Erms} of \fromapp{example_simulation_runs}.
 
 \subsection{Simulation in 3D}
-After successfully implementing $\textbf{e}^-$ - $\vecthreeBF{E}$ interaction in 1D and confirming the usefulness of this tool, the decision was made to proceed with implementing a 3D version of the \textit{Rhodotron Simulation}.
-Although complete refactoring of the software was necessary, this upgrade was crucial for implementation of $\textbf{e}^-$ - $\vecthreeBF{B}$ interaction.
+After successfully implementing \eE interaction in 1D and confirming the usefulness of this tool, the decision was made to proceed with implementing a 3D version of the \textit{Rhodotron Simulation}.
+Although complete refactoring of the software was necessary, this upgrade was crucial for implementation of \eB interaction.
 The refactoring effort included proper implementation of $OOP$, details of which can be seen in \fromapp{intermediate_codes}.
 
 Magnets were modeled as major segments of a circle, defined with $\vecthreeBF{r}_{mag}$, $\textbf{R}$ and $|\textbf{B}|$. 
 For the initial implementation, $\vecthreeBF{B}$ assumed to be uniform and has no leaks outside the magnet boundary (See \fromfig{is_inside_halfsphere} in \fromapp{intermediate_codes}).
 
-Interaction logic for $\textbf{e}^-$ - $\vecthreeBF{E}$ and $\textbf{e}^-$ - $\vecthreeBF{B}$ in 3D can be found in \fromfig{3D_e_EM_interaction_first}.
+Interaction logic for \eE and \eB in 3D can be found in \fromfig{3D_e_EM_interaction_first}.
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
@@ -1289,7 +1297,7 @@ Interaction logic for $\textbf{e}^-$ - $\vecthreeBF{E}$ and $\textbf{e}^-$ - $\v
             }
         \end{minted}
     \end{subfigure}
-    \caption{$\textbf{e}^-$ - $\textbf{EM}$ interaction logic from \fromeq{acc_of_E_and_B}}
+    \caption{\eEM  interaction logic from \fromeq{acc_of_E_and_B}}
     \label{fig:3D_e_EM_interaction_first}
 \end{figure}
 
@@ -1303,35 +1311,37 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
-    \begin{subfigure}{0.48\textwidth}
+    \centering
+    \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./figures/rhodoSim/5ns_gnuplot.png}
-        \caption*{Unsyncronized $\textbf{e}^-$ gun period, $T_g = 5ns$}
+        \caption*{Unsyncronized \e gun period, $T_g = 5ns$}
     \end{subfigure}
-    \begin{subfigure}{0.48\textwidth}
+    \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./figures/rhodoSim/9_3ns_gnuplot.png}
-        \caption*{Syncronized $\textbf{e}^-$ gun period, $T_g = 9.3ns$}
+        \caption*{Syncronized \e gun period, $T_g = 9.3ns$}
     \end{subfigure}
     \caption{Example \textit{gnuplot} renders of \textit{Rhodotron Simulation}\\$P=12$kW, $f=107.5$MHz}
     \label{fig:example_gnuplot_renders}
 \end{figure}
 
 \subsection{Acceleration in Magnetic Field}
-An issue regarding the $\textbf{e}^-$ - $\vecthreeBF{B}$ interaction became apparent when energy gain during these interactions was observed.
-A setup simulation was implemented in which a bunch of 100$\textbf{e}^-$ at $1$MeV was fired to a uniform magnetic field of $0.1$T placed in $x>0.05$m.
-Initial results at $dt=0.01$ns proved the suspicion of $\textbf{e}^-$ - $\vecthreeBF{B}$ interaction being broken. However, the energy gain would decrease tremendously as $dt$ decreased.
+An issue regarding the \eB interaction became apparent when energy gain during these interactions was observed.
+A setup simulation was implemented in which a bunch of 100\e at $1$MeV was fired to a uniform magnetic field of $0.1$T placed in $x>0.05$m.
+Initial results at $dt=0.01$ns proved the suspicion of \eB interaction being broken. However, the energy gain would decrease tremendously as $dt$ decreased.
 
 
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
-    \begin{subfigure}{0.48\textwidth}
+    \centering
+    \begin{subfigure}{0.8\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_lf_001dt.png}
         \caption*{$dt=10^{-2}$ns, $\Delta E=2.783$MeV}
     \end{subfigure}
-    \begin{subfigure}{0.48\textwidth}
+    \begin{subfigure}{0.8\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_lf_00001dt.png}
         \caption*{$dt=10^{-4}$ns, $\Delta E=0.011$MeV}
@@ -1341,12 +1351,12 @@ Initial results at $dt=0.01$ns proved the suspicion of $\textbf{e}^-$ - $\vecthr
 \end{figure}
 
 Decreasing $dt$ would be the best way to increase accuracy of the results; however, this is not sustainable because time and computing power. 
-Until this point, \textit{Rhodotron Simulation} have been using \fromsec{leapfrog} for $\textbf{e}^-$ - \textbf{EM} interactions. 
-To test newer approaches, two additional version of  $\textbf{e}^-$ - \textbf{EM} interaction that are using \fromsec{rungekutta} were added.
+Until this point, \textit{Rhodotron Simulation} have been using \fromsec{leapfrog} for \eEM interactions. 
+To test newer approaches, two additional version of  \eEM interaction that are using \fromsec{rungekutta} were added.
 \subsubsection{RK4-1}
-First approach for integrating \fromsec{rungekutta} into $\textbf{e}^-$ - \textbf{EM} interaction was to calculate $\vecthreeBF{a}_{E}$ and $\vecthreeBF{a}_{B}$ from \fromeq{acc_of_E_and_B} using \textit{RK4}.
-After $\vecthreeBF{a}_{EM} = \vecthreeBF{a}_{E} + \vecthreeBF{a}_{B}$ was calculated, $\textbf{e}^-$ would move and accelerate using the \textit{Leap-frog} method. 
-The idea was to produce more refined interaction results, leading to improved accuracy especially in $\textbf{e}^-$ - $\vecthreeBF{B}$.
+First approach for integrating \fromsec{rungekutta} into \eEM interaction was to calculate $\vecthreeBF{a}_{E}$ and $\vecthreeBF{a}_{B}$ from \fromeq{acc_of_E_and_B} using \textit{RK4}.
+After $\vecthreeBF{a}_{EM} = \vecthreeBF{a}_{E} + \vecthreeBF{a}_{B}$ was calculated, \e would move and accelerate using the \textit{Leap-frog} method. 
+The idea was to produce more refined interaction results, leading to improved accuracy especially in \eB.
 RF field was kept static during the RK4 computation, due to ongoing \textit{multithreading} implementation efforts. 
 The implementation can be found in \fromfigs{rk1_B}{rk1_EM}.
 \subsubsection{RK4-2}
@@ -1361,16 +1371,16 @@ These three methods were then tested in the same setup as \fromfig{mag_lf_render
     \centering
     \begin{subfigure}{0.8\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-E.png}
+        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-E_3.png}
         \caption*{$dt$ vs $\Delta E$}
     \end{subfigure}
     
     \begin{subfigure}{0.8\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim.png}
+        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim_3.png}
         \caption*{$dt$ vs $T_{sim}$}
     \end{subfigure}
-    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on $\textbf{e}^-$ - $\vecthreeBF{B}$ interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
     \label{fig:lf_rk1_rk2_comparison}
 \end{figure}
 
@@ -1387,15 +1397,182 @@ Both methods can be used in different situations, therefore both were integrated
 
 
 
+\subsection{Acceleration in Electric Field}
+After the accuracy concerns regarding the \eB interaction were raised, it was decided to test \eE and compare the performance of \textit{Leap-frog} and \textit{RK4}.
+
+As test setups, two simulation confgurations were made. They aimed to test the accuracy of acceleration of a beam in parallel and perpendicular static uniform electric fields.
+Both configurations had an \egun located at $(-0.753, 0, 0)$m, directed at $(1, 0, 0)$ firing electrons with the kinetic energy of $1$MeV. 
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.47\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{./figures/illustrations/statE_1.png}
+        \caption*{Setup-1 parallel $\vecthreeBF{E}$ field}
+    \end{subfigure}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{./figures/illustrations/statE_2.png}
+        \caption*{Setup-2, perpendicular $\vecthreeBF{E}$ field}
+    \end{subfigure}
+    \caption{Illustration of test setups.}
+\end{figure}
+
+In the first test, the beam would be injected into a static uniform electric field \\
+$\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.753$, $\vecthreeBF{E}=0$ elsewhere.
+
+Considering the $\vecthreeBF{E}$ is parallel to the beam path, potential difference $V$ in the trejectory until \vecNum{-0.753}{0}{0}m is
+\begin{eqnarray}
+    \Delta V^1 &=& - \int \dotProdBF{E}{ds} \\
+             &=& - \int_{-0.753}^{0.753} -2.65616 \times dx \\
+             &=& 2.65616 \times 1.506 \\
+    \Delta V^1 &=& 4 MV \\
+    \Delta E^1 &=& 4 MeV \\
+    E_{exitTH}^1 &=& 5 MeV
+\end{eqnarray}
+
+In the second test on the other hand, the beam would be injected into a different static uniform electric field, \\
+$\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.753$, $\vecthreeBF{E}=0$ elsewhere.
+\begin{eqnarray}
+    \Delta V^2   &=& - \int \dotProdBF{E}{ds} \\
+                 &=& - \int_{0}^{0.753} -5.31232 \times dy \\
+                 &=& 5.31232 \times 0.753 \\
+    \Delta V^2   &=& 4 MV \\
+    \Delta E^2   &=& 4 MeV \\
+    E_{exitTH}^2 &=& 5 MeV
+\end{eqnarray}
+
+Therefore, in the both tests, the beam was expected to exit $\vecthreeBF{E}$ with $E_{exitTH} = 5$ MeV. 
+To also measure the variance in simulation completion times, $T_{sim}$, set of $10$ runs were completed at the configuration for each $dt$ value.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/rhodoSim/statE_par.png}
+        \caption*{Setup-1, $\textbf{V}_{\parallel}$=4MV}
+    \end{subfigure}
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/rhodoSim/statE_perp.png}
+        \caption*{Setup-2, $\textbf{V}_{\perp}$=4MV}
+    \end{subfigure}
+    \caption{Render of the test setups. \\ $E_{in}=1$ MeV, $t_{end}=6$ns}
+\end{figure}
+
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/staticE_lf_rk2_dt-E.png}
+        \caption*{$dt$ vs $\Delta E$}
+    \end{subfigure}
+    
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/staticE_lf_rk2_dt-Tsim.png}
+        \caption*{$dt$ vs $T_{sim}$}
+    \end{subfigure}
+    \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns}
+    \label{fig:lf_rk2_par_stat_E_comparison}
+\end{figure}
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/90staticE_lf_rk2_dt-E_3.png}
+        \caption*{$dt$ vs $\Delta E$}
+    \end{subfigure}
+    
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/90staticE_lf_rk2_dt-Tsim.png}
+        \caption*{$dt$ vs $T_{sim}$}
+    \end{subfigure}
+    \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\perp}$=4MV, $t_{end}=6$ns}
+    \label{fig:lf_rk2_perp_stat_E_comparison}
+\end{figure}
+
+
+
+\subsection{Multithreading}
+As already mentioned before, multithreading implementation efforts were ongoing since right after the start of this project. 
+There have been a number of different approaches for implementation. 
+First implemenation was done when the \textit{Rhodotron Simulation} was only capable of 1D simulations.
+After the sizable refactoring done for 3D capabilities, this implementation was obselete. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{./figures/illustrations/multh_arc.png}
+    \caption{An Illustration of the multithreading architecture.}
+    \label{fig:multh_illustration}
+\end{figure}
+
+For the current version, a main thread that spawns and manages several other worker threads would be used as can be seen in \fromfig{multh_illustration}.
+The UI-Console thread would handle incoming and outgoing communication, notifying the user about the status of simulation (see \fromfig{console_output_running} in \fromapp{example_simulation_runs}) 
+or communucating with the \textit{GUI} that will be disscussed in the next section.
+
+Focus of this section is the worker threads, also known as \eEM interaction threads.
+There were four competing architecture for these worker threads,
+\begin{enumerate}
+    \item Have a thread pool that calculates \eEM in a queue 
+    \item Assign a thread to each bunch
+    \item Assign random electrons to each thread and calculate \eEM with global time
+    \item Assign random electrons to each thread and calculate \eEM with local thread time
+\end{enumerate}
+
+\textbf{Architecture 1} would require constant waiting in worker threads to get mutexes of $\vecthreeBF{E}$ field, especially in \textit{RK4}.
+
+\textbf{Architecture 2} was performing well in configurations with a large number of bunches, but was not increasing performance in lower bunch count configurations as expected.
+
+\textbf{Architecture 3} was inefficient and wasteful since all the worker threads would wait the main thread to get the next time after they finish calculation, while the main thread would be waiting for the slowest worker thread.
+
+\textbf{Architecture 4} was thought to be the best performer. It would give freedom to calculate the whole simulation to each thread while giving up the global time.
+This would also mean thread-safety is ensured since there is no shared data between the worker threads. 
+However, this architecture can cause issues if \ee interactions were decided to be implemented in the future.
+
+Another caveat is that a copy operation of $\vecthreeBF{E}$ and $\vecthreeBF{B}$ objects for each worker thread would be needed.
+This would lead to larger memory allocations and more time spent setting up simulations. 
+Therefore, \textit{Architecture 4} is not ideal for fast calculations and when the memory is an important constraint.
+An implementation that can use both \textbf{Architecture 2} \& \textbf{Architecture 4} when necessary would be a better approach considering these methods;
+nevertheless, \textbf{Architecture 4} was chosed to be implemented.
+
+
+
+
+
+\subsection{Graphical User Interface}
+Until this point, \textit{Rhodotron Simulation} could be used with a configration file, defining the problem that would be simulated.
+An example of this configuration file can be found in \fromfig{config_file} of \fromapp{example_simulation_runs}. 
+This approach was simple and fast; however, it was not suitable for the average target user since required basic knowledge of command line interface and was not up to modern standards.
+For this reason, a GUI was decided to be built, using \textit{ROOT framework}. 
+This would also enable \textit{Rhodotron simulation} to make use of analysis tools offered by \textit{ROOT}.
+
+The initial design of the \textit{Rhodotron Simulation GUI} can be observed in \fromfig{gui_illustration}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{./figures/illustrations/RhodoSim_GUI_Draft_V02.pdf}
+    \caption{An Illustration of first GUI design.}
+    \label{fig:gui_illustration}
+\end{figure}
+
+The \textit{GUI} would be a standalone application, running the \textit{Rhodotron Simulation} as a service when needed. 
+For this reason, the now called \textit{simulation engine} was updated to be able to run as a background service of \textit{GUI}.
+By this approach, one could also ignore the \textit{GUI} altogether and use the \textit{simulation engine} as before, as these are two seperate products.
+
 
 
 
 
 
 \newpage
-
-% START OF APPENDIX
-
 
 
 \appendix
@@ -1441,7 +1618,7 @@ Both methods can be used in different situations, therefore both were integrated
             }
         \end{minted}
     \end{subfigure}
-    \caption{$L_{out}$ Optimization For Single $\textbf{e}^-$}
+    \caption{$L_{out}$ Optimization For Single \e}
     \label{fig:lout_opt_single_e}
 \end{figure}
 
@@ -1518,7 +1695,7 @@ Both methods can be used in different situations, therefore both were integrated
             return false;
         }
     \end{minted}
-\caption{Logic of is $\textbf{e}^-$ inside the shape of magnet}
+\caption{Logic of is \e inside the shape of magnet}
 \label{fig:is_inside_halfsphere}
 \end{figure}
 
@@ -1557,7 +1734,7 @@ Both methods can be used in different situations, therefore both were integrated
             return (k1 + k2*2 + k3*2 + k4)/6;
         }
     \end{minted}
-\caption{RK4-1 implemenation of $\textbf{e}^-$-$\vecthreeBF{B}$}
+\caption{RK4-1 implemenation of \e-$\vecthreeBF{B}$}
 \label{fig:rk1_B}
 \end{figure}
 \begin{figure}[H]
@@ -1575,7 +1752,7 @@ Both methods can be used in different situations, therefore both were integrated
             move(acc, time_interval/2);
         }
     \end{minted}
-\caption{RK4-1 implemenation of $\textbf{e}^-$-\textbf{EM}}
+\caption{RK4-1 implemenation of \eEM}
 \label{fig:rk1_EM}
 \end{figure}
 
@@ -1639,7 +1816,7 @@ Both methods can be used in different situations, therefore both were integrated
             Et = gamma()*E0;
     }
     \end{minted}
-\caption{RK4-2 implemenation of $\textbf{e}^-$-\textbf{EM}}
+\caption{RK4-2 implemenation of \eEM}
 \label{fig:rk2_EM}
 \end{figure}
 
@@ -1786,9 +1963,109 @@ Both methods can be used in different situations, therefore both were integrated
     \label{fig:mag_rk_render}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny, style=staroffice]{c++}
+        #            Rhodotron Simulation Configuration File
+        # ================================================================
+        #    M.Furkan Er                                     22/09/2022   
+        # ================================================================
+        #
+        # emax = Maximum electric field strength (MV/m)
+        # ein = Energy of electrons coming out of the gun (MeV)
+        # einstd = Standard deviation of energy of electrons coming out of the gun (MeV)
+        # targeten = Max energy on the output gif (MeV)
+        # freq = Frequency of the RF field (MHz)
+        # phaselag = phase lag of the first electrons (degree)
+        # starttime = time to start firing the gun (ns)
+        # endtime = ns to run the simulation (ns)
+        # dt = time interval to do the calculations (ns)
+        # guntime = how long a gun pulse is (ns)
+        # gunperiod = time between two gun pulses (ns)
+        # enum = number of electrons to simulate in a bunch
+        # bunchnum = number of times the gun fires
+        # r1 = radius of the inner cylinder (m)
+        # r2 = radius of the outer cylinder (m)
+        # epath = path to store the electric field data
+        # bpath = path to store the magnetic field data
+        # cpath = path to store the settings
+        # ppath = path to store electron data
+        # multh = enable or disable multitheading
+        # thcount = set the maximum thread to be used
+        # magrotation = degrees of rotation to enter each magnet 
+        # addmagnet = takes 3 input. (B , R, < Radial distance of center >)
+        # output = output file name 
+        
+        
+        # E FIELD CONFIGURATION 
+        emax=1.170
+        freq=107.3
+        phaselag=10.0
+        r1=0.1840
+        r2=0.7380
+        
+        # B FIELD CONFIGURATION 
+        magrotation=5.0
+        
+        # GUN CONFIGURATION 
+        einmean=0.040
+        einstd=0.0000
+        targeten=2.0
+        guntime=1.0
+        gunperiod=9.3
+        enum=50
+        bunchnum=1
+        
+        # SIM CONFIGURATION 
+        starttime=0
+        endtime=10
+        dt=0.0000010000
+        epath=xy/rf.dat
+        bpath=xy/magnet.dat
+        cpath=xy/settings.dat
+        ppath=xy/paths/
+        multh=1
+        thcount=10     
+    \end{minted}
+\caption{$\phi_{lag}$ \& $\rho$ \& $L$ optimization at \\$P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=0.8$ns, $E_{in}=40$KeV}
+\label{fig:config_file}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+        -- Simulation Configuration --
+        Emax : 0.96     MV/m
+        Freq : 107.5    MHz
+        Phase Lag : -5  degree
+        EndTime : 100   ns
+        dT : 0.0001     ns
+        guntime : 0.8   ns
+        gunperiod : 9.3 ns
+        enum : 100
+        bunchnum : 2
+        R1 : 0.188241   m
+        R2 : 0.752967   m
+        Magnet count :  5
+        Ein : 0.04      MeV
+        TargetE : 2.5   MeV
+        --------------------------------
+        
+                     ...Simulation is running...
+        V_____________________________________________________V
+        [####################################                 ]
+    \end{minted}
+\caption{Example of console output while simulation is running.}
+\label{fig:console_output_running}
+\end{figure}
 
 
-% END OF APPENDIX
+
+
+
+
 % START OF BIBLIOGRAPHY
 
 \begin{thebibliography}{9}

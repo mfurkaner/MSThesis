@@ -1,5 +1,3 @@
-% START OF APPENDIX
-
 
 
 \appendix
@@ -45,7 +43,7 @@
             }
         \end{minted}
     \end{subfigure}
-    \caption{$L_{out}$ Optimization For Single $\textbf{e}^-$}
+    \caption{$L_{out}$ Optimization For Single \e}
     \label{fig:lout_opt_single_e}
 \end{figure}
 
@@ -122,7 +120,7 @@
             return false;
         }
     \end{minted}
-\caption{Logic of is $\textbf{e}^-$ inside the shape of magnet}
+\caption{Logic of is \e inside the shape of magnet}
 \label{fig:is_inside_halfsphere}
 \end{figure}
 
@@ -161,7 +159,7 @@
             return (k1 + k2*2 + k3*2 + k4)/6;
         }
     \end{minted}
-\caption{RK4-1 implemenation of $\textbf{e}^-$-$\vecthreeBF{B}$}
+\caption{RK4-1 implemenation of \e-$\vecthreeBF{B}$}
 \label{fig:rk1_B}
 \end{figure}
 \begin{figure}[H]
@@ -179,7 +177,7 @@
             move(acc, time_interval/2);
         }
     \end{minted}
-\caption{RK4-1 implemenation of $\textbf{e}^-$-\textbf{EM}}
+\caption{RK4-1 implemenation of \eEM}
 \label{fig:rk1_EM}
 \end{figure}
 
@@ -243,7 +241,7 @@
             Et = gamma()*E0;
     }
     \end{minted}
-\caption{RK4-2 implemenation of $\textbf{e}^-$-\textbf{EM}}
+\caption{RK4-2 implemenation of \eEM}
 \label{fig:rk2_EM}
 \end{figure}
 
@@ -343,45 +341,16 @@
 \label{fig:lout_opt_08ns_Erms}
 \end{figure}
 
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
-    \hline
-        $dt$(ns) & $T_{sim LF}(s)$ & $T_{sim RK1}(s)$  & $T_{sim RK2}(s)$  & $\Delta T_{LF-RK2}$\\\hline
-        $10^{-2}$ & 4.14092 & 4.146 & 4.10945 & 0.77\% \\ \hline
-        $10^{-3}$ & 4.23817 & 4.61703 & 4.30225 & -1.51\% \\ \hline
-        $10^{-4}$ & 5.04679 & 8.93529 & 6.3065 & -24.96\% \\ \hline
-        $10^{-5}$ & 13.5135 & 51.9024 & 25.4279 & -88.17\%\\ \hline
-        $10^{-6}$ & 97.6229 & 486.378 & 217.704 & -123.01\% \\ \hline
-    \end{tabular}
-    \caption{$dt$ vs $T_{sim}$ of Leap-frog, RK4-1, RK4-2 \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
-    \label{tab:lf_rk1_rk2_Tsim}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
-    \hline
-        $dt$(ns) & $\Delta E_{LF}$(MeV) & $\Delta E_{RK1}$(MeV)  & $\Delta E_{RK2}$(MeV)  & $\Delta E_{LF-RK2}$\\\hline
-        $10^{-2}$ & 2.78323 & 1.26503 & 1.04713 & 165.8\% \\ \hline
-        $10^{-3}$ & 0.11712 & 0.07469 & 0.06691 & 42.87\% \\ \hline
-        $10^{-4}$ & 0.01101 & 0.00716 & 0.00644 & 41.5\%  \\ \hline
-        $10^{-5}$ & 0.00109 & 0.00071 & 0.00064 & 41\% \\ \hline
-        $10^{-6}$ & 0.00011 & 0.00007 & 0.00006 & 45\% \\\hline
-    \end{tabular}
-    \caption{$dt$ vs $\Delta E$ of Leap-frog, RK4-1, RK4-2 \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
-    \label{tab:lf_rk1_rk2_dE}
-\end{table}
-
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
-    \begin{subfigure}{0.48\textwidth}
+    \centering
+    \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_001dt.png}
         \caption*{$dt=10^{-2}$ns, $\Delta E=1.047$MeV}
     \end{subfigure}
-    \begin{subfigure}{0.48\textwidth}
+    \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_00001dt.png}
         \caption*{$dt=10^{-4}$ns, $\Delta E=0.006$MeV}
@@ -390,6 +359,183 @@
     \label{fig:mag_rk_render}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny, style=staroffice]{c++}
+        #            Rhodotron Simulation Configuration File
+        # ================================================================
+        #    M.Furkan Er                                     22/09/2022   
+        # ================================================================
+        #
+        # emax = Maximum electric field strength (MV/m)
+        # ein = Energy of electrons coming out of the gun (MeV)
+        # einstd = Standard deviation of energy of electrons coming out of the gun (MeV)
+        # targeten = Max energy on the output gif (MeV)
+        # freq = Frequency of the RF field (MHz)
+        # phaselag = phase lag of the first electrons (degree)
+        # starttime = time to start firing the gun (ns)
+        # endtime = ns to run the simulation (ns)
+        # dt = time interval to do the calculations (ns)
+        # guntime = how long a gun pulse is (ns)
+        # gunperiod = time between two gun pulses (ns)
+        # enum = number of electrons to simulate in a bunch
+        # bunchnum = number of times the gun fires
+        # r1 = radius of the inner cylinder (m)
+        # r2 = radius of the outer cylinder (m)
+        # epath = path to store the electric field data
+        # bpath = path to store the magnetic field data
+        # cpath = path to store the settings
+        # ppath = path to store electron data
+        # multh = enable or disable multitheading
+        # thcount = set the maximum thread to be used
+        # magrotation = degrees of rotation to enter each magnet 
+        # addmagnet = takes 3 input. (B , R, < Radial distance of center >)
+        # output = output file name 
+        
+        
+        # E FIELD CONFIGURATION 
+        emax=1.170
+        freq=107.3
+        phaselag=10.0
+        r1=0.1840
+        r2=0.7380
+        
+        # B FIELD CONFIGURATION 
+        magrotation=5.0
+        
+        # GUN CONFIGURATION 
+        einmean=0.040
+        einstd=0.0000
+        targeten=2.0
+        guntime=1.0
+        gunperiod=9.3
+        enum=50
+        bunchnum=1
+        
+        # SIM CONFIGURATION 
+        starttime=0
+        endtime=10
+        dt=0.0000010000
+        epath=xy/rf.dat
+        bpath=xy/magnet.dat
+        cpath=xy/settings.dat
+        ppath=xy/paths/
+        multh=1
+        thcount=10     
+    \end{minted}
+\caption{$\phi_{lag}$ \& $\rho$ \& $L$ optimization at \\$P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=0.8$ns, $E_{in}=40$KeV}
+\label{fig:config_file}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+        -- Simulation Configuration --
+        Emax : 0.96     MV/m
+        Freq : 107.5    MHz
+        Phase Lag : -5  degree
+        EndTime : 100   ns
+        dT : 0.0001     ns
+        guntime : 0.8   ns
+        gunperiod : 9.3 ns
+        enum : 100
+        bunchnum : 2
+        R1 : 0.188241   m
+        R2 : 0.752967   m
+        Magnet count :  5
+        Ein : 0.04      MeV
+        TargetE : 2.5   MeV
+        --------------------------------
+        
+                     ...Simulation is running...
+        V_____________________________________________________V
+        [####################################                 ]
+    \end{minted}
+\caption{Example of console output while simulation is running.}
+\label{fig:console_output_running}
+\end{figure}
+
+\chapter{Data and Graphs}\label{appendix:data_graph}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
+        1e-02 & 2.783228     & 0.034660  & 0.011537 \\ \hline
+        1e-03 & 0.117124     & 0.115775  & 0.001071 \\ \hline
+        9e-04 & 0.104552     & 0.128983  & 0.001820 \\  \hline
+        8e-04 & 0.092252     & 0.143251  & 0.002585 \\ \hline
+        7e-04 & 0.080144     & 0.158808  & 0.003228 \\ \hline
+        6e-04 & 0.068258     & 0.182359  & 0.002426 \\\hline
+        5e-04 & 0.056554     & 0.215104  & 0.002807 \\\hline
+        4e-04 & 0.044931     & 0.262952  & 0.005119 \\\hline
+        3e-04 & 0.033467     & 0.341552  & 0.002610 \\\hline
+        2e-04 & 0.022158     & 0.501784  & 0.005709 \\\hline
+        1e-04 & 0.011006     & 0.973145  & 0.005849 \\\hline
+        9e-05 & 0.009899     & 1.084032  & 0.010985 \\\hline
+        8e-05 & 0.008792     & 1.216145  & 0.012486 \\\hline
+        7e-05 & 0.007688     & 1.387908  & 0.019031 \\\hline
+        6e-05 & 0.006586     & 1.604475  & 0.011775 \\\hline
+        5e-05 & 0.005485     & 1.926505  & 0.014535 \\\hline
+        4e-05 & 0.004384     & 2.395898  & 0.009702 \\\hline
+        3e-05 & 0.003286     & 3.178265  & 0.014099 \\\hline
+        2e-05 & 0.002189     & 4.740706  & 0.022709 \\\hline
+        1e-05 & 0.001094     & 9.441138  & 0.027266 \\\hline
+        1e-06 & 0.000109     & 93.888320 & 0.290820 \\ \hline
+    \end{tabular}
+    \caption{\textit{Leap-frog} data on \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{tab:lf_mag_table}
+\end{table}
 
 
-% END OF APPENDIX
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
+        1e-02 & 1.047130     & 0.048943   & 0.011642 \\\hline
+        1e-03 & 0.066912     & 0.239299   & 0.003483 \\\hline
+        9e-04 & 0.059899     & 0.268007   & 0.004530 \\\hline
+        8e-04 & 0.053028     & 0.296154   & 0.004146 \\\hline
+        7e-04 & 0.046183     & 0.333123   & 0.004259 \\\hline
+        6e-04 & 0.039452     & 0.384046   & 0.002458 \\\hline
+        5e-04 & 0.032734     & 0.456387   & 0.003888 \\\hline
+        4e-04 & 0.026072     & 0.563011   & 0.004803 \\\hline
+        3e-04 & 0.019474     & 0.742440   & 0.006169 \\\hline
+        2e-04 & 0.012926     & 1.103559   & 0.007649 \\\hline
+        1e-04 & 0.006437     & 2.178779   & 0.009733 \\\hline
+        9e-05 & 0.005791     & 2.411302   & 0.012266 \\\hline
+        8e-05 & 0.005145     & 2.704117   & 0.012683 \\\hline
+        7e-05 & 0.004500     & 3.078304   & 0.013281 \\\hline
+        6e-05 & 0.003856     & 3.589154   & 0.014472 \\\hline
+        5e-05 & 0.003212     & 4.297561   & 0.009546 \\\hline
+        4e-05 & 0.002568     & 5.369322   & 0.012127 \\\hline
+        3e-05 & 0.001925     & 7.136687   & 0.007845 \\\hline
+        2e-05 & 0.001283     & 10.679166  & 0.012126 \\\hline
+        1e-05 & 0.000641     & 21.325229  & 0.011661 \\\hline
+        1e-06 & 0.000064     & 212.824121 & 0.040967 \\\hline
+    \end{tabular}
+    \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{tab:rk2_mag_table}
+\end{table}
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-E_3.png}
+        \caption*{$dt$ vs $\Delta E$}
+    \end{subfigure}
+    
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim_3.png}
+        \caption*{$dt$ vs $T_{sim}$}
+    \end{subfigure}
+    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{fig:lf_rk1_rk2_comparison}
+\end{figure}

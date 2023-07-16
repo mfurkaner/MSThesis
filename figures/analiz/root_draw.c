@@ -7,13 +7,13 @@
     c1->SetGridy();
     TGraph *lf, *rk1, * rk2;
 
-    bool delE = false;
+    bool delE = true;
 
     if(delE){
-        lf = new TGraph("data/lf_staticE_test_results.txt", "%lg %lg %*lg %*lg %*lg");   
+        lf = new TGraph("data/lf_mag_test_results.txt", "%lg %lg %*lg %*lg %*lg");   
     }
     else{
-        lf = new TGraphErrors("data/lf_staticE_test_results.txt", "%lg %*lg %*lg %lg %lg");   
+        lf = new TGraphErrors("data/lf_mag_test_results.txt", "%lg %*lg %*lg %lg %lg");   
     }
     lf->SetMarkerStyle(23);
     lf->SetMarkerColor(kBlue);
@@ -30,10 +30,10 @@
     rk1->SetTitle("RK4-1");*/
 
     if(delE){
-        rk2 = new TGraph("data/rk_staticE_test_results.txt", "%lg %lg %*lg %*lg %*lg");   
+        rk2 = new TGraph("data/rk_mag_test_results.txt", "%lg %lg %*lg %*lg %*lg");   
     }
     else{
-        rk2 = new TGraphErrors("data/rk_staticE_test_results.txt", "%lg %*lg %*lg %lg %lg");   
+        rk2 = new TGraphErrors("data/rk_mag_test_results.txt", "%lg %*lg %*lg %lg %lg");   
     }
     rk2->SetMarkerStyle(21);
     rk2->SetMarkerColor(kRed);
@@ -44,11 +44,11 @@
     //mg->Add(rk1, "cp");
     mg->Add(rk2, "lp");
     mg->GetXaxis()->SetTitle("dt(ns)");
-    mg->GetXaxis()->SetLimits(5e-7,1e-1);
+    mg->GetXaxis()->SetLimits(5e-7,2e-2);
     if(delE){
         mg->GetYaxis()->SetTitle("#DeltaE(MeV)");
-        mg->SetMaximum(0.13);
-        mg->SetMinimum(1e-6);
+        mg->SetMaximum(4);
+        mg->SetMinimum(5e-5);
     }
     else{
         mg->GetYaxis()->SetTitle("T_{SIM}(s)");
