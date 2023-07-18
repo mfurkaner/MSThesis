@@ -2,18 +2,21 @@ Set-Location .\poc
 .\make.ps1
 Set-Location ..\intermediate_versions
 .\make.ps1
+Set-Location ..\gui
+.\make.ps1
 
 Set-Location ..
 
 $start = (Get-Content -Path common\common_start_sim.tex)
 $poc = (Get-Content -Path poc\out)
 $int = (Get-Content -Path intermediate_versions\out)
+$gui = (Get-Content -Path gui\out)
 
 $np = "\newpage" + [System.Environment]::NewLine
 
 Remove-Item -recurse .\*\ -exclude *.tex,*.ps1
 
-$design = ($start + $poc + $np + $int)
+$design = ($start + $poc + $np + $int + $np + $gui)
 
 $out = ""
 

@@ -1626,14 +1626,13 @@ nevertheless, \textbf{Architecture 4} was chosed to be implemented.
 
 The implemenation can be found in \fromfigf{_runMT}{fireAllWithFireTimesMT}{setupPool}{threadLoop} in \fromapp{intermediate_codes}.
 
-\subsection{Graphical User Interface}
-Until this point, \textit{Rhodotron Simulation} could be used with a configration file, defining the problem that would be simulated.
-An example of this configuration file can be found in \fromfig{config_file} of \fromapp{example_simulation_runs}. 
-This approach was simple and fast; however, it was not suitable for the average target user since required basic knowledge of command line interface and was not up to modern standards.
-For this reason, a GUI was decided to be built, using \textit{ROOT framework}. 
-This would also enable \textit{Rhodotron simulation} to make use of analysis tools offered by \textit{ROOT}.
 
-The initial design of the \textit{Rhodotron Simulation GUI} can be observed in \fromfig{gui_illustration}.
+
+\newpage
+
+
+% Start of intermediate.tex
+\section{Graphical User Interface}
 
 \begin{figure}[H]
     \centering
@@ -1642,7 +1641,20 @@ The initial design of the \textit{Rhodotron Simulation GUI} can be observed in \
     \label{fig:gui_illustration}
 \end{figure}
 
-\begin{figure}
+Until this point, \textit{Rhodotron Simulation} could be used with a configration file, defining the problem that would be simulated.
+An example of this configuration file can be found in \fromfig{config_file} of \fromapp{example_simulation_runs}. 
+This approach was simple and fast; however, it was not suitable for the average target user since required basic knowledge of command line interface and was not up to modern standards.
+For this reason, a GUI was decided to be built, using \textit{ROOT framework}. 
+This would also enable \textit{Rhodotron simulation} to make use of analysis tools offered by \textit{ROOT}.
+
+
+
+
+The initial design of the \textit{Rhodotron Simulation GUI} can be observed in \fromfig{gui_illustration}.
+
+
+
+\begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_config_frame.png}
     \caption{The configuration frame of implementated first GUI design.}
@@ -1655,44 +1667,46 @@ By this approach, one could also ignore the \textit{GUI} altogether and use the 
 
 In the \fromfig{gui_config}, the implemented version of \fromfig{gui_illustration} can be observed. This version of the \textit{GUI} has the following frames;
 
-\subsubsection{Configuration Frame}
+\subsection{Configuration Frame}
 This frame provides an interface for specifying, saving or loading a configuration, consists of $\vecthreeBF{B}$ field, $\vecthreeBF{E}$ field, \textit{RF} description, \egun, \textit{simulation} configuration regions.
 Each one having an illustration of what the parameters are as can be seen in \fromfig{gui_config}.
 
-\subsubsection{Simulation Frame}
+\subsection{Simulation Frame}
 This frame spawns and manages the \textit{simulation engine}, configures and starts the simulation. 
 It has a progress bar that shows the current progress of the simulation, communucating with \textit{UI handler thread} in \textit{simulation engine}.
+Simulation frame after a simulation run has been completed can be observed in \fromfig{gui_simulate_1}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{./figures/rhodoSim/GUI_simulate_frame.png}
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_simulate_frame.png}
     \caption{Simulate frame of \textit{GUI}.}
     \label{fig:gui_simulate_1}
 \end{figure}
 
-\subsubsection{Render Frame}
+\subsection{Render Frame}
 Since the rendering capabilities of \textit{ROOT} is superior than \textit{gnuplot}, the user can render a playback of the simulation in real time, 
 see a specific time frame, export as snapshot or animated gif file.
+Two example renders can be seen in \fromfigs{gui_render_1}{gui_render_2}
 
 \begin{figure}
     \centering
-    \captionsetup{justification=centering}
-    \begin{subfigure}{0.8\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_render_frame_1.png}
-    \end{subfigure} 
-    \begin{subfigure}{0.8\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_render_frame_2.png}
-    \end{subfigure} 
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_render_frame_1.png}
     \caption{Render frame of \textit{GUI}.}
     \label{fig:gui_render_1}
 \end{figure}
 
-\subsubsection{Analyze Frame}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_render_frame_2.png}
+    \caption{Render frame of \textit{GUI}.}
+    \label{fig:gui_render_2}
+\end{figure}
+
+\subsection{Analyze Frame}
 Analyze frame provides tools for analyzing and visualizing the simulation data. 
 In the current version, \textbf{E} distribution histogram and \textbf(E)(t) graph of each electron are implementated into this frame.
 This frame is a work in progress and will be the focus of improvement and become a really powerfull tool in the near future.
+In \fromfig{gui_analyze_Edist}, \textit{Analyze Frame} plotting \textbf{E} distribution histogram, and in \fromfigs{gui_analyze_Et}{gui_analyze_Et2}, \textit{Analyze Frame} plotting \textbf(E)(t) graphs can be observed.
 
 \begin{figure}
     \centering
@@ -1703,25 +1717,26 @@ This frame is a work in progress and will be the focus of improvement and become
 
 \begin{figure}
     \centering
-    \captionsetup{justification=centering}
-    \begin{subfigure}{0.8\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_analyze_Et_1.png}
-    \end{subfigure} 
-    \begin{subfigure}{0.8\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_analyze_Et_2.png}
-    \end{subfigure} 
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_analyze_Et_1.png}
     \caption{Analyze frame of \textit{GUI} E(t).}
     \label{fig:gui_analyze_Et}
 \end{figure}
 
-\subsubsection{Sweep Frame}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_analyze_Et_2.png}
+    \caption{Analyze frame of \textit{GUI} E(t).}
+    \label{fig:gui_analyze_Et2}
+\end{figure}
+
+
+\subsection{Sweep Frame}
 Parameter sweep method that was discussed in \fromsecs{lout_sweep}{philag_sweep} was integrated into \textit{GUI} in a seperate frame named \textit{Sweep Frame}.
 $\phi_{lag}$ sweep was the first parameter to be implemented. 
 It takes the range of sweep, draws $\phi_{lag} vs \mu E$, $\phi_{lag} vs \sigma E$ and $\phi_{lag} vs \sigma R$ mentioned in \fromsec{philag_sweep}.
 This enables user with an already built accelerator to optimize \egun parameters quickly. 
-In the following \fromfigf{gui_sweep_running}{gui_sweep_muE}{gui_sweep_sE}{gui_sweep_sR}, this frame can be observed in detail.
+In the following \fromfigf{gui_sweep_running}{gui_sweep_muE}{gui_sweep_sE}{gui_sweep_sR}, this frame can be inspected in detail.
 
 \begin{figure}
     \centering
@@ -1751,6 +1766,50 @@ In the following \fromfigf{gui_sweep_running}{gui_sweep_muE}{gui_sweep_sE}{gui_s
 
 As mentioned before, \textit{GUI} is the latest and ongoing development effort in this project.
 New analysis and sweep features will be implemented and current capabilities will be improved in the near future.
+
+
+
+\newpage
+
+% START OF PRODUCTION
+
+\chapter{PRODUCTION}
+% Start of final.tex
+\section{Final Design}
+
+
+
+
+\newpage
+
+
+% Start of techd.tex
+\section{Technical Drawing}
+
+
+\newpage
+
+
+% Start of mani.tex
+\section{Manifacturing}
+
+
+
+
+\newpage
+
+
+% Start of rf.tex
+\section{RF Supply}
+
+
+
+
+\newpage
+
+% START OF FUTURE_WORK
+
+\chapter{FUTURE WORK}
 
 
 

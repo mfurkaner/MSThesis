@@ -4,6 +4,10 @@ Set-Location ..\design
 .\make.ps1
 Set-Location ..\simulation
 .\make.ps1
+Set-Location ..\production
+.\make.ps1
+Set-Location ..\future
+.\make.ps1
 
 Set-Location ..
 
@@ -14,10 +18,12 @@ $app = (Get-Content -Path .\common\appendix)
 $theory = (Get-Content -Path theory\out)
 $design = (Get-Content -Path design\out)
 $sim = (Get-Content -Path simulation\out)
+$prod = (Get-Content -Path production\out)
+$future = (Get-Content -Path future\out)
 
 $np = "\newpage" + [System.Environment]::NewLine
 
-$thesis = ($theory + $np + $design + $np +$sim + $np + $app + $bib + $end)
+$thesis = ($theory + $np + $design + $np +$sim + $np + $prod + $np + $future + $np + $app + $bib + $end)
 
 Remove-Item .\*\out
 

@@ -1,9 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n}{vector3d}\PYG{o}{::}\PYG{k}{operator}\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{vector3d}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{other}\PYG{p}{)\PYGZob{}}
-\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{x\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{other}\PYG{p}{.}\PYG{n}{z}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{z}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{other}\PYG{p}{.}\PYG{n}{y}\PYG{p}{);}
-\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{y\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{z}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{other}\PYG{p}{.}\PYG{n}{x}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{other}\PYG{p}{.}\PYG{n}{z}\PYG{p}{);}
-\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{z\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{other}\PYG{p}{.}\PYG{n}{y}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{other}\PYG{p}{.}\PYG{n}{x}\PYG{p}{);}
-\PYG{+w}{    }\PYG{n}{vector3d}\PYG{+w}{ }\PYG{n+nf}{crossed}\PYG{p}{(}\PYG{n}{x\PYGZus{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y\PYGZus{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{z\PYGZus{}}\PYG{p}{);}
-\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{crossed}\PYG{p}{;}
-\PYG{p}{\PYGZcb{}}
-\end{Verbatim}
