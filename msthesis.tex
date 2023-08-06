@@ -113,6 +113,13 @@
 \newcommand{\fromtabs}[2]{\textit{Tables \ref{tab:#1} and \ref{tab:#2}}}
 
 
+% START OF intro.tex
+
+\chapter{INTRODUCTION}
+
+
+\newpage
+
 % START OF THEORY
 
 \chapter{THEORY}
@@ -652,9 +659,52 @@ Concurrency in programming refers to the ability of a program to execute multipl
 Concurrency in single core can be achieved by implementing clever scheduling of list of operations called \textit{threads}. This results in non-blocking execution of multiple threads, but only one thread would be executed at any given time. 
 True concurrency on the other hand, can only be achieved by using multiple cores. Each core would be able to execute one thread at any time.
 
-Programs that implement concurrency using multiple cores executes more operations per clock cycle. However, this does not directly lead to an improved performance due to the heavy burden of scheduling and managing multiple threads.
+Programs that implement concurrency using multiple cores executes more operations per clock cycle. 
+However, this does not directly lead to an improved performance due to the heavy burden of scheduling and managing multiple threads.
+
+Threads utilize \textit{mutexes}, short for "mutual exclusion," 
+to synchronize and manage access to shared resources 
+in a multi-threaded or multi-process environment. 
+
+\subsubsection{Object Oriented Programming}
+
+Object-Oriented Programming (OOP) is a programming paradigm that revolves around the concept of objects. 
+Definition called class serves as a blueprint that defines the structure and behavior of objects. 
+Each object encapsulates both data, and the functions that manipulate that data. 
+This encapsulation promotes modular code design and enhances data security by controlling access to the object's internal state. 
+
+In OOP, \textit{inheritance} enables the creation of new classes based on existing ones, facilitating code reuse and hierarchy. 
+\textit{Polymorphism} allows objects of different classes to be treated uniformly through a common interface, enhancing flexibility and extensibility. 
+By providing abstraction, OOP simplifies complex systems by focusing on essential features and interactions, making software development more manageable, scalable, and maintainable.
 
 
+
+\newpage
+
+% START OF tools.tex
+
+\chapter{TOOLS}
+
+\section{Poisson Superfish}
+Poisson Superfish is a software package developed by the \textit{Los Alamos National Laboratory} 
+for the design and analysis of electromagnetic fields, particularly those related to particle accelerators and high-energy physics experiments.
+It is commonly used in the field of accelerator physics to simulate and optimize the behavior of charged particle beams as they pass through various electromagnetic structures, such as cavities and magnets.
+
+
+\section{CST Studio Suite}
+CST Studio Suite is a powerful software package developed by \textit{Simulia} for electromagnetic simulation and analysis. It's widely used in various industries, including electronics, telecommunications, automotive, aerospace, and more, to design and optimize electromagnetic devices and systems. 
+The software provides a comprehensive set of tools for simulating and analyzing the behavior of electromagnetic fields and their interactions with different materials, structures and charged particles.
+
+\section{ROOT}
+ROOT is a widely used open-source software framework developed by CERN (European Organization for Nuclear Research) for data analysis,
+visualization, and storage in the field of high-energy physics, particularly in experiments conducted at particle accelerators 
+like the Large Hadron Collider (LHC). It has become an essential tool in particle physics research, 
+and it's used by physicists around the world to analyze and interpret data.
+
+\section{gnuplot}
+GNUPLOT is a popular open-source software used for creating and visualizing data plots and graphs. 
+It is widely utilized in various fields, including scientific research, data analysis, engineering, and more, 
+to represent and analyze data in a graphical format. 
 
 
 \newpage
@@ -1775,8 +1825,35 @@ New analysis and sweep features will be implemented and current capabilities wil
 
 \chapter{PRODUCTION}
 % Start of final.tex
-\section{Final Design}
+\section{Final Design} \label{sec:final_design}
 
+As discussed before, production efforts of a rhodotron type accelerator is still ongoing in KAHVELab.
+This accelerator will be used at $f=107.5$MHz $P=50-100$kW. 
+In the following figures, rendered visuals of the final design by \textit{Mr. Sinan Öz} can be observed.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{./figures/design/final_design_in_lab.JPG}
+    \caption{Rhodotron in KAHVELab}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{./figures/design/final_design_1.png}
+    \caption{Rhodotron cavity and \e gun}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{./figures/design/final_design_2.png}
+    \caption{Vertical cross section of the beam injection line}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[angle=90, origin=c, width=\linewidth]{./figures/design/final_design_3.png}
+    \caption{Cross section of the acceleration plane}
+\end{figure}
 
 
 
@@ -1786,12 +1863,157 @@ New analysis and sweep features will be implemented and current capabilities wil
 % Start of techd.tex
 \section{Technical Drawing}
 
+Technical drawings of the design mentioned in \fromsec{final_design} can be found in following figures:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{./figures/teknikcizim/altgovdeteknikresim.pdf}
+    \caption{Technical drawing of bottom part cross section of the cavity. \\ Courtesy of Mr. Sinan Öz}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[angle=270,origin=c, width=.98\linewidth]{./figures/teknikcizim/Rho-A1.0.00.pdf}
+    \caption{Technical drawing of the rhodotron cavity. \\ Courtesy of Mr. Sinan Öz}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[angle=270,origin=c, width=.98\linewidth]{./figures/teknikcizim/Rho-A1.1.00.pdf}
+    \caption{Technical drawing of upper part of the cavity. \\ Courtesy of Mr. Sinan Öz}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[angle=270,origin=c, width=.98\linewidth]{./figures/teknikcizim/Rho-A1.2.00.pdf}
+    \caption{Technical drawing of middle part of the cavity which contains the beam line. \\ Courtesy of Mr. Sinan Öz}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[angle=270,origin=c, width=\linewidth]{./figures/teknikcizim/Rhodotron Elektron Hizlandirici Sistemi.pdf}
+    \caption{Technical drawing of middle part of the cavity which contains the beam line. \\ Courtesy of Mr. Sinan Öz}
+\end{figure}
+
+
 
 \newpage
 
 
 % Start of mani.tex
 \section{Manifacturing}
+
+Manifacturing of the rhodotron cavity has been ongoing, planned to be completed in the following months.
+
+The cavity itself was manifactured as 5 main parts, using 5mm thick stainless steel sheet. 
+
+Elastic version of the 304, 304L was chosen to be the production material for ease of bending.
+These sheets were then pressed to achieve the shapes of the parts. 
+Several flanges were then machined, including
+\begin{itemize}
+    \item $4.5$in EIA RF flange for RF input
+    \item ISO100-KF vacuum connector flanges for vacuum pumps
+    \item ISO-63 KF flange for probe insertion
+    \item KF40 flanges for beam line vacuum gauges
+\end{itemize}
+
+After desired shapes were produced inside surface of the sheets were polished with 2000 grits. 
+304 stainless steel sheet bars of different sizes were then added by 
+TIG welding to achieve pressure resistance.
+
+Because the main body of the cavity was 5mm thick and 304L was used, deformations on cylinderical symmetry were encountered. 
+This problem was solved by welding 6 10mm thick toroidal sheets between the coaxial cylinders, 
+which would be removed after the heat treatment.
+
+\begin{figure}
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/polish/rhodo_bottom_unpolished_cropped.jpeg}
+      \caption{Bottom part of the cavity while polishing.}
+    \end{subfigure}%
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/polish/rhodo_upper_polished_cropped.jpeg}
+      \caption{Top part of the cavity after polishing.}
+    \end{subfigure}
+    \caption{Polishing of the inner surface of cavity.}
+    \label{fig:manif_polishing}
+\end{figure}
+
+
+\begin{figure}
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/toroidal_sheets/rhodo_bottom_cropped.jpeg}
+      \caption{Bottom part of the cavity with the exposed beam line in inner cylinder.}
+    \end{subfigure}%
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/toroidal_sheets/rhodo_middle_toroidal_sheets_welded_cropped.jpeg}
+      \caption{Bottom part of the cavity with the beam line assembled.}
+    \end{subfigure}
+    \caption{Deformation prevention measure, 10 mm thick toroidal sheets.}
+    \label{fig:manif_toroidal_sheets}
+\end{figure}
+
+\begin{figure}
+    \captionsetup{justification=centering}
+    \centering
+    \includegraphics[width=.8\linewidth]{./figures/manif/welding/rhodo_middle_sheetbars_cropped.jpeg}
+    \caption{Welded sheet bars.}
+\end{figure}
+
+\begin{figure}
+    \captionsetup{justification=centering}
+    \centering
+    \includegraphics[width=.7\linewidth]{./figures/manif/toroidal_sheets/rhodo_middle_only_cropped.jpeg}
+    \caption{Middle part of the cavity containing the beam line.}
+\end{figure}
+
+
+\begin{figure}
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/welding/rhodo_assembled_welding_cropped.jpeg}
+      \caption{Welding sheet bars.}
+    \end{subfigure}%
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/welding/rhodo_middle_welding_toroidal_sheets_cropped.jpeg}
+      \caption{Welding toroidal sheets.}
+    \end{subfigure}
+    \caption{TIG welding.}
+    \label{fig:manif_welding}
+\end{figure}
+
+\begin{figure}
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/assembled/rhodo_assembled_2_cropped.jpeg}
+    \end{subfigure}%
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/assembled/rhodo_assembled_1_cropped.jpeg}
+    \end{subfigure}
+    \caption{Assembled cavity as the current stage.}
+    \label{fig:manif_assembled}
+\end{figure}
 
 
 
@@ -1800,7 +2022,7 @@ New analysis and sweep features will be implemented and current capabilities wil
 
 
 % Start of rf.tex
-\section{RF Supply}
+% \section{RF Supply}
 
 
 
@@ -1811,7 +2033,54 @@ New analysis and sweep features will be implemented and current capabilities wil
 
 \chapter{FUTURE WORK}
 
+At the time of publication, production efforts of a new rhodotron type electron accelerator are currently continuing in KAHVELab. 
+Present bottleneck is the fabrication of the cavity.
 
+\section{Cavity}
+The cavity manufacturing process is in its concluding stages.
+The sheet bars and the flanges of the upper and the lower parts have been produced and are being welded and getting ready for heat treatment.
+After the heat treatment operation, 
+the supporting toroidal sheets will be removed and the inside surface will be polished before cyanide copper plating. 
+
+\section{Magnets}
+Magnet production was decided to be kept on hold in the early stages of the project, 
+due to the disagreement on energy gain amount between the calculations of \textit{J. POTTIER} \cite{rhodo_pottier} 
+and the simulation results from \textit{CST Studio Suite} \& \textit{Rhodotron Simulation}. 
+The software is planned to be used in magnet design and beam optimizations in KAHVELab after the initial tests are completed.
+
+\section{Rhodotron Simulation}
+
+\textit{Rhodotron Simulation}, which has been the main focus of this thesis, is ready and waiting to be tested with the cavity that is being manifactured; 
+several improvements and new feature implementations are underway in the mean time. 
+They include the following;
+\begin{figure}[H]
+    \begin{subfigure}[t]{0.5\textwidth}
+        \begin{itemize}
+            \item Electric and magnetic field import
+            \item Field generator module to directly produce field files from specified cavity
+            \item Synchrotron radiation calculations to determine radiation and energy loss
+            \item \ee interactions
+            \item Redesign of the GUI
+            \item 3D render in GUI
+        \end{itemize}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.5\textwidth}
+        \begin{itemize}
+            \item Refactoring of the \eEM interaction and logging to improve performance
+            \item Refactoring of the GUI Render Frame to improve render speed
+            \item Refactoring the magnet class to introduce field leaks
+            \item Extention of analysis tools in Analyze Frame
+            \item $L_{out}$ sweep in Sweep Frame
+        \end{itemize}
+    \end{subfigure}
+\end{figure}
+
+\section{Conclusion}
+
+In conclusion, the performance and the accuracy of this new tool, \textit{Rhodotron Simulation}, cannot be determined
+before the cavity production is completed and the performance is compared with the predictions of the tool;
+however the capabilities it presents, coupled with the analogous results obtained from other extensively utilized simulation tools, 
+lead to the inference that this tool holds promise.
 
 \newpage
 

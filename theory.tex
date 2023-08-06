@@ -68,12 +68,9 @@
 
 %#####
 % START OF THEORY
-
-\newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
-\newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
-
 \newcommand{\vecthreeBF}[1]{\vec{\textbf{#1}}}
 \newcommand{\vecthree}[1]{\vec{#1}}
+\newcommand{\vecNum}[3]{(#1, #2, #3)}
 
 \newcommand{\parDeriv}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\parDerivS}[2]{\frac{\partial^2 #1}{\partial #2^2}}
@@ -85,573 +82,213 @@
 \newcommand{\crossProdBF}[2]{\vecthreeBF{#1} \times \vecthreeBF{#2}}
 \newcommand{\crossProd}[2]{\vecthree{#1} \times \vecthree{#2}}
 
+\newcommand{\e}{$\textbf{e}^-$ }
+\newcommand{\egun}{$\textbf{e}^-$-gun }
+\newcommand{\eB}{$\textbf{e}^-$ - $\vecthreeBF{B}$ }
+\newcommand{\eE}{$\textbf{e}^-$ - $\vecthreeBF{E}$ }
+\newcommand{\eEM}{$\textbf{e}^-$ - \textbf{EM} }
+\newcommand{\ee}{$\textbf{e}^-$ - $\textbf{e}^-$ }
+
+
+\newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
+\newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
+\newcommand{\fromeqsth}[3]{\textit{equations \ref{eq:#1}, \ref{eq:#2} and \ref{eq:#3}}}
+\newcommand{\fromeqsf}[4]{\textit{equations \ref{eq:#1}, \ref{eq:#2}, \ref{eq:#3} and \ref{eq:#4}}}
+
 \newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
+\newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
+\newcommand{\fromfigf}[4]{\textit{figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3} and \ref{fig:#4}}}
+
+\newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
+\newcommand{\fromsecs}[2]{\textit{sections \ref{sec:#1} and \ref{sec:#2}}}
+
+\newcommand{\fromapp}[1]{\textit{Appendix \ref{appendix:#1}}}
+
+\newcommand{\fromtab}[1]{\textit{Table \ref{tab:#1}}}
+\newcommand{\fromtabs}[2]{\textit{Tables \ref{tab:#1} and \ref{tab:#2}}}
 
 \chapter{THEORY}
 
-\section{Accelerating Charged Particles}
+% START OF PRODUCTION
 
-\subsection{Relation between momentum and acceleration}
-In classical mechanics, Newton's second law defines force and states 
-\begin{equation} \label{eq:newton_second_law}
-    \vecthreeBF{F} = \frac{\partial \vecthreeBF{p}}{\partial t} = m \frac{\partial \vecthreeBF{v}}{\partial t} = m \vecthreeBF{a}
-\end{equation}
-In special relativity however, relativistic momentum is defined as $\vecthree{p} = \gamma m_0 \vecthree{v} $ where $\gamma$ is the Lorentz Factor;
-\begin{equation*}
-    \gamma = \frac{1}{\sqrt{1-v^2 / c^2}} = \frac{1}{\sqrt{1-\beta^2}}
-\end{equation*}
-Considering these two statements, we can find the relation between momentum and acceleration as follows
-\begin{eqnarray*}
-    \parDeriv{\vecthree{p}}{t} &=& m_0 \parDeriv{(\gamma \vecthree{v})}{t} = m_0 \{  \parDeriv{\gamma}{t}\vecthree{v} + \gamma \parDeriv{\vecthree{v}}{t}  \} \\
-    \parDeriv{\gamma}{t} &=& \gamma^3 \dotProd{\beta}{\parDeriv{\beta}{t}} = \frac{\gamma^3}{c} \dotProd{\beta}{a} \\
-    \parDeriv{\vecthree{p}}{t}  &=& m_0 \{   \frac{\gamma^3}{c} (\dotProd{\beta}{a} )\vecthree{v} + \gamma \parDeriv{\vecthree{v}}{t}  \} 
-\end{eqnarray*}
-\begin{equation} \label{eq:Frel}
-    \vecthreeBF{F}  = \gamma m_0 \{ \vecthreeBF{a} + \gamma^2(\dotProd{\beta}{\textbf{a}})\vecthree{\beta} \}
-\end{equation}
-It is clear that acceleration is not necessarily parallel to the force anymore. 
+\chapter{PRODUCTION}
+% Start of final.tex
+\section{Final Design} \label{sec:final_design}
 
-To start seperating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and $\vecthreeBF{F}_{||}$.
-\begin{equation} \label{eq:a_F_parallels}
-    \begin{aligned}
-        \vecthreeBF{a}_{||} = \frac{(\dotProd{a}{\beta})}{\beta^2}\beta 
-    \end{aligned}
-    \qquad \qquad
-    \begin{aligned}
-        \vecthreeBF{F}_{||} = \frac{(\dotProd{F}{\beta})}{\beta^2}\beta 
-    \end{aligned}
-\end{equation}
-\begin{eqnarray*}
-    \dotProd{\textbf{F}}{\beta} &=& \gamma m_0 \{ \dotProd{\textbf{a}}{\beta} + \gamma^2(\dotProd{\beta}{\textbf{a}})\beta^2 \} \\
-                                &=& \gamma m_0 (\dotProd{\textbf{a}}{\beta}) \{ \gamma^2\beta^2  + 1\} 
-\end{eqnarray*}
-Using $\gamma^2 \beta^2 + 1 = \gamma^2 $ we have,
-\begin{equation*}
-    \dotProd{\textbf{F}}{\beta} = m_0 \gamma^3 (\dotProd{\textbf{a}}{\beta} )
-\end{equation*}
-Inserting this
-\begin{eqnarray}
-    \vecthreeBF{F}_{||} &=& \frac{(\dotProd{\textbf{F}}{\beta})}{\beta^2} \vec{\beta} \nonumber \\
-                        &=& m_0 \gamma^3 \frac{(\dotProd{\textbf{a}}{\beta} )}{\beta^2} \vec{\beta} \nonumber \\
-                        &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \label{eq:Frel_parallel}
-\end{eqnarray}
-Therefore from \fromeqs{Frel}{Frel_parallel}
-\begin{eqnarray*}
-    \vecthreeBF{F}  &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \beta^2 + m_0 \gamma \vecthreeBF{a} \\
-                    &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \beta^2 + m_0 \gamma \{ \vecthreeBF{a}_{||} +  \vecthreeBF{a}_{\perp} \} \\
-                    &=& m_0 \vecthreeBF{a}_{||} \gamma \{ \gamma^2\beta^2 + 1 \} + m_0 \gamma \vecthreeBF{a}_{\perp} \\
-                    &=& m_0 \vecthreeBF{a}_{||} \gamma^3 + m_0 \gamma \vecthreeBF{a}_{\perp} \\
-                    &=& \vecthreeBF{F}_{||} + m_0 \gamma \vecthreeBF{a}_{\perp}
-\end{eqnarray*}
-We finally have two seperate equations which are in similar form with \fromeq{newton_second_law}.
-\begin{equation} \label{eq:Frel_para_and_perp}
-    \begin{aligned}
-        \vecthreeBF{F}_{||} = \gamma^3  m_0 \vecthreeBF{a}_{||}
-    \end{aligned}
-    \qquad \qquad
-    \begin{aligned}
-        \vecthreeBF{F}_{\perp} = \gamma  m_0\vecthreeBF{a}_{\perp}
-    \end{aligned}
-\end{equation}
+As discussed before, production efforts of a rhodotron type accelerator is still ongoing in KAHVELab.
+This accelerator will be used at $f=107.5$MHz $P=50-100$kW. 
+In the following figures, rendered visuals of the final design from a CAD software can be observed.
 
-
-\subsection{Lorentz Force} \label{sec:lorentz-force}
-Force acting on a charged particle moving in electromagnetic fields is called Lorentz Force and is given by the formula
-\newline
-\begin{equation} \label{eq:lf}
-    \frac{\partial \vecthree{p}}{\partial t} = \vecthree{F}_L=q(\vecthree{E}+ \vecthree{v} \times \vecthree{B})
-\end{equation}
-\newline
-where the $q$ is the charge and $\vecthree{v}$ is the velocity of the particle. 
-
-\subsection{Relativistic Lorentz Force}
-Similar to non-relativistic version, relativistic Lorentz Force is given by the following 4-vector equality
-\begin{equation}
-    \frac{\partial p^{\mu}}{\partial \tau} = q F^{\mu \nu} u_{\nu}
-\end{equation}
-Where $ \partial \tau = \partial t / \gamma $,
-\begin{equation}
-    \begin{aligned}
-        p^{\mu} = 
-        \begin{bmatrix}
-            W/c \\
-            p_x         \\
-            p_y \\
-            p_z
-        \end{bmatrix}    
-    \end{aligned}
-    \qquad\qquad
-    \begin{aligned}
-        F^{\mu\nu} = 
-        \begin{bmatrix}
-                0       & -E_x/c   & -E_y/c    & -E_z/c \\
-                E_x/c   &   0      & -B_z      & B_y     \\
-                E_y/c   &   B_z    &  0        & -B_x     \\
-                E_z/c   &   -B_y   & B_x       & 0   
-        \end{bmatrix} 
-    \end{aligned}
-    \qquad\qquad
-    \begin{aligned}
-        u_{\nu} = \gamma
-        \begin{bmatrix}
-                 c \\
-                -v_x \\
-                -v_y \\
-                -v_z \\
-        \end{bmatrix} 
-    \end{aligned}
-\end{equation}
-Where $W$ is the energy of the particle and $\gamma$ is the lorentz factor mentioned in the previous section.
-\newline
-
-For $ \mu = 0 $, we have the time component of the equation;
-\begin{eqnarray}
-    \frac{\gamma}{c}\frac{\partial W}{\partial t} &=& \frac{q \gamma \vecthree{E}\cdot \vecthree{v}}{c} = \frac{q \gamma}{c}  \frac{\vecthree{E}  \cdot \partial \vecthree{r}}{\partial t} \\
-    \frac{\partial W}{\partial t} &=& q \frac{\vecthree{E}\cdot \partial \vecthree{r}} {\partial t}
-\end{eqnarray}
-This is the definition of work done by an electric field. For $ \mu = 1,2,3 $, we have the spacial components;
-\begin{equation*}
-    \frac{\partial \vecthree{p}}{\partial \tau} = \gamma \frac{\partial \vecthree{p}}{\partial t} = q \gamma (\vecthree{E} + \vecthree{v} \times \vecthree{B})
-\end{equation*}
-Which simplifies to non-relativistic Lorentz Force in \fromeq{lf}.
-
-
-\subsection{Acceleration caused by lorentz force}
-Due to the nature of the cross product, lorentz force caused by a magnetic field is always perpendicular to the velocity of the particle. 
-Therefore the acceleration of the magnetic field is straightforward
-\begin{equation*}
-    \vecthreeBF{F}_B = \vecthreeBF{F}_{\perp} = \gamma  m_0\vecthreeBF{a}_{\perp} = \gamma  m_0\vecthreeBF{a}_{B}
-\end{equation*}
-The same thing cannot be said about electric field however. 
-It can create force in any direction with respect to velocity. Therefore, we have the following equality;
-\begin{equation} \label{eq:para_and_perp_acc_of_lorentz_force}
-    \begin{aligned}
-        \vecthreeBF{a}_{||} = \frac{q }{\gamma^3 m_0} \vecthreeBF{E}_{||}
-    \end{aligned}
-    \qquad \qquad
-    \begin{aligned}
-        \vecthreeBF{a}_{\perp} = \frac{q}{\gamma m_0} \{ \vecthreeBF{E}_{\perp} + \crossProdBF{v}{B}   \}
-    \end{aligned}    
-\end{equation}
-Acceleration due to electric field can be simplified as;
-\begin{eqnarray*}
-    \vecthreeBF{a}_{\{B=0\}} = \vecthreeBF{a}_{E}   &=&  \vecthreeBF{a}_{||} + \vecthreeBF{a}_{\perp \{B=0\}} \\
-                                &=& \frac{q}{m_0 \gamma} \{ \frac{\vecthreeBF{E}_{||}}{\gamma^2} + \vecthreeBF{E}_{\perp} \} \\
-                                &=& \frac{q}{m_0 \gamma} \{ \{1 - \beta^2\}\vecthreeBF{E}_{||} + \vecthreeBF{E}_{\perp} \} \\
-                                &=& \frac{q}{m_0 \gamma} \{ \vecthreeBF{E}_{||} + \vecthreeBF{E}_{\perp}-\beta^2\vecthreeBF{E}_{||} \} \\
-                                &=& \frac{q}{m_0 \gamma} \{ \vecthreeBF{E} - \beta^2\vecthreeBF{E}_{||} \} \\
-\end{eqnarray*}
-Using the fact that $\vecthreeBF{E}_{||} = \vec{\beta}(\dotProd{\textbf{E}}{\beta})/\beta^2 $, we finally have
-\begin{equation} \label{eq:acc_of_E_and_B}
-    \begin{aligned}
-        \vecthreeBF{a}_{E} = \frac{q}{ \gamma m_0} \{ \vecthreeBF{E} - \vecthreeBF{v}\frac{(\dotProdBF{E}{v})}{c^2} \}
-    \end{aligned}
-    \qquad \qquad
-    \begin{aligned}
-        \vecthreeBF{a}_{B} = \frac{q}{\gamma m_0} ( \crossProdBF{v}{B} )
-    \end{aligned}
-\end{equation}
 
 \newpage
 
 
-\section{Particle Accelerators}
+% Start of techd.tex
+\section{Technical Drawing}
 
-Particle accelerators are sophisticated scientific instruments designed to accelerate charged particles, such as electrons, protons, or ions, to high speeds and energies. 
-These accelerators play a crucial role in advancing our understanding of the fundamental properties of matter and the universe. 
-They are widely used in various fields of research, including particle physics, nuclear physics, materials science, and medicine.
-
-At their core, particle accelerators utilize electromagnetic fields to impart energy to particles and control their trajectories. 
-These fields are generated by intricate arrangements of magnets and RF (radiofrequency) cavities within the accelerator structure. 
-By precisely controlling these fields, accelerators can propel particles to speeds close to the speed of light, enabling them to acquire high energies.
-
-Accelerators can be categorized into two main types: linear accelerators (linacs) and circular accelerators. 
-Linacs accelerate particles in a straight line, while circular accelerators use magnetic fields to bend the particle trajectory into a circular path. 
-
-The acceleration process in accelerators involves multiple stages. Initially, particles are injected into the accelerator at a relatively low energy. 
-As they progress through the accelerator, they are subjected to alternating electric fields that accelerate them, while magnetic fields guide their trajectories.
-Focusing elements, such as magnetic lenses or quadrupole magnets, ensure the particles remain tightly controlled.
-
-As particles gain energy in the accelerator, they approach relativistic speeds, where relativistic effects become significant. 
-Special relativity governs the increase in mass and energy of the particles as they approach the speed of light, providing insights into the behavior of matter at high energies.
-
-Particle accelerators are essential tools for scientific research. They enable scientists to probe the fundamental constituents of matter, study particle interactions, and explore the laws of physics. 
-Accelerators have been instrumental in discovering and characterizing fundamental particles, such as quarks, leptons, and the Higgs boson. 
-They also facilitate the production of high-intensity beams for applications in material science, radiotherapy, and industrial processes like particle irradiation and sterilization.
-
-% TODO : ADD CIRCULAR AND LINEAR ACCELERATOR PICTURES HERE
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{A circular accelerator}
-\end{figure}
+Technical drawings of the design mentioned in \fromsec{final_design} can be found in following figures:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{A linear accelerator}
+    \includegraphics[width=1\linewidth]{./figures/teknikcizim/altgovdeteknikresim.pdf}
+    \caption{Technical drawing of bottom part cross section of the cavity. \\ Courtesy of Mr. Sinan Ã–z}
 \end{figure}
 
-\subsection{Key Concepts}
+\begin{figure}
+    \centering
+    \includegraphics[angle=270,origin=c, width=.98\linewidth]{./figures/teknikcizim/Rho-A1.0.00.pdf}
+    \caption{Technical drawing of the rhodotron cavity. \\ Courtesy of Mr. Sinan Ã–z}
+\end{figure}
 
+\begin{figure}
+    \centering
+    \includegraphics[angle=270,origin=c, width=.98\linewidth]{./figures/teknikcizim/Rho-A1.1.00.pdf}
+    \caption{Technical drawing of upper part of the cavity. \\ Courtesy of Mr. Sinan Ã–z}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[angle=270,origin=c, width=.98\linewidth]{./figures/teknikcizim/Rho-A1.2.00.pdf}
+    \caption{Technical drawing of middle part of the cavity which contains the beam line. \\ Courtesy of Mr. Sinan Ã–z}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[angle=270,origin=c, width=\linewidth]{./figures/teknikcizim/Rhodotron Elektron Hizlandirici Sistemi.pdf}
+    \caption{Technical drawing of middle part of the cavity which contains the beam line. \\ Courtesy of Mr. Sinan Ã–z}
+\end{figure}
+
+
+
+\newpage
+
+
+% Start of mani.tex
+\section{Manifacturing}
+
+Manifacturing of the rhodotron cavity has been ongoing, planned to be completed in the following months.
+
+The cavity itself was manifactured as 5 main parts, using 5mm thick stainless steel sheet. 
+
+Elastic version of the 304, 304L was chosen to be the production material for ease of bending.
+These sheets were then pressed to achieve the shapes of the parts. 
+Several flanges were then machined, including
 \begin{itemize}
-    \item Phase Stability
-    \item Phase Lag
-    \item Shunt Impedance
-    
+    \item $4.5$in EIA RF flange for RF input
+    \item ISO100-KF vacuum connector flanges for vacuum pumps
+    \item ISO-63 KF flange for probe insertion
+    \item KF40 flanges for beam line vacuum gauges
 \end{itemize}
 
-\subsection{Acceleration Cavities}
-Radiofrequency (RF) cavities, also known as accelerating cavities or resonant cavities, are key components in particle accelerators. 
-These cavities generate strong electromagnetic fields at specific frequencies to accelerate charged particles through clever engineering.
+After desired shapes were produced inside surface of the sheets were polished with 2000 grits. 
+304 stainless steel sheet bars of different sizes were then added by 
+TIG welding to achieve pressure resistance.
 
-RF cavities are typically hollow metallic structures made of or coated with high-conductivity materials such as copper. 
-They are designed to resonate at a specific frequency, which is determined by the size and shape of the cavity. 
-The cavity is often cylindrical or spherical in shape, and its inner surface is polished to minimize energy losses through resistive heating.
-The RF cavity is designed to be resonant, meaning that it naturally amplifies the electric fields at its resonant frequency. 
-The resonant frequency is determined by the cavity's dimensions and the speed of light in the cavity material.
+Because the main body of the cavity was 5mm thick and 304L was used, deformations on cylinderical symmetry were encountered. 
+This problem was solved by welding 6 10mm thick toroidal sheets between the coaxial cylinders, 
+which would be removed after the heat treatment.
 
-To achieve efficient energy transfer to the particles, the RF cavity is driven by an external RF power source operating at the resonant frequency. 
-The power source supplies radiofrequency energy to the cavity, which causes the electric fields inside the cavity to oscillate at the desired frequency. 
-These oscillating fields then transfer energy to the passing particles, increasing their kinetic energy by pushing and pulling on the charged particles as they pass through the cavity. 
-
-In addition to accelerating the particles, RF cavities are often designed to provide focusing forces. 
-By carefully shaping the cavity and adjusting the electromagnetic fields, the particles can experience focusing effects as they pass through the cavity. 
-This helps to maintain a tight and controlled beam. To ensure efficient acceleration, it is essential to maintain phase stability. 
-This means that the particles should experience the strongest electric fields at the correct time during their passage through the cavity. 
-Precise timing and synchronization of the RF power source with the particle beam are crucial to achieve phase stability and maximize energy transfer.
-% TODO : ADD RF CAVITY PICTURE HERE
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{A rf cavity used in KAHVELab}
-\end{figure}
-
-\subsection{Steerer Magnets}
-Steerer magnets, also known as dipole magnets or bending magnets, are fundamental components used in particle accelerators to control the trajectory of charged particles. 
-They utilize the Ampere's Law to exert a magnetic field that interacts with the charged particles in the accelerator. 
-
-According to the Lorentz Force Law ( $\textit{Section \ref{sec:lorentz-force}}$ ), when a charged particle moves through a magnetic field, it experiences a force perpendicular to both its velocity 
-vector and the magnetic field direction. This force causes the particle's trajectory to curve, resulting in a bending effect.
-
-% TODO : ADD STEERER MAGNET PICTURE HERE
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{A steerer magnet used in KAHVELab}
-\end{figure}
-
-\subsection{Rhodotron Accelerator}
-
-Rhodotron Accelerator is a type of particle accelerator that was proposed by \textit{Jacques POTTIER} in his publication \textit{A new type of rf electron accelerator:The Rhodotron} in 1989 \cite{rhodo_pottier}. 
-First prototype was built at CEA Saclay later in 1992 \cite{rhodo_prototype}. Its named after the greek word for rose, \textit{rhodos}, due to the shape of the design \cite{rhodos}.
-
-The design of a rhodotron mainly consists of a coaxial cylindrical RF cavity and steerer magnets surrounding it. RF cavity is fed by an external RF source, accelerating the electrons entering from an attached electron gun.
-
-\subsubsection{Cavity of a Rhodotron}
-
-Coaxial design of the cavity concentrates the electric field, while the magnetic field diminishes in the middle of the cylinders. 
-Therefore the electrons are injected and accelerated in the plane of zero magnetic field where the electric field is strongest.
-% TODO : ADD SUPERFISH AND CST SIMULATIONS OF A SIMPLE RHODOTRON CAVITY
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{SUPERFISH simulation of a coaxial cavity}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{CST simulation of a coaxial cavity}
-\end{figure}
-
-With the expectation that the electrons will accelerate to speeds $>=0.9 c$ after the first pass, a rhodotron cavity is designed so that the length of the path between successive passes is an integer multiple of $\lambda$, wavelength of the RF field ($l=p\lambda \label{eq:lpl}$).
-This constraint helps with  phase stability and synchronization of the beam.
-
-In the table below, optimized characteristics of a rhodotron cavity can be observed. 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=.9\textwidth]{./figures/pottier_table1.png}
-    \caption{Optimized characteristics of a rhodotron cavity \cite{rhodo_pottier}}
-    \label{fig:pottier_table1}
-\end{figure}
-
-Here, $p$ is the integer multiplier in the equation ($l=p\lambda \label{eq:lpl}$) mentioned above, $R_1$ is the radius of the inner cylinder, $R_2$ is the radius of the outer cylinder, 
-$Z_{se}$ is effective shunt empedance, $Z_{sp}$ is practical shunt empedance which was taken to be $0.85 Z_{se}$.
-
-Energy gain after each pass can be calculated by the following formula \cite{rhodo_pottier}
-\begin{equation}
-    \label{eq:W_gain_each_pass_pottier}
-    W_1 = Z_{sp}^{1/2} P^{1/2} cos \phi  
-\end{equation}
-
-Where $P$ is the dissipated power, $\phi$ is the phase lag, taken as $15^\circ$ \cite{rhodo_pottier}. 
-
-Considering $Z_{sp} \propto \lambda^{1/2}$, \,\,\, $W_1 \propto \lambda^{1/4}$, \,\,\,   $V \propto \lambda^3$, where $V$ is the volume of the cavity, implementing the $p=1$ design in \fromfig{pottier_table1} is much more space efficient.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=.9\textwidth]{./figures/pottier_table2.png}
-    \caption{Energy of a synchronous electron after each pass for both $p=1$ and $p=2$ \cite{rhodo_pottier}}
-    \label{fig:pottier_table2}
-\end{figure}
-
-Total energy gain after n passes $W$ can then be found by \fromeq{W_gain_each_pass_pottier}, taking $p=1$, i.e $R_2 = 0.27 \lambda$.
-\begin{equation}
-    \label{eq:W_total_gain_pottier}
-    W \approx 2.3 \lambda^{1/4} P^{1/2} n
-\end{equation}
-
-\subsubsection{Acceleration cycle of Rhodotron}
-
-Electrons undergo four different stages during a single pass. 
-They are accelerated between the cylinderical plates and are shielded from the changing RF field while inside the inner cylinder and outside the cavity. 
-
-\begin{description}
-    \item[First acceleration] Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity.
-    \item[Inner shielding] While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed.
-    \item[Second acceleration] Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity.
-    \item[Magnets] After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again.
-\end{description}
-
-This cycle can be repeated as long as real world constraints such as; placements and dimentions of the electromagnets, power requirements due to increasing magnetic field in order for sharper turns, can be overcomed.
-After desired amount of pass has been completed, the electrons exit the accelerator.
-
-This process is explained further in the following figures where $T$ is the period of the electric field.
-% TODO : ADD ACCELERATION PROCESS OF RHODOTRON FIGURES HERE
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{$[0, \frac{T}{4}]$ time frame of a rhodotron}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{$[\frac{T}{4}, \frac{T}{2}]$ time frame of a rhodotron}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{$[\frac{T}{2}, \frac{3T}{4}]$ time frame of a rhodotron}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{$[\frac{3T}{4}, T]$ time frame of a rhodotron}
-\end{figure}
-
-
-
-
-\newpage
-
-
-\section{Numerical Integration Methods}
-
-\subsection{Leapfrog} \label{sec:leapfrog}
-The Leapfrog method is a numerical method commonly used to solve ordinary differential equations (ODEs) that involve second-order time derivatives. Such an ODE is shown below:
-
-\begin{equation}
-    \ddot{x} = \derivS{x}{t} = f(x) \label{eq:second-order-ODE}
-\end{equation}
-\newline
-The Leapfrog method is a variant of the finite difference method, and it approximates the solution of an ODE by discretizing both time and space. The method gets its name from the way it calculates the values of the solution at each time step, which resembles a "leapfrogging" motion. 
-It is a simple and efficient algorithm that is often used in simulations of physical systems, such as celestial mechanics or molecular dynamics.
-The idea is straight forward; in the time interval $\Delta t$, 
-\begin{eqnarray}
-    a(t_0) &=& f(x_0) \nonumber \\
-    x(t_0 + \Delta t) &=& x(t_0) + v(t_0)\Delta t + a(t_0)\frac{\Delta t^2}{2} \label{eq:leapfrog_sync_x}\\
-    v(t_0 + \Delta t) &=& v(t_0) + \{ a(t_0) + a(t_0 + \Delta t)\}\frac{\Delta t}{2}  \label{eq:leapfrog_sync_v}
-\end{eqnarray}
-
-For more stability, this version can be rearranged to what is called 'kick-drift-kick' form,
-\begin{eqnarray} \label{eq:leapfrog}
-    v(t_0 + \Delta t/2) &=& v(t_0) +  a(t_0)\frac{\Delta t}{2} \nonumber \\
-    x(t_0 + \Delta t) &=& x(t_0) + v(t_0 + \Delta t/2)\Delta t \\
-    v(t_0 + \Delta t) &=& v(t_0 + \Delta t/2) + a(t_0 + \Delta t)\frac{\Delta t}{2}  \nonumber
-\end{eqnarray}
-
-This version provides more time resolution to our calculation; however, it increases the number of calculations needed by about $50\%$.
-
-\subsection{Runge Kutta}
-
-The Runge-Kutta methods, named after the German mathematicians Carl Runge and Martin Wilhelm Kutta, family of numerical methods
-used to solve ordinary differential equations (ODEs) that are in the following form
-
-\begin{equation} \label{eq:first-order-ODE}
-    \parDeriv{y}{x} = f(x, y)
-\end{equation}
-
-
-The basic idea behind the Runge-Kutta method is to approximate the solution of an ODE by taking small steps and using a weighted average 
-of function evaluations at different points within each step.
-
-\begin{equation} \label{eq:general-rk}
-    \begin{aligned}
-        y_{n+1} = y_n + \delta x \sum_{i=1}^{m} b_i k_i
-    \end{aligned}
-    \qquad
-    \begin{aligned}
-        x_{n+1} = x_n + \delta x 
-    \end{aligned}
-\end{equation}
-where 
-\begin{eqnarray} \label{eq:general-rk-coef}
-    k_i = f(x_n + c_i \delta x, y_n + \delta x \sum_{j = 1}^{i - 1}a_{ij}k_j)
-\end{eqnarray}
-
-These \fromeqs{general-rk}{general-rk-coef} define the family of methods. To specify a perticular method, order $m$, coefficients $a_{ij}$, $b_i$ and $c_i$ should be provided.
-The coefficients of any Runge-Kutta method can be visualized by a tableau called $\textit{Butcher Tableau}$.
-
-\begin{figure}[h!]
-    \[ 
-    \begin{array} 
-        {c|cccc}
-        0\\
-        c_1 & a_{21} \\
-        c_2 & a_{31} & a_{32}\\
-        \vdots& & \cdots& \\
-        c_m & a_{m1} & a_{m2} & \cdots & a_{m,m-1}\\
-        \hline
-        & b_1 & b_2 &\cdots & b_m
-    \end{array}
-    \]
-    \caption{Butcher Tableau}
-    \label{fig:Butcher}
-\end{figure}
-
-The simplest Runge-Kutta method is the \textit{Euler's method}. Its \textit{Butcher tableau} is as follows.
-\[ 
-    \begin{array} 
-        {c|cccc}
-        0\\
-        \hline
-        & 1
-    \end{array}
-\]
-
-
-The most commonly used version of the Runge-Kutta method is the fourth-order Runge-Kutta method, also known as RK4. 
-The RK4 method involves four function evaluations per step and has an error term that is proportional to the step size raised to the fifth power.
-Two of the most used \textit{Butcher tableaus} for \textit{RK4} given below.
-
-
-\begin{figure}[h!]
+\begin{figure}
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
-        \[ 
-        \begin{array} 
-            {c|cccc}
-            0\\
-            1/2 & 1/2 \\
-            1/2 & 0 & 1/2 \\
-            1   & 0 & 0 & 1\\
-            \hline
-            & 1/6 & 1/3 & 1/3 & 1/6
-        \end{array}
-        \]  
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/polish/rhodo_bottom_unpolished_cropped.jpeg}
+      \caption{Bottom part of the cavity while polishing.}
     \end{subfigure}%
-    \begin{subfigure}{.5\textwidth}
-        \[ 
-        \begin{array} 
-            {c|cccc}
-            0\\
-            1/3 & 1/3 \\
-            2/3 & -1/3 & 1 \\
-            1   & 1 & -1 & 1\\
-            \hline
-            & 1/8 & 3/8 & 3/8 & 1/8
-        \end{array}
-        \]  
-    \end{subfigure}
-    \caption{Butcher Tableau for RK4}
-    \label{fig:Butcher-RK4}
-\end{figure}
-
-The second tableau in \fromfig{Butcher-RK4} is called the \textit{"3/8 rule"}. Its main advantage is that its error coefficients are smaller than the other. But it costs more floating point operations per step. 
-Resulting in slower calculations. 
-
-
-
-\newpage
-
-
-\section{Simulation}
-
-
-A simulation software is a computer program or tool that enables the creation and execution of 
-simulations to model and analyze real-world systems or processes. 
-It allows users to replicate the behavior, interactions, and outcomes of the system or process under study, 
-providing insights and predictions that can be valuable for decision-making, optimization, or understanding complex phenomena.
-
-Simulation software provides a virtual environment where users can define the parameters,
-variables, and rules of the system being simulated. The software then uses mathematical and physical models, 
-algorithms, and computational techniques to simulate the behavior of the system over time.
-
-\subsection{Basic Consepts in Programming}
-
-\subsubsection{Clock Cycle}
-
-In programming, a clock cycle refers to a fundamental unit of time measurement used in computer systems. 
-It represents the basic rhythm or timing mechanism of a computer's central processing unit (CPU) and is typically measured in terms of the CPU's clock speed, expressed in hertz (Hz).
-
-A clock cycle represents one complete pulse or oscillation of the CPU's clock signal. 
-It serves as a synchronization mechanism, coordinating the execution of instructions and the timing of various operations within the CPU.
-Each clock cycle is associated with a specific duration, which is determined by the clock speed of the CPU.
-
-The concept of clock cycles is often used when considering the performance and efficiency of algorithms and code. 
-Since the execution time of instructions is influenced by the number of clock cycles required, minimizing the number of clock cycles needed for a program or algorithm can lead to faster and more efficient code execution.
-Table below shows the amount of clock cycles required for some mathematical calculations in various processors.
-
-\begin{figure}[h!]
     \centering
-    \includegraphics[width=.9\textwidth]{./figures/cpu_instruction_speed.png}
-    \caption{Amount of clock cycle for mathematical operations in various processors. \cite{cpu_instruction_speed}}
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/polish/rhodo_upper_polished_cropped.jpeg}
+      \caption{Top part of the cavity after polishing.}
+    \end{subfigure}
+    \caption{Polishing of the inner surface of cavity.}
+    \label{fig:manif_polishing}
 \end{figure}
 
-Note that \textit{division} is by far the most time consuming basic mathematical operation between addition, subtraction and multiplication.
 
-\subsubsection{Concurrency}
+\begin{figure}
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/toroidal_sheets/rhodo_bottom_cropped.jpeg}
+      \caption{Bottom part of the cavity with the exposed beam line in inner cylinder.}
+    \end{subfigure}%
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/toroidal_sheets/rhodo_middle_toroidal_sheets_welded_cropped.jpeg}
+      \caption{Bottom part of the cavity with the beam line assembled.}
+    \end{subfigure}
+    \caption{Deformation prevention measure, 10 mm thick toroidal sheets.}
+    \label{fig:manif_toroidal_sheets}
+\end{figure}
 
-Concurrency in programming refers to the ability of a program to execute multiple tasks or processes simultaneously. It allows different parts of a program to make progress independently, potentially improving performance, responsiveness, and resource utilization.
+\begin{figure}
+    \captionsetup{justification=centering}
+    \centering
+    \includegraphics[width=.8\linewidth]{./figures/manif/welding/rhodo_middle_sheetbars_cropped.jpeg}
+    \caption{Welded sheet bars.}
+\end{figure}
 
-Concurrency in single core can be achieved by implementing clever scheduling of list of operations called \textit{threads}. This results in non-blocking execution of multiple threads, but only one thread would be executed at any given time. 
-True concurrency on the other hand, can only be achieved by using multiple cores. Each core would be able to execute one thread at any time.
+\begin{figure}
+    \captionsetup{justification=centering}
+    \centering
+    \includegraphics[width=.7\linewidth]{./figures/manif/toroidal_sheets/rhodo_middle_only_cropped.jpeg}
+    \caption{Middle part of the cavity containing the beam line.}
+\end{figure}
 
-Programs that implement concurrency using multiple cores executes more operations per clock cycle. However, this does not directly lead to an improved performance due to the heavy burden of scheduling and managing multiple threads.
+
+\begin{figure}
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/welding/rhodo_assembled_welding_cropped.jpeg}
+      \caption{Welding sheet bars.}
+    \end{subfigure}%
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/welding/rhodo_middle_welding_toroidal_sheets_cropped.jpeg}
+      \caption{Welding toroidal sheets.}
+    \end{subfigure}
+    \caption{TIG welding.}
+    \label{fig:manif_welding}
+\end{figure}
+
+\begin{figure}
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/assembled/rhodo_assembled_2_cropped.jpeg}
+    \end{subfigure}%
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.96\linewidth]{./figures/manif/assembled/rhodo_assembled_1_cropped.jpeg}
+    \end{subfigure}
+    \caption{Assembled cavity as the current stage.}
+    \label{fig:manif_assembled}
+\end{figure}
+
 
 
 
 \newpage
 
-\begin{thebibliography}{9}
 
-    \bibitem{rhodo_pottier}
-    Jacques Pottier,
-    \emph{A new type of rf electron accelerator: The rhodotron},
-    Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
-    Volumes 40–41, Part 2,
-    1989,
-    Pages 943-945,
+% Start of rf.tex
+\section{RF Supply}
 
-    \bibitem{rhodo_prototype}
-    J.M. Bassaler, J.M. Capdevila, O. Gal, F. Lainé, A. Nguyen, J.P. Nicolaï, K. Umiastowski,
-    \emph{Rhodotron: an accelerator for industrial irradiation},
-    Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
-    Volume 68, Issues 1–4,
-    1992,
-    Pages 92-95,A:
 
-    \bibitem{rhodos}
-    Y. Jongen. (2001). \emph{Manufacturing of Electron Accelerators}. Ion Beam Applications s.a. (IBA) Chemin du Cyclotron 3, B-1348 Louvain-la-Neuve, Belgium.
 
-    \bibitem{cpu_instruction_speed}
-    Fukushima, Toshio. (2001). \emph{Reduction of Round-off Errors in Symplectic Integrators}. The Astronomical Journal. 121. 1768-1775. 
-    
-\end{thebibliography}
 
 
 % END OF THEORY
