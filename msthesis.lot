@@ -1,0 +1,6 @@
+\contentsline {table}{\numberline {C.1}{\ignorespaces \textit {Leap-frog} data on $E_{in}=1$MeV, \textbf {B}=$0.1$T, $t_{end}=5$ns\relax }}{114}{}%
+\contentsline {table}{\numberline {C.2}{\ignorespaces \textit {RK4-2} data on $E_{in}=1$MeV, \textbf {B}=$0.1$T, $t_{end}=5$ns\relax }}{115}{}%
+\contentsline {table}{\numberline {C.3}{\ignorespaces \textit {LF} data on $E_{in}=1$MeV, $\vec {\textbf {E}}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns\relax }}{116}{}%
+\contentsline {table}{\numberline {C.4}{\ignorespaces \textit {RK4-2} data on $E_{in}=1$MeV, $\vec {\textbf {E}}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns\relax }}{117}{}%
+\contentsline {table}{\numberline {C.5}{\ignorespaces \textit {LF} data on $E_{in}=1$MeV, $\vec {\textbf {E}}=(0, -5.31232, 0)$ MV/m, $t_{end}=6$ns\relax }}{118}{}%
+\contentsline {table}{\numberline {C.6}{\ignorespaces \textit {RK4-2} data on $E_{in}=1$MeV, $\vec {\textbf {E}}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns\relax }}{119}{}%

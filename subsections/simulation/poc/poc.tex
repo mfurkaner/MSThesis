@@ -62,7 +62,6 @@ Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the 
         \item Calculate new $E_t$
     \end{enumerate}
 \end{itemize}
-
 The implemenation of this logic can be observed in \fromfig{POC_core_logic}. 
 \begin{figure}[H]
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
@@ -84,7 +83,6 @@ The implemenation of this logic can be observed in \fromfig{POC_core_logic}.
     \caption{Core logic loop of the POC}
     \label{fig:POC_core_logic}
 \end{figure}
-
 After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} with $\phi_{lag}=15^\circ$ for one pass, the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} are compared.
 % 40 kW total power
 % Emax = 0.96 in old, 2.08 in new version
@@ -99,8 +97,6 @@ After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_
     \end{eqnarray}
     \caption*{$P=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz}
 \end{figure}
-
-
 As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced very similar results. However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
 This inconsistency between $E_{Pottier}$ and $E_{CST}$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
 Since using a single software would have made the process error prone.

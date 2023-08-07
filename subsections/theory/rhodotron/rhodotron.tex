@@ -59,15 +59,12 @@ Special relativity governs the increase in mass and energy of the particles as t
 Particle accelerators are essential tools for scientific research. They enable scientists to probe the fundamental constituents of matter, study particle interactions, and explore the laws of physics. 
 Accelerators have been instrumental in discovering and characterizing fundamental particles, such as quarks, leptons, and the Higgs boson. 
 They also facilitate the production of high-intensity beams for applications in material science, radiotherapy, and industrial processes like particle irradiation and sterilization.
-
 % TODO : ADD CIRCULAR AND LINEAR ACCELERATOR PICTURES HERE
-
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{../../../figures/to_be_added.png}
     \caption{A linear proton accelerator in KAHVELab}
 \end{figure}
-
 \subsection{Key Concepts}
 
 \subsubsection{Resonance Frequency}
@@ -132,7 +129,6 @@ They utilize the Ampere's Law to exert a magnetic field that interacts with the 
 
 According to the Lorentz Force Law ( $\textit{Section \ref{sec:lorentz-force}}$ ), when a charged particle moves through a magnetic field, it experiences a force perpendicular to both its velocity 
 vector and the magnetic field direction. This force causes the particle's trajectory to curve, resulting in a bending effect.
-
 % TODO : ADD STEERER MAGNET PICTURE HERE
 \begin{figure}[H]
     \centering
@@ -163,7 +159,6 @@ In the table below, optimized characteristics of a rhodotron cavity can be obser
     \caption{Optimized characteristics of a rhodotron cavity \cite{rhodo_pottier}}
     \label{fig:pottier_table1}
 \end{figure}
-
 Here, $p$ is the integer multiplier in the equation ($l=p\lambda$) mentioned above, $R_1$ is the radius of the inner cylinder, $R_2$ is the radius of the outer cylinder, 
 $Z_{se}$ is effective shunt empedance, $Z_{sp}$ is practical shunt empedance which was taken to be $0.85 Z_{se}$.
 
@@ -172,7 +167,6 @@ Energy gain after each pass can be calculated by the following formula \cite{rho
     \label{eq:W_gain_each_pass_pottier}
     W_1 = Z_{sp}^{1/2} P^{1/2} cos \phi  
 \end{equation}
-
 Where $P$ is the dissipated power, $\phi$ is the phase lag, taken as $15^\circ$ \cite{rhodo_pottier}. 
 
 Considering $Z_{sp} \propto \lambda^{1/2}$, \,\,\, $W_1 \propto \lambda^{1/4}$, \,\,\,   $V \propto \lambda^3$, where $V$ is the volume of the cavity, implementing the $p=1$ design in \fromfig{pottier_table1} is much more space efficient.
@@ -182,7 +176,6 @@ Considering $Z_{sp} \propto \lambda^{1/2}$, \,\,\, $W_1 \propto \lambda^{1/4}$, 
     \caption{Energy of a synchronous electron after each pass for both $p=1$ and $p=2$ \cite{rhodo_pottier}}
     \label{fig:pottier_table2}
 \end{figure}
-
 Total energy gain after n passes $W$ can then be found by \fromeq{W_gain_each_pass_pottier}, taking $\phi = 15^\circ$, $p=1$, i.e $R_2 = 0.27 \lambda$.
 \begin{equation}
     \label{eq:W_total_gain_pottier}
@@ -211,21 +204,18 @@ This process is explained further in the following figures where $T$ is the peri
     \caption{$[0, \frac{T}{4}]$ time frame of a rhodotron}
     \label{fig:rhod_cycle_1}
 \end{figure}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{../../../figures/illustrations/rhod2.pdf}
     \caption{$[\frac{T}{4}, \frac{T}{2}]$ time frame of a rhodotron}
     \label{fig:rhod_cycle_2}
 \end{figure}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{../../../figures/illustrations/rhod3.pdf}
     \caption{$[\frac{T}{2}, \frac{3T}{4}]$ time frame of a rhodotron}
     \label{fig:rhod_cycle_3}
 \end{figure}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{../../../figures/illustrations/rhod4.pdf}

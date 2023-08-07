@@ -85,17 +85,14 @@ They were modeled as $N$ electrons fired from an \e gun at even time intervals. 
 Addition of bunches would immediately proven useful when finding optimal phase lag for bunch entry.
 $\phi_{lag}$ for a bunch was defined as the RF phase when the first \e of the bunch has entered the cavity and it defines the starting time of the current pass.
 To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimization}, relevant bunch characteristics are defined as follows:
-
 \begin{itemize}
     \item $\mu E$: Average energy
     \item $E_{rms}$: Root mean square of energy
     \item $R_{rms}$: Root mean square of \e positions
 \end{itemize}
-
 Optimal $\phi_{lag}$ would produce maximum $\mu E$ while minimizing $E_{rms}$ \& $R_{rms}$. For the first pass, 
 $E_{rms}$ and $R_{rms}$ would be vaguely dependent of each other; therefore, initial implementation of $\phi_{lag}$ sweep was based on minimizing $E_{rms}$ during simulation (\textit{see \fromfig{phlag_opt}}). 
 For $\mu E$ considerations, data from the software would be analyzed either manually or by using external tools such as \textit{ROOT framework}. 
-
 \begin{figure}[H]
     \centering
     \captionsetup{justification=centering}
@@ -120,7 +117,6 @@ For $\mu E$ considerations, data from the software would be analyzed either manu
     \caption{$\phi_{lag}$ Optimization For Initial Bunch Design}
     \label{fig:phlag_opt}
 \end{figure}
-
 Since $\phi_{lag}$ is relatively easy to change after production, another version of \fromfig{phlag_opt} that was modified for given magnet design parameters was also implemented (\textit{see \fromfig{phlag_opt_n_pass} in \fromapp{intermediate_codes}}). 
 This version can be useful for optimizing $\phi_{lag}$ in case of production issues in magnets. 
 
@@ -165,14 +161,12 @@ Interaction logic for \eE and \eB in 3D can be found in \fromfig{3D_e_EM_interac
     \caption{\eEM  interaction logic from \fromeq{acc_of_E_and_B}}
     \label{fig:3D_e_EM_interaction_first}
 \end{figure}
-
 Where * and \% are, dot-product and cross-product respectably. (See \fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes})
 
 Simulating in 3D had one other benefit; it was now possible to visualize the results by rendering the interaction data. 
 For this purpose, \textit{gnuplot} was integrated into \textit{Rhodotron Simulation} to produce 2D visualization of acceleration plane. 
 Rendered results could be stored as \textit{gif} animations. 
 Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
-
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
@@ -195,9 +189,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
 An issue regarding the \eB interaction became apparent when energy gain during these interactions was observed.
 A setup simulation was implemented in which a bunch of 100\e at $1$MeV was fired into a uniform magnetic field of $0.1$T located in $x>0.05$m.
 Initial results at $dt=0.01$ns proved the suspicion of \eB interaction being broken. However, the energy gain would decrease tremendously as $dt$ decreased.
-
-
-\begin{figure}[H]
+\begin{figure}
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
     \centering
@@ -214,7 +206,6 @@ Initial results at $dt=0.01$ns proved the suspicion of \eB interaction being bro
     \caption{Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T}
     \label{fig:mag_lf_render}
 \end{figure}
-
 Decreasing $dt$ would be the best way to increase accuracy of the results; however, this is not sustainable due to computing power limitations. 
 Until this point, \textit{Rhodotron Simulation} have been using \fromsec{leapfrog} for \eEM interactions. 
 To test newer approaches, two additional version of  \eEM interaction that are using \fromsec{rungekutta} were added.
@@ -234,8 +225,7 @@ These three methods were then tested in the same setup as \fromfig{mag_lf_render
 More rigerous testing was done with \textit{Leap-frog} and \textit{RK4-2} however. 
 Still using the setup in \fromfig{mag_lf_render}, each $dt$ configuration was simulated 10 times, calculating average and standard deviations afterwards.
 Results from these tests can be observed in \fromfig{mag_lf_rk2_comparison}.
-
-\begin{figure}[H]
+\begin{figure}
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
     \centering
@@ -253,14 +243,12 @@ Results from these tests can be observed in \fromfig{mag_lf_rk2_comparison}.
     \caption{Comparing Leap-frog, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
     \label{fig:mag_lf_rk2_comparison}
 \end{figure}
-
 The data from these tests can be found in \fromtabs{lf_mag_table}{rk2_mag_table} of \fromapp{data_graph}.
 To investigate the data further, one can define a performance measurement, $F$.
 \begin{eqnarray*}
     F &\propto& 1/T \\
     F &\propto& 1/\Delta E 
 \end{eqnarray*}
-
 When $dt=10^-5$ns was taken as reference point due to providing a good balance of accuracy and computational intensity,
 \begin{eqnarray} \label{eq:f_lf_rk_mag_1}
     \Delta E_{LF} &=& 110 \times 10^{-5} MeV \nonumber\\
@@ -271,7 +259,6 @@ When $dt=10^-5$ns was taken as reference point due to providing a good balance o
     \Delta E_{RK} \times T_{RK} &=& 137 \times 10^{-4} \pm 2\times 10^{-4}  MeV s \nonumber\\ %0.001
     F_{LF}/F_{RK} &=& \frac{\Delta E_{RK} \times T_{RK} }{\Delta E_{LF} \times T_{LF}^1} = 1.32 \pm 0.01
 \end{eqnarray}
-
 Also, observing from the data,
 \begin{eqnarray} \label{eq:f_lf_rk_mag_2}
     \Delta E_{LF} (dt=3 \times 10^{-5}) \approx \Delta E_{RK} (dt=5 \times 10^{-5}) &\approx& 32.5 \times 10^{-4} MeV \nonumber\\
@@ -283,7 +270,6 @@ Uncertainty of \fromeq{f_lf_rk_mag_2} was taken high due to the approximation. A
 \begin{equation}
     F_{LF}/F_{RK} = 1.36 \pm 0.05
 \end{equation}
-
 Therefore, \textit{Leap-frog} was found to be the better choice as it provided with $1.36 \pm 0.05$ times accuracy in \eB interactions at a given time with respect to \textit{RK4}. However,
 \textit{RK4} was promising in situations where decreasing the stepsize, $dt$, is not viable. Therefore both were integrated into \textit{Rhodotron Simulation} for the user to decide.
 \textit{RK4-2} renders from these test can be found in \fromfig{mag_rk_render} of \fromapp{example_simulation_runs}.
@@ -293,7 +279,6 @@ After the accuracy concerns regarding the \eB interaction were raised, it was de
 
 As test setups, two simulation confgurations were made. They aimed to test the accuracy of acceleration of a beam in parallel and perpendicular static uniform electric fields.
 Both configurations had an \egun located at $(-0.753, 0, 0)$m, directed at $(1, 0, 0)$ firing electrons with the kinetic energy of $1$MeV. 
-
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.47\textwidth}
@@ -308,7 +293,6 @@ Both configurations had an \egun located at $(-0.753, 0, 0)$m, directed at $(1, 
     \end{subfigure}
     \caption{Illustration of test setups.}
 \end{figure}
-
 In the first test, the beam would be injected into a static uniform electric field \\
 $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.753$, $\vecthreeBF{E}=0$ elsewhere.
 
@@ -321,7 +305,6 @@ Considering the $\vecthreeBF{E}$ is parallel to the beam path, potential differe
     \Delta E^1 &=& 4 MeV \\
     E_{exitTH}^1 &=& 5 MeV
 \end{eqnarray}
-
 In the second test on the other hand, the beam would be injected into a different static uniform electric field, \\
 $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.753$, $\vecthreeBF{E}=0$ elsewhere.
 \begin{eqnarray}
@@ -332,10 +315,8 @@ $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.75
     \Delta E^2   &=& 4 MeV \\
     E_{exitTH}^2 &=& 5 MeV
 \end{eqnarray}
-
 Therefore, in the both tests, the beam was expected to exit $\vecthreeBF{E}$ with $E_{exitTH} = 5$ MeV. 
 To also measure the variance in simulation completion times, $T_{sim}$, set of $10$ runs were completed at the configuration for each $dt$ value.
-
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.8\textwidth}
@@ -384,7 +365,6 @@ To also measure the variance in simulation completion times, $T_{sim}$, set of $
     \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\perp}$=4MV, $t_{end}=6$ns}
     \label{fig:lf_rk2_perp_stat_E_comparison}
 \end{figure}
-
 Taking the $dt=10^{-5}$ns for the reference point as before, the relative performance can be calculated.
 \begin{eqnarray*}
     \begin{aligned}
@@ -413,10 +393,8 @@ Taking the $dt=10^{-5}$ns for the reference point as before, the relative perfor
     \Delta E_{RK}^2 \times T_{RK}^2 &=& 320 \times 10^{-5} 4 \pm 10^{-5} MeV s \nonumber\\ %0.011
     F_{LF}^2/F_{RK}^2 &=& \frac{\Delta E_{RK}^2 \times T_{RK}^2 }{\Delta E_{LF}^2 \times T_{LF}^2} = 2.0  \pm 0.03
 \end{eqnarray}
-
 \textit{Leap-frog} provides $2.4$ times and $2.0$ times less overacceleration per simulation time than \textit{RK4} in parallel and perpendicular electric fields respectably.
 This results can be tested further with obsering from the data (see \fromtabf{lf_statE_table}{rk2_statE_table}{lf_statE90_table}{rk2_statE90_table} of \fromapp{data_graph}),
-
 \begin{eqnarray} \label{eq:f_lf_rk_3}
     \Delta E_{LF}^1 (dt=2 \times 10^{-5}) = \Delta E_{RK}^1 (dt=3 \times 10^{-5}) &=& 45 \times 10^{-6} MeV \nonumber\\
     T_{LF}^1(dt=2 \times 10^{-5})  &=& 6.23 \pm 0.02 s \nonumber\\ %0.0032
@@ -429,14 +407,11 @@ This results can be tested further with obsering from the data (see \fromtabf{lf
     T_{RK}^2(dt=5 \times 10^{-5})  &=& 7.00 \nonumber\\ %0.0071 -> 0,0126
     F_{LF}^2/F_{RK}^2 = \frac{T_{RK}^2(dt=5 \times 10^{-5})}{T_{LF}^2(dt=3 \times 10^{-5})} &=& 1.9 \pm 0.1
 \end{eqnarray}
-
 The last uncertainty was taken high due to the approximation of $467 \approx 471$. After combining \fromeqsf{f_lf_rk_1}{f_lf_rk_2}{f_lf_rk_3}{f_lf_rk_4},
 the performance of \textit{Leap-frog} relative to \textit{RK4} in \eE interaction can be calculated as in \fromeq{lf_rk_eE_relative_performance}.
-
 \begin{equation}\label{eq:lf_rk_eE_relative_performance}
     F_{LF}/F_{RK} = 2.11 \pm 0.03
 \end{equation}
-
 Therefore, it can be concluded that \textit{Leap-frog} outperforms \textit{RK4} with the relative performance of $2.11 \pm 0.03$ in \eE interactions with static uniform $\vecthreeBF{E}$ field. 
 
 \subsection{Multithreading}
@@ -444,14 +419,12 @@ As already mentioned before, multithreading implementation efforts were ongoing 
 There have been a number of different approaches for implementation. 
 First implemenation was done when the \textit{Rhodotron Simulation} was only capable of 1D simulations.
 After the sizable refactoring done for 3D capabilities, this implementation was obselete. 
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{../../../figures/illustrations/multh_arc.png}
     \caption{An Illustration of the multithreading architecture.}
     \label{fig:multh_illustration}
 \end{figure}
-
 For the current version, a main thread that spawns and manages several other worker threads would be used as can be seen in \fromfig{multh_illustration}.
 The UI-Console thread would handle incoming and outgoing communication, notifying the user about the status of simulation 
 (see \fromfig{console_output_running} in \fromapp{example_simulation_runs} for example console notification, \fromfig{ui_thread} in \fromapp{intermediate_codes} for implemenation)
@@ -465,7 +438,6 @@ There were four competing architecture for these worker threads,
     \item Assign random electrons to each thread and calculate \eEM with global time
     \item Assign random electrons to each thread and calculate \eEM with local thread time
 \end{enumerate}
-
 \textbf{Architecture 1} would require constant waiting in worker threads to get mutexes of $\vecthreeBF{E}$ field, especially in \textit{RK4}.
 
 \textbf{Architecture 2} was performing well in configurations with a large number of bunches, but was not increasing performance in lower bunch count configurations as expected.

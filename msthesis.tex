@@ -61,13 +61,51 @@
 
 \numberwithin{equation}{chapter}
 
+
+% COVER PAGE
+\title{DESING AND SIMULATION SOFTWARE FOR RHODOTRON TYPE ELECTRON ACCELERATORS}
+\turkcebaslik{RHODOTRON TİPİ ELEKTRON HIZLANDIRICILARI İÇİN TASARIM VE SİMÜLASYON YAZILIMI}
+\degree{B.S., Physics, Boğaziçi University, 2020}
+\author{Muhammet Furkan Er}
+\program{M.S. Physics}
+\subyear{2023}
+
+% APPROVED BY PAGE
+\supervisor{Prof. Veysi Erkcan Özcan}
+\cosuperi{Gökhan Ünel, Ph.D.}
+%\cosuperii{Title and Name of Cosupervisor II}
+\examineri{Prof. Erhan Gülmez}
+\examinerii{Bora Işıldak , Ph.D.}
+%\examineriv{}
+%\examinerv{}
+\dateofapproval{DD.MM.YYYY}
+
 % BEGIN OF DOCS
 \begin{document}
 \pagenumbering{roman}
+\makemstitle % M.S. thesis
+\makeapprovalpage
 
+% ACK PAGE
+\begin{acknowledgements}
+Acknowledgements come here...
+\end{acknowledgements}
+
+% ABS PAGE
+\begin{abstract}
+One page abstract will come here.  
+\end{abstract}
+
+% OZET PAGE
+\begin{ozet}
+Bir sayfa uzunluğunda özet gelecektir.
+\end{ozet}
 
 % CONTENTS AND LIST OF FIG AND TABLE PAGES
 \tableofcontents
+\listoffigures
+\listoftables
+
 
 \pagenumbering{arabic}
 
@@ -114,13 +152,6 @@
 \newcommand{\fromtabs}[2]{\textit{Tables \ref{tab:#1} and \ref{tab:#2}}}
 \newcommand{\fromtabf}[4]{\textit{Tables \ref{tab:#1}, \ref{tab:#2}, \ref{tab:#3} and \ref{tab:#4}}}
 
-
-% START OF intro.tex
-
-\chapter{INTRODUCTION}
-
-
-\newpage
 
 % START OF THEORY
 
@@ -194,11 +225,9 @@ We finally have two seperate equations which are in similar form with \fromeq{ne
 
 \subsection{Lorentz Force} \label{sec:lorentz-force}
 Force acting on a charged particle moving in electromagnetic fields is called Lorentz Force and is given by the formula
-\newline
 \begin{equation} \label{eq:lf}
     \frac{\partial \vecthree{p}}{\partial t} = \vecthree{F}_L=q(\vecthree{E}+ \vecthree{v} \times \vecthree{B})
 \end{equation}
-\newline
 where the $q$ is the charge and $\vecthree{v}$ is the velocity of the particle. 
 
 \subsection{Relativistic Lorentz Force}
@@ -239,7 +268,6 @@ Where $ \partial \tau = \partial t / \gamma $,
     \end{aligned}
 \end{equation}
 Where $W$ is the energy of the particle and $\gamma$ is the lorentz factor mentioned in the previous section.
-\newline
 
 For $ \mu = 0 $, we have the time component of the equation;
 \begin{eqnarray}
@@ -316,15 +344,12 @@ Special relativity governs the increase in mass and energy of the particles as t
 Particle accelerators are essential tools for scientific research. They enable scientists to probe the fundamental constituents of matter, study particle interactions, and explore the laws of physics. 
 Accelerators have been instrumental in discovering and characterizing fundamental particles, such as quarks, leptons, and the Higgs boson. 
 They also facilitate the production of high-intensity beams for applications in material science, radiotherapy, and industrial processes like particle irradiation and sterilization.
-
 % TODO : ADD CIRCULAR AND LINEAR ACCELERATOR PICTURES HERE
-
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{./figures/to_be_added.png}
     \caption{A linear proton accelerator in KAHVELab}
 \end{figure}
-
 \subsection{Key Concepts}
 
 \subsubsection{Resonance Frequency}
@@ -389,7 +414,6 @@ They utilize the Ampere's Law to exert a magnetic field that interacts with the 
 
 According to the Lorentz Force Law ( $\textit{Section \ref{sec:lorentz-force}}$ ), when a charged particle moves through a magnetic field, it experiences a force perpendicular to both its velocity 
 vector and the magnetic field direction. This force causes the particle's trajectory to curve, resulting in a bending effect.
-
 % TODO : ADD STEERER MAGNET PICTURE HERE
 \begin{figure}[H]
     \centering
@@ -420,7 +444,6 @@ In the table below, optimized characteristics of a rhodotron cavity can be obser
     \caption{Optimized characteristics of a rhodotron cavity \cite{rhodo_pottier}}
     \label{fig:pottier_table1}
 \end{figure}
-
 Here, $p$ is the integer multiplier in the equation ($l=p\lambda$) mentioned above, $R_1$ is the radius of the inner cylinder, $R_2$ is the radius of the outer cylinder, 
 $Z_{se}$ is effective shunt empedance, $Z_{sp}$ is practical shunt empedance which was taken to be $0.85 Z_{se}$.
 
@@ -429,7 +452,6 @@ Energy gain after each pass can be calculated by the following formula \cite{rho
     \label{eq:W_gain_each_pass_pottier}
     W_1 = Z_{sp}^{1/2} P^{1/2} cos \phi  
 \end{equation}
-
 Where $P$ is the dissipated power, $\phi$ is the phase lag, taken as $15^\circ$ \cite{rhodo_pottier}. 
 
 Considering $Z_{sp} \propto \lambda^{1/2}$, \,\,\, $W_1 \propto \lambda^{1/4}$, \,\,\,   $V \propto \lambda^3$, where $V$ is the volume of the cavity, implementing the $p=1$ design in \fromfig{pottier_table1} is much more space efficient.
@@ -439,7 +461,6 @@ Considering $Z_{sp} \propto \lambda^{1/2}$, \,\,\, $W_1 \propto \lambda^{1/4}$, 
     \caption{Energy of a synchronous electron after each pass for both $p=1$ and $p=2$ \cite{rhodo_pottier}}
     \label{fig:pottier_table2}
 \end{figure}
-
 Total energy gain after n passes $W$ can then be found by \fromeq{W_gain_each_pass_pottier}, taking $\phi = 15^\circ$, $p=1$, i.e $R_2 = 0.27 \lambda$.
 \begin{equation}
     \label{eq:W_total_gain_pottier}
@@ -468,21 +489,18 @@ This process is explained further in the following figures where $T$ is the peri
     \caption{$[0, \frac{T}{4}]$ time frame of a rhodotron}
     \label{fig:rhod_cycle_1}
 \end{figure}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./figures/illustrations/rhod2.pdf}
     \caption{$[\frac{T}{4}, \frac{T}{2}]$ time frame of a rhodotron}
     \label{fig:rhod_cycle_2}
 \end{figure}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./figures/illustrations/rhod3.pdf}
     \caption{$[\frac{T}{2}, \frac{3T}{4}]$ time frame of a rhodotron}
     \label{fig:rhod_cycle_3}
 \end{figure}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./figures/illustrations/rhod4.pdf}
@@ -501,7 +519,6 @@ This process is explained further in the following figures where $T$ is the peri
 
 \subsection{Leapfrog} \label{sec:leapfrog}
 The Leapfrog method is a numerical method commonly used to solve ordinary differential equations (ODEs) that involve second-order time derivatives. Such an ODE is shown below:
-
 \begin{equation}
     \ddot{x} = \derivS{x}{t} = f(x) \label{eq:second-order-ODE}
 \end{equation}
@@ -514,29 +531,23 @@ The idea is straight forward; in the time interval $\Delta t$,
     x(t_0 + \Delta t) &=& x(t_0) + v(t_0)\Delta t + a(t_0)\frac{\Delta t^2}{2} \label{eq:leapfrog_sync_x}\\
     v(t_0 + \Delta t) &=& v(t_0) + \{ a(t_0) + a(t_0 + \Delta t)\}\frac{\Delta t}{2}  \label{eq:leapfrog_sync_v}
 \end{eqnarray}
-
 For more stability, this version can be rearranged to what is called 'kick-drift-kick' form,
 \begin{eqnarray} \label{eq:leapfrog}
     v(t_0 + \Delta t/2) &=& v(t_0) +  a(t_0)\frac{\Delta t}{2} \nonumber \\
     x(t_0 + \Delta t) &=& x(t_0) + v(t_0 + \Delta t/2)\Delta t \\
     v(t_0 + \Delta t) &=& v(t_0 + \Delta t/2) + a(t_0 + \Delta t)\frac{\Delta t}{2}  \nonumber
 \end{eqnarray}
-
 This version provides more time resolution to our calculation; however, it increases the number of calculations needed by about $50\%$.
 
 \subsection{Runge Kutta} \label{sec:rungekutta}
 
 The Runge-Kutta methods, named after the German mathematicians Carl Runge and Martin Wilhelm Kutta, family of numerical methods
 used to solve ordinary differential equations (ODEs) that are in the following form
-
 \begin{equation} \label{eq:first-order-ODE}
     \parDeriv{y}{x} = f(x, y)
 \end{equation}
-
-
 The basic idea behind the Runge-Kutta method is to approximate the solution of an ODE by taking small steps and using a weighted average 
 of function evaluations at different points within each step.
-
 \begin{equation} \label{eq:general-rk}
     \begin{aligned}
         y_{n+1} = y_n + \delta x \sum_{i=1}^{m} b_i k_i
@@ -550,10 +561,8 @@ where
 \begin{eqnarray} \label{eq:general-rk-coef}
     k_i = f(x_n + c_i \delta x, y_n + \delta x \sum_{j = 1}^{i - 1}a_{ij}k_j)
 \end{eqnarray}
-
 These \fromeqs{general-rk}{general-rk-coef} define the family of methods. To specify a perticular method, order $m$, coefficients $a_{ij}$, $b_i$ and $c_i$ should be provided.
 The coefficients of any Runge-Kutta method can be visualized by a tableau called $\textit{Butcher Tableau}$.
-
 \begin{figure}[h!]
     \[ 
     \begin{array} 
@@ -570,7 +579,6 @@ The coefficients of any Runge-Kutta method can be visualized by a tableau called
     \caption{Butcher Tableau}
     \label{fig:Butcher}
 \end{figure}
-
 The simplest Runge-Kutta method is the \textit{Euler's method}. Its \textit{Butcher tableau} is as follows.
 \[ 
     \begin{array} 
@@ -580,13 +588,9 @@ The simplest Runge-Kutta method is the \textit{Euler's method}. Its \textit{Butc
         & 1
     \end{array}
 \]
-
-
 The most commonly used version of the Runge-Kutta method is the fourth-order Runge-Kutta method, also known as RK4. 
 The RK4 method involves four function evaluations per step and has an error term that is proportional to the step size raised to the fifth power.
 Two of the most used \textit{Butcher tableaus} for \textit{RK4} given below.
-
-
 \begin{figure}[h!]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -618,7 +622,6 @@ Two of the most used \textit{Butcher tableaus} for \textit{RK4} given below.
     \caption{Butcher Tableau for RK4}
     \label{fig:Butcher-RK4}
 \end{figure}
-
 The second tableau in \fromfig{Butcher-RK4} is called the \textit{"3/8 rule"}. Its main advantage is that its error coefficients are smaller than the other. But it costs more floating point operations per step. 
 Resulting in slower calculations. 
 
@@ -640,9 +643,9 @@ Simulation software provides a virtual environment where users can define the pa
 variables, and rules of the system being simulated. The software then uses mathematical and physical models, 
 algorithms, and computational techniques to simulate the behavior of the system over time.
 
-\subsection{Basic Consepts in Programming}
+\section{Basic Consepts in Programming}
 
-\subsubsection{Clock Cycle}
+\subsection{Clock Cycle}
 
 In programming, a clock cycle refers to a fundamental unit of time measurement used in computer systems. 
 It represents the basic rhythm or timing mechanism of a computer's central processing unit (CPU) and is typically measured in terms of the CPU's clock speed, expressed in hertz (Hz).
@@ -654,16 +657,14 @@ Each clock cycle is associated with a specific duration, which is determined by 
 The concept of clock cycles is often used when considering the performance and efficiency of algorithms and code. 
 Since the execution time of instructions is influenced by the number of clock cycles required, minimizing the number of clock cycles needed for a program or algorithm can lead to faster and more efficient code execution.
 Table below shows the amount of clock cycles required for some mathematical calculations in various processors.
-
 \begin{figure}[h!]
     \centering
     \includegraphics[width=.9\textwidth]{./figures/cpu_instruction_speed.png}
     \caption{Amount of clock cycle for mathematical operations in various processors. \cite{cpu_instruction_speed}}
 \end{figure}
-
 Note that \textit{division} is by far the most time consuming basic mathematical operation between addition, subtraction and multiplication.
 
-\subsubsection{Concurrency}
+\subsection{Concurrency}
 
 Concurrency in programming refers to the ability of a program to execute multiple tasks or processes simultaneously. It allows different parts of a program to make progress independently, potentially improving performance, responsiveness, and resource utilization.
 
@@ -677,7 +678,7 @@ Threads utilize \textit{mutexes}, short for "mutual exclusion,"
 to synchronize and manage access to shared resources 
 in a multi-threaded or multi-process environment. 
 
-\subsubsection{Object Oriented Programming}
+\subsection{Object Oriented Programming}
 
 Object-Oriented Programming (OOP) is a programming paradigm that revolves around the concept of objects. 
 Definition called class serves as a blueprint that defines the structure and behavior of objects. 
@@ -753,9 +754,7 @@ Using $f_{RF}=107.5$ MHz, $f_{RF}=180$;
         h = \frac{\lambda}{2} = 0.833 m 
     \end{aligned}
 \end{eqnarray}
-
 In the following figures, \textit{Poisson Superfish} and \textit{CST} simulations of two cavities defined by \fromeq{107_180_MHZ_cavity_design_parameters} can be observed.
-
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -804,13 +803,8 @@ In the following figures, \textit{Poisson Superfish} and \textit{CST} simulation
     \caption{CST Electric field solutions for \fromeq{107_180_MHZ_cavity_design_parameters}}
     \label{fig:cst_simple_cavity_designs}
 \end{figure}
-
-
-
-
 As mentioned by POTTIER, truncated cone terminations in inner cylinder can improve the shunt empedance $Z$ of the cavity \cite{rhodo_pottier}. 
 Below, \textit{Poission superfish} results of such a modification with matching height increase to keep resonant frequency can be found.
-
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -890,8 +884,6 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \caption{Poisson Superfish calculations with \textit{truncated} cavities}
     \label{fig:180_cavity_shunt_diff}
 \end{figure}
-    
-
 One can observe the shunt impedance gain between truncated and unmodified cavities in \fromfigs{107_cavity_shunt_diff}{180_cavity_shunt_diff};
 \begin{equation*}
     \begin{aligned}
@@ -904,8 +896,6 @@ One can observe the shunt impedance gain between truncated and unmodified caviti
 \end{equation*}
 
 
-
-
 \newpage
 
 
@@ -914,7 +904,6 @@ One can observe the shunt impedance gain between truncated and unmodified caviti
 Magnet design in rhodotron type accelerators depend heavily on the design of the cavities.
 Because the limiting factors usually are frequency and total volume of the accelerator, magnet design parameters are considered after cavity design has been completed.
 Considering the nature of coaxial cavity, simplest path for beams inside magnets is major segment of a circle, which was used as the reference for following discussions.
-
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
@@ -933,7 +922,6 @@ Considering the nature of coaxial cavity, simplest path for beams inside magnets
     \caption{From "Design and Simulation Tools for the \\ High-Intensity Industrial Rhodotron Electron Accelerator," \\by W.Kleeven, M.Abs, J.Brison, E.Forton, J.Hubert and J.Van de Walle}
     \label{fig:magnet_design_illustrations}
 \end{figure}
-
 In rhodotron accelerators, magnets are used for not only guiding the electron beam to desired path, but also for syncronizing them with the RF field in the cavity. 
 This syncronization, also called phase stability, is the fundamental constraint of magnet design. 
 Time spent outside of the cavity should be precisely tuned to maximize acceleration in the succeeding pass. 
@@ -962,7 +950,6 @@ Since $n>1$ would require unnecessarily long and expensive beam guide and magnet
     \caption{Trejectory of a particle in single pass}
     \label{fig:magnet_design}
 \end{figure}
-
 From \fromfig{magnet_design}, where $\gamma$ is half the angle between trajectories of successive passes, $\rho$ is the radius of the circular path inside magnet, $L$ is the length of the magnet guide, $d$ is the thickness of the cavity wall;
 \begin{eqnarray}
     L_{in} &=& 2R_2 \nonumber\\
@@ -970,10 +957,8 @@ From \fromfig{magnet_design}, where $\gamma$ is half the angle between trajector
     L_{pass} &=& L_{in} + L_{out}  \nonumber \\
     \lambda &=& 2R_2 + 2d + 2L + (\pi + 2\gamma)\rho \label{eq:magnet_lambda_constraint}
 \end{eqnarray}
-
 After the cavity design is complete, only $L$, $\gamma$ and $\rho$ remain, which are the design parameters of magnets.
 Observing the \fromfig{magnet_design} and using \fromeq{magnet_lambda_constraint},
-
 \begin{eqnarray}
     tan(\gamma) &=& \frac{\rho}{R_2 + d + L} \nonumber \\
     \rho &=&  tan(\gamma) (R_2 + d + L) \nonumber\\
@@ -982,7 +967,6 @@ Observing the \fromfig{magnet_design} and using \fromeq{magnet_lambda_constraint
     \rho &=& \frac{\lambda}{\pi + 2\gamma + \frac{2}{tan(\gamma)}} \label{eq:magnet_rho_constraint} \\
     L + d &=& \frac{\rho}{tan(\gamma)} - R_2 \label{eq:magnet_L_constraint}
 \end{eqnarray}
-
 \textit{Equations \ref{eq:magnet_rho_constraint} and \ref{eq:magnet_L_constraint}} define 2 constraints. As already discussed, it has been assumed that cavity design is set (\textit{i.e} $R_2$, $\lambda$, $d$ are already defined).
 Therefore only the magnet design parameters $\rho$, $\gamma$ and $L$ are left. Together with the constraints, one free variable defines the whole magnet design. 
 Considering the importance of $\gamma$ for maximum number of possible passes, it will be used as the free magnet design variable in the further discussions.
@@ -1009,12 +993,10 @@ Another approach for designing a magnet would be to find a new constraint, $K$ f
     L_{pass} &=& K \\
     L_{in} + L_{out} &=& K
 \end{eqnarray*}
-
 Since $L_{in}$ is set previously from cavity design, we can remove it from our equation and continue with
 \begin{equation} \label{eq:mag_sweep_constraint}
     L_{out} = K
 \end{equation}
-
 To start, an optimization criteria for the following pass such as
 \begin{itemize}
     \item Ensure the phase stability of the synchronous electron
@@ -1039,7 +1021,6 @@ But the calculation times are too slow to be useful in this particular problem. 
 
 A rhodotron with operation frequency of $107.5$ MHz was decided to be built at KAHVELab. 
 After considering the earlier simulations mentioned in \fromsecs{cavity_design}{magnet_design}, an initial design was created.
-
 \begin{figure}[H]
     \centering
     \captionsetup{justification=centering}
@@ -1066,7 +1047,6 @@ After considering the earlier simulations mentioned in \fromsecs{cavity_design}{
     \label{fig:initial_design_cross_section}
 \end{figure}
 The magnets used in this design is the simplest in terms of design parameters. It consists of an iron casing encapsulating the shape of desired magnetic field, which are created by two coils inside.
-
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
@@ -1091,11 +1071,9 @@ The magnets used in this design is the simplest in terms of design parameters. I
     \caption{Magnetic field in acceleration plate of initial magnet design.}
     \label{fig:initial_magnet_design_B}
 \end{figure}
-
 \fromfig{initial_magnet_design_B} shows that this design provides relatively uniform magnetic field inside, although magnetic field gradient in the openings can be improved. 
 
 After adding two more magnets and using $\gamma=15^\circ$, the following second prototype design was created
-
 \begin{figure}[H]
     \centering
     \captionsetup{justification=centering}
@@ -1103,10 +1081,8 @@ After adding two more magnets and using $\gamma=15^\circ$, the following second 
     \caption{Initial cavity with three magnets as shown in \fromfig{initial_magnet_design} \\ $\gamma=15^\circ$}
     \label{fig:initial_three_magnet_design}
 \end{figure}
-
 These designs, together with $40$ keV $e^-$ gun injecting with phase lag of $15^\circ$ for $1$ ns, was simulated at RF power of $12$ kW using \textit{CST Studio Particle Module PIC Solver}.
 Results of these simulations can be found in \fromfig{initial_designs_PIC_phase_space_monitor}.
-
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
@@ -1125,7 +1101,6 @@ Results of these simulations can be found in \fromfig{initial_designs_PIC_phase_
     \caption{$|r|$ vs $Energy$ simulation of initial design.}
     \label{fig:initial_designs_PIC_phase_space_monitor}
 \end{figure}
-
 The behavior of the beam in the \fromfig{initial_designs_PIC_phase_space_monitor} after the first pass indicates that phase stability is not maintained. 
 When the simulation results are examined further, it was observed that the beam started the second pass at $t \approx 12$ ns after the injection. 
 Considering the starting phase lag $\phi_{lag}=15^\circ$, this would mean phase lag of the second pass was $\phi_{lag2}=120^\circ$.
@@ -1186,8 +1161,6 @@ Improved designs can be seen in the figures below.
     \caption{Magnetic field in acceleration plate of improved magnet design.}
     \label{fig:improved_magnet_design_B}
 \end{figure}
-
-
 From \fromfigs{initial_magnet_design_B}{improved_magnet_design_B}, it can be observed that improved magnet design reduces magnetic field leak in enter and exit openings considerably. 
 This reduction helps containing the spread of entering beam, decreasing the amount of focusing needed further into trajectory. 
 
@@ -1218,7 +1191,6 @@ Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the 
         \item Calculate new $E_t$
     \end{enumerate}
 \end{itemize}
-
 The implemenation of this logic can be observed in \fromfig{POC_core_logic}. 
 \begin{figure}[H]
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
@@ -1240,7 +1212,6 @@ The implemenation of this logic can be observed in \fromfig{POC_core_logic}.
     \caption{Core logic loop of the POC}
     \label{fig:POC_core_logic}
 \end{figure}
-
 After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} with $\phi_{lag}=15^\circ$ for one pass, the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} are compared.
 % 40 kW total power
 % Emax = 0.96 in old, 2.08 in new version
@@ -1255,8 +1226,6 @@ After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_
     \end{eqnarray}
     \caption*{$P=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz}
 \end{figure}
-
-
 As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced very similar results. However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
 This inconsistency between $E_{Pottier}$ and $E_{CST}$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
 Since using a single software would have made the process error prone.
@@ -1288,17 +1257,14 @@ They were modeled as $N$ electrons fired from an \e gun at even time intervals. 
 Addition of bunches would immediately proven useful when finding optimal phase lag for bunch entry.
 $\phi_{lag}$ for a bunch was defined as the RF phase when the first \e of the bunch has entered the cavity and it defines the starting time of the current pass.
 To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimization}, relevant bunch characteristics are defined as follows:
-
 \begin{itemize}
     \item $\mu E$: Average energy
     \item $E_{rms}$: Root mean square of energy
     \item $R_{rms}$: Root mean square of \e positions
 \end{itemize}
-
 Optimal $\phi_{lag}$ would produce maximum $\mu E$ while minimizing $E_{rms}$ \& $R_{rms}$. For the first pass, 
 $E_{rms}$ and $R_{rms}$ would be vaguely dependent of each other; therefore, initial implementation of $\phi_{lag}$ sweep was based on minimizing $E_{rms}$ during simulation (\textit{see \fromfig{phlag_opt}}). 
 For $\mu E$ considerations, data from the software would be analyzed either manually or by using external tools such as \textit{ROOT framework}. 
-
 \begin{figure}[H]
     \centering
     \captionsetup{justification=centering}
@@ -1323,7 +1289,6 @@ For $\mu E$ considerations, data from the software would be analyzed either manu
     \caption{$\phi_{lag}$ Optimization For Initial Bunch Design}
     \label{fig:phlag_opt}
 \end{figure}
-
 Since $\phi_{lag}$ is relatively easy to change after production, another version of \fromfig{phlag_opt} that was modified for given magnet design parameters was also implemented (\textit{see \fromfig{phlag_opt_n_pass} in \fromapp{intermediate_codes}}). 
 This version can be useful for optimizing $\phi_{lag}$ in case of production issues in magnets. 
 
@@ -1368,14 +1333,12 @@ Interaction logic for \eE and \eB in 3D can be found in \fromfig{3D_e_EM_interac
     \caption{\eEM  interaction logic from \fromeq{acc_of_E_and_B}}
     \label{fig:3D_e_EM_interaction_first}
 \end{figure}
-
 Where * and \% are, dot-product and cross-product respectably. (See \fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes})
 
 Simulating in 3D had one other benefit; it was now possible to visualize the results by rendering the interaction data. 
 For this purpose, \textit{gnuplot} was integrated into \textit{Rhodotron Simulation} to produce 2D visualization of acceleration plane. 
 Rendered results could be stored as \textit{gif} animations. 
 Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
-
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
@@ -1398,9 +1361,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
 An issue regarding the \eB interaction became apparent when energy gain during these interactions was observed.
 A setup simulation was implemented in which a bunch of 100\e at $1$MeV was fired into a uniform magnetic field of $0.1$T located in $x>0.05$m.
 Initial results at $dt=0.01$ns proved the suspicion of \eB interaction being broken. However, the energy gain would decrease tremendously as $dt$ decreased.
-
-
-\begin{figure}[H]
+\begin{figure}
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
     \centering
@@ -1417,7 +1378,6 @@ Initial results at $dt=0.01$ns proved the suspicion of \eB interaction being bro
     \caption{Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T}
     \label{fig:mag_lf_render}
 \end{figure}
-
 Decreasing $dt$ would be the best way to increase accuracy of the results; however, this is not sustainable due to computing power limitations. 
 Until this point, \textit{Rhodotron Simulation} have been using \fromsec{leapfrog} for \eEM interactions. 
 To test newer approaches, two additional version of  \eEM interaction that are using \fromsec{rungekutta} were added.
@@ -1437,8 +1397,7 @@ These three methods were then tested in the same setup as \fromfig{mag_lf_render
 More rigerous testing was done with \textit{Leap-frog} and \textit{RK4-2} however. 
 Still using the setup in \fromfig{mag_lf_render}, each $dt$ configuration was simulated 10 times, calculating average and standard deviations afterwards.
 Results from these tests can be observed in \fromfig{mag_lf_rk2_comparison}.
-
-\begin{figure}[H]
+\begin{figure}
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
     \centering
@@ -1456,14 +1415,12 @@ Results from these tests can be observed in \fromfig{mag_lf_rk2_comparison}.
     \caption{Comparing Leap-frog, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
     \label{fig:mag_lf_rk2_comparison}
 \end{figure}
-
 The data from these tests can be found in \fromtabs{lf_mag_table}{rk2_mag_table} of \fromapp{data_graph}.
 To investigate the data further, one can define a performance measurement, $F$.
 \begin{eqnarray*}
     F &\propto& 1/T \\
     F &\propto& 1/\Delta E 
 \end{eqnarray*}
-
 When $dt=10^-5$ns was taken as reference point due to providing a good balance of accuracy and computational intensity,
 \begin{eqnarray} \label{eq:f_lf_rk_mag_1}
     \Delta E_{LF} &=& 110 \times 10^{-5} MeV \nonumber\\
@@ -1474,7 +1431,6 @@ When $dt=10^-5$ns was taken as reference point due to providing a good balance o
     \Delta E_{RK} \times T_{RK} &=& 137 \times 10^{-4} \pm 2\times 10^{-4}  MeV s \nonumber\\ %0.001
     F_{LF}/F_{RK} &=& \frac{\Delta E_{RK} \times T_{RK} }{\Delta E_{LF} \times T_{LF}^1} = 1.32 \pm 0.01
 \end{eqnarray}
-
 Also, observing from the data,
 \begin{eqnarray} \label{eq:f_lf_rk_mag_2}
     \Delta E_{LF} (dt=3 \times 10^{-5}) \approx \Delta E_{RK} (dt=5 \times 10^{-5}) &\approx& 32.5 \times 10^{-4} MeV \nonumber\\
@@ -1486,7 +1442,6 @@ Uncertainty of \fromeq{f_lf_rk_mag_2} was taken high due to the approximation. A
 \begin{equation}
     F_{LF}/F_{RK} = 1.36 \pm 0.05
 \end{equation}
-
 Therefore, \textit{Leap-frog} was found to be the better choice as it provided with $1.36 \pm 0.05$ times accuracy in \eB interactions at a given time with respect to \textit{RK4}. However,
 \textit{RK4} was promising in situations where decreasing the stepsize, $dt$, is not viable. Therefore both were integrated into \textit{Rhodotron Simulation} for the user to decide.
 \textit{RK4-2} renders from these test can be found in \fromfig{mag_rk_render} of \fromapp{example_simulation_runs}.
@@ -1496,7 +1451,6 @@ After the accuracy concerns regarding the \eB interaction were raised, it was de
 
 As test setups, two simulation confgurations were made. They aimed to test the accuracy of acceleration of a beam in parallel and perpendicular static uniform electric fields.
 Both configurations had an \egun located at $(-0.753, 0, 0)$m, directed at $(1, 0, 0)$ firing electrons with the kinetic energy of $1$MeV. 
-
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.47\textwidth}
@@ -1511,7 +1465,6 @@ Both configurations had an \egun located at $(-0.753, 0, 0)$m, directed at $(1, 
     \end{subfigure}
     \caption{Illustration of test setups.}
 \end{figure}
-
 In the first test, the beam would be injected into a static uniform electric field \\
 $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.753$, $\vecthreeBF{E}=0$ elsewhere.
 
@@ -1524,7 +1477,6 @@ Considering the $\vecthreeBF{E}$ is parallel to the beam path, potential differe
     \Delta E^1 &=& 4 MeV \\
     E_{exitTH}^1 &=& 5 MeV
 \end{eqnarray}
-
 In the second test on the other hand, the beam would be injected into a different static uniform electric field, \\
 $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.753$, $\vecthreeBF{E}=0$ elsewhere.
 \begin{eqnarray}
@@ -1535,10 +1487,8 @@ $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.75
     \Delta E^2   &=& 4 MeV \\
     E_{exitTH}^2 &=& 5 MeV
 \end{eqnarray}
-
 Therefore, in the both tests, the beam was expected to exit $\vecthreeBF{E}$ with $E_{exitTH} = 5$ MeV. 
 To also measure the variance in simulation completion times, $T_{sim}$, set of $10$ runs were completed at the configuration for each $dt$ value.
-
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.8\textwidth}
@@ -1587,7 +1537,6 @@ To also measure the variance in simulation completion times, $T_{sim}$, set of $
     \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\perp}$=4MV, $t_{end}=6$ns}
     \label{fig:lf_rk2_perp_stat_E_comparison}
 \end{figure}
-
 Taking the $dt=10^{-5}$ns for the reference point as before, the relative performance can be calculated.
 \begin{eqnarray*}
     \begin{aligned}
@@ -1616,10 +1565,8 @@ Taking the $dt=10^{-5}$ns for the reference point as before, the relative perfor
     \Delta E_{RK}^2 \times T_{RK}^2 &=& 320 \times 10^{-5} 4 \pm 10^{-5} MeV s \nonumber\\ %0.011
     F_{LF}^2/F_{RK}^2 &=& \frac{\Delta E_{RK}^2 \times T_{RK}^2 }{\Delta E_{LF}^2 \times T_{LF}^2} = 2.0  \pm 0.03
 \end{eqnarray}
-
 \textit{Leap-frog} provides $2.4$ times and $2.0$ times less overacceleration per simulation time than \textit{RK4} in parallel and perpendicular electric fields respectably.
 This results can be tested further with obsering from the data (see \fromtabf{lf_statE_table}{rk2_statE_table}{lf_statE90_table}{rk2_statE90_table} of \fromapp{data_graph}),
-
 \begin{eqnarray} \label{eq:f_lf_rk_3}
     \Delta E_{LF}^1 (dt=2 \times 10^{-5}) = \Delta E_{RK}^1 (dt=3 \times 10^{-5}) &=& 45 \times 10^{-6} MeV \nonumber\\
     T_{LF}^1(dt=2 \times 10^{-5})  &=& 6.23 \pm 0.02 s \nonumber\\ %0.0032
@@ -1632,14 +1579,11 @@ This results can be tested further with obsering from the data (see \fromtabf{lf
     T_{RK}^2(dt=5 \times 10^{-5})  &=& 7.00 \nonumber\\ %0.0071 -> 0,0126
     F_{LF}^2/F_{RK}^2 = \frac{T_{RK}^2(dt=5 \times 10^{-5})}{T_{LF}^2(dt=3 \times 10^{-5})} &=& 1.9 \pm 0.1
 \end{eqnarray}
-
 The last uncertainty was taken high due to the approximation of $467 \approx 471$. After combining \fromeqsf{f_lf_rk_1}{f_lf_rk_2}{f_lf_rk_3}{f_lf_rk_4},
 the performance of \textit{Leap-frog} relative to \textit{RK4} in \eE interaction can be calculated as in \fromeq{lf_rk_eE_relative_performance}.
-
 \begin{equation}\label{eq:lf_rk_eE_relative_performance}
     F_{LF}/F_{RK} = 2.11 \pm 0.03
 \end{equation}
-
 Therefore, it can be concluded that \textit{Leap-frog} outperforms \textit{RK4} with the relative performance of $2.11 \pm 0.03$ in \eE interactions with static uniform $\vecthreeBF{E}$ field. 
 
 \subsection{Multithreading}
@@ -1647,14 +1591,12 @@ As already mentioned before, multithreading implementation efforts were ongoing 
 There have been a number of different approaches for implementation. 
 First implemenation was done when the \textit{Rhodotron Simulation} was only capable of 1D simulations.
 After the sizable refactoring done for 3D capabilities, this implementation was obselete. 
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{./figures/illustrations/multh_arc.png}
     \caption{An Illustration of the multithreading architecture.}
     \label{fig:multh_illustration}
 \end{figure}
-
 For the current version, a main thread that spawns and manages several other worker threads would be used as can be seen in \fromfig{multh_illustration}.
 The UI-Console thread would handle incoming and outgoing communication, notifying the user about the status of simulation 
 (see \fromfig{console_output_running} in \fromapp{example_simulation_runs} for example console notification, \fromfig{ui_thread} in \fromapp{intermediate_codes} for implemenation)
@@ -1668,7 +1610,6 @@ There were four competing architecture for these worker threads,
     \item Assign random electrons to each thread and calculate \eEM with global time
     \item Assign random electrons to each thread and calculate \eEM with local thread time
 \end{enumerate}
-
 \textbf{Architecture 1} would require constant waiting in worker threads to get mutexes of $\vecthreeBF{E}$ field, especially in \textit{RK4}.
 
 \textbf{Architecture 2} was performing well in configurations with a large number of bunches, but was not increasing performance in lower bunch count configurations as expected.
@@ -1701,7 +1642,6 @@ The implemenation can be found in \fromfigf{_runMT}{fireAllWithFireTimesMT}{setu
     \caption{An Illustration of the first GUI design.}
     \label{fig:gui_illustration}
 \end{figure}
-
 Until this point, \textit{Rhodotron Simulation} could be used with a configration file, defining the problem that would be simulated.
 An example of this configuration file can be found in \fromfig{config_file} of \fromapp{example_simulation_runs}. 
 This approach was simple and fast; however, it was not suitable for the average target user since required basic knowledge of command line interface and was not up to modern standards.
@@ -1709,19 +1649,13 @@ For this reason, a GUI was decided to be built, using \textit{ROOT framework}.
 This would also enable \textit{Rhodotron simulation} to make use of analysis tools offered by \textit{ROOT}.
 
 
-
-
 The initial design of the \textit{Rhodotron Simulation GUI} can be observed in \fromfig{gui_illustration}.
-
-
-
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_config_frame.png}
     \caption{The configuration frame of implementated first GUI design.}
     \label{fig:gui_config}
 \end{figure}
-
 The \textit{GUI} would be a standalone application, running the \textit{Rhodotron Simulation} as a service when needed. 
 For this reason, the now called \textit{simulation engine} was updated to be able to run as a background service of \textit{GUI}.
 By this approach, one could also ignore the \textit{GUI} altogether and use the \textit{simulation engine} as before, as these are two seperate products.
@@ -1736,7 +1670,6 @@ Each one having an illustration of what the parameters are as can be seen in \fr
 This frame spawns and manages the \textit{simulation engine}, configures and starts the simulation. 
 It has a progress bar that shows the current progress of the simulation, communucating with \textit{UI handler thread} in \textit{simulation engine}.
 Simulation frame after a simulation run has been completed can be observed in \fromfig{gui_simulate_1}.
-
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_simulate_frame.png}
@@ -1748,7 +1681,6 @@ Simulation frame after a simulation run has been completed can be observed in \f
 Since the rendering capabilities of \textit{ROOT} is superior than \textit{gnuplot}, the user can render a playback of the simulation in real time, 
 see a specific time frame, export as snapshot or animated gif file.
 Two example renders can be seen in \fromfigs{gui_render_1}{gui_render_2}
-
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_render_frame_1.png}
@@ -1768,7 +1700,6 @@ Analyze frame provides tools for analyzing and visualizing the simulation data.
 In the current version, \textbf{E} distribution histogram and \textbf(E)(t) graph of each electron are implementated into this frame.
 This frame is a work in progress and will be the focus of improvement and become a really powerfull tool in the near future.
 In \fromfig{gui_analyze_Edist}, \textit{Analyze Frame} plotting \textbf{E} distribution histogram, and in \fromfigs{gui_analyze_Et}{gui_analyze_Et2}, \textit{Analyze Frame} plotting \textbf(E)(t) graphs can be observed.
-
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{./figures/rhodoSim/GUI_analyze_Edist.png}
@@ -1782,7 +1713,6 @@ In \fromfig{gui_analyze_Edist}, \textit{Analyze Frame} plotting \textbf{E} distr
     \caption{Analyze frame of \textit{GUI} E(t).}
     \label{fig:gui_analyze_Et}
 \end{figure}
-
 
 \begin{figure}
     \centering
@@ -1798,7 +1728,6 @@ $\phi_{lag}$ sweep was the first parameter to be implemented.
 It takes the range of sweep, draws $\phi_{lag} vs \mu E$, $\phi_{lag} vs \sigma E$ and $\phi_{lag} vs \sigma R$ mentioned in \fromsec{philag_sweep}.
 This enables user with an already built accelerator to optimize \egun parameters quickly. 
 In the following \fromfigf{gui_sweep_running}{gui_sweep_muE}{gui_sweep_sE}{gui_sweep_sR}, this frame can be inspected in detail.
-
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{./figures/rhodoSim/GUI_sweep_running.png}
@@ -1823,8 +1752,6 @@ In the following \fromfigf{gui_sweep_running}{gui_sweep_muE}{gui_sweep_sE}{gui_s
     \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ sweep $\sigma R$ result.}
     \label{fig:gui_sweep_sR}
 \end{figure}
-
-
 As mentioned before, \textit{GUI} is the latest and ongoing development effort in this project.
 New analysis and sweep features will be implemented and current capabilities will be improved in the near future.
 
@@ -1841,7 +1768,6 @@ New analysis and sweep features will be implemented and current capabilities wil
 As discussed before, production efforts of a rhodotron type accelerator is still ongoing in KAHVELab.
 This accelerator will be used at $f=107.5$MHz $P=50-100$kW. 
 In the following figures, rendered visuals of the final design by \textit{Mr. Sinan Öz} can be observed.
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{./figures/design/final_design_in_lab.JPG}
@@ -1867,15 +1793,12 @@ In the following figures, rendered visuals of the final design by \textit{Mr. Si
 \end{figure}
 
 
-
 \newpage
 
 
 % Start of techd.tex
 \section{Technical Drawing}
-
 Technical drawings of the design mentioned in \fromsec{final_design} can be found in following figures:
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{./figures/teknikcizim/altgovdeteknikresim.pdf}
@@ -1927,7 +1850,6 @@ Several flanges were then machined, including
     \item ISO-63 KF flange for probe insertion
     \item KF40 flanges for beam line vacuum gauges
 \end{itemize}
-
 After desired shapes were produced inside surface of the sheets were polished with 2000 grits. 
 304 stainless steel sheet bars of different sizes were then added by 
 TIG welding to achieve pressure resistance.
@@ -1935,7 +1857,6 @@ TIG welding to achieve pressure resistance.
 Because the main body of the cavity was 5mm thick and 304L was used, deformations on cylinderical symmetry were encountered. 
 This problem was solved by welding 6 10mm thick toroidal sheets between the coaxial cylinders, 
 which would be removed after the heat treatment.
-
 \begin{figure}
     \captionsetup[subfigure]{justification=centering}
     \captionsetup{justification=centering}
@@ -3185,28 +3106,28 @@ lead to the inference that this tool holds promise.
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
-    5.00E-02 & 0.114422     & 0.028398 & 0.009294 \\
-    1.00E-02 & 0.019233     & 0.036245 & 0.002182 \\
-    1.00E-03 & 0.002141     & 0.147979 & 0.00125  \\
-    9.00E-04 & 0.001749     & 0.172161 & 0.00794  \\
-    8.00E-04 & 0.001516     & 0.184629 & 0.004359 \\
-    7.00E-04 & 0.00152      & 0.20445  & 0.001919 \\
-    6.00E-04 & 0.001049     & 0.234947 & 0.004416 \\
-    5.00E-04 & 0.000974     & 0.278938 & 0.010969 \\
-    4.00E-04 & 0.0009       & 0.336847 & 0.003028 \\
-    3.00E-04 & 0.000587     & 0.441771 & 0.005859 \\
-    2.00E-04 & 0.000433     & 0.652066 & 0.006637 \\
-    1.00E-04 & 0.0002       & 1.280059 & 0.016027 \\
-    9.00E-05 & 0.000145     & 1.41908  & 0.013122 \\
-    8.00E-05 & 0.000153     & 1.592492 & 0.011332 \\
-    7.00E-05 & 0.000162     & 1.806561 & 0.009931 \\
-    6.00E-05 & 0.000123     & 2.103571 & 0.011143 \\
-    5.00E-05 & 0.000084     & 2.515006 & 0.01393  \\
-    4.00E-05 & 0.000092     & 3.140471 & 0.014138 \\
-    3.00E-05 & 0.000053     & 4.158715 & 0.009474 \\
-    2.00E-05 & 0.000045     & 6.231734 & 0.015236 \\
-    1.00E-05 & 0.000022     & 12.39871 & 0.039575 \\
-    1.00E-06 & 0.000003     & 123.318  & 0.299559
+    5.00E-02 & 0.114422     & 0.028398 & 0.009294 \\\hline
+    1.00E-02 & 0.019233     & 0.036245 & 0.002182 \\\hline
+    1.00E-03 & 0.002141     & 0.147979 & 0.00125  \\\hline
+    9.00E-04 & 0.001749     & 0.172161 & 0.00794  \\\hline
+    8.00E-04 & 0.001516     & 0.184629 & 0.004359 \\\hline
+    7.00E-04 & 0.00152      & 0.20445  & 0.001919 \\\hline
+    6.00E-04 & 0.001049     & 0.234947 & 0.004416 \\\hline
+    5.00E-04 & 0.000974     & 0.278938 & 0.010969 \\\hline
+    4.00E-04 & 0.0009       & 0.336847 & 0.003028 \\\hline
+    3.00E-04 & 0.000587     & 0.441771 & 0.005859 \\\hline
+    2.00E-04 & 0.000433     & 0.652066 & 0.006637 \\\hline
+    1.00E-04 & 0.0002       & 1.280059 & 0.016027 \\\hline
+    9.00E-05 & 0.000145     & 1.41908  & 0.013122 \\\hline
+    8.00E-05 & 0.000153     & 1.592492 & 0.011332 \\\hline
+    7.00E-05 & 0.000162     & 1.806561 & 0.009931 \\\hline
+    6.00E-05 & 0.000123     & 2.103571 & 0.011143 \\\hline
+    5.00E-05 & 0.000084     & 2.515006 & 0.01393  \\\hline
+    4.00E-05 & 0.000092     & 3.140471 & 0.014138 \\\hline
+    3.00E-05 & 0.000053     & 4.158715 & 0.009474 \\\hline
+    2.00E-05 & 0.000045     & 6.231734 & 0.015236 \\\hline
+    1.00E-05 & 0.000022     & 12.39871 & 0.039575 \\\hline
+    1.00E-06 & 0.000003     & 123.318  & 0.299559 \\\hline
     \end{tabular}
     \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:lf_statE_table}
@@ -3217,28 +3138,28 @@ lead to the inference that this tool holds promise.
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
-        5.00E-02 & 0.055355     & 0.031054 & 0.003281 \\
-        1.00E-02 & 0.009868     & 0.063656 & 0.000893 \\
-        1.00E-03 & 0.001141     & 0.435864 & 0.005332 \\
-        9.00E-04 & 0.001325     & 0.478216 & 0.00595  \\
-        8.00E-04 & 0.001112     & 0.533789 & 0.003897 \\
-        7.00E-04 & 0.000705     & 0.60586  & 0.005441 \\
-        6.00E-04 & 0.000687     & 0.703851 & 0.009447 \\
-        5.00E-04 & 0.000474     & 0.840173 & 0.00913  \\
-        4.00E-04 & 0.00046      & 1.039166 & 0.005874 \\
-        3.00E-04 & 0.000456     & 1.378822 & 0.007995 \\
-        2.00E-04 & 0.000207     & 2.045464 & 0.008499 \\
-        1.00E-04 & 0.000127     & 4.052472 & 0.014711 \\
-        9.00E-05 & 0.000091     & 4.500401 & 0.015404 \\
-        8.00E-05 & 0.000124     & 5.048922 & 0.014392 \\
-        7.00E-05 & 0.000062     & 5.773208 & 0.031443 \\
-        6.00E-05 & 0.000057     & 6.726501 & 0.020609 \\
-        5.00E-05 & 0.00006      & 8.045931 & 0.014246 \\
-        4.00E-05 & 0.000039     & 10.04809 & 0.012756 \\
-        3.00E-05 & 0.000045     & 13.39669 & 0.028057 \\
-        2.00E-05 & 0.000023     & 20.03889 & 0.006436 \\
-        1.00E-05 & 0.000016     & 40.0818  & 0.120627 \\
-        1.00E-06 & 0.000003     & 400.2421 & 0.554172
+        5.00E-02 & 0.055355     & 0.031054 & 0.003281 \\\hline
+        1.00E-02 & 0.009868     & 0.063656 & 0.000893 \\\hline
+        1.00E-03 & 0.001141     & 0.435864 & 0.005332 \\\hline
+        9.00E-04 & 0.001325     & 0.478216 & 0.00595  \\\hline
+        8.00E-04 & 0.001112     & 0.533789 & 0.003897 \\\hline
+        7.00E-04 & 0.000705     & 0.60586  & 0.005441 \\\hline
+        6.00E-04 & 0.000687     & 0.703851 & 0.009447 \\\hline
+        5.00E-04 & 0.000474     & 0.840173 & 0.00913  \\\hline
+        4.00E-04 & 0.00046      & 1.039166 & 0.005874 \\\hline
+        3.00E-04 & 0.000456     & 1.378822 & 0.007995 \\\hline
+        2.00E-04 & 0.000207     & 2.045464 & 0.008499 \\\hline
+        1.00E-04 & 0.000127     & 4.052472 & 0.014711 \\\hline
+        9.00E-05 & 0.000091     & 4.500401 & 0.015404 \\\hline
+        8.00E-05 & 0.000124     & 5.048922 & 0.014392 \\\hline
+        7.00E-05 & 0.000062     & 5.773208 & 0.031443 \\\hline
+        6.00E-05 & 0.000057     & 6.726501 & 0.020609 \\\hline
+        5.00E-05 & 0.00006      & 8.045931 & 0.014246 \\\hline
+        4.00E-05 & 0.000039     & 10.04809 & 0.012756 \\\hline
+        3.00E-05 & 0.000045     & 13.39669 & 0.028057 \\\hline
+        2.00E-05 & 0.000023     & 20.03889 & 0.006436 \\\hline
+        1.00E-05 & 0.000016     & 40.0818  & 0.120627 \\\hline
+        1.00E-06 & 0.000003     & 400.2421 & 0.554172 \\\hline 
     \end{tabular}
     \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:rk2_statE_table}
@@ -3250,28 +3171,28 @@ lead to the inference that this tool holds promise.
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
-    5.00E-02 & 0.986005     & 0.030314 & 0.009209 \\
-    1.00E-02 & 0.154314     & 0.036833 & 0.004068 \\
-    1.00E-03 & 0.01476      & 0.131783 & 0.002352 \\
-    9.00E-04 & 0.013618     & 0.150984 & 0.005618 \\
-    8.00E-04 & 0.011863     & 0.161336 & 0.003117 \\
-    7.00E-04 & 0.010109     & 0.179693 & 0.002658 \\
-    6.00E-04 & 0.009277     & 0.205356 & 0.002912 \\
-    5.00E-04 & 0.007527     & 0.242352 & 0.003093 \\
-    4.00E-04 & 0.006084     & 0.294269 & 0.001551 \\
-    3.00E-04 & 0.00449      & 0.383982 & 0.001711 \\
-    2.00E-04 & 0.002897     & 0.563762 & 0.004214 \\
-    1.00E-04 & 0.001458     & 1.101252 & 0.008064 \\
-    9.00E-05 & 0.001376     & 1.229321 & 0.0089   \\
-    8.00E-05 & 0.001232     & 1.381441 & 0.01057  \\
-    7.00E-05 & 0.001027     & 1.574994 & 0.011933 \\
-    6.00E-05 & 0.000853     & 1.833183 & 0.006065 \\
-    5.00E-05 & 0.00074      & 2.184948 & 0.013416 \\
-    4.00E-05 & 0.000596     & 2.72503  & 0.016356 \\
-    3.00E-05 & 0.000467     & 3.617576 & 0.017581 \\
-    2.00E-05 & 0.000308     & 5.394629 & 0.027885 \\
-    1.00E-05 & 0.00015      & 10.75182 & 0.03301  \\
-    1.00E-06 & 0.000017     & 106.9198 & 0.373175
+    5.00E-02 & 0.986005     & 0.030314 & 0.009209 \\\hline
+    1.00E-02 & 0.154314     & 0.036833 & 0.004068 \\\hline
+    1.00E-03 & 0.01476      & 0.131783 & 0.002352 \\\hline
+    9.00E-04 & 0.013618     & 0.150984 & 0.005618 \\\hline
+    8.00E-04 & 0.011863     & 0.161336 & 0.003117 \\\hline
+    7.00E-04 & 0.010109     & 0.179693 & 0.002658 \\\hline
+    6.00E-04 & 0.009277     & 0.205356 & 0.002912 \\\hline
+    5.00E-04 & 0.007527     & 0.242352 & 0.003093 \\\hline
+    4.00E-04 & 0.006084     & 0.294269 & 0.001551 \\\hline
+    3.00E-04 & 0.00449      & 0.383982 & 0.001711 \\\hline
+    2.00E-04 & 0.002897     & 0.563762 & 0.004214 \\\hline
+    1.00E-04 & 0.001458     & 1.101252 & 0.008064 \\\hline
+    9.00E-05 & 0.001376     & 1.229321 & 0.0089   \\\hline
+    8.00E-05 & 0.001232     & 1.381441 & 0.01057  \\\hline
+    7.00E-05 & 0.001027     & 1.574994 & 0.011933 \\\hline
+    6.00E-05 & 0.000853     & 1.833183 & 0.006065 \\\hline
+    5.00E-05 & 0.00074      & 2.184948 & 0.013416 \\\hline
+    4.00E-05 & 0.000596     & 2.72503  & 0.016356 \\\hline
+    3.00E-05 & 0.000467     & 3.617576 & 0.017581 \\\hline
+    2.00E-05 & 0.000308     & 5.394629 & 0.027885 \\\hline
+    1.00E-05 & 0.00015      & 10.75182 & 0.03301  \\\hline
+    1.00E-06 & 0.000017     & 106.9198 & 0.373175 \\\hline
     \end{tabular}
     \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:lf_statE90_table}
@@ -3282,28 +3203,28 @@ lead to the inference that this tool holds promise.
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
-        5.00E-02 & 0.587777     & 0.034741 & 0.012735 \\
-        1.00E-02 & 0.09943      & 0.059945 & 0.001318 \\
-        1.00E-03 & 0.009987     & 0.38199  & 0.005941 \\
-        9.00E-04 & 0.007946     & 0.417119 & 0.005683 \\
-        8.00E-04 & 0.007999     & 0.466052 & 0.006398 \\
-        7.00E-04 & 0.006732     & 0.525791 & 0.003782 \\
-        6.00E-04 & 0.005541     & 0.612876 & 0.007114 \\
-        5.00E-04 & 0.005022     & 0.732091 & 0.012129 \\
-        4.00E-04 & 0.004031     & 0.906845 & 0.012156 \\
-        3.00E-04 & 0.002779     & 1.199367 & 0.014536 \\
-        2.00E-04 & 0.001897     & 1.782653 & 0.016993 \\
-        1.00E-04 & 0.000895     & 3.52464  & 0.029778 \\
-        9.00E-05 & 0.000858     & 3.916115 & 0.041066 \\
-        8.00E-05 & 0.000731     & 4.409459 & 0.040828 \\
-        7.00E-05 & 0.00066      & 5.012686 & 0.042727 \\
-        6.00E-05 & 0.000561     & 5.851793 & 0.038488 \\
-        5.00E-05 & 0.000471     & 7.002315 & 0.046152 \\
-        4.00E-05 & 0.000363     & 8.747954 & 0.063936 \\
-        3.00E-05 & 0.000264     & 11.64305 & 0.091404 \\
-        2.00E-05 & 0.000184     & 17.44533 & 0.123198 \\
-        1.00E-05 & 0.000093     & 34.93332 & 0.391012 \\
-        1.00E-06 & 0.000011     & 348.494  & 3.237203
+        5.00E-02 & 0.587777     & 0.034741 & 0.012735 \\\hline
+        1.00E-02 & 0.09943      & 0.059945 & 0.001318 \\\hline
+        1.00E-03 & 0.009987     & 0.38199  & 0.005941 \\\hline
+        9.00E-04 & 0.007946     & 0.417119 & 0.005683 \\\hline
+        8.00E-04 & 0.007999     & 0.466052 & 0.006398 \\\hline
+        7.00E-04 & 0.006732     & 0.525791 & 0.003782 \\\hline
+        6.00E-04 & 0.005541     & 0.612876 & 0.007114 \\\hline
+        5.00E-04 & 0.005022     & 0.732091 & 0.012129 \\\hline
+        4.00E-04 & 0.004031     & 0.906845 & 0.012156 \\\hline
+        3.00E-04 & 0.002779     & 1.199367 & 0.014536 \\\hline
+        2.00E-04 & 0.001897     & 1.782653 & 0.016993 \\\hline
+        1.00E-04 & 0.000895     & 3.52464  & 0.029778 \\\hline
+        9.00E-05 & 0.000858     & 3.916115 & 0.041066 \\\hline
+        8.00E-05 & 0.000731     & 4.409459 & 0.040828 \\\hline
+        7.00E-05 & 0.00066      & 5.012686 & 0.042727 \\\hline
+        6.00E-05 & 0.000561     & 5.851793 & 0.038488 \\\hline
+        5.00E-05 & 0.000471     & 7.002315 & 0.046152 \\\hline
+        4.00E-05 & 0.000363     & 8.747954 & 0.063936 \\\hline
+        3.00E-05 & 0.000264     & 11.64305 & 0.091404 \\\hline
+        2.00E-05 & 0.000184     & 17.44533 & 0.123198 \\\hline
+        1.00E-05 & 0.000093     & 34.93332 & 0.391012 \\\hline
+        1.00E-06 & 0.000011     & 348.494  & 3.237203 \\\hline
     \end{tabular}
     \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:rk2_statE90_table}
