@@ -103,6 +103,7 @@
 \newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
 \newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
 \newcommand{\fromfigf}[4]{\textit{figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3} and \ref{fig:#4}}}
+\newcommand{\fromfigsix}[6]{\textit{figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3}, \ref{fig:#4}, \ref{fig:#5} and \ref{fig:#6}}}
 
 \newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
 \newcommand{\fromsecs}[2]{\textit{sections \ref{sec:#1} and \ref{sec:#2}}}
@@ -111,6 +112,7 @@
 
 \newcommand{\fromtab}[1]{\textit{Table \ref{tab:#1}}}
 \newcommand{\fromtabs}[2]{\textit{Tables \ref{tab:#1} and \ref{tab:#2}}}
+\newcommand{\fromtabf}[4]{\textit{Tables \ref{tab:#1}, \ref{tab:#2}, \ref{tab:#3} and \ref{tab:#4}}}
 
 
 % START OF intro.tex
@@ -316,26 +318,44 @@ Accelerators have been instrumental in discovering and characterizing fundamenta
 They also facilitate the production of high-intensity beams for applications in material science, radiotherapy, and industrial processes like particle irradiation and sterilization.
 
 % TODO : ADD CIRCULAR AND LINEAR ACCELERATOR PICTURES HERE
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{A circular accelerator}
-\end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{A linear accelerator}
+    \caption{A linear proton accelerator in KAHVELab}
 \end{figure}
 
 \subsection{Key Concepts}
 
-\begin{itemize}
-    \item Phase Stability
-    \item Phase Lag
-    \item Shunt Impedance
-    
-\end{itemize}
+\subsubsection{Resonance Frequency}
+Resonance frequency is the frequency in which the electromagnetic fields form standing waves in a cavity.
+It is determined by the physical dimensions and the speed of light in the cavity's medium. 
+In a rectangular cavity for example, the resonance frequency can be calculated from \fromeq{f_r_rec}.
+\begin{equation}
+    f_{klm} = \frac{c}{2\pi \sqrt{\mu_r \epsilon_r}} \sqrt{(\frac{k}{w})^2 + (\frac{l}{u})^2 + (\frac{m}{v})^2}
+    \label{eq:f_r_rec}
+\end{equation}
+Where $w$, $u$, $v$ are the dimensions of the cavity, $\mu_r$ and $\epsilon_r$ are relative permability and permittivity of the cavity respectably.
+
+\subsubsection{Bunch}
+Bunch refers to a tightly grouped collection of charged particles, such as electrons or protons, that are accelerated and maintained close together within a particle accelerator.
+
+\subsubsection{Phase Stability}
+Phase stability refers to the preservation of the timing relationship between particles and fields within an accelerator. 
+It ensures that the phases of various electromagnetic fields or particles remain synchronized, 
+which is crucial for achieving efficient particle acceleration. 
+Maintaining phase stability is essential to prevent particles from becoming out of phase as they travel through accelerator structures, 
+ensuring that they receive the correct energy boosts and interact predictably with detectors. 
+Deviations in phase stability can lead to particle loss and decreased beam quality.
+
+\subsubsection{Phase Lag}
+Phase lag refers to the time delay between the oscillations of two interacting waveforms or particles. 
+It describes the difference in phase angles within their respective cycles, between two signals. 
+
+\subsubsection{Shunt Impedance}
+The shunt impedance of an RF accelerator is a measure of the efficiency 
+at which the accelerator can transform the supplied RF power into acceleration.
+
 
 \subsection{Acceleration Cavities} \label{sec:theory_cavities}
 Radiofrequency (RF) cavities, also known as accelerating cavities or resonant cavities, are key components in particle accelerators. 
@@ -363,8 +383,8 @@ Precise timing and synchronization of the RF power source with the particle beam
     \caption{A rf cavity used in KAHVELab}
 \end{figure}
 
-\subsection{Steerer Magnets}
-Steerer magnets, also known as dipole magnets or bending magnets, are fundamental components used in particle accelerators to control the trajectory of charged particles. 
+\subsection{Bending Magnets}
+Bending magnets, also known as dipole magnets, are fundamental components used in particle accelerators to control the trajectory of charged particles. 
 They utilize the Ampere's Law to exert a magnetic field that interacts with the charged particles in the accelerator. 
 
 According to the Lorentz Force Law ( $\textit{Section \ref{sec:lorentz-force}}$ ), when a charged particle moves through a magnetic field, it experiences a force perpendicular to both its velocity 
@@ -374,7 +394,7 @@ vector and the magnetic field direction. This force causes the particle's trajec
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{A steerer magnet used in KAHVELab}
+    \caption{A bending magnet used in KAHVELab}
 \end{figure}
 
 \subsection{Rhodotron Accelerator} \label{sec:theory_rhodo}
@@ -382,25 +402,13 @@ vector and the magnetic field direction. This force causes the particle's trajec
 Rhodotron Accelerator is a type of particle accelerator that was proposed by \textit{Jacques POTTIER} in his publication \textit{A new type of rf electron accelerator:The Rhodotron} in 1989 \cite{rhodo_pottier}. 
 First prototype was built at CEA Saclay later in 1992 \cite{rhodo_prototype}. Its named after the greek word for rose, \textit{rhodos}, due to the shape of the design \cite{rhodos}.
 
-The design of a rhodotron mainly consists of a coaxial cylindrical RF cavity and steerer magnets surrounding it. RF cavity is fed by an external RF source, accelerating the electrons entering from an attached electron gun.
+The design of a rhodotron mainly consists of a coaxial cylindrical RF cavity and bending magnets surrounding it. RF cavity is fed by an external RF source, accelerating the electrons entering from an attached electron gun.
 
 \subsubsection{Cavity of a Rhodotron} \label{sec:cavity_of_a_rhodotron}
 
 Coaxial design of the cavity concentrates the electric field, while the magnetic field diminishes in the middle of the cylinders. 
 Therefore the electrons are injected and accelerated in the plane of zero magnetic field where the electric field is strongest.
-% TODO : ADD SUPERFISH AND CST SIMULATIONS OF A SIMPLE RHODOTRON CAVITY
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{SUPERFISH simulation of a coaxial cavity}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
-    \caption{CST simulation of a coaxial cavity}
-\end{figure}
+% TODO : ADD SUPERFISH AND CST SIMULATIONS OF A SIMPLE RHODOTRON CAVITY MAYBE?????
 
 With the expectation that the electrons will accelerate to speeds $>=0.9 c$ after the first pass, a rhodotron cavity is designed so that the length of the path between successive passes is an integer multiple of $\lambda$, wavelength of the RF field ($l=p\lambda \label{eq:lpl}$).
 This constraint helps with  phase stability and synchronization of the beam.
@@ -444,39 +452,42 @@ Electrons undergo four different stages during a single pass.
 They are accelerated between the cylinderical plates and are shielded from the changing RF field while inside the inner cylinder and outside the cavity. 
 
 \begin{description}
-    \item[First acceleration] Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity.
-    \item[Inner shielding] While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed.
-    \item[Second acceleration] Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity.
-    \item[Magnets] After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again.
+    \item[First acceleration] Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity. See \fromfig{rhod_cycle_1}
+    \item[Inner shielding] While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed.See \fromfig{rhod_cycle_2}
+    \item[Second acceleration] Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity. See \fromfig{rhod_cycle_3}
+    \item[Magnets] After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again. See \fromfig{rhod_cycle_4}
 \end{description}
 
-This cycle can be repeated as long as real world constraints such as; placements and dimentions of the electromagnets, power requirements due to increasing magnetic field in order for sharper turns, can be overcomed.
+This cycle can be repeated as long as real world constraints such as; placements and dimensions of the electromagnets, power requirements due to increasing magnetic field in order for sharper turns, can be overcomed.
 After desired amount of pass has been completed, the electrons exit the accelerator.
 
 This process is explained further in the following figures where $T$ is the period of the electric field.
-% TODO : ADD ACCELERATION PROCESS OF RHODOTRON FIGURES HERE
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \includegraphics[width=\textwidth]{./figures/illustrations/rhod1.pdf}
     \caption{$[0, \frac{T}{4}]$ time frame of a rhodotron}
+    \label{fig:rhod_cycle_1}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \includegraphics[width=\textwidth]{./figures/illustrations/rhod2.pdf}
     \caption{$[\frac{T}{4}, \frac{T}{2}]$ time frame of a rhodotron}
+    \label{fig:rhod_cycle_2}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \includegraphics[width=\textwidth]{./figures/illustrations/rhod3.pdf}
     \caption{$[\frac{T}{2}, \frac{3T}{4}]$ time frame of a rhodotron}
+    \label{fig:rhod_cycle_3}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.75]{./figures/to_be_added.png}
+    \includegraphics[width=\textwidth]{./figures/illustrations/rhod4.pdf}
     \caption{$[\frac{3T}{4}, T]$ time frame of a rhodotron}
+    \label{fig:rhod_cycle_4}
 \end{figure}
 
 
@@ -1093,7 +1104,7 @@ After adding two more magnets and using $\gamma=15^\circ$, the following second 
     \label{fig:initial_three_magnet_design}
 \end{figure}
 
-These designs, together with $40$ keV $e^-$ gun injecting with phase lag of $15^\circ$ for $0.1$ ns, was simulated at RF power of $12$ kW using \textit{CST Studio Particle Module PIC Solver}.
+These designs, together with $40$ keV $e^-$ gun injecting with phase lag of $15^\circ$ for $1$ ns, was simulated at RF power of $12$ kW using \textit{CST Studio Particle Module PIC Solver}.
 Results of these simulations can be found in \fromfig{initial_designs_PIC_phase_space_monitor}.
 
 \begin{figure}[H]
@@ -1124,7 +1135,7 @@ After various similar observations in \textit{CST} similations, underlying cause
 as anticipated and discussed earlier in the \fromsec{parameter_sweep}.
 \emph{The necessity for an alternative tool, capable of aiding researchers in improving beam behavior, was deemed evident.}
 
-In KAHVELab, several improvements were made to these initial designs by \textit{Mr. Sinan ÖZ}. They include curved edges on cavity which reduce the power loss on cavity walls, and redesigned iron casing on magnets for ease of production and maintenance.
+In KAHVELab, several improvements were made to these initial designs together with \textit{Mr. Sinan ÖZ}. They include curved edges on cavity which reduce the power loss on cavity walls, and redesigned iron casing on magnets for ease of production and maintenance.
 Improved designs can be seen in the figures below.
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=centering}
@@ -1230,7 +1241,7 @@ The implemenation of this logic can be observed in \fromfig{POC_core_logic}.
     \label{fig:POC_core_logic}
 \end{figure}
 
-After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} with $\phi_{lag}=15^\circ$ for one pass in THE CAVITY, the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} are compared.
+After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} with $\phi_{lag}=15^\circ$ for one pass, the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} are compared.
 % 40 kW total power
 % Emax = 0.96 in old, 2.08 in new version
 % R1 = 0.1882
@@ -1247,10 +1258,10 @@ After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_
 
 
 As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced very similar results. However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
-This inconsistency between $E_{Pottier}$ and $E_{CST}$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on $CST$.
-Using a single software would have made the process error prone. Their results, at the end of the day, depend heavily on the physical and mathematical models they use.
+This inconsistency between $E_{Pottier}$ and $E_{CST}$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
+Since using a single software would have made the process error prone.
 
-After the promising results obtained from \textit{POC}, the decision was made to develop a more robust simulation software. This software was named \textit{Rhodotron Simulation} for the current stage and started development in October, 2021.
+After the results obtained from \textit{POC} were found to be promising, a decision was made to develop a more robust simulation software. This software was named \textit{Rhodotron Simulation} for the current stage and started development in October, 2021.
 The development and improvement efforts are still ongoing. 
 
 During the development of \textit{Rhodotron Simulation} software, several intermediate builds have been implemented and tested. The following sections in this chapter investigates their implementations further.
@@ -1264,18 +1275,18 @@ During the development of \textit{Rhodotron Simulation} software, several interm
 \section{Intermediate Versions}
 
 \subsection{$L_{out}$ Optimization For Single \e} \label{sec:lout_sweep}
-Initial step of improving $POC$ towards $Rhodotron Simulation$ was to implement \textit{$L_{out}$ optimizations} to help optimazing magnet designs, as discussed in \fromsec{parameter_sweep}.
-First approach was to hang the \e outside of the cavity for $t_{out} = L_{out}/v$, then inject it back to the cavity with reversed $\vecthreeBF{v}$. Then sweep the $t_{out}$ parameter to find the optimal value.
+Initial step of improving \textit{POC} towards \textit{Rhodotron Simulation} was to implement \textit{$L_{out}$ optimizations} to help optimazing magnet designs, as discussed in \fromsec{parameter_sweep}.
+First approach was to hang the \e outside of the cavity for $t_{out} = L_{out}/v$, then inject it back to the cavity with reversed $\vecthreeBF{v}$. One can sweep the $t_{out}$ parameter to find the optimal value.
 This simple implementation can be found in \fromfig{lout_opt_single_e} of \fromapp{intermediate_codes}.
 
 Although the results from this optimization sweep were promising after they were simulated with $CST$, simulating one particle would not be sufficiently useful for designing a magnet.
 
 \subsection{$\phi_{lag}$ Optimization For Bunches} \label{sec:philag_sweep}
 After successfully accelerating single \e, particle bunches were implemented to approximate a real \e gun. 
-They were modeled as $N$ electrons fired from an \e gun at even time intervals. This approach was taken because the amount of time gun fires, defined as \textit{Gun Active Time, $t_g$}, is a crucial part of pulsing \e gun design.
+They were modeled as $N$ electrons fired from an \e gun at even time intervals. This approach was taken because the amount of time gun fires, defined as \textit{Gun Active Time, $t_g$}, is a crucial part of pulsed \e gun design.
 
-Addition of bunches would immediately proven useful when finding optimal gun phase lag.
-$\phi_{lag}$ for a bunch was defined as the RF phase when the first \e of the bunch entered the cavity, it defines the starting time of the current pass.
+Addition of bunches would immediately proven useful when finding optimal phase lag for bunch entry.
+$\phi_{lag}$ for a bunch was defined as the RF phase when the first \e of the bunch has entered the cavity and it defines the starting time of the current pass.
 To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimization}, relevant bunch characteristics are defined as follows:
 
 \begin{itemize}
@@ -1285,8 +1296,8 @@ To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimiz
 \end{itemize}
 
 Optimal $\phi_{lag}$ would produce maximum $\mu E$ while minimizing $E_{rms}$ \& $R_{rms}$. For the first pass, 
-$E_{rms}$ and $R_{rms}$ would be vaguely dependent of each other; therefore, early implementation of $\phi_{lag}$ sweep was based on minimizing $E_{rms}$ during simulation (\textit{see \fromfig{phlag_opt}}). 
-For $\mu E$ considerations, data from the software would be analyzed either manually or by using external tools such as $ROOT$. 
+$E_{rms}$ and $R_{rms}$ would be vaguely dependent of each other; therefore, initial implementation of $\phi_{lag}$ sweep was based on minimizing $E_{rms}$ during simulation (\textit{see \fromfig{phlag_opt}}). 
+For $\mu E$ considerations, data from the software would be analyzed either manually or by using external tools such as \textit{ROOT framework}. 
 
 \begin{figure}[H]
     \centering
@@ -1317,12 +1328,12 @@ Since $\phi_{lag}$ is relatively easy to change after production, another versio
 This version can be useful for optimizing $\phi_{lag}$ in case of production issues in magnets. 
 
 After the bunch and $\phi_{lag}$ sweep implementations, $L_{out}$ sweep was also updated to minimize $E_{rms}$. $\rho$ and $L$ calculations, using \fromeqs{magnet_rho_constraint}{magnet_L_constraint}, were also integrated. 
-Two example runs can be found in \fromfigs{lout_opt_1ns_Erms}{lout_opt_08ns_Erms} of \fromapp{example_simulation_runs}.
+Two example runs from this intermediate build can be found in \fromfigs{lout_opt_1ns_Erms}{lout_opt_08ns_Erms} of \fromapp{example_simulation_runs}.
 
 \subsection{Simulation in 3D}
 After successfully implementing \eE interaction in 1D and confirming the usefulness of this tool, the decision was made to proceed with implementing a 3D version of the \textit{Rhodotron Simulation}.
 Although complete refactoring of the software was necessary, this upgrade was crucial for implementation of \eB interaction.
-The refactoring effort included proper implementation of $OOP$, details of which can be seen in \fromapp{intermediate_codes}.
+The refactoring effort included proper implementation of \textit{OOP}, details of which can be seen in \fromfigsix{e_class}{bunch_class}{gun_class}{sim_class}{rhodosim_class}{rf_class} of \fromapp{intermediate_codes}.
 
 Magnets were modeled as major segments of a circle, defined with $\vecthreeBF{r}_{mag}$, $\textbf{R}$ and $|\textbf{B}|$. 
 For the initial implementation, $\vecthreeBF{B}$ assumed to be uniform and has no leaks outside the magnet boundary (See \fromfig{is_inside_halfsphere} in \fromapp{intermediate_codes}).
@@ -1385,7 +1396,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
 
 \subsection{Acceleration in Magnetic Field}
 An issue regarding the \eB interaction became apparent when energy gain during these interactions was observed.
-A setup simulation was implemented in which a bunch of 100\e at $1$MeV was fired to a uniform magnetic field of $0.1$T placed in $x>0.05$m.
+A setup simulation was implemented in which a bunch of 100\e at $1$MeV was fired into a uniform magnetic field of $0.1$T located in $x>0.05$m.
 Initial results at $dt=0.01$ns proved the suspicion of \eB interaction being broken. However, the energy gain would decrease tremendously as $dt$ decreased.
 
 
@@ -1407,7 +1418,7 @@ Initial results at $dt=0.01$ns proved the suspicion of \eB interaction being bro
     \label{fig:mag_lf_render}
 \end{figure}
 
-Decreasing $dt$ would be the best way to increase accuracy of the results; however, this is not sustainable because time and computing power. 
+Decreasing $dt$ would be the best way to increase accuracy of the results; however, this is not sustainable due to computing power limitations. 
 Until this point, \textit{Rhodotron Simulation} have been using \fromsec{leapfrog} for \eEM interactions. 
 To test newer approaches, two additional version of  \eEM interaction that are using \fromsec{rungekutta} were added.
 \subsubsection{RK4-1}
@@ -1607,7 +1618,7 @@ Taking the $dt=10^{-5}$ns for the reference point as before, the relative perfor
 \end{eqnarray}
 
 \textit{Leap-frog} provides $2.4$ times and $2.0$ times less overacceleration per simulation time than \textit{RK4} in parallel and perpendicular electric fields respectably.
-This results can be tested further with obsering from the data (see TODO),
+This results can be tested further with obsering from the data (see \fromtabf{lf_statE_table}{rk2_statE_table}{lf_statE90_table}{rk2_statE90_table} of \fromapp{data_graph}),
 
 \begin{eqnarray} \label{eq:f_lf_rk_3}
     \Delta E_{LF}^1 (dt=2 \times 10^{-5}) = \Delta E_{RK}^1 (dt=3 \times 10^{-5}) &=& 45 \times 10^{-6} MeV \nonumber\\
@@ -2527,6 +2538,356 @@ lead to the inference that this tool holds promise.
     \label{fig:ui_thread}
 \end{figure}
 
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        class Electron{
+            std::vector<ElectronLog> log;
+            uint64_t index;
+            double Et;
+            vector3d pos;
+            vector3d vel;
+            double fire_time;
+        public:
+            Electron();
+            Electron(double Ein, vector3d position, vector3d direction, double _fire_time = 0);
+            ~Electron();
+
+            void setEin(double E_in);
+            void print_electron_info();
+
+            void move(double dt);
+            void move(const vector3d& acc, double dt);
+            void move(const vector3d& acc, const vector3d& jerk, double dt);
+            void accelerate(const vector3d& acc, double dt);
+            void accelerate(const vector3d& acc, const vector3d& jerk, double dt);
+            
+            void interactLF(RFField& E, MagneticField& B, double time_interval);
+            void interactRK(RFField& E, MagneticField& B, double time_interval);
+            void interactRK(RFField& E, MagneticField& B, const double time, double time_interval);
+            void interactRK_ActorE(const RFField& E, const MagneticField& B, double time_interval);
+
+            vector3d interactE_RK(const RFField& E, double time_interval);
+            vector3d interactB_RK(const MagneticField& B, double time_interval);
+
+            void saveInfo(double t);
+            void setLogSize(size_t size);
+            void loge(DataStorage& path);
+            const vector<ElectronLog>& getLog();
+
+            double vel();
+            double beta();
+            double beta2();
+            double gamma();
+            double gamma_inv();
+        };
+    \end{minted}
+    \caption{Electron class definition}
+    \label{fig:e_class}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        class Bunch{
+        private:
+            int e_count = 0;
+            int index_fastest = 0;
+            double max_energy = 0;
+            double entry_time = 0;
+            double E_in = 0.04;
+
+            vector<Bunch> subBunchs;
+            vector<shared_ptr<Electron>> e;
+        public:
+            Bunch(unsigned int num_of_electrons, double Ein, vector3d gunpos, vector3d gundir, double gun_ns);
+            Bunch();
+            ~Bunch();
+
+            void saveInfo(double time);
+
+            Electron& getFastest();
+
+            void AddElectron(double Ein, const vector3d& gunpos, const vector3d& gundir, double fire_time);
+
+            shared_ptr<Electron> AddElectronGiveAddress(double Ein, const vector3d& gunpos, const vector3d& gundir, double fire_time);
+
+            void setEntryTime(double entry_time);
+            void setEin(double E_in);
+            void setNSLen(double len);
+
+            uint32_t get_e_count();
+            double getEin();
+            double E_ave();
+            double E_rms();
+
+            void interact(RFField& E, MagneticField& B, const double time, double time_interval);
+
+            void divide(unsigned int num);
+            void concat();
+            Bunch& subBunch(unsigned int index);
+            vector<Bunch*> subBunchPtr();
+
+            void reset();
+
+            void print_bunch_info();
+            void print_summary();
+
+            void logPaths(vector<DataStorage>& pathStorage, std::string header);
+        };
+    \end{minted}
+    \caption{Bunch class definition}
+    \label{fig:bunch_class}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        class Gun{
+            double Ein;
+            double sEin;
+            double gun_period;
+            double gun_active_time;
+            double ns_between_each_electron_fire;
+
+            vector3d gunpos;
+            vector3d gundir = vector3d(1,0,0);
+
+            uint64_t bunch_count = 0;
+            uint64_t e_per_bunch = 1;
+
+            uint32_t _fired_bunch = 0;
+            uint32_t _fired_e_in_current_bunch = 0;
+            bool _firing = false;
+
+            bool _mt_enabled = false;
+            uint32_t _child_thread_count = 0;
+
+            vector<Bunch> bunchs;
+
+            mutex _gun_mutex; 
+            vector<shared_ptr<vector<shared_ptr<Electron>>>> thread_bunchs;
+
+            void setNSLen(double len);
+        public:
+            Gun();
+            Gun(double Ein, double gun_active_time, double pulse_interval, vector3d gunpos);
+            ~Gun();
+            void interact(RFField& E, MagneticField& B, const double time, double time_interval);
+
+            void fireIfActive(double time);
+            void fireAllWithFireTimesMT();
+            
+            void addBunch(unsigned int num_of_electrons, double Ein);
+
+            void setGunActiveTime(double gt);
+            double getGunActiveTime(){return gun_active_time;}
+            void setGunInterval(double guninterval);
+            void setGunPos(vector3d gun_pos);
+            void setGunDir(vector3d gun_dir);
+            void setEin(double Ein) ;
+            void setEinStd(double EinStd) ;
+            void setNumberOfElectrons(uint64_t e_num);
+            void getElectronsPerBunch(){return e_per_bunch;}
+            void setNumberOfBunchs(uint64_t b_num);
+            void enableMT(uint32_t thread_count);
+            
+            void saveInfo(double time);
+            void logPaths(vector<vector<DataStorage> >& pathsStorage, std::string pathsPath, std::string header);
+        };
+    \end{minted}
+    \caption{Gun class definition}
+    \label{fig:gun_class}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        class Simulator{        // E in MV/m,   En in MeV,   B in T,    t in ns
+        protected:
+            Gun gun;
+            double Emax; double freq = 107.5; double phase_lag = 0; 
+            DataStorage EfieldStorage; DataStorage BfieldStorage;
+            vector<vector<DataStorage>> pathsStorage;
+            std::string configPath;
+            std::string pathsPath;
+            std::string EfieldLogHeader;
+            std::string BfieldLogHeader;
+            std::string eLogHeader;
+
+            double simulation_time = 0;
+            double dummy_time = 0;
+            double start_time = 0;
+            double end_time = 45;   
+            double time_interval = 0.0001;
+            uint64_t STEPS_TAKEN = 0;
+            double GUN_ACTIVE_TIME = 1;         
+            double GUN_PERIOD = 9.3;
+            uint64_t NUM_OF_ELECTRONS = 1;
+            uint64_t NUM_OF_BUNCHS = 1;
+            double Ein = 0.04;
+            double EinStd = 0;
+            vector3d gunPosition;
+            vector3d gunDirection = vector3d(1,0,0);
+
+            shared_ptr<mutex> ui_mutex;
+            UIHandler ui_handler;
+            shared_ptr<mutex> state_mutex;
+            uint8_t state = 0x0;
+
+            MultiThreadEngine MTEngine;
+            unsigned int MAX_THREAD_COUNT = 1;
+            bool MULTI_THREAD = false;
+        public:
+            Simulator();
+            ~Simulator(){}
+
+            void enableMultiThreading(unsigned int thread_count);
+            void setdT(double dT);
+            void setEin(double E_in);
+            void setEinStd(double Ein_Std);
+            void setNumberofElectrons(uint64_t num_of_electrons);
+            void setNumberofBunchs(uint64_t num_of_bunchs);
+            void setStartTime(double starttime);
+            void setEndTime(double end_time);
+            void setGunActiveTime(double gun_ns);
+            void setGunPeriod(double pi);
+            void setGunPosition(vector3d pos);
+            void setGunDirection(vector3d dir);
+            void setRFPath(std::string path);
+            void setBPath(std::string path);
+            void setPathsPath(std::string path);
+            void setConfigPath(std::string path);
+
+            virtual void run();
+            void openLogs();
+            void closeLogs();
+            virtual void getConfig(Configuration& config) = 0;
+            virtual void logEfield(double time, bool) = 0;
+            virtual void logBfield() = 0;
+            void logPaths();
+            shared_ptr<mutex> getUIMutex();
+        };
+    \end{minted}
+    \caption{Simulator class definition}
+    \label{fig:sim_class}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        class RhodotronSimulator : public Simulator{
+        private:
+            double R1;
+            double R2;
+            CoaxialRFField E_field;
+            MagneticField B_field;
+
+            void _runMT();
+            void _runST();
+        public:
+            RhodotronSimulator(double phase_lag);
+            RhodotronSimulator(Configuration& config);
+
+            void StartUIHandler();
+            void StopUIHandler();
+            void DeclareService(std::string pipe_name);
+
+            void setFreq(double frequency);
+            void setPhaseLag(double phase_lag);
+            void setEmax(double E_max);
+            void setR1(double r1);
+            void setR2(double r2);
+            void addMagnet(double B, double r, vector3d position);
+            void addMagnet(Magnet m);
+            
+            void updateSimulation();
+            void getConfig(Configuration& config);
+            void logEfield(double time, bool end);
+            void logBfield();
+
+            void run();
+            void notifyUI(double time);
+
+            void setState(uint8_t state_);
+        };
+    \end{minted}
+    \caption{RhodotronSimulator class definition}
+    \label{fig:rhodosim_class}
+\end{figure}
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \begin{subfigure}{\textwidth}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+            class RFField{
+            protected:
+                double E;                       // MV/m
+                double E_max = 0;               // MV/m
+                double frequency = 107.5;       // MHz
+                double phase_lag = 0;           // degree
+            public:
+                RFField();
+                RFField(double phase_lag);
+                virtual ~RFField() {}
+
+                virtual vector3d getField(vector3d position);              
+                virtual double getField(double R);
+                virtual int log(DataStorage& rf, double time, bool end = false);
+                vector3d actOn(Electron& e);    
+                vector3d actOnAndGetRungeKuttaCoef(Electron& e, double dt);                  
+                
+                double getE() {return E;}
+                void setEmax(double E_max) {this->E_max = E_max; update(0);}
+                void setFreq(double freq){ frequency = freq;}
+                void setPhaseLag(double phaselag){ phase_lag = phaselag; update(0);}
+                virtual void update(double time);
+            };
+        \end{minted}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+            class CoaxialRFField : public RFField{
+            private:
+                double r1 = 0.188;                         // m
+                double r2 = 0.753;                         // m
+                double E_max_pos = r1;                     // m
+                std::vector<CoaxialRFField*> _childs;
+                double E_radial(double R) const;
+            public:
+                CoaxialRFField();
+                CoaxialRFField(double phase_lag);
+                ~CoaxialRFField() override;
+                void setR1(double r1);
+                void setR2(double r2);
+                void setEmaxPos(double Emaxpos);   
+
+                vector3d getField(vector3d position) const override;
+                double getField(double R) const override;
+                vector3d actOn(Electron& e);
+                vector3d actOnAndGetRungeKuttaCoef(Electron& e, double dt);    
+                void update(double time) override; 
+
+                int log(DataStorage& rf, double time, bool end = false) override;
+
+                std::shared_ptr<CoaxialRFField> Copy();
+                void split(uint32_t amount_of_child);
+                CoaxialRFField* child(uint32_t index);
+            };
+        \end{minted}
+    \end{subfigure}
+    \caption{CoaxialRFField class definition}
+    \label{fig:rf_class}
+\end{figure}
+
 \chapter{Example Simulation Runs} \label{appendix:example_simulation_runs}
 
 \begin{figure}[H]
@@ -2819,6 +3180,134 @@ lead to the inference that this tool holds promise.
     \label{tab:rk2_mag_table}
 \end{table}
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
+    5.00E-02 & 0.114422     & 0.028398 & 0.009294 \\
+    1.00E-02 & 0.019233     & 0.036245 & 0.002182 \\
+    1.00E-03 & 0.002141     & 0.147979 & 0.00125  \\
+    9.00E-04 & 0.001749     & 0.172161 & 0.00794  \\
+    8.00E-04 & 0.001516     & 0.184629 & 0.004359 \\
+    7.00E-04 & 0.00152      & 0.20445  & 0.001919 \\
+    6.00E-04 & 0.001049     & 0.234947 & 0.004416 \\
+    5.00E-04 & 0.000974     & 0.278938 & 0.010969 \\
+    4.00E-04 & 0.0009       & 0.336847 & 0.003028 \\
+    3.00E-04 & 0.000587     & 0.441771 & 0.005859 \\
+    2.00E-04 & 0.000433     & 0.652066 & 0.006637 \\
+    1.00E-04 & 0.0002       & 1.280059 & 0.016027 \\
+    9.00E-05 & 0.000145     & 1.41908  & 0.013122 \\
+    8.00E-05 & 0.000153     & 1.592492 & 0.011332 \\
+    7.00E-05 & 0.000162     & 1.806561 & 0.009931 \\
+    6.00E-05 & 0.000123     & 2.103571 & 0.011143 \\
+    5.00E-05 & 0.000084     & 2.515006 & 0.01393  \\
+    4.00E-05 & 0.000092     & 3.140471 & 0.014138 \\
+    3.00E-05 & 0.000053     & 4.158715 & 0.009474 \\
+    2.00E-05 & 0.000045     & 6.231734 & 0.015236 \\
+    1.00E-05 & 0.000022     & 12.39871 & 0.039575 \\
+    1.00E-06 & 0.000003     & 123.318  & 0.299559
+    \end{tabular}
+    \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
+    \label{tab:lf_statE_table}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
+        5.00E-02 & 0.055355     & 0.031054 & 0.003281 \\
+        1.00E-02 & 0.009868     & 0.063656 & 0.000893 \\
+        1.00E-03 & 0.001141     & 0.435864 & 0.005332 \\
+        9.00E-04 & 0.001325     & 0.478216 & 0.00595  \\
+        8.00E-04 & 0.001112     & 0.533789 & 0.003897 \\
+        7.00E-04 & 0.000705     & 0.60586  & 0.005441 \\
+        6.00E-04 & 0.000687     & 0.703851 & 0.009447 \\
+        5.00E-04 & 0.000474     & 0.840173 & 0.00913  \\
+        4.00E-04 & 0.00046      & 1.039166 & 0.005874 \\
+        3.00E-04 & 0.000456     & 1.378822 & 0.007995 \\
+        2.00E-04 & 0.000207     & 2.045464 & 0.008499 \\
+        1.00E-04 & 0.000127     & 4.052472 & 0.014711 \\
+        9.00E-05 & 0.000091     & 4.500401 & 0.015404 \\
+        8.00E-05 & 0.000124     & 5.048922 & 0.014392 \\
+        7.00E-05 & 0.000062     & 5.773208 & 0.031443 \\
+        6.00E-05 & 0.000057     & 6.726501 & 0.020609 \\
+        5.00E-05 & 0.00006      & 8.045931 & 0.014246 \\
+        4.00E-05 & 0.000039     & 10.04809 & 0.012756 \\
+        3.00E-05 & 0.000045     & 13.39669 & 0.028057 \\
+        2.00E-05 & 0.000023     & 20.03889 & 0.006436 \\
+        1.00E-05 & 0.000016     & 40.0818  & 0.120627 \\
+        1.00E-06 & 0.000003     & 400.2421 & 0.554172
+    \end{tabular}
+    \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
+    \label{tab:rk2_statE_table}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
+    5.00E-02 & 0.986005     & 0.030314 & 0.009209 \\
+    1.00E-02 & 0.154314     & 0.036833 & 0.004068 \\
+    1.00E-03 & 0.01476      & 0.131783 & 0.002352 \\
+    9.00E-04 & 0.013618     & 0.150984 & 0.005618 \\
+    8.00E-04 & 0.011863     & 0.161336 & 0.003117 \\
+    7.00E-04 & 0.010109     & 0.179693 & 0.002658 \\
+    6.00E-04 & 0.009277     & 0.205356 & 0.002912 \\
+    5.00E-04 & 0.007527     & 0.242352 & 0.003093 \\
+    4.00E-04 & 0.006084     & 0.294269 & 0.001551 \\
+    3.00E-04 & 0.00449      & 0.383982 & 0.001711 \\
+    2.00E-04 & 0.002897     & 0.563762 & 0.004214 \\
+    1.00E-04 & 0.001458     & 1.101252 & 0.008064 \\
+    9.00E-05 & 0.001376     & 1.229321 & 0.0089   \\
+    8.00E-05 & 0.001232     & 1.381441 & 0.01057  \\
+    7.00E-05 & 0.001027     & 1.574994 & 0.011933 \\
+    6.00E-05 & 0.000853     & 1.833183 & 0.006065 \\
+    5.00E-05 & 0.00074      & 2.184948 & 0.013416 \\
+    4.00E-05 & 0.000596     & 2.72503  & 0.016356 \\
+    3.00E-05 & 0.000467     & 3.617576 & 0.017581 \\
+    2.00E-05 & 0.000308     & 5.394629 & 0.027885 \\
+    1.00E-05 & 0.00015      & 10.75182 & 0.03301  \\
+    1.00E-06 & 0.000017     & 106.9198 & 0.373175
+    \end{tabular}
+    \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m, $t_{end}=6$ns}
+    \label{tab:lf_statE90_table}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
+        5.00E-02 & 0.587777     & 0.034741 & 0.012735 \\
+        1.00E-02 & 0.09943      & 0.059945 & 0.001318 \\
+        1.00E-03 & 0.009987     & 0.38199  & 0.005941 \\
+        9.00E-04 & 0.007946     & 0.417119 & 0.005683 \\
+        8.00E-04 & 0.007999     & 0.466052 & 0.006398 \\
+        7.00E-04 & 0.006732     & 0.525791 & 0.003782 \\
+        6.00E-04 & 0.005541     & 0.612876 & 0.007114 \\
+        5.00E-04 & 0.005022     & 0.732091 & 0.012129 \\
+        4.00E-04 & 0.004031     & 0.906845 & 0.012156 \\
+        3.00E-04 & 0.002779     & 1.199367 & 0.014536 \\
+        2.00E-04 & 0.001897     & 1.782653 & 0.016993 \\
+        1.00E-04 & 0.000895     & 3.52464  & 0.029778 \\
+        9.00E-05 & 0.000858     & 3.916115 & 0.041066 \\
+        8.00E-05 & 0.000731     & 4.409459 & 0.040828 \\
+        7.00E-05 & 0.00066      & 5.012686 & 0.042727 \\
+        6.00E-05 & 0.000561     & 5.851793 & 0.038488 \\
+        5.00E-05 & 0.000471     & 7.002315 & 0.046152 \\
+        4.00E-05 & 0.000363     & 8.747954 & 0.063936 \\
+        3.00E-05 & 0.000264     & 11.64305 & 0.091404 \\
+        2.00E-05 & 0.000184     & 17.44533 & 0.123198 \\
+        1.00E-05 & 0.000093     & 34.93332 & 0.391012 \\
+        1.00E-06 & 0.000011     & 348.494  & 3.237203
+    \end{tabular}
+    \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
+    \label{tab:rk2_statE90_table}
+\end{table}
 % START OF BIBLIOGRAPHY
 
 \begin{thebibliography}{9}

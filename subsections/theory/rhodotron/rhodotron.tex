@@ -61,26 +61,44 @@ Accelerators have been instrumental in discovering and characterizing fundamenta
 They also facilitate the production of high-intensity beams for applications in material science, radiotherapy, and industrial processes like particle irradiation and sterilization.
 
 % TODO : ADD CIRCULAR AND LINEAR ACCELERATOR PICTURES HERE
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{../../../figures/to_be_added.png}
-    \caption{A circular accelerator}
-\end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{../../../figures/to_be_added.png}
-    \caption{A linear accelerator}
+    \caption{A linear proton accelerator in KAHVELab}
 \end{figure}
 
 \subsection{Key Concepts}
 
-\begin{itemize}
-    \item Phase Stability
-    \item Phase Lag
-    \item Shunt Impedance
-    
-\end{itemize}
+\subsubsection{Resonance Frequency}
+Resonance frequency is the frequency in which the electromagnetic fields form standing waves in a cavity.
+It is determined by the physical dimensions and the speed of light in the cavity's medium. 
+In a rectangular cavity for example, the resonance frequency can be calculated from \fromeq{f_r_rec}.
+\begin{equation}
+    f_{klm} = \frac{c}{2\pi \sqrt{\mu_r \epsilon_r}} \sqrt{(\frac{k}{w})^2 + (\frac{l}{u})^2 + (\frac{m}{v})^2}
+    \label{eq:f_r_rec}
+\end{equation}
+Where $w$, $u$, $v$ are the dimensions of the cavity, $\mu_r$ and $\epsilon_r$ are relative permability and permittivity of the cavity respectably.
+
+\subsubsection{Bunch}
+Bunch refers to a tightly grouped collection of charged particles, such as electrons or protons, that are accelerated and maintained close together within a particle accelerator.
+
+\subsubsection{Phase Stability}
+Phase stability refers to the preservation of the timing relationship between particles and fields within an accelerator. 
+It ensures that the phases of various electromagnetic fields or particles remain synchronized, 
+which is crucial for achieving efficient particle acceleration. 
+Maintaining phase stability is essential to prevent particles from becoming out of phase as they travel through accelerator structures, 
+ensuring that they receive the correct energy boosts and interact predictably with detectors. 
+Deviations in phase stability can lead to particle loss and decreased beam quality.
+
+\subsubsection{Phase Lag}
+Phase lag refers to the time delay between the oscillations of two interacting waveforms or particles. 
+It describes the difference in phase angles within their respective cycles, between two signals. 
+
+\subsubsection{Shunt Impedance}
+The shunt impedance of an RF accelerator is a measure of the efficiency 
+at which the accelerator can transform the supplied RF power into acceleration.
+
 
 \subsection{Acceleration Cavities} \label{sec:theory_cavities}
 Radiofrequency (RF) cavities, also known as accelerating cavities or resonant cavities, are key components in particle accelerators. 
@@ -133,19 +151,7 @@ The design of a rhodotron mainly consists of a coaxial cylindrical RF cavity and
 
 Coaxial design of the cavity concentrates the electric field, while the magnetic field diminishes in the middle of the cylinders. 
 Therefore the electrons are injected and accelerated in the plane of zero magnetic field where the electric field is strongest.
-% TODO : ADD SUPERFISH AND CST SIMULATIONS OF A SIMPLE RHODOTRON CAVITY
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{../../../figures/to_be_added.png}
-    \caption{SUPERFISH simulation of a coaxial cavity}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{../../../figures/to_be_added.png}
-    \caption{CST simulation of a coaxial cavity}
-\end{figure}
+% TODO : ADD SUPERFISH AND CST SIMULATIONS OF A SIMPLE RHODOTRON CAVITY MAYBE?????
 
 With the expectation that the electrons will accelerate to speeds $>=0.9 c$ after the first pass, a rhodotron cavity is designed so that the length of the path between successive passes is an integer multiple of $\lambda$, wavelength of the RF field ($l=p\lambda \label{eq:lpl}$).
 This constraint helps with  phase stability and synchronization of the beam.
@@ -189,39 +195,42 @@ Electrons undergo four different stages during a single pass.
 They are accelerated between the cylinderical plates and are shielded from the changing RF field while inside the inner cylinder and outside the cavity. 
 
 \begin{description}
-    \item[First acceleration] Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity.
-    \item[Inner shielding] While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed.
-    \item[Second acceleration] Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity.
-    \item[Magnets] After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again.
+    \item[First acceleration] Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity. See \fromfig{rhod_cycle_1}
+    \item[Inner shielding] While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed.See \fromfig{rhod_cycle_2}
+    \item[Second acceleration] Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity. See \fromfig{rhod_cycle_3}
+    \item[Magnets] After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again. See \fromfig{rhod_cycle_4}
 \end{description}
 
-This cycle can be repeated as long as real world constraints such as; placements and dimentions of the electromagnets, power requirements due to increasing magnetic field in order for sharper turns, can be overcomed.
+This cycle can be repeated as long as real world constraints such as; placements and dimensions of the electromagnets, power requirements due to increasing magnetic field in order for sharper turns, can be overcomed.
 After desired amount of pass has been completed, the electrons exit the accelerator.
 
 This process is explained further in the following figures where $T$ is the period of the electric field.
-% TODO : ADD ACCELERATION PROCESS OF RHODOTRON FIGURES HERE
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.75]{../../../figures/to_be_added.png}
+    \includegraphics[width=\textwidth]{../../../figures/illustrations/rhod1.pdf}
     \caption{$[0, \frac{T}{4}]$ time frame of a rhodotron}
+    \label{fig:rhod_cycle_1}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.75]{../../../figures/to_be_added.png}
+    \includegraphics[width=\textwidth]{../../../figures/illustrations/rhod2.pdf}
     \caption{$[\frac{T}{4}, \frac{T}{2}]$ time frame of a rhodotron}
+    \label{fig:rhod_cycle_2}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.75]{../../../figures/to_be_added.png}
+    \includegraphics[width=\textwidth]{../../../figures/illustrations/rhod3.pdf}
     \caption{$[\frac{T}{2}, \frac{3T}{4}]$ time frame of a rhodotron}
+    \label{fig:rhod_cycle_3}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.75]{../../../figures/to_be_added.png}
+    \includegraphics[width=\textwidth]{../../../figures/illustrations/rhod4.pdf}
     \caption{$[\frac{3T}{4}, T]$ time frame of a rhodotron}
+    \label{fig:rhod_cycle_4}
 \end{figure}
 
 

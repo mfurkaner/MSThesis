@@ -51,6 +51,8 @@
 \newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
 \newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
 \newcommand{\fromfigf}[4]{\textit{figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3} and \ref{fig:#4}}}
+\newcommand{\fromfigsix}[6]{\textit{figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3}, \ref{fig:#4}, \ref{fig:#5} and \ref{fig:#6}}}
+
 
 \newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
 \newcommand{\fromsecs}[2]{\textit{sections \ref{sec:#1} and \ref{sec:#2}}}
@@ -59,6 +61,7 @@
 
 \newcommand{\fromtab}[1]{\textit{Table \ref{tab:#1}}}
 \newcommand{\fromtabs}[2]{\textit{Tables \ref{tab:#1} and \ref{tab:#2}}}
+\newcommand{\fromtabf}[4]{\textit{Tables \ref{tab:#1}, \ref{tab:#2}, \ref{tab:#3} and \ref{tab:#4}}}
 
 
 
@@ -69,18 +72,18 @@
 \section{Intermediate Versions}
 
 \subsection{$L_{out}$ Optimization For Single \e} \label{sec:lout_sweep}
-Initial step of improving $POC$ towards $Rhodotron Simulation$ was to implement \textit{$L_{out}$ optimizations} to help optimazing magnet designs, as discussed in \fromsec{parameter_sweep}.
-First approach was to hang the \e outside of the cavity for $t_{out} = L_{out}/v$, then inject it back to the cavity with reversed $\vecthreeBF{v}$. Then sweep the $t_{out}$ parameter to find the optimal value.
+Initial step of improving \textit{POC} towards \textit{Rhodotron Simulation} was to implement \textit{$L_{out}$ optimizations} to help optimazing magnet designs, as discussed in \fromsec{parameter_sweep}.
+First approach was to hang the \e outside of the cavity for $t_{out} = L_{out}/v$, then inject it back to the cavity with reversed $\vecthreeBF{v}$. One can sweep the $t_{out}$ parameter to find the optimal value.
 This simple implementation can be found in \fromfig{lout_opt_single_e} of \fromapp{intermediate_codes}.
 
 Although the results from this optimization sweep were promising after they were simulated with $CST$, simulating one particle would not be sufficiently useful for designing a magnet.
 
 \subsection{$\phi_{lag}$ Optimization For Bunches} \label{sec:philag_sweep}
 After successfully accelerating single \e, particle bunches were implemented to approximate a real \e gun. 
-They were modeled as $N$ electrons fired from an \e gun at even time intervals. This approach was taken because the amount of time gun fires, defined as \textit{Gun Active Time, $t_g$}, is a crucial part of pulsing \e gun design.
+They were modeled as $N$ electrons fired from an \e gun at even time intervals. This approach was taken because the amount of time gun fires, defined as \textit{Gun Active Time, $t_g$}, is a crucial part of pulsed \e gun design.
 
-Addition of bunches would immediately proven useful when finding optimal gun phase lag.
-$\phi_{lag}$ for a bunch was defined as the RF phase when the first \e of the bunch entered the cavity, it defines the starting time of the current pass.
+Addition of bunches would immediately proven useful when finding optimal phase lag for bunch entry.
+$\phi_{lag}$ for a bunch was defined as the RF phase when the first \e of the bunch has entered the cavity and it defines the starting time of the current pass.
 To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimization}, relevant bunch characteristics are defined as follows:
 
 \begin{itemize}
@@ -90,8 +93,8 @@ To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimiz
 \end{itemize}
 
 Optimal $\phi_{lag}$ would produce maximum $\mu E$ while minimizing $E_{rms}$ \& $R_{rms}$. For the first pass, 
-$E_{rms}$ and $R_{rms}$ would be vaguely dependent of each other; therefore, early implementation of $\phi_{lag}$ sweep was based on minimizing $E_{rms}$ during simulation (\textit{see \fromfig{phlag_opt}}). 
-For $\mu E$ considerations, data from the software would be analyzed either manually or by using external tools such as $ROOT$. 
+$E_{rms}$ and $R_{rms}$ would be vaguely dependent of each other; therefore, initial implementation of $\phi_{lag}$ sweep was based on minimizing $E_{rms}$ during simulation (\textit{see \fromfig{phlag_opt}}). 
+For $\mu E$ considerations, data from the software would be analyzed either manually or by using external tools such as \textit{ROOT framework}. 
 
 \begin{figure}[H]
     \centering
@@ -122,12 +125,12 @@ Since $\phi_{lag}$ is relatively easy to change after production, another versio
 This version can be useful for optimizing $\phi_{lag}$ in case of production issues in magnets. 
 
 After the bunch and $\phi_{lag}$ sweep implementations, $L_{out}$ sweep was also updated to minimize $E_{rms}$. $\rho$ and $L$ calculations, using \fromeqs{magnet_rho_constraint}{magnet_L_constraint}, were also integrated. 
-Two example runs can be found in \fromfigs{lout_opt_1ns_Erms}{lout_opt_08ns_Erms} of \fromapp{example_simulation_runs}.
+Two example runs from this intermediate build can be found in \fromfigs{lout_opt_1ns_Erms}{lout_opt_08ns_Erms} of \fromapp{example_simulation_runs}.
 
 \subsection{Simulation in 3D}
 After successfully implementing \eE interaction in 1D and confirming the usefulness of this tool, the decision was made to proceed with implementing a 3D version of the \textit{Rhodotron Simulation}.
 Although complete refactoring of the software was necessary, this upgrade was crucial for implementation of \eB interaction.
-The refactoring effort included proper implementation of $OOP$, details of which can be seen in \fromapp{intermediate_codes}.
+The refactoring effort included proper implementation of \textit{OOP}, details of which can be seen in \fromfigsix{e_class}{bunch_class}{gun_class}{sim_class}{rhodosim_class}{rf_class} of \fromapp{intermediate_codes}.
 
 Magnets were modeled as major segments of a circle, defined with $\vecthreeBF{r}_{mag}$, $\textbf{R}$ and $|\textbf{B}|$. 
 For the initial implementation, $\vecthreeBF{B}$ assumed to be uniform and has no leaks outside the magnet boundary (See \fromfig{is_inside_halfsphere} in \fromapp{intermediate_codes}).
@@ -190,7 +193,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
 
 \subsection{Acceleration in Magnetic Field}
 An issue regarding the \eB interaction became apparent when energy gain during these interactions was observed.
-A setup simulation was implemented in which a bunch of 100\e at $1$MeV was fired to a uniform magnetic field of $0.1$T placed in $x>0.05$m.
+A setup simulation was implemented in which a bunch of 100\e at $1$MeV was fired into a uniform magnetic field of $0.1$T located in $x>0.05$m.
 Initial results at $dt=0.01$ns proved the suspicion of \eB interaction being broken. However, the energy gain would decrease tremendously as $dt$ decreased.
 
 
@@ -212,7 +215,7 @@ Initial results at $dt=0.01$ns proved the suspicion of \eB interaction being bro
     \label{fig:mag_lf_render}
 \end{figure}
 
-Decreasing $dt$ would be the best way to increase accuracy of the results; however, this is not sustainable because time and computing power. 
+Decreasing $dt$ would be the best way to increase accuracy of the results; however, this is not sustainable due to computing power limitations. 
 Until this point, \textit{Rhodotron Simulation} have been using \fromsec{leapfrog} for \eEM interactions. 
 To test newer approaches, two additional version of  \eEM interaction that are using \fromsec{rungekutta} were added.
 \subsubsection{RK4-1}
@@ -412,7 +415,7 @@ Taking the $dt=10^{-5}$ns for the reference point as before, the relative perfor
 \end{eqnarray}
 
 \textit{Leap-frog} provides $2.4$ times and $2.0$ times less overacceleration per simulation time than \textit{RK4} in parallel and perpendicular electric fields respectably.
-This results can be tested further with obsering from the data (see TODO),
+This results can be tested further with obsering from the data (see \fromtabf{lf_statE_table}{rk2_statE_table}{lf_statE90_table}{rk2_statE90_table} of \fromapp{data_graph}),
 
 \begin{eqnarray} \label{eq:f_lf_rk_3}
     \Delta E_{LF}^1 (dt=2 \times 10^{-5}) = \Delta E_{RK}^1 (dt=3 \times 10^{-5}) &=& 45 \times 10^{-6} MeV \nonumber\\

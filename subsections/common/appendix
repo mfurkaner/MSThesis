@@ -441,6 +441,356 @@
     \label{fig:ui_thread}
 \end{figure}
 
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        class Electron{
+            std::vector<ElectronLog> log;
+            uint64_t index;
+            double Et;
+            vector3d pos;
+            vector3d vel;
+            double fire_time;
+        public:
+            Electron();
+            Electron(double Ein, vector3d position, vector3d direction, double _fire_time = 0);
+            ~Electron();
+
+            void setEin(double E_in);
+            void print_electron_info();
+
+            void move(double dt);
+            void move(const vector3d& acc, double dt);
+            void move(const vector3d& acc, const vector3d& jerk, double dt);
+            void accelerate(const vector3d& acc, double dt);
+            void accelerate(const vector3d& acc, const vector3d& jerk, double dt);
+            
+            void interactLF(RFField& E, MagneticField& B, double time_interval);
+            void interactRK(RFField& E, MagneticField& B, double time_interval);
+            void interactRK(RFField& E, MagneticField& B, const double time, double time_interval);
+            void interactRK_ActorE(const RFField& E, const MagneticField& B, double time_interval);
+
+            vector3d interactE_RK(const RFField& E, double time_interval);
+            vector3d interactB_RK(const MagneticField& B, double time_interval);
+
+            void saveInfo(double t);
+            void setLogSize(size_t size);
+            void loge(DataStorage& path);
+            const vector<ElectronLog>& getLog();
+
+            double vel();
+            double beta();
+            double beta2();
+            double gamma();
+            double gamma_inv();
+        };
+    \end{minted}
+    \caption{Electron class definition}
+    \label{fig:e_class}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        class Bunch{
+        private:
+            int e_count = 0;
+            int index_fastest = 0;
+            double max_energy = 0;
+            double entry_time = 0;
+            double E_in = 0.04;
+
+            vector<Bunch> subBunchs;
+            vector<shared_ptr<Electron>> e;
+        public:
+            Bunch(unsigned int num_of_electrons, double Ein, vector3d gunpos, vector3d gundir, double gun_ns);
+            Bunch();
+            ~Bunch();
+
+            void saveInfo(double time);
+
+            Electron& getFastest();
+
+            void AddElectron(double Ein, const vector3d& gunpos, const vector3d& gundir, double fire_time);
+
+            shared_ptr<Electron> AddElectronGiveAddress(double Ein, const vector3d& gunpos, const vector3d& gundir, double fire_time);
+
+            void setEntryTime(double entry_time);
+            void setEin(double E_in);
+            void setNSLen(double len);
+
+            uint32_t get_e_count();
+            double getEin();
+            double E_ave();
+            double E_rms();
+
+            void interact(RFField& E, MagneticField& B, const double time, double time_interval);
+
+            void divide(unsigned int num);
+            void concat();
+            Bunch& subBunch(unsigned int index);
+            vector<Bunch*> subBunchPtr();
+
+            void reset();
+
+            void print_bunch_info();
+            void print_summary();
+
+            void logPaths(vector<DataStorage>& pathStorage, std::string header);
+        };
+    \end{minted}
+    \caption{Bunch class definition}
+    \label{fig:bunch_class}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        class Gun{
+            double Ein;
+            double sEin;
+            double gun_period;
+            double gun_active_time;
+            double ns_between_each_electron_fire;
+
+            vector3d gunpos;
+            vector3d gundir = vector3d(1,0,0);
+
+            uint64_t bunch_count = 0;
+            uint64_t e_per_bunch = 1;
+
+            uint32_t _fired_bunch = 0;
+            uint32_t _fired_e_in_current_bunch = 0;
+            bool _firing = false;
+
+            bool _mt_enabled = false;
+            uint32_t _child_thread_count = 0;
+
+            vector<Bunch> bunchs;
+
+            mutex _gun_mutex; 
+            vector<shared_ptr<vector<shared_ptr<Electron>>>> thread_bunchs;
+
+            void setNSLen(double len);
+        public:
+            Gun();
+            Gun(double Ein, double gun_active_time, double pulse_interval, vector3d gunpos);
+            ~Gun();
+            void interact(RFField& E, MagneticField& B, const double time, double time_interval);
+
+            void fireIfActive(double time);
+            void fireAllWithFireTimesMT();
+            
+            void addBunch(unsigned int num_of_electrons, double Ein);
+
+            void setGunActiveTime(double gt);
+            double getGunActiveTime(){return gun_active_time;}
+            void setGunInterval(double guninterval);
+            void setGunPos(vector3d gun_pos);
+            void setGunDir(vector3d gun_dir);
+            void setEin(double Ein) ;
+            void setEinStd(double EinStd) ;
+            void setNumberOfElectrons(uint64_t e_num);
+            void getElectronsPerBunch(){return e_per_bunch;}
+            void setNumberOfBunchs(uint64_t b_num);
+            void enableMT(uint32_t thread_count);
+            
+            void saveInfo(double time);
+            void logPaths(vector<vector<DataStorage> >& pathsStorage, std::string pathsPath, std::string header);
+        };
+    \end{minted}
+    \caption{Gun class definition}
+    \label{fig:gun_class}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        class Simulator{        // E in MV/m,   En in MeV,   B in T,    t in ns
+        protected:
+            Gun gun;
+            double Emax; double freq = 107.5; double phase_lag = 0; 
+            DataStorage EfieldStorage; DataStorage BfieldStorage;
+            vector<vector<DataStorage>> pathsStorage;
+            std::string configPath;
+            std::string pathsPath;
+            std::string EfieldLogHeader;
+            std::string BfieldLogHeader;
+            std::string eLogHeader;
+
+            double simulation_time = 0;
+            double dummy_time = 0;
+            double start_time = 0;
+            double end_time = 45;   
+            double time_interval = 0.0001;
+            uint64_t STEPS_TAKEN = 0;
+            double GUN_ACTIVE_TIME = 1;         
+            double GUN_PERIOD = 9.3;
+            uint64_t NUM_OF_ELECTRONS = 1;
+            uint64_t NUM_OF_BUNCHS = 1;
+            double Ein = 0.04;
+            double EinStd = 0;
+            vector3d gunPosition;
+            vector3d gunDirection = vector3d(1,0,0);
+
+            shared_ptr<mutex> ui_mutex;
+            UIHandler ui_handler;
+            shared_ptr<mutex> state_mutex;
+            uint8_t state = 0x0;
+
+            MultiThreadEngine MTEngine;
+            unsigned int MAX_THREAD_COUNT = 1;
+            bool MULTI_THREAD = false;
+        public:
+            Simulator();
+            ~Simulator(){}
+
+            void enableMultiThreading(unsigned int thread_count);
+            void setdT(double dT);
+            void setEin(double E_in);
+            void setEinStd(double Ein_Std);
+            void setNumberofElectrons(uint64_t num_of_electrons);
+            void setNumberofBunchs(uint64_t num_of_bunchs);
+            void setStartTime(double starttime);
+            void setEndTime(double end_time);
+            void setGunActiveTime(double gun_ns);
+            void setGunPeriod(double pi);
+            void setGunPosition(vector3d pos);
+            void setGunDirection(vector3d dir);
+            void setRFPath(std::string path);
+            void setBPath(std::string path);
+            void setPathsPath(std::string path);
+            void setConfigPath(std::string path);
+
+            virtual void run();
+            void openLogs();
+            void closeLogs();
+            virtual void getConfig(Configuration& config) = 0;
+            virtual void logEfield(double time, bool) = 0;
+            virtual void logBfield() = 0;
+            void logPaths();
+            shared_ptr<mutex> getUIMutex();
+        };
+    \end{minted}
+    \caption{Simulator class definition}
+    \label{fig:sim_class}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        class RhodotronSimulator : public Simulator{
+        private:
+            double R1;
+            double R2;
+            CoaxialRFField E_field;
+            MagneticField B_field;
+
+            void _runMT();
+            void _runST();
+        public:
+            RhodotronSimulator(double phase_lag);
+            RhodotronSimulator(Configuration& config);
+
+            void StartUIHandler();
+            void StopUIHandler();
+            void DeclareService(std::string pipe_name);
+
+            void setFreq(double frequency);
+            void setPhaseLag(double phase_lag);
+            void setEmax(double E_max);
+            void setR1(double r1);
+            void setR2(double r2);
+            void addMagnet(double B, double r, vector3d position);
+            void addMagnet(Magnet m);
+            
+            void updateSimulation();
+            void getConfig(Configuration& config);
+            void logEfield(double time, bool end);
+            void logBfield();
+
+            void run();
+            void notifyUI(double time);
+
+            void setState(uint8_t state_);
+        };
+    \end{minted}
+    \caption{RhodotronSimulator class definition}
+    \label{fig:rhodosim_class}
+\end{figure}
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \begin{subfigure}{\textwidth}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+            class RFField{
+            protected:
+                double E;                       // MV/m
+                double E_max = 0;               // MV/m
+                double frequency = 107.5;       // MHz
+                double phase_lag = 0;           // degree
+            public:
+                RFField();
+                RFField(double phase_lag);
+                virtual ~RFField() {}
+
+                virtual vector3d getField(vector3d position);              
+                virtual double getField(double R);
+                virtual int log(DataStorage& rf, double time, bool end = false);
+                vector3d actOn(Electron& e);    
+                vector3d actOnAndGetRungeKuttaCoef(Electron& e, double dt);                  
+                
+                double getE() {return E;}
+                void setEmax(double E_max) {this->E_max = E_max; update(0);}
+                void setFreq(double freq){ frequency = freq;}
+                void setPhaseLag(double phaselag){ phase_lag = phaselag; update(0);}
+                virtual void update(double time);
+            };
+        \end{minted}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+            class CoaxialRFField : public RFField{
+            private:
+                double r1 = 0.188;                         // m
+                double r2 = 0.753;                         // m
+                double E_max_pos = r1;                     // m
+                std::vector<CoaxialRFField*> _childs;
+                double E_radial(double R) const;
+            public:
+                CoaxialRFField();
+                CoaxialRFField(double phase_lag);
+                ~CoaxialRFField() override;
+                void setR1(double r1);
+                void setR2(double r2);
+                void setEmaxPos(double Emaxpos);   
+
+                vector3d getField(vector3d position) const override;
+                double getField(double R) const override;
+                vector3d actOn(Electron& e);
+                vector3d actOnAndGetRungeKuttaCoef(Electron& e, double dt);    
+                void update(double time) override; 
+
+                int log(DataStorage& rf, double time, bool end = false) override;
+
+                std::shared_ptr<CoaxialRFField> Copy();
+                void split(uint32_t amount_of_child);
+                CoaxialRFField* child(uint32_t index);
+            };
+        \end{minted}
+    \end{subfigure}
+    \caption{CoaxialRFField class definition}
+    \label{fig:rf_class}
+\end{figure}
+
 \chapter{Example Simulation Runs} \label{appendix:example_simulation_runs}
 
 \begin{figure}[H]
@@ -733,3 +1083,131 @@
     \label{tab:rk2_mag_table}
 \end{table}
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
+    5.00E-02 & 0.114422     & 0.028398 & 0.009294 \\
+    1.00E-02 & 0.019233     & 0.036245 & 0.002182 \\
+    1.00E-03 & 0.002141     & 0.147979 & 0.00125  \\
+    9.00E-04 & 0.001749     & 0.172161 & 0.00794  \\
+    8.00E-04 & 0.001516     & 0.184629 & 0.004359 \\
+    7.00E-04 & 0.00152      & 0.20445  & 0.001919 \\
+    6.00E-04 & 0.001049     & 0.234947 & 0.004416 \\
+    5.00E-04 & 0.000974     & 0.278938 & 0.010969 \\
+    4.00E-04 & 0.0009       & 0.336847 & 0.003028 \\
+    3.00E-04 & 0.000587     & 0.441771 & 0.005859 \\
+    2.00E-04 & 0.000433     & 0.652066 & 0.006637 \\
+    1.00E-04 & 0.0002       & 1.280059 & 0.016027 \\
+    9.00E-05 & 0.000145     & 1.41908  & 0.013122 \\
+    8.00E-05 & 0.000153     & 1.592492 & 0.011332 \\
+    7.00E-05 & 0.000162     & 1.806561 & 0.009931 \\
+    6.00E-05 & 0.000123     & 2.103571 & 0.011143 \\
+    5.00E-05 & 0.000084     & 2.515006 & 0.01393  \\
+    4.00E-05 & 0.000092     & 3.140471 & 0.014138 \\
+    3.00E-05 & 0.000053     & 4.158715 & 0.009474 \\
+    2.00E-05 & 0.000045     & 6.231734 & 0.015236 \\
+    1.00E-05 & 0.000022     & 12.39871 & 0.039575 \\
+    1.00E-06 & 0.000003     & 123.318  & 0.299559
+    \end{tabular}
+    \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
+    \label{tab:lf_statE_table}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
+        5.00E-02 & 0.055355     & 0.031054 & 0.003281 \\
+        1.00E-02 & 0.009868     & 0.063656 & 0.000893 \\
+        1.00E-03 & 0.001141     & 0.435864 & 0.005332 \\
+        9.00E-04 & 0.001325     & 0.478216 & 0.00595  \\
+        8.00E-04 & 0.001112     & 0.533789 & 0.003897 \\
+        7.00E-04 & 0.000705     & 0.60586  & 0.005441 \\
+        6.00E-04 & 0.000687     & 0.703851 & 0.009447 \\
+        5.00E-04 & 0.000474     & 0.840173 & 0.00913  \\
+        4.00E-04 & 0.00046      & 1.039166 & 0.005874 \\
+        3.00E-04 & 0.000456     & 1.378822 & 0.007995 \\
+        2.00E-04 & 0.000207     & 2.045464 & 0.008499 \\
+        1.00E-04 & 0.000127     & 4.052472 & 0.014711 \\
+        9.00E-05 & 0.000091     & 4.500401 & 0.015404 \\
+        8.00E-05 & 0.000124     & 5.048922 & 0.014392 \\
+        7.00E-05 & 0.000062     & 5.773208 & 0.031443 \\
+        6.00E-05 & 0.000057     & 6.726501 & 0.020609 \\
+        5.00E-05 & 0.00006      & 8.045931 & 0.014246 \\
+        4.00E-05 & 0.000039     & 10.04809 & 0.012756 \\
+        3.00E-05 & 0.000045     & 13.39669 & 0.028057 \\
+        2.00E-05 & 0.000023     & 20.03889 & 0.006436 \\
+        1.00E-05 & 0.000016     & 40.0818  & 0.120627 \\
+        1.00E-06 & 0.000003     & 400.2421 & 0.554172
+    \end{tabular}
+    \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
+    \label{tab:rk2_statE_table}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
+    5.00E-02 & 0.986005     & 0.030314 & 0.009209 \\
+    1.00E-02 & 0.154314     & 0.036833 & 0.004068 \\
+    1.00E-03 & 0.01476      & 0.131783 & 0.002352 \\
+    9.00E-04 & 0.013618     & 0.150984 & 0.005618 \\
+    8.00E-04 & 0.011863     & 0.161336 & 0.003117 \\
+    7.00E-04 & 0.010109     & 0.179693 & 0.002658 \\
+    6.00E-04 & 0.009277     & 0.205356 & 0.002912 \\
+    5.00E-04 & 0.007527     & 0.242352 & 0.003093 \\
+    4.00E-04 & 0.006084     & 0.294269 & 0.001551 \\
+    3.00E-04 & 0.00449      & 0.383982 & 0.001711 \\
+    2.00E-04 & 0.002897     & 0.563762 & 0.004214 \\
+    1.00E-04 & 0.001458     & 1.101252 & 0.008064 \\
+    9.00E-05 & 0.001376     & 1.229321 & 0.0089   \\
+    8.00E-05 & 0.001232     & 1.381441 & 0.01057  \\
+    7.00E-05 & 0.001027     & 1.574994 & 0.011933 \\
+    6.00E-05 & 0.000853     & 1.833183 & 0.006065 \\
+    5.00E-05 & 0.00074      & 2.184948 & 0.013416 \\
+    4.00E-05 & 0.000596     & 2.72503  & 0.016356 \\
+    3.00E-05 & 0.000467     & 3.617576 & 0.017581 \\
+    2.00E-05 & 0.000308     & 5.394629 & 0.027885 \\
+    1.00E-05 & 0.00015      & 10.75182 & 0.03301  \\
+    1.00E-06 & 0.000017     & 106.9198 & 0.373175
+    \end{tabular}
+    \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m, $t_{end}=6$ns}
+    \label{tab:lf_statE90_table}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
+        5.00E-02 & 0.587777     & 0.034741 & 0.012735 \\
+        1.00E-02 & 0.09943      & 0.059945 & 0.001318 \\
+        1.00E-03 & 0.009987     & 0.38199  & 0.005941 \\
+        9.00E-04 & 0.007946     & 0.417119 & 0.005683 \\
+        8.00E-04 & 0.007999     & 0.466052 & 0.006398 \\
+        7.00E-04 & 0.006732     & 0.525791 & 0.003782 \\
+        6.00E-04 & 0.005541     & 0.612876 & 0.007114 \\
+        5.00E-04 & 0.005022     & 0.732091 & 0.012129 \\
+        4.00E-04 & 0.004031     & 0.906845 & 0.012156 \\
+        3.00E-04 & 0.002779     & 1.199367 & 0.014536 \\
+        2.00E-04 & 0.001897     & 1.782653 & 0.016993 \\
+        1.00E-04 & 0.000895     & 3.52464  & 0.029778 \\
+        9.00E-05 & 0.000858     & 3.916115 & 0.041066 \\
+        8.00E-05 & 0.000731     & 4.409459 & 0.040828 \\
+        7.00E-05 & 0.00066      & 5.012686 & 0.042727 \\
+        6.00E-05 & 0.000561     & 5.851793 & 0.038488 \\
+        5.00E-05 & 0.000471     & 7.002315 & 0.046152 \\
+        4.00E-05 & 0.000363     & 8.747954 & 0.063936 \\
+        3.00E-05 & 0.000264     & 11.64305 & 0.091404 \\
+        2.00E-05 & 0.000184     & 17.44533 & 0.123198 \\
+        1.00E-05 & 0.000093     & 34.93332 & 0.391012 \\
+        1.00E-06 & 0.000011     & 348.494  & 3.237203
+    \end{tabular}
+    \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
+    \label{tab:rk2_statE90_table}
+\end{table}
