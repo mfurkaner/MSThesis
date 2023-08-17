@@ -19,7 +19,7 @@ $np = "\newpage" + [System.Environment]::NewLine
 
 Remove-Item -recurse .\*\ -exclude *.tex,*.ps1
 
-$prod = ($start + $finald + $np + $techd + $np + $manif + $np + $rf)
+$prod = ($start + $finald + $techd+ $manif + $rf)
 
 $out = ""
 

@@ -1,0 +1,57 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{wrapfig,lipsum}
+\usepackage{svg}
+\usepackage{mathtools}
+\usepackage{tabu}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+\begin{document}
+
+
+\newcommand{\vecthreeBF}[1]{\vec{\textbf{#1}}}
+\newcommand{\vecthree}[1]{\vec{#1}}
+
+\newcommand{\parDeriv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\parDerivS}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\derivS}[2]{\frac{d^2 #1}{d#2^2}}
+
+\newcommand{\dotProdBF}[2]{\vecthreeBF{#1} \cdot \vecthreeBF{#2}}
+\newcommand{\dotProd}[2]{\vecthree{#1} \cdot \vecthree{#2}}
+
+\newcommand{\crossProdBF}[2]{\vecthreeBF{#1} \times \vecthreeBF{#2}}
+\newcommand{\crossProd}[2]{\vecthree{#1} \times \vecthree{#2}}
+
+
+\newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
+\newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
+
+\newcommand{\fromch}[1]{\textit{chapter \ref{ch:#1}}}
+
+
+%----../../..++++.
+
+%%%%%%
+
+\section{Simulation}
+A simulation software is a computer program or tool that enables the creation and execution of 
+simulations to model and analyze real-world systems or processes. 
+It allows users to replicate the behavior, interactions, and outcomes of the system or process under study, 
+providing insights and predictions that can be valuable for decision-making, optimization, or understanding complex phenomena.
+
+Simulation software provides a virtual environment where users can define the parameters,
+variables, and rules of the system being simulated. The software then uses mathematical and physical models, 
+algorithms, and computational techniques to simulate the behavior of the system over time.
+
+%%%%%%
+
+\begin{thebibliography}{9}
+    \bibitem{cpu_instruction_speed}
+    Fukushima, Toshio. (2001). \emph{Reduction of Round-off Errors in Symplectic Integrators}. The Astronomical Journal. 121. 1768-1775. 
+\end{thebibliography}
+
+\end{document}

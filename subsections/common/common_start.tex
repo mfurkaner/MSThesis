@@ -72,10 +72,10 @@
 
 % APPROVED BY PAGE
 \supervisor{Prof. Veysi Erkcan Özcan}
-\cosuperi{Gökhan Ünel, Ph.D.}
+\cosuperi{Assoc. Prof. Gökhan Ünel}
 %\cosuperii{Title and Name of Cosupervisor II}
-\examineri{Prof. Erhan Gülmez}
-\examinerii{Bora Işıldak , Ph.D.}
+\examineri{Asst. Prof. Bora Akgün}
+\examinerii{Assoc. Prof. Bora Işıldak}
 %\examineriv{}
 %\examinerv{}
 \dateofapproval{DD.MM.YYYY}
@@ -93,18 +93,70 @@ Acknowledgements come here...
 
 % ABS PAGE
 \begin{abstract}
-One page abstract will come here.  
+    The focus of this study is to design and optimize rose-pattle-type electron accelerators; a new simulation tool called \textit{Rhodotron Simulation} has been developed for this purpose.
+    A coaxial cavity with an operating frequency of $107.5$ MHz is currently being manufactured in the Kandilli Detector Accelerator and Instrumentation Laboratory (KAHVELab).
+    This new tool's capabilities will be tested with the cavity and will be used to design complementary bending magnets for reaching $1-5$ MeV beam energy.
 \end{abstract}
 
-% OZET PAGE
+% OZET PAGE 
 \begin{ozet}
-Bir sayfa uzunluğunda özet gelecektir.
+Bu çalışma, gül yaprağı tipi elektron hızlandırıcıları tasarlamak ve optimize etmek üzerine odaklanmaktadır. 
+Bu amaçla \textit{Rhodotron Simulation} adında yeni bir benzetim uygulaması geliştirilmiş, $107.5$ MHz hedef frekansında çalışmak üzere tasarlanmış bir koaksiyal kavitesinin üretimi, Kandilli Algıç Hızlandırıcı ve Enstrümentasyon Laboratuvarı'nda devam etmektedir.
+Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten sonra bükme mıknatısları tasarım ve optimizasyonunda $1-5$ MeV demet enerjisine ulaşmak için kullanılacaktır.
 \end{ozet}
 
 % CONTENTS AND LIST OF FIG AND TABLE PAGES
 \tableofcontents
 \listoffigures
 \listoftables
+
+% LIST OF SYMBOLS PAGE
+\begin{symbols}
+    % The title will be typeset as "LIST OF SYMBOLS".
+    % Use a separate \sym command for each symbols definition.
+    % First, Latin symbols in alphabetical order
+    \sym{$\vec{a}$}{Acceleration}
+    \sym{\textbf{$\vec{B}$}}{Magnetic field}
+    \sym{c}{Speed of light in vacuum}
+    \sym{E}{Energy}
+    \sym{\textbf{$\vec{E}$}}{Electric field}
+    \sym{f}{Frequency}
+    \sym{$\vec{F}$}{Force}
+    \sym{$\vec{p}$}{Momentum}
+    \sym{$\vec{r}$}{Position}
+    \sym{t}{Time}
+    \sym{T}{Period}
+    \sym{$\vec{v}$}{Velocity}
+    \sym{Z}{Shunt Impedance}
+    % 1 EMPTY LINE BETWEEN LATIN AND GREEK SYMBOLS GROUP!!!
+    \sym{}{}
+    % Then Greek symbols in alphabetical order
+    \sym{$\gamma$}{Lorentz Factor}
+    \sym{$\beta$}{Beta Factor}
+    \sym{$\phi_{lag}$}{Phase Lag}
+
+    \sym{$\mu X$}{Mean Value of X}
+    \sym{$\sigma X$}{Standard Deviation of X}
+    \sym{}{}
+\end{symbols}
+
+% LIST OF ABBREV PAGE
+\begin{abbreviations}
+    % Abbreviations in alphabetical order
+   \sym{2D}{One Dimensional}
+   \sym{2D}{Two Dimensional}
+   \sym{3D}{Three Dimensional}
+   \sym{eV}{Electron Volt}
+   \sym{Hz}{Hertz}
+   \sym{KAHVELab}{Kandilli Detector Accelerator and \\Instrumentation Laboratory}
+   \sym{Linac}{Linear Particle Accelerator}
+   \sym{ODE}{Ordinary Differential Equation}
+   \sym{RF}{Radio Frequency}
+   \sym{s}{Second}
+   \sym{T}{Tesla}
+   \sym{V}{Volt}
+
+\end{abbreviations}
 
 
 \pagenumbering{arabic}
@@ -142,6 +194,8 @@ Bir sayfa uzunluğunda özet gelecektir.
 \newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
 \newcommand{\fromfigf}[4]{\textit{figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3} and \ref{fig:#4}}}
 \newcommand{\fromfigsix}[6]{\textit{figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3}, \ref{fig:#4}, \ref{fig:#5} and \ref{fig:#6}}}
+
+\newcommand{\fromch}[1]{\textit{chapter \ref{ch:#1}}}
 
 \newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
 \newcommand{\fromsecs}[2]{\textit{sections \ref{sec:#1} and \ref{sec:#2}}}

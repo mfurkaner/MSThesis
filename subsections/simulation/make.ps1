@@ -16,7 +16,7 @@ $np = "\newpage" + [System.Environment]::NewLine
 
 Remove-Item -recurse .\*\ -exclude *.tex,*.ps1
 
-$design = ($start + $poc + $np + $int + $np + $gui)
+$design = ($start + $poc + $int + $gui)
 
 $out = ""
 

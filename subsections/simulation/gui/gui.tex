@@ -102,18 +102,12 @@ Each one having an illustration of what the parameters are as can be seen in \fr
 \subsection{Simulation Frame}
 This frame spawns and manages the \textit{simulation engine}, configures and starts the simulation. 
 It has a progress bar that shows the current progress of the simulation, communucating with \textit{UI handler thread} in \textit{simulation engine}.
-Simulation frame after a simulation run has been completed can be observed in \fromfig{gui_simulate_1}.
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{../../../figures/rhodoSim/GUI_simulate_frame.png}
-    \caption{Simulate frame of \textit{GUI}.}
-    \label{fig:gui_simulate_1}
-\end{figure}
+Simulation frame after a simulation run has been completed can be observed in \fromfig{gui_simulate_1} of \fromapp{supp}.
 
 \subsection{Render Frame}
 Since the rendering capabilities of \textit{ROOT} is superior than \textit{gnuplot}, the user can render a playback of the simulation in real time, 
 see a specific time frame, export as snapshot or animated gif file.
-Two example renders can be seen in \fromfigs{gui_render_1}{gui_render_2}
+Two example renders can be seen in \fromfig{gui_render_1} and \fromfig{gui_render_2} of \fromapp{supp}.
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{../../../figures/rhodoSim/GUI_render_frame_1.png}
@@ -121,21 +115,14 @@ Two example renders can be seen in \fromfigs{gui_render_1}{gui_render_2}
     \label{fig:gui_render_1}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{../../../figures/rhodoSim/GUI_render_frame_2.png}
-    \caption{Render frame of \textit{GUI}.}
-    \label{fig:gui_render_2}
-\end{figure}
-
 \subsection{Analyze Frame}
 Analyze frame provides tools for analyzing and visualizing the simulation data. 
-In the current version, \textbf{E} distribution histogram and \textbf(E)(t) graph of each electron are implementated into this frame.
+In the current version, \textbf{E} distribution histogram and \textbf{E(t)} graph of each electron are implementated into this frame.
 This frame is a work in progress and will be the focus of improvement and become a really powerfull tool in the near future.
-In \fromfig{gui_analyze_Edist}, \textit{Analyze Frame} plotting \textbf{E} distribution histogram, and in \fromfigs{gui_analyze_Et}{gui_analyze_Et2}, \textit{Analyze Frame} plotting \textbf(E)(t) graphs can be observed.
+In \fromfig{gui_analyze_Edist}, \textit{Analyze Frame} plotting \textbf{E} distribution histogram, and in \fromfig{gui_analyze_Et} and \fromfig{gui_analyze_Et2} of \fromapp{supp}, \textit{Analyze Frame} plotting \textbf{E(t)} graphs can be observed.
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{../../../figures/rhodoSim/GUI_analyze_Edist.png}
+    \includegraphics[width=\linewidth]{../../../figures/rhodoSim/GUI_analyze_Edist.png}
     \caption{Analyze frame of \textit{GUI} E distribution.}
     \label{fig:gui_analyze_Edist}
 \end{figure}
@@ -147,44 +134,28 @@ In \fromfig{gui_analyze_Edist}, \textit{Analyze Frame} plotting \textbf{E} distr
     \label{fig:gui_analyze_Et}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{../../../figures/rhodoSim/GUI_analyze_Et_2.png}
-    \caption{Analyze frame of \textit{GUI} E(t).}
-    \label{fig:gui_analyze_Et2}
-\end{figure}
-
 
 \subsection{Sweep Frame}
 Parameter sweep method that was discussed in \fromsecs{lout_sweep}{philag_sweep} was integrated into \textit{GUI} in a seperate frame named \textit{Sweep Frame}.
 $\phi_{lag}$ sweep was the first parameter to be implemented. 
-It takes the range of sweep, draws $\phi_{lag} vs \mu E$, $\phi_{lag} vs \sigma E$ and $\phi_{lag} vs \sigma R$ mentioned in \fromsec{philag_sweep}.
+
+It takes the range of sweep, draws $\phi_{lag}$ vs $\mu E$, $\phi_{lag}$ vs $\sigma E$ and $\phi_{lag}$ vs $\sigma R$ mentioned in \fromsec{philag_sweep}.
 This enables user with an already built accelerator to optimize \egun parameters quickly. 
-In the following \fromfigf{gui_sweep_running}{gui_sweep_muE}{gui_sweep_sE}{gui_sweep_sR}, this frame can be inspected in detail.
+In the \fromfigf{gui_sweep_muE}{gui_sweep_sE}{gui_sweep_running}{gui_sweep_sR} of \fromapp{supp}, this frame can be inspected in detail.
+
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{../../../figures/rhodoSim/GUI_sweep_running.png}
-    \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ sweep running.}
-    \label{fig:gui_sweep_running}
-\end{figure}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{../../../figures/rhodoSim/GUI_sweep_muE.png}
+    \includegraphics[width=\linewidth]{../../../figures/rhodoSim/GUI_sweep_muE.png}
     \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ $\mu E$ result.}
     \label{fig:gui_sweep_muE}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{../../../figures/rhodoSim/GUI_sweep_sE.png}
+    \includegraphics[width=\linewidth]{../../../figures/rhodoSim/GUI_sweep_sE.png}
     \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ sweep $\sigma E$ result.}
     \label{fig:gui_sweep_sE}
 \end{figure}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{../../../figures/rhodoSim/GUI_sweep_sR.png}
-    \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ sweep $\sigma R$ result.}
-    \label{fig:gui_sweep_sR}
-\end{figure}
+
 As mentioned before, \textit{GUI} is the latest and ongoing development effort in this project.
 New analysis and sweep features will be implemented and current capabilities will be improved in the near future.
 

@@ -52,20 +52,18 @@ Considering the nature of coaxial cavity, simplest path for beams inside magnets
     \begin{subfigure}{.5\textwidth}
       \centering
       \includegraphics[width=.9\linewidth]{../../../figures/design/Ltot.png}
-      \caption{Geometry of the outside trajectory \\ of a rhodotron \cite{cite:rhodo_design}}
     \end{subfigure}%
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
       \includegraphics[width=.9\linewidth]{../../../figures/design/tt300_mag.png}
-      \caption{Modeling of the outside trajectory \\ of a rhodotron (TT300) \cite{cite:rhodo_design}}
     \end{subfigure}
-    \caption{From "Design and Simulation Tools for the \\ High-Intensity Industrial Rhodotron Electron Accelerator," \\by W.Kleeven, M.Abs, J.Brison, E.Forton, J.Hubert and J.Van de Walle}
+    \caption{Geometry and modeling, outside trajectory of a rhodotron (TT300) \cite{cite:rhodo_design}}
     \label{fig:magnet_design_illustrations}
 \end{figure}
 In rhodotron accelerators, magnets are used for not only guiding the electron beam to desired path, but also for syncronizing them with the RF field in the cavity. 
 This syncronization, also called phase stability, is the fundamental constraint of magnet design. 
-Time spent outside of the cavity should be precisely tuned to maximize acceleration in the succeeding pass. 
+Time spent outside of the RF cavity should be precisely tuned to maximize acceleration in the succeeding pass. 
 
 Two different approaches have been used to achieve phase stability.
 These approaches are discussed further in the following sections.
@@ -76,11 +74,11 @@ First approach for phase stability considiration assumes that from the start of 
 
 To maintain the phase synchronization, a particle that started the current pass at $t=0$, should start the next pass at $t=nT$, where $n$ is an integer and $T$ is the period of RF field inside cavity.
 As discussed earlier, by assuming the electron is traveling at $c$, phase stability can be achieved by designing the whole trajectory to be $n \lambda$, where $\lambda$ is the wavelength of the RF field. 
-In other words, total trajectory of synchronous particle needs to satisfy the following equality;
-\begin{equation*}
+In other words, total trajectory of synchronous particle needs to satisfy the following equality:
+\begin{equation}
     L_{pass} = n \lambda
-\end{equation*} 
-Since $n>1$ would require unnecessarily long and expensive beam guide and magnets, $n=1$ is the most efficient choice.
+\end{equation} 
+Since $n>1$ would require unnecessarily long and expensive beam guide and magnets, $n=1$ is the most efficient choice:
 \begin{equation}
     L_{pass} = \lambda
 \end{equation} 
@@ -91,7 +89,8 @@ Since $n>1$ would require unnecessarily long and expensive beam guide and magnet
     \caption{Trejectory of a particle in single pass}
     \label{fig:magnet_design}
 \end{figure}
-From \fromfig{magnet_design}, where $\gamma$ is half the angle between trajectories of successive passes, $\rho$ is the radius of the circular path inside magnet, $L$ is the length of the magnet guide, $d$ is the thickness of the cavity wall;
+From \fromfig{magnet_design}, where $\gamma$ is half the angle between trajectories of successive passes, $\rho$ is the radius of the circular path inside magnet, 
+$L$ is the length of the magnet guide, $d$ is the thickness of the RF cavity wall:
 \begin{eqnarray}
     L_{in} &=& 2R_2 \nonumber\\
     L_{out} &=& 2L + 2d + (\pi + 2\gamma)\rho \nonumber \\
@@ -101,12 +100,12 @@ From \fromfig{magnet_design}, where $\gamma$ is half the angle between trajector
 After the cavity design is complete, only $L$, $\gamma$ and $\rho$ remain, which are the design parameters of magnets.
 Observing the \fromfig{magnet_design} and using \fromeq{magnet_lambda_constraint},
 \begin{eqnarray}
-    tan(\gamma) &=& \frac{\rho}{R_2 + d + L} \nonumber \\
-    \rho &=&  tan(\gamma) (R_2 + d + L) \nonumber\\
-    2\rho &=& tan(\gamma) (\lambda - (\pi + 2\gamma)\rho) \nonumber\\
-    \rho (2 + tan(\gamma)(\pi + 2\gamma)) &=&  tan(\gamma) \lambda \nonumber\\
-    \rho &=& \frac{\lambda}{\pi + 2\gamma + \frac{2}{tan(\gamma)}} \label{eq:magnet_rho_constraint} \\
-    L + d &=& \frac{\rho}{tan(\gamma)} - R_2 \label{eq:magnet_L_constraint}
+    \tan (\gamma) &=& \frac{\rho}{R_2 + d + L} \nonumber \\
+    \rho &=&  \tan (\gamma) (R_2 + d + L) \nonumber\\
+    2\rho &=& \tan (\gamma) (\lambda - (\pi + 2\gamma)\rho) \nonumber\\
+    \rho (2 + \tan (\gamma)(\pi + 2\gamma)) &=&  \tan (\gamma) \lambda \nonumber\\
+    \rho &=& \frac{\lambda}{\pi + 2\gamma + \frac{2}{\tan (\gamma)}} \label{eq:magnet_rho_constraint} \\
+    L + d &=& \frac{\rho}{\tan (\gamma)} - R_2 \label{eq:magnet_L_constraint}
 \end{eqnarray}
 \textit{Equations \ref{eq:magnet_rho_constraint} and \ref{eq:magnet_L_constraint}} define 2 constraints. As already discussed, it has been assumed that cavity design is set (\textit{i.e} $R_2$, $\lambda$, $d$ are already defined).
 Therefore only the magnet design parameters $\rho$, $\gamma$ and $L$ are left. Together with the constraints, one free variable defines the whole magnet design. 

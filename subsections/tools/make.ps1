@@ -1,14 +1,32 @@
-$total = (Get-Content -Path *.tex)
+Set-Location .\numericalmethods
+.\make.ps1
+Set-Location ..\simulation
+.\make.ps1
+Set-Location ..\available
+.\make.ps1
 
-$temel_theory = ""
+Set-Location ..
+
+$start = (Get-Content -Path common\common_start_tools.tex)
+$sim = (Get-Content -Path simulation\out)
+$ava = (Get-Content -Path available\out)
+$nm = (Get-Content -Path numericalmethods\out)
+
+$np = "\newpage" + [System.Environment]::NewLine
+
+Remove-Item -recurse .\*\ -exclude *.tex,*.ps1
+
+$design = ($start + $sim + $ava + $nm)
+
+$out = ""
 
 $save = 0
 
 $replace = New-Object Collections.Generic.List[string]
 $to = New-Object Collections.Generic.List[string]
 
-foreach  ($line in $total.Split([System.Environment]::NewLine)){
-    if($line -eq "%%%%%%"){
+foreach  ($line in $design.Split([System.Environment]::NewLine)){
+    if($line -eq "%#####"){
         if($save -eq 0){
             $save = 1
         }
@@ -33,9 +51,9 @@ foreach  ($line in $total.Split([System.Environment]::NewLine)){
                 $count++;
             }
             
-            $temel_theory += ($line + [System.Environment]::NewLine)
+            $out += ($line + [System.Environment]::NewLine)
         }
     }
 }
 
-$temel_theory | Out-File -FilePath .\out
+$out | Out-File -FilePath .\out

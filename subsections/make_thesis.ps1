@@ -1,6 +1,4 @@
-Set-Location .\intro
-.\make.ps1
-Set-Location ..\theory
+Set-Location .\theory
 .\make.ps1
 Set-Location ..\tools
 .\make.ps1
@@ -19,7 +17,6 @@ Set-Location ..
 $end = (Get-Content -Path common\common_end.tex)
 $bib = (Get-Content -Path common\bib)
 $app = (Get-Content -Path .\common\appendix)
-$intro = (Get-Content -Path intro\out)
 $theory = (Get-Content -Path theory\out)
 $tools = (Get-Content -Path tools\out)
 $design = (Get-Content -Path design\out)

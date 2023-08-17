@@ -129,7 +129,7 @@ Although complete refactoring of the software was necessary, this upgrade was cr
 The refactoring effort included proper implementation of \textit{OOP}, details of which can be seen in \fromfigsix{e_class}{bunch_class}{gun_class}{sim_class}{rhodosim_class}{rf_class} of \fromapp{intermediate_codes}.
 
 Magnets were modeled as major segments of a circle, defined with $\vecthreeBF{r}_{mag}$, $\textbf{R}$ and $|\textbf{B}|$. 
-For the initial implementation, $\vecthreeBF{B}$ assumed to be uniform and has no leaks outside the magnet boundary (See \fromfig{is_inside_halfsphere} in \fromapp{intermediate_codes}).
+For the initial implementation, $\vecthreeBF{B}$ assumed to be uniform and has no leaks outside the magnet boundary (\fromfig{is_inside_halfsphere} in \fromapp{intermediate_codes}).
 
 Interaction logic for \eE and \eB in 3D can be found in \fromfig{3D_e_EM_interaction_first}.
 \begin{figure}[H]
@@ -161,7 +161,7 @@ Interaction logic for \eE and \eB in 3D can be found in \fromfig{3D_e_EM_interac
     \caption{\eEM  interaction logic from \fromeq{acc_of_E_and_B}}
     \label{fig:3D_e_EM_interaction_first}
 \end{figure}
-Where * and \% are, dot-product and cross-product respectably. (See \fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes})
+Where * and \% are, dot-product and cross-product respectably. (\fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes})
 
 Simulating in 3D had one other benefit; it was now possible to visualize the results by rendering the interaction data. 
 For this purpose, \textit{gnuplot} was integrated into \textit{Rhodotron Simulation} to produce 2D visualization of acceleration plane. 
@@ -317,36 +317,20 @@ $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.75
 \end{eqnarray}
 Therefore, in the both tests, the beam was expected to exit $\vecthreeBF{E}$ with $E_{exitTH} = 5$ MeV. 
 To also measure the variance in simulation completion times, $T_{sim}$, set of $10$ runs were completed at the configuration for each $dt$ value.
+Results from these tests can be observed in \fromfig{lf_rk2_perp_stat_E_comparison} and \fromfig{lf_rk2_par_stat_E_comparison} of \fromapp{data_graph}.
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.8\textwidth}
+    \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../../figures/rhodoSim/statE_par.png}
         \caption*{Setup-1, $\textbf{V}_{\parallel}$=4MV}
     \end{subfigure}
-    \begin{subfigure}{0.8\textwidth}
+    \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../../figures/rhodoSim/statE_perp.png}
         \caption*{Setup-2, $\textbf{V}_{\perp}$=4MV}
     \end{subfigure}
     \caption{Render of the test setups. \\ $E_{in}=1$ MeV, $t_{end}=6$ns}
-\end{figure}
-
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
-    \centering
-    \begin{subfigure}{0.9\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../../figures/analiz/staticE_lf_rk2_dt-E.png}
-    \end{subfigure}
-    
-    \begin{subfigure}{0.9\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../../figures/analiz/staticE_lf_rk2_dt-Tsim.png}
-    \end{subfigure}
-    \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns}
-    \label{fig:lf_rk2_par_stat_E_comparison}
 \end{figure}
 
 \begin{figure}[H]

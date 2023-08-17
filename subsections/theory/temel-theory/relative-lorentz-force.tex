@@ -32,26 +32,28 @@
 \section{Accelerating Charged Particles}
 
 \subsection{Relation between momentum and acceleration}
-In classical mechanics, Newton's second law defines force and states 
+In classical mechanics, Newton's second law defines force, $\vecthreeBF{F}$, and states 
 \begin{equation} \label{eq:newton_second_law}
     \vecthreeBF{F} = \frac{\partial \vecthreeBF{p}}{\partial t} = m \frac{\partial \vecthreeBF{v}}{\partial t} = m \vecthreeBF{a}
 \end{equation}
-In special relativity however, relativistic momentum is defined as $\vecthree{p} = \gamma m_0 \vecthree{v} $ where $\gamma$ is the Lorentz Factor;
-\begin{equation*}
-    \gamma = \frac{1}{\sqrt{1-v^2 / c^2}} = \frac{1}{\sqrt{1-\beta^2}}
-\end{equation*}
-Considering these two statements, we can find the relation between momentum and acceleration as follows
-\begin{eqnarray*}
+where $\vecthreeBF{p}$ is the momentum, $m\vecthreeBF{v}$ of the particle. In special relativity however, relativistic momentum is defined as $\vecthree{p} = \gamma m_0 \vecthree{v} $ where $\gamma$ is the Lorentz Factor:
+\begin{equation}
+    \gamma = \frac{1}{\sqrt{1-v^2 / c^2}} = = \frac{1}{\sqrt{1-\beta^2}}
+            = \frac{1}{\sqrt{1- (\dotProd{v}{v})/ c^2}} =  \frac{1}{\sqrt{1- \dotProd{\beta}{\beta}}}
+\end{equation}
+Considering these two statements, we can find the relation between momentum and acceleration as follows:
+\begin{eqnarray}
     \parDeriv{\vecthree{p}}{t} &=& m_0 \parDeriv{(\gamma \vecthree{v})}{t} = m_0 \{  \parDeriv{\gamma}{t}\vecthree{v} + \gamma \parDeriv{\vecthree{v}}{t}  \} \\
     \parDeriv{\gamma}{t} &=& \gamma^3 \dotProd{\beta}{\parDeriv{\beta}{t}} = \frac{\gamma^3}{c} \dotProd{\beta}{a} \\
     \parDeriv{\vecthree{p}}{t}  &=& m_0 \{   \frac{\gamma^3}{c} (\dotProd{\beta}{a} )\vecthree{v} + \gamma \parDeriv{\vecthree{v}}{t}  \} 
-\end{eqnarray*}
+\end{eqnarray}
+thus,
 \begin{equation} \label{eq:Frel}
     \vecthreeBF{F}  = \gamma m_0 \{ \vecthreeBF{a} + \gamma^2(\dotProd{\beta}{\textbf{a}})\vecthree{\beta} \}
 \end{equation}
 It is clear that acceleration is not necessarily parallel to the force anymore. 
 
-To start seperating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and $\vecthreeBF{F}_{||}$.
+To start separating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and $\vecthreeBF{F}_{||}$.
 \begin{equation} \label{eq:a_F_parallels}
     \begin{aligned}
         \vecthreeBF{a}_{||} = \frac{(\dotProd{a}{\beta})}{\beta^2}\beta 
@@ -61,29 +63,29 @@ To start seperating the parallel and perpendicular components relative to $\vect
         \vecthreeBF{F}_{||} = \frac{(\dotProd{F}{\beta})}{\beta^2}\beta 
     \end{aligned}
 \end{equation}
-\begin{eqnarray*}
+\begin{eqnarray}
     \dotProd{\textbf{F}}{\beta} &=& \gamma m_0 \{ \dotProd{\textbf{a}}{\beta} + \gamma^2(\dotProd{\beta}{\textbf{a}})\beta^2 \} \\
                                 &=& \gamma m_0 (\dotProd{\textbf{a}}{\beta}) \{ \gamma^2\beta^2  + 1\} 
-\end{eqnarray*}
+\end{eqnarray}
 Using $\gamma^2 \beta^2 + 1 = \gamma^2 $ we have,
-\begin{equation*}
+\begin{equation}
     \dotProd{\textbf{F}}{\beta} = m_0 \gamma^3 (\dotProd{\textbf{a}}{\beta} )
-\end{equation*}
-Inserting this
+\end{equation}
+inserting this into \fromeq{a_F_parallels},
 \begin{eqnarray}
     \vecthreeBF{F}_{||} &=& \frac{(\dotProd{\textbf{F}}{\beta})}{\beta^2} \vec{\beta} \nonumber \\
                         &=& m_0 \gamma^3 \frac{(\dotProd{\textbf{a}}{\beta} )}{\beta^2} \vec{\beta} \nonumber \\
                         &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \label{eq:Frel_parallel}
 \end{eqnarray}
 Therefore from \fromeqs{Frel}{Frel_parallel}
-\begin{eqnarray*}
+\begin{eqnarray}
     \vecthreeBF{F}  &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \beta^2 + m_0 \gamma \vecthreeBF{a} \\
                     &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \beta^2 + m_0 \gamma \{ \vecthreeBF{a}_{||} +  \vecthreeBF{a}_{\perp} \} \\
                     &=& m_0 \vecthreeBF{a}_{||} \gamma \{ \gamma^2\beta^2 + 1 \} + m_0 \gamma \vecthreeBF{a}_{\perp} \\
                     &=& m_0 \vecthreeBF{a}_{||} \gamma^3 + m_0 \gamma \vecthreeBF{a}_{\perp} \\
                     &=& \vecthreeBF{F}_{||} + m_0 \gamma \vecthreeBF{a}_{\perp}
-\end{eqnarray*}
-We finally have two seperate equations which are in similar form with \fromeq{newton_second_law}.
+\end{eqnarray}
+We finally have two separate equations which are in similar form with \fromeq{newton_second_law}.
 \begin{equation} \label{eq:Frel_para_and_perp}
     \begin{aligned}
         \vecthreeBF{F}_{||} = \gamma^3  m_0 \vecthreeBF{a}_{||}
@@ -107,13 +109,13 @@ Similar to non-relativistic version, relativistic Lorentz Force is given by the 
 \begin{equation}
     \frac{\partial p^{\mu}}{\partial \tau} = q F^{\mu \nu} u_{\nu}
 \end{equation}
-Where $ \partial \tau = \partial t / \gamma $,
+where $ \partial \tau = \partial t / \gamma $ and greek letters are Lorentz indices,
 \begin{equation}
     \begin{aligned}
         p^{\mu} = 
         \begin{bmatrix}
             W/c \\
-            p_x         \\
+            p_x \\
             p_y \\
             p_z
         \end{bmatrix}    
@@ -123,8 +125,8 @@ Where $ \partial \tau = \partial t / \gamma $,
         F^{\mu\nu} = 
         \begin{bmatrix}
                 0       & -E_x/c   & -E_y/c    & -E_z/c \\
-                E_x/c   &   0      & -B_z      & B_y     \\
-                E_y/c   &   B_z    &  0        & -B_x     \\
+                E_x/c   &   0      & -B_z      & B_y    \\
+                E_y/c   &   B_z    &  0        & -B_x   \\
                 E_z/c   &   -B_y   & B_x       & 0   
         \end{bmatrix} 
     \end{aligned}
@@ -139,7 +141,7 @@ Where $ \partial \tau = \partial t / \gamma $,
         \end{bmatrix} 
     \end{aligned}
 \end{equation}
-Where $W$ is the energy of the particle and $\gamma$ is the lorentz factor mentioned in the previous section.
+where $W$ is the energy of the particle and $\gamma$ is the Lorentz factor mentioned in the previous section.
 
 For $ \mu = 0 $, we have the time component of the equation;
 \begin{eqnarray}
@@ -153,8 +155,8 @@ This is the definition of work done by an electric field. For $ \mu = 1,2,3 $, w
 Which simplifies to non-relativistic Lorentz Force in \fromeq{lf}.
 
 
-\subsection{Acceleration caused by lorentz force}
-Due to the nature of the cross product, lorentz force caused by a magnetic field is always perpendicular to the velocity of the particle. 
+\subsection{Acceleration caused by Lorentz force}
+Due to the nature of the cross product, Lorentz force caused by a magnetic field is always perpendicular to the velocity of the particle. 
 Therefore the acceleration of the magnetic field is straightforward
 \begin{equation*}
     \vecthreeBF{F}_B = \vecthreeBF{F}_{\perp} = \gamma  m_0\vecthreeBF{a}_{\perp} = \gamma  m_0\vecthreeBF{a}_{B}
@@ -188,6 +190,9 @@ Using the fact that $\vecthreeBF{E}_{||} = \vec{\beta}(\dotProd{\textbf{E}}{\bet
         \vecthreeBF{a}_{B} = \frac{q}{\gamma m_0} ( \crossProdBF{v}{B} )
     \end{aligned}
 \end{equation}
+where $\vecthreeBF{a}_{E}$ consists of two components in the direction of $\vecthreeBF{E}$ and $\vecthreeBF{v}$.
+The component in the direction of $\vecthreeBF{v}$ depends on the $\dotProdBF{E}{v}$, 
+resulting in $\vecthreeBF{a}_{E} || \vecthreeBF{E}$ if $\vecthreeBF{E} \perp \vecthreeBF{v}$.
 %%%%%%
 
 \end{document}

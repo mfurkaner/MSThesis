@@ -8,7 +8,7 @@
     Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
     Volumes 40–41, Part 2,
     1989,
-    Pages 943-945,
+    Pages 943-945, 
 
     \bibitem{rhodo_prototype}
     J.M. Bassaler, J.M. Capdevila, O. Gal, F. Lainé, A. Nguyen, J.P. Nicolaï, K. Umiastowski,
@@ -24,13 +24,41 @@
     \bibitem{cpu_instruction_speed}
     Fukushima, Toshio. (2001). \emph{Reduction of Round-off Errors in Symplectic Integrators}. The Astronomical Journal. 121. 1768-1775. 
 
+    \bibitem{runge}
+    Runge, Carl David Tolmé (1895), \emph{Über die numerische Auflösung von Differentialgleichungen}, Mathematische Annalen, Springer, 46 (2): 167–178.
+
+    \bibitem{kutta}
+    Kutta, Wilhelm (1901), \emph{Beitrag zur näherungsweisen Integration totaler Differentialgleichungen}, Zeitschrift für Mathematik und Physik, 46: 435–453.
+
     \bibitem{cite:rhodo_design}
     W.~Kleeven, M.~Abs, J.~Brison, E.~Forton, J.~Hubert and J.~Van de Walle,
     \emph{Design and Simulation Tools for the High-Intensity Industrial Rhodotron Electron Accelerator},
     9th International Particle Accelerator Conference,
     2018
     
+    \bibitem{sinan}
+    Privite communication, Sinan ÖZ
+
+    \bibitem{gnuplot}
+    Williams, T. and Kelley, C. (2020). Gnuplot 5.4: An Interactive
+    Plotting Program. URL http://gnuplot.info.
+
+    \bibitem{root}
+    Rene Brun and Fons Rademakers, ROOT - An Object Oriented Data Analysis Framework,
+    Proceedings AIHENP'96 Workshop, Lausanne, Sep. 1996,
+    Nucl. Inst. \& Meth. in Phys. Res. A 389 (1997) 81-86.
+    See also "ROOT" [software], Release v6.20/04, 01/04/2020,
+    (https://zenodo.org/record/3895855).
     
+    \bibitem{poi-sup}
+    J. H. Billen and L. M. Young, “Poisson Superfish,” LA-UR-96-1834.
+
+    \bibitem{kahvelab_linac}
+    A. Adıgüzel, S. Açıksöz, A. Çağlar, H. Çetinkaya, Ş. Esen, D. Halis, A. Hamparsunoğlu, T.B. İlhan, A. Kılıçgedik, O. Koçer, S. Oğur, S. Öz, A. Özbey, V.E. Özcan and N.G. Ünel
+    \emph{Ion source and LEBT of KAHVELab proton beamline},
+    Journal of Instrumentation,
+    Volume 18, January 2023
+
 \end{thebibliography}
 
 % END OF BIBLIOGRAPHY

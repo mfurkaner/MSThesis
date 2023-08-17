@@ -1021,6 +1021,23 @@
     \label{fig:lf_rk1_rk2_comparison}
 \end{figure}
 
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=centering}
+    \captionsetup{justification=centering}
+    \centering
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/staticE_lf_rk2_dt-E.png}
+    \end{subfigure}
+    
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./figures/analiz/staticE_lf_rk2_dt-Tsim.png}
+    \end{subfigure}
+    \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns}
+    \label{fig:lf_rk2_par_stat_E_comparison}
+\end{figure}
+
 \begin{table}[H]
     \centering
     \begin{tabular}{|l|l|l|l|}
@@ -1211,3 +1228,48 @@
     \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:rk2_statE90_table}
 \end{table}
+
+
+\chapter{Supporting Figures} \label{appendix:supp}
+
+\begin{figure}
+    \centering
+    \includegraphics[angle=270,origin=c, width=.98\linewidth]{./figures/teknikcizim/Rho-A1.1.00.pdf}
+    \caption{Technical drawing of upper part of the cavity. \cite{sinan}}
+    \label{fig:techd_up}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_simulate_frame.png}
+    \caption{Simulate frame of \textit{GUI}.}
+    \label{fig:gui_simulate_1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_render_frame_2.png}
+    \caption{Render frame of \textit{GUI}.}
+    \label{fig:gui_render_2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_analyze_Et_2.png}
+    \caption{Analyze frame of \textit{GUI} E(t).}
+    \label{fig:gui_analyze_Et2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_sweep_running.png}
+    \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ sweep running.}
+    \label{fig:gui_sweep_running}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_sweep_sR.png}
+    \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ sweep $\sigma R$ result.}
+    \label{fig:gui_sweep_sR}
+\end{figure}
