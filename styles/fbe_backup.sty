@@ -1,0 +1,65 @@
+\
+%
+% Figures and Tables
+%
+\renewcommand\listfigurename{LIST OF FIGURES}
+\renewcommand\listtablename{LIST OF TABLES}
+\renewcommand\figurename{Figure}
+\renewcommand\tablename{Table}
+%
+% The spacing after the title of L.O.F. and L.O.T. is increased by
+% one extra \baselineskip.
+\renewcommand\listoffigures{% \ev is used for temporary strage of \parskip
+\setlength{\ev}{\parskip}
+\parskip0pt
+    \chapter*{\listfigurename
+      \@mkboth{\MakeUppercase\listfigurename}%
+              {\MakeUppercase\listfigurename}}%
+    \vskip\baselineskip
+    \@starttoc{lof}%
+\parskip\ev}
+%
+\renewcommand\listoftables{% \ev is used for temporary storage of \parskip
+\setlength{\ev}{\parskip}
+\parskip0pt
+    \chapter*{\listtablename
+      \@mkboth{%
+          \MakeUppercase\listtablename}{\MakeUppercase\listtablename}}%
+    \vskip\baselineskip
+    \@starttoc{lot}%
+\parskip\ev}
+%
+% The expressions 'FIGURE' and 'TABLE' also appear in the LOF and LOT.
+% Also there is a period after the figure or table number.
+\long\def\@caption#1[#2]#3{\par\addcontentsline{\csname
+  ext@#1\endcsname}{#1}
+% The \csname command should follow immediately after {
+  {\protect\numberline{\csname #1name\endcsname \space
+  \csname the#1\endcsname .}{\ignorespaces #2}\vspace\baselineskip}\begingroup
+    \@parboxrestore
+    \normalsize
+    \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces #3}\par
+  \endgroup}
+%
+% The space between the figure and caption is reduced from 10\p@ to 0\p@
+% The value of \belowcaptionskip (0\p@) has not been changed.
+\setlength\abovecaptionskip{0\p@}
+%
+% A period should appear after the caption number.
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \centering{
+  \sbox\@tempboxa{#1. #2}%
+  \ifdim \wd\@tempboxa >\hsize
+    #1. #2\par
+  \else
+    \global \@minipagefalse
+    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  } % closes centering
+  \vskip\belowcaptionskip}
+%
+% The spaces between the figure or table number and the caption are
+% redefined.
+\renewcommand\l@figure{\@dottedtocline{1}{0em}{6em}}
+\renewcommand\l@table{\@dottedtocline{1}{0em}{5.8em}}

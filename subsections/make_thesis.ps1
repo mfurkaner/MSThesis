@@ -34,8 +34,9 @@ Copy-Item "common\common_start.tex" -Destination "..\\msthesis.tex"
 
 ($thesis) | Add-Content -Path ..\msthesis.tex
 Set-Location ..
+Remove-Item .\*.aux, .\*.fdb_latexmk,.\*.fls, .\*.log, .\*.toc, .\*.lot, .\*.lof
 pdflatex msthesis.tex --shell-escape
 Start-Sleep -Seconds 10
 pdflatex msthesis.tex --shell-escape
-Remove-Item .\*.aux, .\*.fdb_latexmk,.\*.fls, .\*.log, .\*.toc
+Remove-Item .\*.aux, .\*.fdb_latexmk,.\*.fls, .\*.log, .\*.toc, .\*.lot, .\*.lof
 Set-Location .\subsections

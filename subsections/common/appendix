@@ -1231,24 +1231,23 @@
 
 
 \chapter{Supporting Figures} \label{appendix:supp}
-
 \begin{figure}
     \centering
-    \includegraphics[angle=270,origin=c, width=.98\linewidth]{./figures/teknikcizim/Rho-A1.1.00.pdf}
+    \includegraphics[angle=270,origin=c, width=.9\linewidth]{./figures/teknikcizim/Rho-A1.1.00.pdf}
     \caption{Technical drawing of upper part of the cavity. \cite{sinan}}
     \label{fig:techd_up}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_simulate_frame.png}
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_simulation_frame.png}
     \caption{Simulate frame of \textit{GUI}.}
     \label{fig:gui_simulate_1}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_render_frame_2.png}
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_render_frame_6.png}
     \caption{Render frame of \textit{GUI}.}
     \label{fig:gui_render_2}
 \end{figure}
@@ -1269,7 +1268,7 @@
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_sweep_sR.png}
+    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_sweep_sR_3.png}
     \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ sweep $\sigma R$ result.}
     \label{fig:gui_sweep_sR}
 \end{figure}

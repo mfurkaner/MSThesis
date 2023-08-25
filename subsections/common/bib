@@ -59,6 +59,11 @@
     Journal of Instrumentation,
     Volume 18, January 2023
 
+    \bibitem{rf}
+    E. Jensen,
+    \emph{RF Cavity Design},
+    CERN Yellow Report CERN-2014-009, pp.405-429
+
 \end{thebibliography}
 
 % END OF BIBLIOGRAPHY

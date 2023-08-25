@@ -1,7 +1,8 @@
 \documentclass[a4paper,oneside,12pt]{report}
-\usepackage{styles/fbe_tez}
 \usepackage[utf8x]{inputenc} % To use Unicode (e.g. Turkish) characters
 \usepackage{amsmath, amsthm} % Some extra symbols
+%\usepackage{subcaption}
+\usepackage{styles/fbe_tez}
 \usepackage[bottom]{footmisc}
 \usepackage{cite}
 \usepackage{graphicx}
@@ -23,6 +24,7 @@
 
 \usemintedstyle{xcode}
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
+
 
 \interdisplaylinepenalty=2500
 \hyphenation{lists} \makeatletter
@@ -107,7 +109,7 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
 
 % CONTENTS AND LIST OF FIG AND TABLE PAGES
 \tableofcontents
-\listoffigures
+\listoffigures 
 \listoftables
 
 % LIST OF SYMBOLS PAGE
@@ -119,6 +121,10 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
     \sym{\textbf{$\vec{B}$}}{Magnetic field}
     \sym{c}{Speed of light in vacuum}
     \sym{E}{Energy}
+    \sym{$e^-$}{Electron}
+    \sym{$e^- - E$}{Electron Electric Field Interaction}
+    \sym{$e^- - B$}{Electron Magnetic Field Interaction}
+    \sym{$e^- - EM$}{Electron Electro-Magnetic Field Interaction}
     \sym{\textbf{$\vec{E}$}}{Electric field}
     \sym{f}{Frequency}
     \sym{$\vec{F}$}{Force}
@@ -152,9 +158,12 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
    \sym{Linac}{Linear Particle Accelerator}
    \sym{ODE}{Ordinary Differential Equation}
    \sym{RF}{Radio Frequency}
+   \sym{POC}{Proof of Concept}
+   \sym{CPU}{Central Processing Unit}
    \sym{s}{Second}
    \sym{T}{Tesla}
    \sym{V}{Volt}
+   \sym{W}{Watt}
 
 \end{abbreviations}
 
