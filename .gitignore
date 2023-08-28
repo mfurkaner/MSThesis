@@ -11,3 +11,7 @@
 *.bib
 
 **\_minted-msthesis
+
+.DS_Store
+
+.gitignore
