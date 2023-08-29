@@ -121,7 +121,10 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
     \sym{\textbf{$\vec{B}$}}{Magnetic field}
     \sym{c}{Speed of light in vacuum}
     \sym{E}{Energy}
-    \sym{W}{Energy}
+    \sym{$e^-$}{Electron}
+    \sym{$e^- - \vec{E}$}{Electron Electric Field Interaction}
+    \sym{$e^- - \vec{B}$}{Electron Magnetic Field Interaction}
+    \sym{$e^- - EM$}{Electron Electro-Magnetic Field Interaction}
     \sym{\textbf{$\vec{E}$}}{Electric field}
     \sym{f}{Frequency}
     \sym{$\vec{F}$}{Force}
@@ -155,6 +158,7 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
    \sym{Linac}{Linear Particle Accelerator}
    \sym{ODE}{Ordinary Differential Equation}
    \sym{RF}{Radio Frequency}
+   \sym{RMS}{Root Mean Square}
    \sym{POC}{Proof of Concept}
    \sym{CPU}{Central Processing Unit}
    \sym{s}{Second}
@@ -1031,12 +1035,12 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
-      \includegraphics[width=0.97\linewidth]{./figures/superfish/superfish107_z.png}
+      \includegraphics[width=0.97\linewidth]{./figures/superfish/superfish107_z_highlighted.png}
       \caption{107.5 MHz unmodified}
     \end{subfigure}%
     \begin{subfigure}{.5\textwidth}
       \centering
-      \includegraphics[width=0.99\linewidth]{./figures/superfish/superfish180_z}
+      \includegraphics[width=0.99\linewidth]{./figures/superfish/superfish180_z_highlighted.png}
       \caption{180 MHz unmodified}
     \end{subfigure}
     \caption{Poisson Superfish calculations with \textit{unmodified} cavities}
@@ -1047,12 +1051,12 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
-      \includegraphics[width=0.95\linewidth]{./figures/superfish/superfish107mod_z.png}
+      \includegraphics[width=0.95\linewidth]{./figures/superfish/superfish107mod_z_highlighted.png}
       \caption{107.5 MHz truncated}
     \end{subfigure}%
     \begin{subfigure}{.5\textwidth}
       \centering
-      \includegraphics[width=\linewidth]{./figures/superfish/superfish180mod_z.png}
+      \includegraphics[width=\linewidth]{./figures/superfish/superfish180mod_z_highlighted.png}
       \caption{180 MHz truncated}
     \end{subfigure}
     \caption{Poisson Superfish calculations with \textit{truncated} cavities}
@@ -1941,9 +1945,9 @@ These sheets were then pressed to achieve the shapes of the parts.
 Several flanges were then machined, including
 \begin{itemize}
     \item $4.5$in EIA RF flange for RF input
-    \item ISO100-KF vacuum connector flanges for vacuum pumps
+    \item ISO-100KF vacuum connector flanges for vacuum pumps
     \item ISO-63 KF flange for probe insertion
-    \item KF40 flanges for beam line vacuum gauges
+    \item KF-40 flanges for beam line vacuum gauges
 \end{itemize}
 After desired shapes were produced inside surface of the sheets were polished with 2000 grits. 
 304 stainless steel sheet bars of different sizes were then added by 
@@ -2031,17 +2035,26 @@ which would be removed after the heat treatment.
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
-      \includegraphics[width=.96\linewidth]{./figures/manif/assembled/rhodo_assembled_2_cropped.jpeg}
+      \includegraphics[width=.96\linewidth]{./figures/manif/assembled/rhodo_final_cropped_5.jpeg}
+      \caption{Beam enter \& exit flanges.}
     \end{subfigure}%
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
-      \includegraphics[width=.96\linewidth]{./figures/manif/assembled/rhodo_assembled_1_cropped.jpeg}
+      \includegraphics[width=.96\linewidth]{./figures/manif/assembled/rhodo_final_4_cropped.jpeg}
+      \caption{RF input \& probe flanges.}
     \end{subfigure}
-    \caption{Assembled cavity as the current stage.}
-    \label{fig:manif_assembled}
+    \caption{Flanges on the assembled cavity.}
+    \label{fig:manif_assembled_flanges}
 \end{figure}
 
+\begin{figure}
+    \captionsetup{justification=centering}
+    \centering
+    \includegraphics[width=.9\linewidth]{./figures/manif/assembled/rhodo_final_cropped.jpeg}
+    \caption{Current stage of the cavity.}
+    \label{fig:manif_assembled}
+\end{figure}
 
 
 
@@ -2061,17 +2074,16 @@ Present bottleneck is the fabrication of the cavity.
 
 \section{Future Work}
 Regarding the cavity manufacturing process, it is in the concluding stages.
-The sheet bars and the flanges of the upper and the lower parts have been produced and are being welded and getting ready for heat treatment.
-After the heat treatment operation, 
-the supporting toroidal sheets will be removed and the inside surface will be polished before cyanide copper plating. 
+The sheet bars and the flanges of the upper and the lower parts have been welded, the cavity is getting ready for heat treatment.
+After the heat treatment operation, the supporting toroidal sheets will be removed and the inside surface will be polished before cyanide copper plating. 
 
-As far as the magnets concerned, it was decided to be kept on hold in the early stages of the project, 
-due to the disagreement on energy gain amount between the calculations of \textit{J. POTTIER} \cite{rhodo_pottier} 
+As far as the magnets were concerned, it was decided to be kept on hold in the early stages of the project, 
+due to the disagreement on the energy gain amount between the calculations of \textit{J. POTTIER} \cite{rhodo_pottier} 
 and the simulation results from \textit{CST Studio Suite} \& \textit{Rhodotron Simulation}. 
 The software is planned to be used in magnet design and beam optimizations in KAHVELab after the initial tests are completed.
 
 \textit{Rhodotron Simulation}, which has been the main focus of this thesis, is ready and waiting to be tested with the cavity that is being manufactured; 
-several improvements and new feature implementations are underway in the mean time. 
+Several improvements and new feature implementations are underway in the meantime. 
 They include the following;
 \begin{figure}[H]
     \begin{subfigure}[t]{0.5\textwidth}
@@ -2105,7 +2117,7 @@ The software features a robust GUI that is capable of rendering and analyzing si
 Leap-frog and Runge-Kutta numerical methods have been implemented for initial speed and accuracy tests.
 The real-world performance and accuracy of this new tool, on the other hand, cannot be tested
 before the cavity production is completed and the performance is compared with the predictions of the tool;
-however, the capabilities it presents, coupled with the analogous results obtained from other extensively utilized simulation tools, 
+However, the capabilities it presents, coupled with the analogous results obtained from other extensively utilized simulation tools, 
 lead to the inference that it holds promise.
 
 \newpage
