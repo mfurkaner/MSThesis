@@ -29,67 +29,88 @@
 \newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
 
 %%%%%%
-
+\newpage
 \section{Accelerating Charged Particles}
 
 \subsection{Relation between momentum and acceleration}
 In classical mechanics, Newton's second law defines force, $\vecthreeBF{F}$, and relation
+\vspace{-10pt}
 \begin{equation} \label{eq:newton_second_law}
-    \vecthreeBF{F} = \frac{d \vecthreeBF{p}}{d t} = m \frac{d \vecthreeBF{v}}{d t} = m \vecthreeBF{a} ,
+    \vecthreeBF{F} = \frac{d \vecthreeBF{p}}{d t} = m \frac{d \vecthreeBF{v}}{d t} = m \vecthreeBF{a}   ,
+    \vspace{-10pt}
 \end{equation}
 where $\vecthreeBF{p}$ is the momentum, $m\vecthreeBF{v}$ of the particle. 
-In special relativity however, relativistic momentum is defined as $\vecthree{p} = \gamma m_0 \vecthree{v} $ where 
+
+
+In special relativity however, relativistic momentum is defined as $\vecthree{p} = \gamma m_0 \vecthree{v} $, where 
+\vspace{-10pt}
 \begin{equation}
     \gamma = \frac{1}{\sqrt{1-v^2 / c^2}} = \frac{1}{\sqrt{1-\beta^2}}
             = \frac{1}{\sqrt{1- (\dotProd{v}{v})/ c^2}} =  \frac{1}{\sqrt{1- \dotProd{\beta}{\beta}}}
-\end{equation}
-is the Lorentz Factor.
+            \vspace{-10pt}
+\end{equation} is the Lorentz Factor.
+
 
 Considering these two statements, we can find the relation between momentum and acceleration as 
+\vspace{-10pt}
 \begin{eqnarray}
-    \deriv{\vecthree{p}}{t} &=& m_0 \deriv{(\gamma \vecthree{v})}{t} = m_0 \{  \deriv{\gamma}{t}\vecthree{v} + \gamma \deriv{\vecthree{v}}{t}  \} \\
-    \deriv{\gamma}{t} &=& \gamma^3 \dotProd{\beta}{\deriv{\beta}{t}} = \frac{\gamma^3}{c} \dotProd{\beta}{a} \\
+    \deriv{\vecthree{p}}{t} &=& m_0 \deriv{(\gamma \vecthree{v})}{t} = m_0 \{  \deriv{\gamma}{t}\vecthree{v} + \gamma \deriv{\vecthree{v}}{t}   ,  \} \\
+    \deriv{\gamma}{t} &=& \gamma^3 \dotProd{\beta}{\deriv{\beta}{t}} = \frac{\gamma^3}{c} \dotProd{\beta}{a}   , \\
     \deriv{\vecthree{p}}{t}  &=& m_0 \{   \frac{\gamma^3}{c} (\dotProd{\beta}{a} )\vecthree{v} + \gamma \deriv{\vecthree{v}}{t}  \} .
+    \vspace{-10pt}
 \end{eqnarray}
 Therefore force can be written as
+\vspace{-10pt}
 \begin{equation} \label{eq:Frel}
     \vecthreeBF{F}  = \gamma m_0 \{ \vecthreeBF{a} + \gamma^2(\dotProd{\beta}{\textbf{a}})\vecthree{\beta} \} .
+    \vspace{-10pt}
 \end{equation}
+
 It is clear that acceleration is not necessarily parallel to the force. 
 To start separating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and $\vecthreeBF{F}_{||}$ as
+\vspace{-10pt}
 \begin{equation} \label{eq:a_F_parallels}
     \begin{aligned}
-        \vecthreeBF{a}_{||} = \frac{(\dotProd{a}{\beta})}{\beta^2}\beta 
+        \vecthreeBF{a}_{||} = \frac{(\dotProd{a}{\beta})}{\beta^2}\beta  ,
     \end{aligned}
     \qquad \qquad
     \begin{aligned}
-        \vecthreeBF{F}_{||} = \frac{(\dotProd{F}{\beta})}{\beta^2}\beta \: ,
+        \vecthreeBF{F}_{||} = \frac{(\dotProd{F}{\beta})}{\beta^2}\beta  ,
     \end{aligned}
+    \vspace{-10pt}
 \end{equation}
 where 
+\vspace{-10pt}
 \begin{eqnarray}
     \dotProd{\textbf{F}}{\beta} &=& \gamma m_0 \{ \dotProd{\textbf{a}}{\beta} + \gamma^2(\dotProd{\beta}{\textbf{a}})\beta^2 \} \\
                                 &=& \gamma m_0 (\dotProd{\textbf{a}}{\beta}) \{ \gamma^2\beta^2  + 1\} .
+                                \vspace{-10pt}
 \end{eqnarray}
-$\gamma^2 \beta^2 + 1 = \gamma^2 $ and \fromeq{a_F_parallels} can be used to achieve
+Then, $\gamma^2 \beta^2 + 1 = \gamma^2 $ and \fromeq{a_F_parallels} can be used to achieve
+\vspace{-10pt}
 \begin{eqnarray}
-    \dotProd{\textbf{F}}{\beta} &=& m_0 \gamma^3 (\dotProd{\textbf{a}}{\beta} ) \nonumber \\
+    \dotProd{\textbf{F}}{\beta} &=& m_0 \gamma^3 (\dotProd{\textbf{a}}{\beta} )   , \nonumber \\
     \vecthreeBF{F}_{||} &=& \frac{(\dotProd{\textbf{F}}{\beta})}{\beta^2} \vec{\beta} \nonumber \\
                         &=& m_0 \gamma^3 \frac{(\dotProd{\textbf{a}}{\beta} )}{\beta^2} \vec{\beta} \nonumber \\
                         &=& m_0 \gamma^3 \vecthreeBF{a}_{||} . \label{eq:Frel_parallel}
+                        \vspace{-20pt}
 \end{eqnarray}
-Therefore from \fromeqs{Frel}{Frel_parallel},
+Therefore from \fromeqs{Frel}{Frel_parallel}, force can be rearranged as
+\vspace{-10pt}
 \begin{eqnarray}
     \vecthreeBF{F}  &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \beta^2 + m_0 \gamma \vecthreeBF{a} \\
                     &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \beta^2 + m_0 \gamma \{ \vecthreeBF{a}_{||} +  \vecthreeBF{a}_{\perp} \} \\
                     &=& m_0 \vecthreeBF{a}_{||} \gamma \{ \gamma^2\beta^2 + 1 \} + m_0 \gamma \vecthreeBF{a}_{\perp} \\
                     &=& m_0 \vecthreeBF{a}_{||} \gamma^3 + m_0 \gamma \vecthreeBF{a}_{\perp} \\
                     &=& \vecthreeBF{F}_{||} + m_0 \gamma \vecthreeBF{a}_{\perp} .
+                    \vspace{-10pt}
 \end{eqnarray}
+
 We finally have two separate equations which are in similar form with \fromeq{newton_second_law},
+\vspace{-10pt}
 \begin{equation} \label{eq:Frel_para_and_perp}
     \begin{aligned}
-        \vecthreeBF{F}_{||} = \gamma^3  m_0 \vecthreeBF{a}_{||}
+        \vecthreeBF{F}_{||} = \gamma^3  m_0 \vecthreeBF{a}_{||}  ,
     \end{aligned}
     \qquad \qquad
     \begin{aligned}
@@ -99,17 +120,22 @@ We finally have two separate equations which are in similar form with \fromeq{ne
 
 \subsection{Lorentz Force} \label{sec:lorentz-force}
 Force acting on a charged particle moving in electromagnetic fields is called Lorentz Force and is given by 
+\vspace{-10pt}
 \begin{equation} \label{eq:lf}
     \frac{d \vecthree{p}}{d t} = \vecthree{F}_L=q(\vecthree{E}+ \vecthree{v} \times \vecthree{B}) , 
+    \vspace{-10pt}
 \end{equation}
 where the $q$ is the charge and $\vecthree{v}$ is the velocity of the particle. 
 
 \subsection{Relativistic Lorentz Force}
 Similar to non-relativistic version, relativistic Lorentz Force is given by the 4-vector equality
+\vspace{-10pt}
 \begin{equation}
     \frac{d p^{\mu}}{d \tau} = q F^{\mu \nu} u_{\nu} ,
+    \vspace{-10pt}
 \end{equation}
-where $ d \tau = d t / \gamma $ and greek letters are Lorentz indices
+where $ d \tau = d t / \gamma $, greek letters are Lorentz indices and \textit{p, F, u} are
+\vspace{-10pt}
 \begin{equation*}
     \begin{aligned}
         p^{\mu} = 
@@ -119,7 +145,7 @@ where $ d \tau = d t / \gamma $ and greek letters are Lorentz indices
             p_y \\
             p_z
         \end{bmatrix}    
-    \end{aligned}
+    \end{aligned} ,
     \qquad\qquad
     \begin{aligned}
         F^{\mu\nu} = 
@@ -129,7 +155,7 @@ where $ d \tau = d t / \gamma $ and greek letters are Lorentz indices
                 E_y/c   &   B_z    &  0        & -B_x   \\
                 E_z/c   &   -B_y   & B_x       & 0   
         \end{bmatrix} 
-    \end{aligned}
+    \end{aligned} ,
     \qquad\qquad
     \begin{aligned}
         u_{\nu} = \gamma
@@ -140,17 +166,22 @@ where $ d \tau = d t / \gamma $ and greek letters are Lorentz indices
                 -v_z \\
         \end{bmatrix} 
     \end{aligned} ,
+    \vspace{-10pt}
 \end{equation*}
 where $W$ is the energy of the particle and $\gamma$ is the Lorentz factor mentioned in the previous section.
 
-For $ \mu = 0 $, we have the time component of the equation
+For $ \mu = 0 $, we have the time component of the equation as
+\vspace{-10pt}
 \begin{eqnarray}
-    \frac{\gamma}{c}\frac{d W}{d t} &=& \frac{q \gamma \vecthree{E}\cdot \vecthree{v}}{c} = \frac{q \gamma}{c}  \frac{\vecthree{E}  \cdot d \vecthree{r}}{d t} \\
+    \frac{\gamma}{c}\frac{d W}{d t} &=& \frac{q \gamma \vecthree{E}\cdot \vecthree{v}}{c} = \frac{q \gamma}{c}  \frac{\vecthree{E}  \cdot d \vecthree{r}}{d t}   ,\\
     \frac{d W}{d t} &=& q \frac{\vecthree{E}\cdot d \vecthree{r}} {d t} .
+    \vspace{-10pt}
 \end{eqnarray}
 This is the definition of work done by an electric field. For $ \mu = 1,2,3 $, we have the spacial components
+\vspace{-10pt}
 \begin{equation*}
     \frac{d \vecthree{p}}{d \tau} = \gamma \frac{d \vecthree{p}}{d t} = q \gamma (\vecthree{E} + \vecthree{v} \times \vecthree{B}) ,
+    \vspace{-10pt}
 \end{equation*}
 which simplifies to non-relativistic Lorentz Force in \fromeq{lf}.
 
@@ -161,18 +192,20 @@ Therefore the acceleration of the magnetic field is straightforward,
 \vspace{-10pt}
 \begin{equation*}
     \vecthreeBF{F}_B = \vecthreeBF{F}_{\perp} = \gamma  m_0\vecthreeBF{a}_{\perp} = \gamma  m_0\vecthreeBF{a}_{B} .
+    \vspace{-10pt}
 \end{equation*}
-\vspace{-10pt}
 The same thing cannot be said about electric field however. 
 It can create force in any direction with respect to velocity. Therefore, we have the equality
+\vspace{-10pt}
 \begin{equation} \label{eq:para_and_perp_acc_of_lorentz_force}
     \begin{aligned}
         \vecthreeBF{a}_{||} = \frac{q }{\gamma^3 m_0} \vecthreeBF{E}_{||}
-    \end{aligned}
+    \end{aligned}  ,
     \qquad \qquad
     \begin{aligned}
         \vecthreeBF{a}_{\perp} = \frac{q}{\gamma m_0} \{ \vecthreeBF{E}_{\perp} + \crossProdBF{v}{B}   \} .
     \end{aligned}    
+    \vspace{-10pt}
 \end{equation}
 
 Acceleration due to electric field can be simplified as
@@ -183,17 +216,19 @@ Acceleration due to electric field can be simplified as
                                 &=& \frac{q}{m_0 \gamma} \{ \{1 - \beta^2\}\vecthreeBF{E}_{||} + \vecthreeBF{E}_{\perp} \} \\
                                 &=& \frac{q}{m_0 \gamma} \{ \vecthreeBF{E}_{||} + \vecthreeBF{E}_{\perp}-\beta^2\vecthreeBF{E}_{||} \} \\
                                 &=& \frac{q}{m_0 \gamma} \{ \vecthreeBF{E} - \beta^2\vecthreeBF{E}_{||} \} .
+                                \vspace{-10pt}
 \end{eqnarray*}
-\vspace{-10pt}
 Using the fact that $\vecthreeBF{E}_{||} = \vec{\beta}(\dotProd{\textbf{E}}{\beta})/\beta^2 $, we finally have
+\vspace{-10pt}
 \begin{equation} \label{eq:acc_of_E_and_B}
     \begin{aligned}
         \vecthreeBF{a}_{E} = \frac{q}{ \gamma m_0} \{ \vecthreeBF{E} - \vecthreeBF{v}\frac{(\dotProdBF{E}{v})}{c^2} \}
-    \end{aligned}
+    \end{aligned}  ,
     \qquad \qquad
     \begin{aligned}
         \vecthreeBF{a}_{B} = \frac{q}{\gamma m_0} ( \crossProdBF{v}{B} ) ,
     \end{aligned}
+    \vspace{-10pt}
 \end{equation}
 where $\vecthreeBF{a}_{E}$ consists of two components in the direction of $\vecthreeBF{E}$ and $\vecthreeBF{v}$.
 The component in the direction of $\vecthreeBF{v}$ depends on the $\dotProdBF{E}{v}$, 

@@ -14,7 +14,9 @@
 \usepackage{epstopdf}
 \usepackage{amsmath}
 \usepackage{notoccite}
-\usepackage{subcaption}
+%\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{subfigure}
 \usepackage{tabu}
 
 \interdisplaylinepenalty=2500
@@ -115,7 +117,7 @@ The software is planned to be used in magnet design and beam optimizations in KA
 \textit{Rhodotron Simulation}, which has been the main focus of this thesis, is ready and waiting to be tested with the cavity that is being manufactured; 
 Several improvements and new feature implementations are underway in the meantime. 
 They include the following;
-\begin{figure}[H]
+\iffalse \begin{figure}[H]
     \begin{subfigure}[t]{0.5\textwidth}
         \begin{itemize}
             \item Electric and magnetic field import
@@ -135,7 +137,29 @@ They include the following;
             \item $L_{out}$ sweep in Sweep Frame
         \end{itemize}
     \end{subfigure}
+\end{figure} \fi
+\begin{figure}[H]
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{itemize}
+            \item Electric and magnetic field import
+            \item Field generator module to directly produce field files from specified cavity
+            \item Synchrotron radiation calculations to determine radiation and energy loss
+            \item \ee interactions
+            \item Redesign of the GUI
+            \item 3D render in GUI
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{itemize}
+            \item Refactoring of the \eEM interaction and logging to improve performance
+            \item Refactoring of the GUI Render Frame to improve render speed
+            \item Refactoring the magnet class to introduce field leaks
+            \item Extention of analysis tools in Analyze Frame
+            \item $L_{out}$ sweep in Sweep Frame
+        \end{itemize}
+    \end{minipage}
 \end{figure}
+
 After the cavity manufacturing is concluded, energy gain predictions of this software will be tested on this cavity. 
 Complementary bending magnet design will be the first challange of \textit{Rhodotron Simulation}, which will provide tremendous testing and improvement opportunities.
 

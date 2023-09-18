@@ -8,7 +8,8 @@
 \usepackage{svg}
 \usepackage{mathtools}
 \usepackage{tabu}
-\usepackage{subcaption}
+%\usepackage{subcaption}
+\usepackage{subfigure}
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 
 
@@ -50,14 +51,14 @@ Frequency was selected to benefit from the RF power supply units at hand.
 After considering the earlier simulations mentioned in \fromsecs{cavity_design}{magnet_design}, an initial design was created.
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \includegraphics[width=.5\linewidth]{../../../figures/cst/cst_first_design1.png}
-    \caption{Initial design of the proposed rhodotron \\ $\gamma=9^\circ$}
+    \caption{Initial design of the proposed rhodotron, $\gamma=9^\circ$.}
     \label{fig:initial_design}
 \end{figure}
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -72,11 +73,19 @@ After considering the earlier simulations mentioned in \fromsecs{cavity_design}{
     \end{subfigure}
     \caption{Initial design of the proposed rhodotron.}
     \label{fig:initial_design_cross_section}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering Axial cross section]{{\includegraphics[width=.46\textwidth]{../../../figures/cst/cst_first_design3.png} }}%
+    \qquad\subfigure[\centering Cross section at acceleration plane]{{\includegraphics[width=.45\textwidth]{../../../figures/cst/cst_first_design2.png} }}%
+    \vspace{20pt}
+    \caption{\centering Initial design of the proposed rhodotron.} 
+    \label{fig:initial_design_cross_section}
 \end{figure}
 The magnets used in this design is the simplest in terms of design parameters. It consists of an iron casing encapsulating the shape of desired magnetic field, which are created by two coils inside.
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -89,11 +98,19 @@ The magnets used in this design is the simplest in terms of design parameters. I
     \end{subfigure}
     \caption{Initial magnet design.}
     \label{fig:initial_magnet_design}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering ]{{\includegraphics[width=.45\textwidth]{../../../figures/cst/cst_first_magnet_design1.png} }}%
+    \qquad\subfigure[\centering ]{{\includegraphics[width=.46\textwidth]{../../../figures/cst/cst_first_magnet_design2.png} }}%
+    \vspace{20pt}
+    \caption{\centering Initial magnet design.} 
+    \label{fig:initial_magnet_design}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \includegraphics[width=.8\linewidth]{../../../figures/cst/cst_first_magnet_design3.png}
     \caption{Magnetic field in acceleration plate of initial magnet design.}
     \label{fig:initial_magnet_design_B}
@@ -103,16 +120,16 @@ The magnets used in this design is the simplest in terms of design parameters. I
 After adding two more magnets and using $\gamma=15^\circ$, the following second prototype design was created
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \includegraphics[width=.8\linewidth]{../../../figures/cst/cst_second_design2.png}
-    \caption{Initial cavity with three magnets as shown in \fromfig{initial_magnet_design} \\ $\gamma=15^\circ$}
+    \caption{Initial cavity with three magnets as shown in \fromfig{initial_magnet_design}, $\gamma=15^\circ$.}
     \label{fig:initial_three_magnet_design}
 \end{figure}
 These designs, together with $40$ keV $e^-$ gun injecting with phase lag of $15^\circ$ for $1$ ns, was simulated at RF power of $12$ kW using \textit{CST Studio Particle Module PIC Solver}.
 Results of these simulations can be found in \fromfig{initial_designs_PIC_phase_space_monitor}.
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}[b]{.8\textwidth}
       \centering
@@ -127,6 +144,15 @@ Results of these simulations can be found in \fromfig{initial_designs_PIC_phase_
     \end{subfigure}
     \caption{$|r|$ vs $Energy$ simulation of initial design.}
     \label{fig:initial_designs_PIC_phase_space_monitor}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering One pass simulation of \fromfig{initial_design}]{{\includegraphics[width=.8\textwidth]{../../../figures/cst/cst_first_design4.png} }}%
+    \vspace{20pt}\newline
+    \subfigure[\centering Two pass simulation of \fromfig{initial_three_magnet_design}]{{\includegraphics[width=.8\textwidth]{../../../figures/cst/cst_second_design3.png} }}%
+    \vspace{20pt}
+    \caption{\centering $|r|$ vs $Energy$ simulation of initial design.} 
+    \label{fig:initial_designs_PIC_phase_space_monitor}
 \end{figure}
 The behavior of the beam in the \fromfig{initial_designs_PIC_phase_space_monitor} after the first pass indicates that phase stability is not maintained. 
 When the simulation results are examined further, it was observed that the beam started the second pass at $t \approx 12$ ns after the injection. 
@@ -139,9 +165,9 @@ as anticipated and discussed earlier in the \fromsec{parameter_sweep}.
 
 Several improvements were made to KAHVELab Rhodotron initial designs \cite{sinan}. These include curved edges on cavity which reduce the power loss on cavity walls, and redesigned iron casing on magnets for ease of production and maintenance.
 Improved designs can be seen in the figures below.
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -154,19 +180,27 @@ Improved designs can be seen in the figures below.
     \end{subfigure}
     \caption{Improved cavity design.}
     \label{fig:improved_cavity_design}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering ]{{\includegraphics[width=.45\textwidth]{../../../figures/cst/cst_sinan_cavity_design1.png} }}%
+    \qquad\subfigure[\centering ]{{\includegraphics[width=.47\textwidth]{../../../figures/cst/cst_sinan_cavity_design2.png} }}%
+    \vspace{20pt}
+    \caption{\centering Improved cavity design.} 
+    \label{fig:improved_cavity_design}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \includegraphics[width=.7\linewidth]{../../../figures/cst/cst_second_magnet_design1.png}
     \caption{Improved magnet design.}
     \label{fig:improved_magnet_design}
 \end{figure}
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -179,11 +213,19 @@ Improved designs can be seen in the figures below.
     \end{subfigure}
     \caption{Cross section and coils of improved magnet design.}
     \label{fig:improved_magnet_design_cross_section}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure{{\includegraphics[width=.475\textwidth]{../../../figures/cst/cst_second_magnet_design2.png} }}%
+    \qquad\subfigure{{\includegraphics[width=.443\textwidth]{../../../figures/cst/cst_second_magnet_design3.png} }}%
+    \vspace{20pt}
+    \caption{\centering Cross section and coils of improved magnet design.} 
+    \label{fig:improved_magnet_design_cross_section}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \includegraphics[width=.8\linewidth]{../../../figures/cst/cst_second_magnet_design4.png}
     \caption{Magnetic field in acceleration plate of improved magnet design.}
     \label{fig:improved_magnet_design_B}

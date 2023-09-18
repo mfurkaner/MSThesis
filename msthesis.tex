@@ -17,7 +17,9 @@
 \usepackage{epstopdf}
 \usepackage{amsmath}
 \usepackage{notoccite}
-\usepackage{subcaption}
+%\usepackage{subcaption}
+\usepackage{subfigure}
+%\usepackage{caption}
 \usepackage{tabu}
 \usepackage{minted}
 \usepackage{xcolor}
@@ -203,6 +205,7 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
 
 \newcommand{\fromfig}[1]{\textit{Figure \ref{fig:#1}}}
 \newcommand{\fromfigs}[2]{\textit{Figures \ref{fig:#1} and \ref{fig:#2}}}
+\newcommand{\fromfigth}[3]{\textit{figures \ref{fig:#1}, \ref{fig:#2} and \ref{fig:#3}}}
 \newcommand{\fromfigf}[4]{\textit{Figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3} and \ref{fig:#4}}}
 \newcommand{\fromfigsix}[6]{\textit{Figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3}, \ref{fig:#4}, \ref{fig:#5} and \ref{fig:#6}}}
 
@@ -236,67 +239,88 @@ Rose-pattle accelerator is a type of circular accelerator suitable for producing
 It was developed in 1989 and was named \textit{Rhodotron} \cite{rhodo_pottier}. This name was trademarked by \textit{IBA Group} in the following years. 
 
 
-
+\newpage
 \section{Accelerating Charged Particles}
 
 \subsection{Relation between momentum and acceleration}
 In classical mechanics, Newton's second law defines force, $\vecthreeBF{F}$, and relation
+\vspace{-10pt}
 \begin{equation} \label{eq:newton_second_law}
-    \vecthreeBF{F} = \frac{d \vecthreeBF{p}}{d t} = m \frac{d \vecthreeBF{v}}{d t} = m \vecthreeBF{a} ,
+    \vecthreeBF{F} = \frac{d \vecthreeBF{p}}{d t} = m \frac{d \vecthreeBF{v}}{d t} = m \vecthreeBF{a}   ,
+    \vspace{-10pt}
 \end{equation}
 where $\vecthreeBF{p}$ is the momentum, $m\vecthreeBF{v}$ of the particle. 
-In special relativity however, relativistic momentum is defined as $\vecthree{p} = \gamma m_0 \vecthree{v} $ where 
+
+
+In special relativity however, relativistic momentum is defined as $\vecthree{p} = \gamma m_0 \vecthree{v} $, where 
+\vspace{-10pt}
 \begin{equation}
     \gamma = \frac{1}{\sqrt{1-v^2 / c^2}} = \frac{1}{\sqrt{1-\beta^2}}
             = \frac{1}{\sqrt{1- (\dotProd{v}{v})/ c^2}} =  \frac{1}{\sqrt{1- \dotProd{\beta}{\beta}}}
-\end{equation}
-is the Lorentz Factor.
+            \vspace{-10pt}
+\end{equation} is the Lorentz Factor.
+
 
 Considering these two statements, we can find the relation between momentum and acceleration as 
+\vspace{-10pt}
 \begin{eqnarray}
-    \deriv{\vecthree{p}}{t} &=& m_0 \deriv{(\gamma \vecthree{v})}{t} = m_0 \{  \deriv{\gamma}{t}\vecthree{v} + \gamma \deriv{\vecthree{v}}{t}  \} \\
-    \deriv{\gamma}{t} &=& \gamma^3 \dotProd{\beta}{\deriv{\beta}{t}} = \frac{\gamma^3}{c} \dotProd{\beta}{a} \\
+    \deriv{\vecthree{p}}{t} &=& m_0 \deriv{(\gamma \vecthree{v})}{t} = m_0 \{  \deriv{\gamma}{t}\vecthree{v} + \gamma \deriv{\vecthree{v}}{t}   ,  \} \\
+    \deriv{\gamma}{t} &=& \gamma^3 \dotProd{\beta}{\deriv{\beta}{t}} = \frac{\gamma^3}{c} \dotProd{\beta}{a}   , \\
     \deriv{\vecthree{p}}{t}  &=& m_0 \{   \frac{\gamma^3}{c} (\dotProd{\beta}{a} )\vecthree{v} + \gamma \deriv{\vecthree{v}}{t}  \} .
+    \vspace{-10pt}
 \end{eqnarray}
 Therefore force can be written as
+\vspace{-10pt}
 \begin{equation} \label{eq:Frel}
     \vecthreeBF{F}  = \gamma m_0 \{ \vecthreeBF{a} + \gamma^2(\dotProd{\beta}{\textbf{a}})\vecthree{\beta} \} .
+    \vspace{-10pt}
 \end{equation}
+
 It is clear that acceleration is not necessarily parallel to the force. 
 To start separating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and $\vecthreeBF{F}_{||}$ as
+\vspace{-10pt}
 \begin{equation} \label{eq:a_F_parallels}
     \begin{aligned}
-        \vecthreeBF{a}_{||} = \frac{(\dotProd{a}{\beta})}{\beta^2}\beta 
+        \vecthreeBF{a}_{||} = \frac{(\dotProd{a}{\beta})}{\beta^2}\beta  ,
     \end{aligned}
     \qquad \qquad
     \begin{aligned}
-        \vecthreeBF{F}_{||} = \frac{(\dotProd{F}{\beta})}{\beta^2}\beta \: ,
+        \vecthreeBF{F}_{||} = \frac{(\dotProd{F}{\beta})}{\beta^2}\beta  ,
     \end{aligned}
+    \vspace{-10pt}
 \end{equation}
 where 
+\vspace{-10pt}
 \begin{eqnarray}
     \dotProd{\textbf{F}}{\beta} &=& \gamma m_0 \{ \dotProd{\textbf{a}}{\beta} + \gamma^2(\dotProd{\beta}{\textbf{a}})\beta^2 \} \\
                                 &=& \gamma m_0 (\dotProd{\textbf{a}}{\beta}) \{ \gamma^2\beta^2  + 1\} .
+                                \vspace{-10pt}
 \end{eqnarray}
-$\gamma^2 \beta^2 + 1 = \gamma^2 $ and \fromeq{a_F_parallels} can be used to achieve
+Then, $\gamma^2 \beta^2 + 1 = \gamma^2 $ and \fromeq{a_F_parallels} can be used to achieve
+\vspace{-10pt}
 \begin{eqnarray}
-    \dotProd{\textbf{F}}{\beta} &=& m_0 \gamma^3 (\dotProd{\textbf{a}}{\beta} ) \nonumber \\
+    \dotProd{\textbf{F}}{\beta} &=& m_0 \gamma^3 (\dotProd{\textbf{a}}{\beta} )   , \nonumber \\
     \vecthreeBF{F}_{||} &=& \frac{(\dotProd{\textbf{F}}{\beta})}{\beta^2} \vec{\beta} \nonumber \\
                         &=& m_0 \gamma^3 \frac{(\dotProd{\textbf{a}}{\beta} )}{\beta^2} \vec{\beta} \nonumber \\
                         &=& m_0 \gamma^3 \vecthreeBF{a}_{||} . \label{eq:Frel_parallel}
+                        \vspace{-20pt}
 \end{eqnarray}
-Therefore from \fromeqs{Frel}{Frel_parallel},
+Therefore from \fromeqs{Frel}{Frel_parallel}, force can be rearranged as
+\vspace{-10pt}
 \begin{eqnarray}
     \vecthreeBF{F}  &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \beta^2 + m_0 \gamma \vecthreeBF{a} \\
                     &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \beta^2 + m_0 \gamma \{ \vecthreeBF{a}_{||} +  \vecthreeBF{a}_{\perp} \} \\
                     &=& m_0 \vecthreeBF{a}_{||} \gamma \{ \gamma^2\beta^2 + 1 \} + m_0 \gamma \vecthreeBF{a}_{\perp} \\
                     &=& m_0 \vecthreeBF{a}_{||} \gamma^3 + m_0 \gamma \vecthreeBF{a}_{\perp} \\
                     &=& \vecthreeBF{F}_{||} + m_0 \gamma \vecthreeBF{a}_{\perp} .
+                    \vspace{-10pt}
 \end{eqnarray}
+
 We finally have two separate equations which are in similar form with \fromeq{newton_second_law},
+\vspace{-10pt}
 \begin{equation} \label{eq:Frel_para_and_perp}
     \begin{aligned}
-        \vecthreeBF{F}_{||} = \gamma^3  m_0 \vecthreeBF{a}_{||}
+        \vecthreeBF{F}_{||} = \gamma^3  m_0 \vecthreeBF{a}_{||}  ,
     \end{aligned}
     \qquad \qquad
     \begin{aligned}
@@ -306,17 +330,22 @@ We finally have two separate equations which are in similar form with \fromeq{ne
 
 \subsection{Lorentz Force} \label{sec:lorentz-force}
 Force acting on a charged particle moving in electromagnetic fields is called Lorentz Force and is given by 
+\vspace{-10pt}
 \begin{equation} \label{eq:lf}
     \frac{d \vecthree{p}}{d t} = \vecthree{F}_L=q(\vecthree{E}+ \vecthree{v} \times \vecthree{B}) , 
+    \vspace{-10pt}
 \end{equation}
 where the $q$ is the charge and $\vecthree{v}$ is the velocity of the particle. 
 
 \subsection{Relativistic Lorentz Force}
 Similar to non-relativistic version, relativistic Lorentz Force is given by the 4-vector equality
+\vspace{-10pt}
 \begin{equation}
     \frac{d p^{\mu}}{d \tau} = q F^{\mu \nu} u_{\nu} ,
+    \vspace{-10pt}
 \end{equation}
-where $ d \tau = d t / \gamma $ and greek letters are Lorentz indices
+where $ d \tau = d t / \gamma $, greek letters are Lorentz indices and \textit{p, F, u} are
+\vspace{-10pt}
 \begin{equation*}
     \begin{aligned}
         p^{\mu} = 
@@ -326,7 +355,7 @@ where $ d \tau = d t / \gamma $ and greek letters are Lorentz indices
             p_y \\
             p_z
         \end{bmatrix}    
-    \end{aligned}
+    \end{aligned} ,
     \qquad\qquad
     \begin{aligned}
         F^{\mu\nu} = 
@@ -336,7 +365,7 @@ where $ d \tau = d t / \gamma $ and greek letters are Lorentz indices
                 E_y/c   &   B_z    &  0        & -B_x   \\
                 E_z/c   &   -B_y   & B_x       & 0   
         \end{bmatrix} 
-    \end{aligned}
+    \end{aligned} ,
     \qquad\qquad
     \begin{aligned}
         u_{\nu} = \gamma
@@ -347,17 +376,22 @@ where $ d \tau = d t / \gamma $ and greek letters are Lorentz indices
                 -v_z \\
         \end{bmatrix} 
     \end{aligned} ,
+    \vspace{-10pt}
 \end{equation*}
 where $W$ is the energy of the particle and $\gamma$ is the Lorentz factor mentioned in the previous section.
 
-For $ \mu = 0 $, we have the time component of the equation
+For $ \mu = 0 $, we have the time component of the equation as
+\vspace{-10pt}
 \begin{eqnarray}
-    \frac{\gamma}{c}\frac{d W}{d t} &=& \frac{q \gamma \vecthree{E}\cdot \vecthree{v}}{c} = \frac{q \gamma}{c}  \frac{\vecthree{E}  \cdot d \vecthree{r}}{d t} \\
+    \frac{\gamma}{c}\frac{d W}{d t} &=& \frac{q \gamma \vecthree{E}\cdot \vecthree{v}}{c} = \frac{q \gamma}{c}  \frac{\vecthree{E}  \cdot d \vecthree{r}}{d t}   ,\\
     \frac{d W}{d t} &=& q \frac{\vecthree{E}\cdot d \vecthree{r}} {d t} .
+    \vspace{-10pt}
 \end{eqnarray}
 This is the definition of work done by an electric field. For $ \mu = 1,2,3 $, we have the spacial components
+\vspace{-10pt}
 \begin{equation*}
     \frac{d \vecthree{p}}{d \tau} = \gamma \frac{d \vecthree{p}}{d t} = q \gamma (\vecthree{E} + \vecthree{v} \times \vecthree{B}) ,
+    \vspace{-10pt}
 \end{equation*}
 which simplifies to non-relativistic Lorentz Force in \fromeq{lf}.
 
@@ -368,18 +402,20 @@ Therefore the acceleration of the magnetic field is straightforward,
 \vspace{-10pt}
 \begin{equation*}
     \vecthreeBF{F}_B = \vecthreeBF{F}_{\perp} = \gamma  m_0\vecthreeBF{a}_{\perp} = \gamma  m_0\vecthreeBF{a}_{B} .
+    \vspace{-10pt}
 \end{equation*}
-\vspace{-10pt}
 The same thing cannot be said about electric field however. 
 It can create force in any direction with respect to velocity. Therefore, we have the equality
+\vspace{-10pt}
 \begin{equation} \label{eq:para_and_perp_acc_of_lorentz_force}
     \begin{aligned}
         \vecthreeBF{a}_{||} = \frac{q }{\gamma^3 m_0} \vecthreeBF{E}_{||}
-    \end{aligned}
+    \end{aligned}  ,
     \qquad \qquad
     \begin{aligned}
         \vecthreeBF{a}_{\perp} = \frac{q}{\gamma m_0} \{ \vecthreeBF{E}_{\perp} + \crossProdBF{v}{B}   \} .
     \end{aligned}    
+    \vspace{-10pt}
 \end{equation}
 
 Acceleration due to electric field can be simplified as
@@ -390,17 +426,19 @@ Acceleration due to electric field can be simplified as
                                 &=& \frac{q}{m_0 \gamma} \{ \{1 - \beta^2\}\vecthreeBF{E}_{||} + \vecthreeBF{E}_{\perp} \} \\
                                 &=& \frac{q}{m_0 \gamma} \{ \vecthreeBF{E}_{||} + \vecthreeBF{E}_{\perp}-\beta^2\vecthreeBF{E}_{||} \} \\
                                 &=& \frac{q}{m_0 \gamma} \{ \vecthreeBF{E} - \beta^2\vecthreeBF{E}_{||} \} .
+                                \vspace{-10pt}
 \end{eqnarray*}
-\vspace{-10pt}
 Using the fact that $\vecthreeBF{E}_{||} = \vec{\beta}(\dotProd{\textbf{E}}{\beta})/\beta^2 $, we finally have
+\vspace{-10pt}
 \begin{equation} \label{eq:acc_of_E_and_B}
     \begin{aligned}
         \vecthreeBF{a}_{E} = \frac{q}{ \gamma m_0} \{ \vecthreeBF{E} - \vecthreeBF{v}\frac{(\dotProdBF{E}{v})}{c^2} \}
-    \end{aligned}
+    \end{aligned}  ,
     \qquad \qquad
     \begin{aligned}
         \vecthreeBF{a}_{B} = \frac{q}{\gamma m_0} ( \crossProdBF{v}{B} ) ,
     \end{aligned}
+    \vspace{-10pt}
 \end{equation}
 where $\vecthreeBF{a}_{E}$ consists of two components in the direction of $\vecthreeBF{E}$ and $\vecthreeBF{v}$.
 The component in the direction of $\vecthreeBF{v}$ depends on the $\dotProdBF{E}{v}$, 
@@ -430,7 +468,7 @@ Special relativity governs the increase in mass and energy of the particles as t
 \begin{figure}[H]
     \centering
     \includegraphics[width=.9\textwidth]{./figures/kahvelab_linac.png}
-    \caption{A linear proton accelerator in KAHVELab \cite{kahvelab_linac}}
+    \caption{A linear proton accelerator in KAHVELab. \cite{kahvelab_linac}}
 \end{figure}
 
 \subsection{Acceleration Cavities} \label{sec:theory_cavities}
@@ -451,7 +489,7 @@ These oscillating fields then transfer energy to the passing particles, increasi
 \begin{figure}[H]
     \centering
     \includegraphics[width=.75\textwidth]{./figures/pill_box.jpeg}
-    \caption{An RF cavity used in KAHVELab}
+    \caption{An RF cavity used in KAHVELab.}
 \end{figure}
 
 In addition to accelerating the particles, RF cavities are often designed to provide focusing forces. 
@@ -474,10 +512,10 @@ vector and the magnetic field direction. This force causes the particle's trajec
 Resonance frequency is the frequency in which the electromagnetic fields form standing waves in a cavity.
 It is determined by the physical dimensions and the speed of light in the cavity's medium. 
 In a rectangular cavity for example, the resonance frequency can be calculated by
-\begin{equation}
-    f_{klm} = \frac{c}{2\pi \sqrt{\mu_r \epsilon_r}} \sqrt{(\frac{k}{w})^2 + (\frac{l}{u})^2 + (\frac{m}{v})^2}
+\vspace{-10pt}\begin{equation}
+    f_{klm} = \frac{c}{2\pi \sqrt{\mu_r \epsilon_r}} \sqrt{(\frac{k}{w})^2 + (\frac{l}{u})^2 + (\frac{m}{v})^2}  ,
     \label{eq:f_r_rec}
-\end{equation}
+\vspace{-10pt}\end{equation}
 where $w$, $u$, $v$ are the dimensions of the cavity, $\mu_r$ and $\epsilon_r$ are relative permability and permittivity of the cavity respectably.
 
 \subsubsection{Bunch}
@@ -499,9 +537,9 @@ It describes the difference in phase angles within their respective cycles, betw
 The shunt impedance of an RF accelerator is a measure of the efficiency 
 at which the accelerator can transform the supplied RF power into acceleration.
 It is defined as
-\begin{equation} \label{eq:shunt}
-    Z_s = \frac{V_{acc}^2}{P_{diss}}
-\end{equation}
+\vspace{-10pt}\begin{equation} \label{eq:shunt}
+    Z_s = \frac{V_{acc}^2}{P_{diss}}  ,
+\vspace{-10pt}\end{equation}
 where $V_{acc}$ is the accelerating potential in which the particle is subjected to, 
 $P_{diss}$ is the power dissipated on the cavity walls. 
 An example \textit{shunt impedance} calculation can be found in \fromsec{cavity_of_a_rhodotron}.
@@ -519,13 +557,14 @@ The design of a rhodotron mainly consists of a coaxial cylindrical RF cavity and
 
 Electrons undergo four different stages inside the accelerator. 
 They are accelerated between the cylinderical plates and are shielded from the changing RF field while inside the inner cylinder and outside the cavity. 
+This stages are explained further below.
 
-\begin{description}
-    \item[First acceleration] Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity. (\fromfig{rhod_cycle_1})
-    \item[Inner shielding] While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed. (\fromfig{rhod_cycle_2})
-    \item[Second acceleration] Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity. (\fromfig{rhod_cycle_3})
-    \item[Recirculating Magnets] After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again. (\fromfig{rhod_cycle_4})
-\end{description}
+%\begin{description}
+%    \item[First acceleration] Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity. (\fromfig{rhod_cycle_1})
+%    \item[Inner shielding] While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed. (\fromfig{rhod_cycle_2})
+%    \item[Second acceleration] Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity. (\fromfig{rhod_cycle_3})
+%    \item[Recirculating Magnets] After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again. (\fromfig{rhod_cycle_4})
+%\end{description}
 
 \begin{itemize}
     \item \textit{First Acceleration:} Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity. (\fromfig{rhod_cycle_1})
@@ -544,9 +583,9 @@ This process is explained further in the \fromfigf{rhod_cycle_1}{rhod_cycle_2}{r
 Coaxial design of the cavity concentrates the electric field, while the magnetic field diminishes in the middle of the cylinders. 
 Therefore the electrons are injected and accelerated in the plane of zero magnetic field where the electric field is strongest. (\fromfig{rhodo_cavity_field_dist})
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{0.45\textwidth}
         \centering
@@ -560,94 +599,99 @@ Therefore the electrons are injected and accelerated in the plane of zero magnet
     \end{subfigure}
     \caption{$\vecthreeBF{E}$ and $\vecthreeBF{B}$ eigenmode field distributions inside a coaxial cavity.}
     \label{fig:rhodo_cavity_field_dist}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering $\vecthreeBF{E}$ field]{{\includegraphics[width=0.45\textwidth]{./figures/cst/cavity_E_field_dist.png} }}%
+    \qquad\subfigure[\centering $\vecthreeBF{B}$ field]{{\includegraphics[width=0.45\textwidth]{./figures/cst/cavity_B_field_dist.png} }}%
+    \vspace{20pt}
+    \caption{$\vecthreeBF{E}$ and $\vecthreeBF{B}$ eigenmode field distributions inside a coaxial cavity.}
+    \label{fig:rhodo_cavity_field_dist}
 \end{figure}
 For a cavity defined by the volume between two coaxial cylinders of equal lengths ($h$) with radii of $R_1$ and $R_2$, where $R_1 < R_2$, located at the origin (\fromfig{int_curve}),
 first eigenmode solution of the $E$ and $B$ fields are \cite{rhodo_pottier}
-\begin{eqnarray}
-    E &=& \frac{E_0}{r} \cos(\frac{\pi z}{h}) \sin(\omega t + \phi) \\
-    B &=& \frac{B_0}{r} \sin(\frac{\pi z}{h}) \cos(\omega t + \phi)
-\end{eqnarray}
+\vspace{-10pt}\begin{eqnarray}
+    E &=& \frac{E_0}{r} \cos(\frac{\pi z}{h}) \sin(\omega t + \phi)  , \\
+    B &=& \frac{B_0}{r} \sin(\frac{\pi z}{h}) \cos(\omega t + \phi)  ,
+\vspace{-10pt}\end{eqnarray}
 where $\omega=2\pi f$, $f$ is the resonance frequency.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=.6\textwidth]{./figures/illustrations/rhodo_integral_curve.pdf}
-    \caption{Illustration of a simple coaxial cavity with the curve \textbf{C} in \fromeq{p_diss_C_curve}}
+    \caption{Illustration of a simple coaxial cavity with the curve \textbf{C} in \fromeq{p_diss_C_curve}.}
     \label{fig:int_curve}
 \end{figure}
-Because acceleration potential is located on the $z=0$ plane and $\vecthreeBF{E} \parallel \hat{r}$, $V_{acc}$ can be found by the following equation:
-\begin{eqnarray} 
+Because acceleration potential is located on the $z=0$ plane and $\vecthreeBF{E} \parallel \hat{r}$, $V_{acc}$ can be found by
+\vspace{-10pt}\begin{eqnarray} 
     V_{acc} &=& 2 \int_{R_1}^{R_2} |E|^2 dr \\
             &=& 2 E_0 \int_{R_1}^{R_2} \frac{dr}{r} \\
-            &=& 2 E_0 \ln(\frac{R_2}{R_1}) \label{eq:v_acc}
-\end{eqnarray}
-Dissipated power $P_{diss}$, on the other hand, can be calculated as follows \cite{rf}:
-\begin{eqnarray} 
+            &=& 2 E_0 \ln(\frac{R_2}{R_1}). \label{eq:v_acc}
+\vspace{-10pt}\end{eqnarray}
+Dissipated power $P_{diss}$, on the other hand, can be calculated as \cite{rf}
+\vspace{-10pt}\begin{eqnarray} 
     P_{diss} &=& \frac{1}{2} \int \int \rho_s | H_{||} |^2 dA \nonumber \\
-             &=& \frac{\rho_s}{2\mu_0^2} \int_0^{2\pi} \int_C | B_{||} |^2 r ds d\theta \label{eq:p_diss_C_curve}
-\end{eqnarray}
+             &=& \frac{\rho_s}{2\mu_0^2} \int_0^{2\pi} \int_C | B_{||} |^2 r ds d\theta . \label{eq:p_diss_C_curve}
+\vspace{-10pt}\end{eqnarray}
 where $\rho_s$ is the areal skin resistivity ( $\rho_s \approx 2.51 \times 10^{-7} f^{1/2}$ for copper \cite{rhodo_pottier} ), $B=\mu H$, $\mu$ is permeability, $\mu_0$ is the vacuum permability. 
 Integral curve \textbf{C} is defined as the circumference of cylindrically symmetrical cross sectional area of the cavity (\fromfig{int_curve}).
 This curve can be seperated to its line components and total power dissipation of this curve, $P_C$ will be equal to sum of the power dissipated in these lines.
-Since $\vecthreeBF{B}$ is always parallel to the surface we can use $\vecthreeBF{B}$ directly:
-\begin{eqnarray}
+Since $\vecthreeBF{B}$ is always parallel to the surface we can use $\vecthreeBF{B}$ directly as
+\vspace{-10pt}\begin{eqnarray}
     P_{diss} &=& \frac{\rho_s}{2\mu_0^2} \int_0^{2\pi} (
                    2\int_{0}^{\frac{h}{2}} |B|^2 r dz \Big|_{r=R_1}
                  + 2\int_{0}^{\frac{h}{2}} |B|^2 r dz \Big|_{r=R_2} 
                  + 2\int_{R_1}^{R_2} |B|^2 r dr \Big|_{z=\frac{h}{2}})d\theta \nonumber\\
-             %&=& \frac{\rho_s B_0^2 \cos^2(\omega t + \phi)}{2\mu_0^2} \int_0^{2\pi} 
              &=& \frac{\rho_s}{2\mu_0^2} \int_0^{2\pi} (2I_A + 2I_B + 2I_C)d\theta 
-                 = \frac{2\rho_s \pi}{\mu_0^2}(I_A + I_B + I_C)
-\end{eqnarray}
-\begin{eqnarray}
-    I_A = \int_{0}^{\frac{h}{2}} |B|^2 r dz \Big|_{r=R_1} &=& B_0^2 \frac{h}{4R_1} \\
-    I_B = \int_{0}^{\frac{h}{2}} |B|^2 r dz \Big|_{r=R_2} &=& B_0^2 \frac{h}{4R_2} \\
-    I_C = \int_{R_1}^{R_2} |B|^2 r dr \Big|_{z=\frac{h}{2}} &=& B_0^2 \ln(\frac{R_2}{R_1})
-\end{eqnarray}
-inserting $H_0=B_0/\mu_0$, finally we have the dissipated power:
-\begin{equation} \label{eq:p_diss}
-    P_{diss} = \rho_s \pi H_o ( \frac{h}{2R_1} + \frac{h}{2R_2} + 2\ln(\frac{R_2}{R_1}) )
-\end{equation}
-Therefore, from \fromeq{shunt}, using \fromeqs{v_acc}{p_diss} also $E_0/H_0 = Z_0 \approx 120 \pi$:
-\begin{eqnarray}
+                 = \frac{2\rho_s \pi}{\mu_0^2}(I_A + I_B + I_C)   ,\\
+    I_A &=& \int_{0}^{\frac{h}{2}} |B|^2 r dz \Big|_{r=R_1} = B_0^2 \frac{h}{4R_1}   ,\\
+    I_B &=& \int_{0}^{\frac{h}{2}} |B|^2 r dz \Big|_{r=R_2} = B_0^2 \frac{h}{4R_2}   ,\\
+    I_C &=& \int_{R_1}^{R_2} |B|^2 r dr \Big|_{z=\frac{h}{2}} = B_0^2 \ln(\frac{R_2}{R_1}) .
+\vspace{-10pt}\end{eqnarray}
+Inserting $H_0=B_0/\mu_0$, finally we have the dissipated power
+\vspace{-10pt}\begin{equation} \label{eq:p_diss}
+    P_{diss} = \rho_s \pi H_o ( \frac{h}{2R_1} + \frac{h}{2R_2} + 2\ln(\frac{R_2}{R_1}) ).
+\vspace{-10pt}\end{equation}
+Therefore, from \fromeq{shunt}, using \fromeqs{v_acc}{p_diss} also $E_0/H_0 = Z_0 \approx 120 \pi$ we have
+\vspace{-10pt}\begin{eqnarray}
     Z_s &=& \frac{4E_0^2}{H_0^2 \pi \rho_s} \frac{ \ln^2(\frac{R_2}{R_1})}{(\frac{h}{2R_1} + \frac{h}{2R_2} + 2 \ln(\frac{R_2}{R_1}))} \\
-        &=& \frac{8 \pi 60^2}{\rho_s} \frac{ \ln^2(\frac{R_2}{R_1})}{(\frac{h}{4}(\frac{1}{R_1} + \frac{1}{R_2}) + \ln(\frac{R_2}{R_1}))}
-\end{eqnarray}
+        &=& \frac{8 \pi 60^2}{\rho_s} \frac{ \ln^2(\frac{R_2}{R_1})}{(\frac{h}{4}(\frac{1}{R_1} + \frac{1}{R_2}) + \ln(\frac{R_2}{R_1}))}   ,
+\vspace{-10pt}\end{eqnarray}
 where, time dependencies have been removed from $\vecthreeBF{E}$ and $\vecthreeBF{B}$ 
 and the maximum values for $V_{acc}$ and $P_{diss}$ have been used. 
 However, particles do not interact with constant $\vecthreeBF{E}$ field during acceleration. 
-Therefore, a more useful parameter called \textit{effective shunt impedance} can be defined:
-\begin{equation}
-    Z_{se} = Z_s T^2
-\end{equation}
+Therefore, a more useful parameter called \textit{effective shunt impedance} can be defined as
+\vspace{-10pt}\begin{equation}
+    Z_{se} = Z_s T^2  ,
+\vspace{-10pt}\end{equation}
 where $T$ is the \textit{transit time factor}, a correctional coefficent that contain the changing field effects during acceleration.
-For a relativistic electron crossing the axis at time 0, $T$ can be found by \cite{rhodo_pottier}:
-\begin{eqnarray}
-    T &=& \frac{S_i(\frac{2 \pi R_2}{\lambda}) - S_i(\frac{2 \pi R_1}{\lambda})}{\ln(\frac{R_2}{R_1})} \\
-    S_i(\theta) &=& \int_0^{\theta} \frac{\sin(x)}{x} dx
-\end{eqnarray}
-for a relativistic electron crossing the axis at $2\pi f t_0 = \phi$ on the other hand, $T$ needs to be multiplied by $\cos(\phi)$:
-\begin{equation}
-    T(\phi) = T \cos(\phi)
-\end{equation} 
+For a relativistic electron crossing the axis at time 0, $T$ can be found by \cite{rhodo_pottier}
+\vspace{-10pt}\begin{eqnarray}
+    T &=& \frac{S_i(\frac{2 \pi R_2}{\lambda}) - S_i(\frac{2 \pi R_1}{\lambda})}{\ln(\frac{R_2}{R_1})}   ,\\
+    S_i(\theta) &=& \int_0^{\theta} \frac{\sin(x)}{x} dx .
+\vspace{-10pt}\end{eqnarray}
+For a relativistic electron crossing the axis at $2\pi f t_0 = \phi$ on the other hand, $T$ needs to be multiplied by $\cos(\phi)$ as
+\vspace{-10pt}\begin{equation}
+    T(\phi) = T \cos(\phi) .
+\vspace{-10pt}\end{equation} 
 Putting all these calculations together, energy gain of a relativistic electron, passing the origin at $\phi / \omega$ as calculated by \textit{J. Pottier} is \cite{rhodo_pottier}
-\begin{eqnarray}
+\vspace{-10pt}\begin{eqnarray}
     \Delta E &=& q V_{acc}^{ef} \\
-    \Delta E &=& q Z_{se}^{1/2}P_{diss}^{1/2} \cos(\phi)
-\end{eqnarray}
+             &=& q Z_{se}^{1/2}P_{diss}^{1/2} \cos(\phi)  ,
+\vspace{-10pt}\end{eqnarray}
 where $ V_{acc}^{ef} = V_{acc} T(\phi)$ is the effective accelerating potential.
 If $\Delta E$ is taken in \textit{MeV}, $Z_{se}$ in $M\Omega$ and $P_{diss}$ in \textit{MW}, this equality becomes
-\begin{equation} \label{eq:W_gain_each_pass_pottier}
-    \Delta E = Z_{se}^{1/2}P_{diss}^{1/2} \cos(\phi) \quad MeV
-\end{equation}
+\vspace{-10pt}\begin{equation} \label{eq:W_gain_each_pass_pottier}
+    \Delta E = Z_{se}^{1/2}P_{diss}^{1/2} \cos(\phi) \quad MeV .
+\vspace{-10pt}\end{equation}
 With the expectation that the electrons will accelerate to speeds $\approx c$ after the first pass, a rhodotron cavity is designed so that the length of the path between successive passes is an integer multiple of $\lambda$, wavelength of the RF field ($l=p\lambda \label{eq:lpl}$).
 This constraint helps with  phase stability and synchronization of the beam.
 
-In the table below, optimized characteristics of a rhodotron cavity can be observed. 
+In the \fromfig{pottier_table1}, optimized characteristics of a rhodotron cavity can be observed. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=.9\textwidth]{./figures/pottier_table1.png}
-    \caption{Optimized characteristics of a rhodotron cavity \cite{rhodo_pottier}}
+    \caption{Optimized characteristics of a rhodotron cavity. \cite{rhodo_pottier}}
     \label{fig:pottier_table1}
 \end{figure}
 Here, $p$ is the integer multiplier in the equation ($l=p\lambda$) mentioned above, $R_1$ is the radius of the inner cylinder, $R_2$ is the radius of the outer cylinder, 
@@ -657,38 +701,38 @@ Considering $Z_{sp} \propto \lambda^{1/2}$, \,\,\, $\Delta E \propto \lambda^{1/
 \begin{figure}[H]
     \centering
     \includegraphics[width=.9\textwidth]{./figures/pottier_table2.png}
-    \caption{Energy of a synchronous electron after each pass for both $p=1$ and $p=2$ \cite{rhodo_pottier}}
+    \caption{Energy of a synchronous electron after each pass for both $p=1$ and $p=2$. \cite{rhodo_pottier}}
     \label{fig:pottier_table2}
 \end{figure}
-Total energy gain after $n$ passes, $\Delta E_n$, can then be found by \fromeq{W_gain_each_pass_pottier}, taking $\phi = 15^\circ$, $p=1$, i.e $R_2 = 0.27 \lambda$, $P$ in \textit{W}, $\lambda$ in \textit{m}.
-\begin{equation}
+Total energy gain after $n$ passes, $\Delta E_n$, can then be found by \fromeq{W_gain_each_pass_pottier}, taking $\phi = 15^\circ$, $p=1$, i.e $R_2 = 0.27 \lambda$, $P$ in \textit{W}, $\lambda$ in \textit{m} as
+\vspace{-10pt}\begin{equation}
     \label{eq:W_total_gain_pottier}
-    \Delta E_n \approx 2.14 \lambda^{1/4} P^{1/2} n \quad keV
-\end{equation}
+    \Delta E_n \approx 2.14 \lambda^{1/4} P^{1/2} n \quad keV .
+\vspace{-10pt}\end{equation}
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./figures/illustrations/rhod1.pdf}
-    \caption{$[0, \frac{T}{4}]$ time frame of a rhodotron}
+    \caption{$[0, \frac{T}{4}]$ time frame of a rhodotron.}
     \label{fig:rhod_cycle_1}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./figures/illustrations/rhod2.pdf}
-    \caption{$[\frac{T}{4}, \frac{T}{2}]$ time frame of a rhodotron}
+    \caption{$[\frac{T}{4}, \frac{T}{2}]$ time frame of a rhodotron.}
     \label{fig:rhod_cycle_2}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./figures/illustrations/rhod3.pdf}
-    \caption{$[\frac{T}{2}, \frac{3T}{4}]$ time frame of a rhodotron}
+    \caption{$[\frac{T}{2}, \frac{3T}{4}]$ time frame of a rhodotron.}
     \label{fig:rhod_cycle_3}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./figures/illustrations/rhod4.pdf}
-    \caption{$[\frac{3T}{4}, T]$ time frame of a rhodotron}
+    \caption{$[\frac{3T}{4}, T]$ time frame of a rhodotron.}
     \label{fig:rhod_cycle_4}
 \end{figure}
 
@@ -796,51 +840,52 @@ to represent and analyze data in a graphical format.
 \section{Algorithms}
 
 \subsection{Leapfrog} \label{sec:leapfrog}
-The Leapfrog method is a numerical method commonly used to solve ordinary differential equations (ODEs) that involve second-order time derivatives. Such an ODE is shown below:
-\begin{equation}
-    \ddot{x} = \derivS{x}{t} = f(x) \label{eq:second-order-ODE}
-\end{equation}
-\newline
+The Leapfrog method is a numerical method commonly used to solve ordinary differential equations (ODEs) that involve second-order time derivatives. Such an ODE can be written as
+\vspace{-10pt}\begin{equation}
+    \ddot{x} = \derivS{x}{t} = f(x) .\label{eq:second-order-ODE}
+\vspace{-10pt}\end{equation}
+
 The Leapfrog method is a variant of the finite difference method, and it approximates the solution of an ODE by discretizing both time and space. The method gets its name from the way it calculates the values of the solution at each time step, which resembles a "leapfrogging" motion. 
 It is a simple and efficient algorithm that is often used in simulations of physical systems, such as celestial mechanics or molecular dynamics.
 The idea is straight forward; in the time interval $\Delta t$, 
-\begin{eqnarray}
-    a(t_0) &=& f(x_0) \nonumber \\
-    x(t_0 + \Delta t) &=& x(t_0) + v(t_0)\Delta t + a(t_0)\frac{\Delta t^2}{2} \label{eq:leapfrog_sync_x}\\
-    v(t_0 + \Delta t) &=& v(t_0) + \{ a(t_0) + a(t_0 + \Delta t)\}\frac{\Delta t}{2}  \label{eq:leapfrog_sync_v}
-\end{eqnarray}
-For more stability, this version can be rearranged to what is called 'kick-drift-kick' form,
-\begin{eqnarray} \label{eq:leapfrog}
-    v(t_0 + \Delta t/2) &=& v(t_0) +  a(t_0)\frac{\Delta t}{2} \nonumber \\
-    x(t_0 + \Delta t) &=& x(t_0) + v(t_0 + \Delta t/2)\Delta t \\
-    v(t_0 + \Delta t) &=& v(t_0 + \Delta t/2) + a(t_0 + \Delta t)\frac{\Delta t}{2}  \nonumber
-\end{eqnarray}
+\vspace{-10pt}\begin{eqnarray}
+    a(t_0) &=& f(x_0)   , \nonumber \\
+    x(t_0 + \Delta t) &=& x(t_0) + v(t_0)\Delta t + a(t_0)\frac{\Delta t^2}{2}   ,\label{eq:leapfrog_sync_x}\\
+    v(t_0 + \Delta t) &=& v(t_0) + \{ a(t_0) + a(t_0 + \Delta t)\}\frac{\Delta t}{2} . \label{eq:leapfrog_sync_v}
+\vspace{-10pt}\end{eqnarray}
+For more stability, this version can be rearranged to what is called 'kick-drift-kick' form as
+\vspace{-10pt}\begin{eqnarray} \label{eq:leapfrog}
+    v(t_0 + \Delta t/2) &=& v(t_0) +  a(t_0)\frac{\Delta t}{2}   , \nonumber \\
+    x(t_0 + \Delta t) &=& x(t_0) + v(t_0 + \Delta t/2)\Delta t   , \\
+    v(t_0 + \Delta t) &=& v(t_0 + \Delta t/2) + a(t_0 + \Delta t)\frac{\Delta t}{2} . \nonumber
+\vspace{-10pt}\end{eqnarray}
 This version provides more time resolution to our calculation; however, it increases the number of calculations needed by about $50\%$.
 
 \subsection{Runge Kutta} \label{sec:rungekutta}
 
-The Runge-Kutta methods, named after the German mathematicians Carl Runge and Martin Wilhelm Kutta \cite{runge} \cite{kutta}, family of numerical methods
-used to solve ordinary differential equations (ODEs) that are in the following form
-\begin{equation} \label{eq:first-order-ODE}
-    \deriv{y}{x} = f(x, y)
-\end{equation}
+The Runge-Kutta methods, named after the German mathematicians Carl Runge and Martin Wilhelm Kutta \cite{runge} \cite{kutta}, 
+family of numerical methods
+used to solve ordinary differential equations (ODEs) that are in the form as
+\vspace{-10pt}\begin{equation} \label{eq:first-order-ODE}
+    \deriv{y}{x} = f(x, y) .
+\vspace{-10pt}\end{equation}
 The basic idea behind the Runge-Kutta method is to approximate the solution of an ODE by taking small steps and using a weighted average 
-of function evaluations at different points within each step.
-\begin{equation} \label{eq:general-rk}
+of function evaluations at different points within each step as
+\vspace{-10pt}\begin{equation} \label{eq:general-rk}
     \begin{aligned}
-        y_{n+1} = y_n + \delta x \sum_{i=1}^{m} b_i k_i
+        y_{n+1} = y_n + \delta x \sum_{i=1}^{m} b_i k_i  ,
     \end{aligned}
     \qquad
     \begin{aligned}
-        x_{n+1} = x_n + \delta x 
+        x_{n+1} = x_n + \delta x   ,
     \end{aligned}
-\end{equation}
+\vspace{-10pt}\end{equation}
 where 
-\begin{eqnarray} \label{eq:general-rk-coef}
-    k_i = f(x_n + c_i \delta x, y_n + \delta x \sum_{j = 1}^{i - 1}a_{ij}k_j)
-\end{eqnarray}
-These \fromeqs{general-rk}{general-rk-coef} define the family of methods. To specify a perticular method, order $m$, coefficients $a_{ij}$, $b_i$ and $c_i$ should be provided.
-The coefficients of any Runge-Kutta method can be visualized by a tableau called $\textit{Butcher Tableau}$.
+\vspace{-10pt}\begin{eqnarray} \label{eq:general-rk-coef}
+    k_i = f(x_n + c_i \delta x, y_n + \delta x \sum_{j = 1}^{i - 1}a_{ij}k_j) .
+\vspace{-10pt}\end{eqnarray}
+These \fromeqs{general-rk}{general-rk-coef} define the family of methods. To specify a particular method, order $m$, coefficients $a_{ij}$, $b_i$ and $c_i$ should be provided.
+The coefficients of any Runge-Kutta method can be visualized by a tableau called $\textit{Butcher Tableau}$ which can be observed in \fromfig{Butcher}.
 \begin{figure}[h!]
     \[ 
     \begin{array} 
@@ -854,24 +899,28 @@ The coefficients of any Runge-Kutta method can be visualized by a tableau called
         & b_1 & b_2 &\cdots & b_m
     \end{array}
     \]
-    \caption{Butcher Tableau}
+    \caption{Butcher Tableau.}
     \label{fig:Butcher}
 \end{figure}
-The simplest Runge-Kutta method is the \textit{Euler's method}. Its \textit{Butcher tableau} is as follows.
+The simplest Runge-Kutta method is the \textit{Euler's method} with the following \textit{Butcher tableau},
 \[ 
     \begin{array} 
         {c|cccc}
         0\\
         \hline
         & 1
-    \end{array}
-\]
+    \end{array} .
+\] 
+
 The most commonly used version of the Runge-Kutta method is the fourth-order Runge-Kutta method, also known as RK4. 
 The RK4 method involves four function evaluations per step and has an error term that is proportional to the step size raised to the fifth power.
-Two of the most used \textit{Butcher tableaus} for \textit{RK4} given below.
+Two of the most used \textit{Butcher tableaus} for \textit{RK4} given in \fromfig{Butcher-RK4}.
+The second tableau in \fromfig{Butcher-RK4} is called the \textit{"3/8 rule"}. Its main advantage is that its error coefficients are smaller than the other. But it costs more floating point operations per step. 
+Resulting in slower calculations. 
+
 \begin{figure}[h!]
     \centering
-    \begin{subfigure}{.5\textwidth}
+    \begin{minipage}{.5\textwidth}
         \[ 
         \begin{array} 
             {c|cccc}
@@ -883,8 +932,8 @@ Two of the most used \textit{Butcher tableaus} for \textit{RK4} given below.
             & 1/6 & 1/3 & 1/3 & 1/6
         \end{array}
         \]  
-    \end{subfigure}%
-    \begin{subfigure}{.5\textwidth}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
         \[ 
         \begin{array} 
             {c|cccc}
@@ -896,13 +945,11 @@ Two of the most used \textit{Butcher tableaus} for \textit{RK4} given below.
             & 1/8 & 3/8 & 3/8 & 1/8
         \end{array}
         \]  
-    \end{subfigure}
-    \caption{Butcher Tableau for RK4}
+    \end{minipage}
+    \vspace{20pt}
+    \caption{Butcher Tableau for RK4.}
     \label{fig:Butcher-RK4}
 \end{figure}
-The second tableau in \fromfig{Butcher-RK4} is called the \textit{"3/8 rule"}. Its main advantage is that its error coefficients are smaller than the other. But it costs more floating point operations per step. 
-Resulting in slower calculations. 
-
 
 
 
@@ -929,24 +976,26 @@ Simulation tools such as \textit{CST Studio}, \textit{Poisson SUPERFISH} can be 
 
 In the following examples, $p=1$ from \fromfig{pottier_table1} was used, and it will be the focus of all further calculations.
 Using $f_{RF}=107.5$ MHz \& $f_{RF}=180$ MHz for comparison:
-\begin{eqnarray} \label{eq:107_180_MHZ_cavity_design_parameters}
+\vspace{-10pt}\begin{eqnarray} \label{eq:107_180_MHZ_cavity_design_parameters}
     \begin{aligned}
-        f_{107.5} = 107.5 \textrm{ MHz} \\
-        \lambda_{107.5}  = \frac{c}{f_{107.5}} = 2.789 m \\
-        R_2 = 0.27 \times \lambda_{107.5} = 0.753 m \\
-        R_1 = \frac{R_2}{4} = 0.188 m \\
-        h = \frac{\lambda}{2} = 1.394 m 
+        f_{107.5} = 107.5 \textrm{ MHz}  , \\
+        \lambda_{107.5}  = \frac{c}{f_{107.5}} = 2.789 m   ,\\
+        R_2 = 0.27 \times \lambda_{107.5} = 0.753 m   ,\\
+        R_1 = \frac{R_2}{4} = 0.188 m   ,\\
+        h = \frac{\lambda}{2} = 1.394 m .
     \end{aligned}
     \qquad\qquad
     \begin{aligned}
-        f_{180} = 180 \textrm{ MHz} \\
-        \lambda_{180}  = \frac{c}{f_{180}} = 1.666 m \\
-        R_2 = 0.27 \times\lambda_{180} = 0.450 m \\
-        R_1 = \frac{R_2}{4} = 0.113 m \\
-        h = \frac{\lambda}{2} = 0.833 m 
+        f_{180} = 180 \textrm{ MHz}   ,\\
+        \lambda_{180}  = \frac{c}{f_{180}} = 1.666 m  , \\
+        R_2 = 0.27 \times\lambda_{180} = 0.450 m  , \\
+        R_1 = \frac{R_2}{4} = 0.113 m  , \\
+        h = \frac{\lambda}{2} = 0.833 m . 
     \end{aligned}
-\end{eqnarray}
-In the following figures, \textit{Poisson Superfish} and \textit{CST} simulations of two cavities defined by \fromeq{107_180_MHZ_cavity_design_parameters} can be observed.
+\vspace{-10pt}\end{eqnarray}
+In the \fromfigth{107_simple_cavity_design}{180_simple_cavity_design}{cst_simple_cavity_designs}, 
+\textit{Poisson Superfish} and \textit{CST} simulations of two cavities defined by \fromeq{107_180_MHZ_cavity_design_parameters} can be observed.
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -963,7 +1012,17 @@ In the following figures, \textit{Poisson Superfish} and \textit{CST} simulation
     \caption{Poission Superfish results for \fromeq{107_180_MHZ_cavity_design_parameters}}
     \label{fig:107_simple_cavity_design}
 \end{figure}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz]{{\includegraphics[width=.45\textwidth]{./figures/superfish/superfish107.png} }}%
+    \qquad\subfigure[\centering 180 MHz]{{\includegraphics[width=.45\textwidth]{./figures/superfish/superfish180.png} }}%
+    \vspace{20pt}
+    \caption{\centering Poission Superfish results for \fromeq{107_180_MHZ_cavity_design_parameters}.} 
+    \label{fig:107_simple_cavity_design}
+\end{figure}
 
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -979,7 +1038,17 @@ In the following figures, \textit{Poisson Superfish} and \textit{CST} simulation
     \caption{CST Eigenmode results for \fromeq{107_180_MHZ_cavity_design_parameters}}
     \label{fig:180_simple_cavity_design}
 \end{figure}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz]{{\includegraphics[width=.48\textwidth]{./figures/cst/cst107.png} }}%
+    \qquad\subfigure[\centering 180 MHz]{{\includegraphics[width=.44\textwidth]{./figures/cst/cst180.png} }}%
+    \vspace{20pt}
+    \caption{\centering CST Eigenmode results for \fromeq{107_180_MHZ_cavity_design_parameters}.} 
+    \label{fig:180_simple_cavity_design}
+\end{figure}
 
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -995,8 +1064,18 @@ In the following figures, \textit{Poisson Superfish} and \textit{CST} simulation
     \caption{CST Electric field solutions for \fromeq{107_180_MHZ_cavity_design_parameters}}
     \label{fig:cst_simple_cavity_designs}
 \end{figure}
-As mentioned by POTTIER, truncated cone terminations in inner cylinder can improve the shunt empedance $Z$ of the cavity \cite{rhodo_pottier}. 
-Below, \textit{Poission superfish} results of such a modification with matching height increase to keep resonant frequency can be found.
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz]{{\includegraphics[width=.45\textwidth]{./figures/cst/cst107_e.png} }}%
+    \qquad\subfigure[\centering 180 MHz]{{\includegraphics[width=.47\textwidth]{./figures/cst/cst180_e.png} }}%
+    \vspace{20pt}
+    \caption{\centering CST Electric field solutions for \fromeq{107_180_MHZ_cavity_design_parameters}.} 
+    \label{fig:cst_simple_cavity_designs}
+\end{figure}
+As mentioned by \textit{Pottier}, truncated cone terminations in inner cylinder can improve the shunt empedance $Z$ of the cavity \cite{rhodo_pottier}. 
+In the \fromfig{107_180_modified_cavities_superfish}, \textit{Poission Superfish} results of such a modification with matching height increase to keep resonant frequency can be found.
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -1012,7 +1091,17 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \caption{Poisson SUPERFISH field results of truncated cavities}
     \label{fig:107_180_modified_cavities_superfish}
 \end{figure}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz truncated]{{\includegraphics[width=.45\textwidth]{./figures/superfish/superfish107mod.png} }}%
+    \qquad\subfigure[\centering 180 MHz truncated]{{\includegraphics[width=.45\textwidth]{./figures/superfish/superfish180mod.png} }}%
+    \vspace{20pt}
+    \caption{\centering Poisson SUPERFISH field results of truncated cavities.} 
+    \label{fig:107_180_modified_cavities_superfish}
+\end{figure}
 
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -1028,7 +1117,17 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \caption{CST eigenmode results of truncated cavities}
     \label{fig:107_180_modified_cavities_cst_eigenmode}
 \end{figure}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz truncated]{{\includegraphics[width=.45\textwidth]{./figures/cst/cst107mod.png} }}%
+    \qquad\subfigure[\centering 180 MHz truncated]{{\includegraphics[width=.47\textwidth]{./figures/cst/cst180mod.png} }}%
+    \vspace{20pt}
+    \caption{\centering CST eigenmode results of truncated cavities.} 
+    \label{fig:107_180_modified_cavities_cst_eigenmode}
+\end{figure}
 
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -1044,7 +1143,17 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \caption{CST electric field results of truncated cavities}
     \label{fig:107_180_modified_cavities_cst_field}
 \end{figure}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz truncated]{{\includegraphics[width=.46\textwidth]{./figures/cst/cst107mod_e.png} }}%
+    \qquad\subfigure[\centering 180 MHz truncated]{{\includegraphics[width=.44\textwidth]{./figures/cst/cst180mod_e.png} }}%
+    \vspace{20pt}
+    \caption{\centering CST electric field results of truncated cavities.} 
+    \label{fig:107_180_modified_cavities_cst_field}
+\end{figure}
 
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -1060,7 +1169,17 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \caption{Poisson Superfish calculations with \textit{unmodified} cavities}
     \label{fig:107_cavity_shunt_diff}
 \end{figure}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz unmodified]{{\includegraphics[width=.485\textwidth]{./figures/superfish/superfish107_z_highlighted.png} }}%
+    \qquad\subfigure[\centering 180 MHz unmodified]{{\includegraphics[width=0.495\linewidth]{./figures/superfish/superfish180_z_highlighted.png} }}%
+    \vspace{20pt}
+    \caption{\centering Poisson Superfish calculations with \textit{unmodified} cavities.} 
+    \label{fig:107_cavity_shunt_diff}
+\end{figure}
     
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -1076,16 +1195,25 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \caption{Poisson Superfish calculations with \textit{truncated} cavities}
     \label{fig:180_cavity_shunt_diff}
 \end{figure}
-One can observe the shunt impedance gain between truncated and unmodified cavities in \fromfigs{107_cavity_shunt_diff}{180_cavity_shunt_diff};
-\begin{equation*}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz truncated]{{\includegraphics[width=.475\textwidth]{./figures/superfish/superfish107mod_z_highlighted.png} }}%
+    \qquad\subfigure[\centering 180 MHz truncated]{{\includegraphics[width=.5\textwidth]{./figures/superfish/superfish180mod_z_highlighted.png} }}%
+    \vspace{20pt}
+    \caption{\centering Poisson Superfish calculations with \textit{truncated} cavities.} 
+    \label{fig:180_cavity_shunt_diff}
+\end{figure}
+One can observe the shunt impedance gain between truncated and unmodified cavities in \fromfigs{107_cavity_shunt_diff}{180_cavity_shunt_diff} as
+\vspace{-10pt}\begin{equation*}
     \begin{aligned}
-        \Delta Z_{107.5}=2.5\%
+        \Delta Z_{107.5}=2.5\%   ,
     \end{aligned}
     \qquad
     \begin{aligned}
-        \Delta Z_{180}=2.7\%
+        \Delta Z_{180}=2.7\% .
     \end{aligned}
-\end{equation*}
+\vspace{-10pt}\end{equation*}
 
 
 
@@ -1093,9 +1221,9 @@ One can observe the shunt impedance gain between truncated and unmodified caviti
 Magnet design in rhodotron type accelerators depend heavily on the design of the cavities.
 Because the limiting factors usually are frequency and total volume of the accelerator, magnet design parameters are considered after cavity design has been completed.
 Considering the nature of coaxial cavity, simplest path for beams inside magnets is major segment of a circle, which was used as the reference for following discussions.
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -1106,7 +1234,15 @@ Considering the nature of coaxial cavity, simplest path for beams inside magnets
       \centering
       \includegraphics[width=.9\linewidth]{./figures/design/tt300_mag.png}
     \end{subfigure}
-    \caption{Geometry and modeling, outside trajectory of a rhodotron (TT300) \cite{cite:rhodo_design}}
+    \caption{Geometry and modeling, outside trajectory of a rhodotron (TT300). \cite{cite:rhodo_design}}
+    \label{fig:magnet_design_illustrations}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering ]{{\includegraphics[width=.45\textwidth]{./figures/design/Ltot.png} }}%
+    \qquad\subfigure[\centering ]{{\includegraphics[width=.45\textwidth]{./figures/design/tt300_mag.png} }}%
+    \vspace{20pt}
+    \caption{\centering Geometry and modeling, outside trajectory of a rhodotron (TT300). \cite{cite:rhodo_design}} 
     \label{fig:magnet_design_illustrations}
 \end{figure}
 In rhodotron accelerators, magnets are used for not only guiding the electron beam to desired path, but also for synchronizing them with the RF field in the cavity. 
@@ -1122,39 +1258,40 @@ First approach for phase stability considiration assumes that from the start of 
 
 To maintain the phase synchronization, a particle that started the current pass at $t=0$, should start the next pass at $t=nT$, where $n$ is an integer and $T$ is the period of RF field inside cavity.
 As discussed earlier, by assuming the electron is traveling at $c$, phase stability can be achieved by designing the whole trajectory to be $n \lambda$, where $\lambda$ is the wavelength of the RF field. 
-In other words, total trajectory of synchronous particle needs to satisfy the following equality:
-\begin{equation}
-    L_{pass} = n \lambda
-\end{equation} 
-Since $n>1$ would require unnecessarily long and expensive beam guide and magnets, $n=1$ is the most efficient choice:
-\begin{equation}
-    L_{pass} = \lambda
-\end{equation} 
+In other words, total trajectory of synchronous particle needs to satisfy
+\vspace{-10pt}\begin{equation}
+    L_{pass} = n \lambda .
+\vspace{-10pt}\end{equation} 
+Since $n>1$ would require unnecessarily long and expensive beam guide and magnets, $n=1$ is the most efficient choice, which leads to
+\vspace{-10pt}\begin{equation}
+    L_{pass} = \lambda .
+\vspace{-10pt}\end{equation} 
 
 \begin{figure}[H]    
     \centering
     \includegraphics[width=.8\linewidth]{./figures/design/magnet_design.png}
-    \caption{Trejectory of a particle in single pass}
+    \caption{Trejectory of a particle in single pass.}
     \label{fig:magnet_design}
 \end{figure}
 From \fromfig{magnet_design}, where $\gamma$ is half the angle between trajectories of successive passes, $\rho$ is the radius of the circular path inside magnet, 
-$L$ is the length of the magnet guide, $d$ is the thickness of the RF cavity wall:
-\begin{eqnarray}
-    L_{in} &=& 2R_2 \nonumber\\
-    L_{out} &=& 2L + 2d + (\pi + 2\gamma)\rho \nonumber \\
-    L_{pass} &=& L_{in} + L_{out}  \nonumber \\
-    \lambda &=& 2R_2 + 2d + 2L + (\pi + 2\gamma)\rho \label{eq:magnet_lambda_constraint}
-\end{eqnarray}
+$L$ is the length of the magnet guide, $d$ is the thickness of the RF cavity wall the constraints are
+\vspace{-10pt}\begin{eqnarray}
+    L_{in} &=& 2R_2   , \nonumber\\
+    L_{out} &=& 2L + 2d + (\pi + 2\gamma)\rho  , \nonumber \\
+    L_{pass} &=& L_{in} + L_{out}  ,  \nonumber \\
+    \lambda &=& 2R_2 + 2d + 2L + (\pi + 2\gamma)\rho . \label{eq:magnet_lambda_constraint}
+\vspace{-10pt}\end{eqnarray}
 After the cavity design is complete, only $L$, $\gamma$ and $\rho$ remain, which are the design parameters of magnets.
 Observing the \fromfig{magnet_design} and using \fromeq{magnet_lambda_constraint},
-\begin{eqnarray}
-    \tan (\gamma) &=& \frac{\rho}{R_2 + d + L} \nonumber \\
-    \rho &=&  \tan (\gamma) (R_2 + d + L) \nonumber\\
-    2\rho &=& \tan (\gamma) (\lambda - (\pi + 2\gamma)\rho) \nonumber\\
-    \rho (2 + \tan (\gamma)(\pi + 2\gamma)) &=&  \tan (\gamma) \lambda \nonumber\\
-    \rho &=& \frac{\lambda}{\pi + 2\gamma + \frac{2}{\tan (\gamma)}} \label{eq:magnet_rho_constraint} \\
-    L + d &=& \frac{\rho}{\tan (\gamma)} - R_2 \label{eq:magnet_L_constraint}
-\end{eqnarray}
+\vspace{-10pt}\begin{eqnarray}
+    \tan (\gamma) &=& \frac{\rho}{R_2 + d + L}  , \nonumber \\
+    \rho &=&  \tan (\gamma) (R_2 + d + L)  , \nonumber\\
+    2\rho &=& \tan (\gamma) (\lambda - (\pi + 2\gamma)\rho)  , \nonumber\\
+    \rho (2 + \tan (\gamma)(\pi + 2\gamma)) &=&  \tan (\gamma) \lambda   ,\nonumber\\
+    \rho &=& \frac{\lambda}{\pi + 2\gamma + \frac{2}{\tan (\gamma)}}   ,\label{eq:magnet_rho_constraint} \\
+    L + d &=& \frac{\rho}{\tan (\gamma)} - R_2 . \label{eq:magnet_L_constraint}
+\vspace{-10pt}\end{eqnarray}
+
 \textit{Equations \ref{eq:magnet_rho_constraint} and \ref{eq:magnet_L_constraint}} define 2 constraints. As already discussed, it has been assumed that cavity design is set (\textit{i.e} $R_2$, $\lambda$, $d$ are already defined).
 Therefore only the magnet design parameters $\rho$, $\gamma$ and $L$ are left. Together with the constraints, one free variable defines the whole magnet design. 
 Considering the importance of $\gamma$ for maximum number of possible passes, it will be used as the free magnet design variable in the further discussions.
@@ -1168,23 +1305,24 @@ This scenario can happen when RF power is not sufficiently high.
 
 Consider an RF supply with $f=1$ GHz, $P=50$ kW. Using \fromeq{W_total_gain_pottier}, 
 after the first pass the synchronous electron that entered the accelerator with $40$ keV and $\phi=15^\circ$ phase lag,
-\begin{eqnarray*}
-    W_{gain} &=& 2.14\times0.2998^{1/4}\times 50000^{1/2} = 354keV \\
-    W_{total} &=& 394 keV \\
-    \beta_{40keV} &\approx& 0.374 \\
-    \beta_{394keV} &\approx& 0.825
-\end{eqnarray*}
+it can be observed that
+\vspace{-10pt}\begin{eqnarray*}
+    W_{gain} &=& 2.14\times0.2998^{1/4}\times 50000^{1/2} = 354keV   ,\\
+    W_{total} &=& 394 keV   ,\\
+    \beta_{40keV} &\approx& 0.374   ,\\
+    \beta_{394keV} &\approx& 0.825 .
+\vspace{-10pt}\end{eqnarray*}
 It is clear that $\beta_{avg}$ is not fast enough to sustain phase stability if the magnet is designed for $\beta = 1$. 
 For these cases, \fromeq{magnet_lambda_constraint} fails to deliver phase stability.
 Another approach for designing a magnet would be to find a new constraint, $K$ for total path length.
-\begin{eqnarray*}
-    L_{pass} &=& K \\
-    L_{in} + L_{out} &=& K
-\end{eqnarray*}
+\vspace{-10pt}\begin{eqnarray*}
+    L_{pass} &=& K ,\\
+    L_{in} + L_{out} &=& K .
+\vspace{-10pt}\end{eqnarray*}
 Since $L_{in}$ is set previously from cavity design, we can remove it from our equation and continue with
-\begin{equation} \label{eq:mag_sweep_constraint}
-    L_{out} = K
-\end{equation}
+\vspace{-10pt}\begin{equation} \label{eq:mag_sweep_constraint}
+    L_{out} = K .
+\vspace{-10pt}\end{equation}
 To start, an optimization criteria for the following pass such as
 \begin{itemize}
     \item Ensure the phase stability of the synchronous electron
@@ -1209,14 +1347,14 @@ Frequency was selected to benefit from the RF power supply units at hand.
 After considering the earlier simulations mentioned in \fromsecs{cavity_design}{magnet_design}, an initial design was created.
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \includegraphics[width=.5\linewidth]{./figures/cst/cst_first_design1.png}
-    \caption{Initial design of the proposed rhodotron \\ $\gamma=9^\circ$}
+    \caption{Initial design of the proposed rhodotron, $\gamma=9^\circ$.}
     \label{fig:initial_design}
 \end{figure}
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -1231,11 +1369,19 @@ After considering the earlier simulations mentioned in \fromsecs{cavity_design}{
     \end{subfigure}
     \caption{Initial design of the proposed rhodotron.}
     \label{fig:initial_design_cross_section}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering Axial cross section]{{\includegraphics[width=.46\textwidth]{./figures/cst/cst_first_design3.png} }}%
+    \qquad\subfigure[\centering Cross section at acceleration plane]{{\includegraphics[width=.45\textwidth]{./figures/cst/cst_first_design2.png} }}%
+    \vspace{20pt}
+    \caption{\centering Initial design of the proposed rhodotron.} 
+    \label{fig:initial_design_cross_section}
 \end{figure}
 The magnets used in this design is the simplest in terms of design parameters. It consists of an iron casing encapsulating the shape of desired magnetic field, which are created by two coils inside.
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -1248,11 +1394,19 @@ The magnets used in this design is the simplest in terms of design parameters. I
     \end{subfigure}
     \caption{Initial magnet design.}
     \label{fig:initial_magnet_design}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering ]{{\includegraphics[width=.45\textwidth]{./figures/cst/cst_first_magnet_design1.png} }}%
+    \qquad\subfigure[\centering ]{{\includegraphics[width=.46\textwidth]{./figures/cst/cst_first_magnet_design2.png} }}%
+    \vspace{20pt}
+    \caption{\centering Initial magnet design.} 
+    \label{fig:initial_magnet_design}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \includegraphics[width=.8\linewidth]{./figures/cst/cst_first_magnet_design3.png}
     \caption{Magnetic field in acceleration plate of initial magnet design.}
     \label{fig:initial_magnet_design_B}
@@ -1262,16 +1416,16 @@ The magnets used in this design is the simplest in terms of design parameters. I
 After adding two more magnets and using $\gamma=15^\circ$, the following second prototype design was created
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \includegraphics[width=.8\linewidth]{./figures/cst/cst_second_design2.png}
-    \caption{Initial cavity with three magnets as shown in \fromfig{initial_magnet_design} \\ $\gamma=15^\circ$}
+    \caption{Initial cavity with three magnets as shown in \fromfig{initial_magnet_design}, $\gamma=15^\circ$.}
     \label{fig:initial_three_magnet_design}
 \end{figure}
 These designs, together with $40$ keV $e^-$ gun injecting with phase lag of $15^\circ$ for $1$ ns, was simulated at RF power of $12$ kW using \textit{CST Studio Particle Module PIC Solver}.
 Results of these simulations can be found in \fromfig{initial_designs_PIC_phase_space_monitor}.
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}[b]{.8\textwidth}
       \centering
@@ -1286,6 +1440,15 @@ Results of these simulations can be found in \fromfig{initial_designs_PIC_phase_
     \end{subfigure}
     \caption{$|r|$ vs $Energy$ simulation of initial design.}
     \label{fig:initial_designs_PIC_phase_space_monitor}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering One pass simulation of \fromfig{initial_design}]{{\includegraphics[width=.8\textwidth]{./figures/cst/cst_first_design4.png} }}%
+    \vspace{20pt}\newline
+    \subfigure[\centering Two pass simulation of \fromfig{initial_three_magnet_design}]{{\includegraphics[width=.8\textwidth]{./figures/cst/cst_second_design3.png} }}%
+    \vspace{20pt}
+    \caption{\centering $|r|$ vs $Energy$ simulation of initial design.} 
+    \label{fig:initial_designs_PIC_phase_space_monitor}
 \end{figure}
 The behavior of the beam in the \fromfig{initial_designs_PIC_phase_space_monitor} after the first pass indicates that phase stability is not maintained. 
 When the simulation results are examined further, it was observed that the beam started the second pass at $t \approx 12$ ns after the injection. 
@@ -1298,9 +1461,9 @@ as anticipated and discussed earlier in the \fromsec{parameter_sweep}.
 
 Several improvements were made to KAHVELab Rhodotron initial designs \cite{sinan}. These include curved edges on cavity which reduce the power loss on cavity walls, and redesigned iron casing on magnets for ease of production and maintenance.
 Improved designs can be seen in the figures below.
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -1313,19 +1476,27 @@ Improved designs can be seen in the figures below.
     \end{subfigure}
     \caption{Improved cavity design.}
     \label{fig:improved_cavity_design}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering ]{{\includegraphics[width=.45\textwidth]{./figures/cst/cst_sinan_cavity_design1.png} }}%
+    \qquad\subfigure[\centering ]{{\includegraphics[width=.47\textwidth]{./figures/cst/cst_sinan_cavity_design2.png} }}%
+    \vspace{20pt}
+    \caption{\centering Improved cavity design.} 
+    \label{fig:improved_cavity_design}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \includegraphics[width=.7\linewidth]{./figures/cst/cst_second_magnet_design1.png}
     \caption{Improved magnet design.}
     \label{fig:improved_magnet_design}
 \end{figure}
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -1338,11 +1509,19 @@ Improved designs can be seen in the figures below.
     \end{subfigure}
     \caption{Cross section and coils of improved magnet design.}
     \label{fig:improved_magnet_design_cross_section}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure{{\includegraphics[width=.475\textwidth]{./figures/cst/cst_second_magnet_design2.png} }}%
+    \qquad\subfigure{{\includegraphics[width=.443\textwidth]{./figures/cst/cst_second_magnet_design3.png} }}%
+    \vspace{20pt}
+    \caption{\centering Cross section and coils of improved magnet design.} 
+    \label{fig:improved_magnet_design_cross_section}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \includegraphics[width=.8\linewidth]{./figures/cst/cst_second_magnet_design4.png}
     \caption{Magnetic field in acceleration plate of improved magnet design.}
     \label{fig:improved_magnet_design_B}
@@ -1367,16 +1546,16 @@ the need for a custom built tool became apparent. A simple 1D proof of concept w
 The POC worked with interacting an electron with the EM field provided, at discrete time steps $dt$. The core sequence of this software is provided below.
 Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the $e^-$;
 \begin{itemize}
-    \item Get electron energy $E_{in}$
-    \item Get the RF field definitions
-    \item Get the magnet design parameters if there is any
-    \item Do following until the simulation time has ellapsed
+    \item Get electron energy $E_{in}$,
+    \item Get the RF field definitions,
+    \item Get the magnet design parameters if there is any,
+    \item Do following until the simulation time has ellapsed,
     \begin{enumerate}
-        \item Calculate $\vecthreeBF{E}_{||}$($\vecthreeBF{r}$)
-        \item Calculate $\vecthreeBF{a}_{E ||}$ using \fromeq{para_and_perp_acc_of_lorentz_force}
-        \item Calculate $\vecthreeBF{r}$($t+dt$) using \fromeq{leapfrog_sync_x}
-        \item Calculate $\vecthreeBF{v}$($t+dt$) using \fromeq{leapfrog_sync_v}
-        \item Calculate new $E_t$
+        \item Calculate $\vecthreeBF{E}_{||}$($\vecthreeBF{r}$),
+        \item Calculate $\vecthreeBF{a}_{E ||}$ using \fromeq{para_and_perp_acc_of_lorentz_force},
+        \item Calculate $\vecthreeBF{r}$($t+dt$) using \fromeq{leapfrog_sync_x},
+        \item Calculate $\vecthreeBF{v}$($t+dt$) using \fromeq{leapfrog_sync_v},
+        \item Calculate new $E_t$.
     \end{enumerate}
 \end{itemize}
 The implemenation of this logic can be observed in \fromfig{POC_core_logic}. 
@@ -1397,27 +1576,26 @@ The implemenation of this logic can be observed in \fromfig{POC_core_logic}.
             Et=RelGamma*E0; 
         }
     \end{minted}
-    \caption{Core logic loop of the POC}
+    \caption{Core logic loop of the POC.}
     \label{fig:POC_core_logic}
 \end{figure}
-After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} with $\phi_{lag}=15^\circ$ for one pass, the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} are compared.
+After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} 
+with $\phi_{lag}=15^\circ$, $P_{diss}=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz for one pass, 
+the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} were found to be
 % 40 kW total power
 % Emax = 0.96 in old, 2.08 in new version
 % R1 = 0.1882
 % R2 = 0.753
 % f = 107.5
-\begin{figure}[H]
-    \begin{eqnarray}
-        E_{Pottier} &=& 0.593 MeV \nonumber\\
-        E_{CST} &=& 0.521 MeV  \label{eq:poc_E_results}\\
-        E_{POC} &=& 0.532 MeV \nonumber
-    \end{eqnarray}
-    \caption*{$P_{diss}=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz}
-\end{figure}
-As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced similar results, $\Delta E_{(POC-CST)}/E_{CST} \approx 2\%$.
+\vspace{-10pt}\begin{eqnarray}
+    E_{Pottier} &=& 0.593 MeV  , \nonumber\\
+    E_{CST} &=& 0.521 MeV  ,  \label{eq:poc_E_results}\\
+    E_{POC} &=& 0.532 MeV . \nonumber
+\vspace{-10pt}\end{eqnarray}
 
-However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
-This inconsistency between $E_{Pottier}$ and $E_{CST}$, $\Delta E_{(Pottier-CST)}/E_{CST} \approx 14\%$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
+As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced similar results; $\Delta E_{(POC-CST)}/E_{CST} \approx 2\%$.
+while \fromeq{W_gain_each_pass_pottier} was noticably different; $\Delta E_{(Pottier-CST)}/E_{CST} \approx 14\%$.
+This inconsistency between \fromeq{W_gain_each_pass_pottier} and  \textit{CST} simulation was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
 Since using a single software would have made the process error prone.
 
 After the results obtained from \textit{POC} were found to be promising, a decision was made to develop a more robust simulation software. This software was named \textit{Rhodotron Simulation} for the current stage and started development in October, 2021.
@@ -1443,18 +1621,18 @@ They were modeled as $N$ electrons fired from an \e gun at even time intervals. 
 
 Addition of bunches would immediately proven useful when finding optimal phase lag for bunch entry.
 $\phi_{lag}$ for a bunch was defined as the RF phase when the first \e of the bunch has entered the cavity and it defines the starting time of the current pass.
-To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimization}, relevant bunch characteristics are defined as follows:
+To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimization}, relevant bunch characteristics are defined as
 \begin{itemize}
-    \item $\mu E$: Average energy
-    \item $E_{rms}$: Root mean square of energy
-    \item $R_{rms}$: Root mean square of \e positions
+    \item $\mu E$: Average energy,
+    \item $E_{rms}$: Root mean square of energy,
+    \item $R_{rms}$: Root mean square of \e positions.
 \end{itemize}
 Optimal $\phi_{lag}$ would produce maximum $\mu E$ while minimizing $E_{rms}$ \& $R_{rms}$. For the first pass, 
 $E_{rms}$ and $R_{rms}$ would be vaguely dependent of each other; therefore, initial implementation of $\phi_{lag}$ sweep was based on minimizing $E_{rms}$ during simulation (\textit{see \fromfig{phlag_opt}}). 
 For $\mu E$ considerations, data from the software would be analyzed either manually or by using external tools such as \textit{ROOT framework}. 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         int phase_opt(int phase_sweep_range){
             double minrms = 1;
@@ -1473,7 +1651,7 @@ For $\mu E$ considerations, data from the software would be analyzed either manu
             return opt_phase;
         }
     \end{minted}
-    \caption{$\phi_{lag}$ Optimization For Initial Bunch Design}
+    \caption{$\phi_{lag}$ Optimization For Initial Bunch Design.}
     \label{fig:phlag_opt}
 \end{figure}
 Since $\phi_{lag}$ is relatively easy to change after production, another version of \fromfig{phlag_opt} that was modified for given magnet design parameters was also implemented (\textit{see \fromfig{phlag_opt_n_pass} in \fromapp{intermediate_codes}}). 
@@ -1491,9 +1669,9 @@ Magnets were modeled as major segments of a circle, defined with $\vecthreeBF{r}
 For the initial implementation, $\vecthreeBF{B}$ assumed to be uniform and has no leaks outside the magnet boundary (\fromfig{is_inside_halfsphere} in \fromapp{intermediate_codes}).
 
 Interaction logic for \eE and \eB in 3D can be found in \fromfig{3D_e_EM_interaction_first}.
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{subfigure}{\textwidth}
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d CoaxialRFField::actOn(Electron& e){
@@ -1517,7 +1695,36 @@ Interaction logic for \eE and \eB in 3D can be found in \fromfig{3D_e_EM_interac
             }
         \end{minted}
     \end{subfigure}
-    \caption{\eEM  interaction logic from \fromeq{acc_of_E_and_B}}
+    \caption{\eEM  interaction logic from \fromeq{acc_of_E_and_B}.}
+    \label{fig:3D_e_EM_interaction_first}
+\end{figure} \fi
+\begin{figure}[H]
+    %%\captionsetup[subfigure]{justification=centering}
+    %%\captionsetup{justification=centering}
+    \begin{minipage}{\textwidth}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+            vector3d CoaxialRFField::actOn(Electron& e){
+                vector3d Efield = getField(e.pos);                          // Calculate E vector
+                vector3d F_m = Efield*1E6*eQMratio;                         // Calculate F/m vector
+                vector3d acc = (F_m - e.vel*(e.vel*F_m)/(c*c))/e.gamma();   // Calculate a vector
+                return acc;
+            }
+        \end{minted}
+    \end{minipage}
+
+    \begin{minipage}{\textwidth}
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+            vector3d MagneticField::actOn(Electron& e){
+                if (isInside(e.pos) == -1)
+                    return vector3d(0,0,0);
+                vector3d Bfield = getField(e.pos);                          // Calculate B vector
+                vector3d F_m = (e.vel % Bfield)*eQMratio;                   // Calculate F/m vector
+                vector3d acc = (F_m)/e.gamma();                             // Calculate a vector
+                return acc;
+            }
+        \end{minted}
+    \end{minipage}
+    \caption{\eEM  interaction logic from \fromeq{acc_of_E_and_B}.}
     \label{fig:3D_e_EM_interaction_first}
 \end{figure}
 Where * and \% are, dot-product and cross-product respectably. (\fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes})
@@ -1526,9 +1733,9 @@ Simulating in 3D had one other benefit; it was now possible to visualize the res
 For this purpose, \textit{gnuplot} was integrated into \textit{Rhodotron Simulation} to produce 2D visualization of acceleration plane. 
 Rendered results could be stored as \textit{gif} animations. 
 Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{0.9\textwidth}
         \centering
@@ -1540,7 +1747,17 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
         \includegraphics[width=\linewidth]{./figures/rhodoSim/9_3ns_gnuplot.png}
         \caption*{Syncronized \e gun period, $T_g = 9.3ns$}
     \end{subfigure}
-    \caption{Example \textit{gnuplot} renders of \textit{Rhodotron Simulation}\\$P=12$kW, $f=107.5$MHz}
+    \caption{Example \textit{gnuplot} renders of \textit{Rhodotron Simulation} $P=40$kW, $f=107.5$MHz.}
+    \label{fig:example_gnuplot_renders}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering Unsyncronized \e gun period, $T_g = 5ns$]{{\includegraphics[width=0.85\textwidth]{./figures/rhodoSim/5ns_gnuplot.png}}}%
+    \vspace{15pt}
+    \centering
+    \subfigure[\centering Syncronized \e gun period, $T_g = 9.3ns$]{{\includegraphics[width=0.85\textwidth]{./figures/rhodoSim/9_3ns_gnuplot.png}}}%
+    \vspace{15pt}
+    \caption{Example \textit{gnuplot} renders of \textit{Rhodotron Simulation}, $P=40$kW, $f=107.5$MHz.} 
     \label{fig:example_gnuplot_renders}
 \end{figure}
 
@@ -1548,9 +1765,9 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
 An issue regarding the \eB interaction became apparent when energy gain during these interactions was observed.
 A setup simulation was implemented in which a bunch of 100\e at $1$MeV was fired into a uniform magnetic field of $0.1$T located in $x>0.05$m.
 Initial results at $dt=0.01$ns proved the suspicion of \eB interaction being broken. However, the energy gain would decrease tremendously as $dt$ decreased.
-\begin{figure}
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{0.8\textwidth}
         \centering
@@ -1563,6 +1780,15 @@ Initial results at $dt=0.01$ns proved the suspicion of \eB interaction being bro
         \caption*{$dt=10^{-4}$ns, $\Delta E=0.011$MeV}
     \end{subfigure}
     \caption{Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T}
+    \label{fig:mag_lf_render}
+\end{figure} \fi
+\begin{figure}
+    \centering
+    \subfigure[\centering $dt=10^{-2}$ns, $\Delta E=2.783$MeV]{{\includegraphics[width=0.8\textwidth]{./figures/rhodoSim/mag_lf_001dt.png} }}%
+    \vspace{15pt}
+    \subfigure[\centering $dt=10^{-4}$ns, $\Delta E=0.011$MeV]{{\includegraphics[width=0.8\textwidth]{./figures/rhodoSim/mag_lf_00001dt.png} }}%
+    \vspace{15pt}
+    \caption{Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T.}
     \label{fig:mag_lf_render}
 \end{figure}
 Decreasing $dt$ would be the best way to increase accuracy of the results; however, this is not sustainable due to computing power limitations. 
@@ -1584,9 +1810,9 @@ These three methods were then tested in the same setup as \fromfig{mag_lf_render
 More rigerous testing was done with \textit{Leap-frog} and \textit{RK4-2} however. 
 Still using the setup in \fromfig{mag_lf_render}, each $dt$ configuration was simulated 10 times, calculating average and standard deviations afterwards.
 Results from these tests can be observed in \fromfig{mag_lf_rk2_comparison}.
-\begin{figure}
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{0.8\textwidth}
         \centering
@@ -1599,36 +1825,46 @@ Results from these tests can be observed in \fromfig{mag_lf_rk2_comparison}.
         \includegraphics[width=\linewidth]{./figures/analiz/mag_lf_rk2_dt-Tsim.png}
         \caption*{$dt$ vs $T_{sim}$}
     \end{subfigure}
-    \caption{Comparing Leap-frog, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \caption{Comparing Leap-frog, RK4-2 performance on \eB interaction $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \label{fig:mag_lf_rk2_comparison}
+\end{figure} \fi
+\begin{figure}
+    \centering
+    \subfigure[\centering $dt$ vs $\Delta E$]{{\includegraphics[width=0.8\textwidth]{./figures/analiz/mag_lf_rk2_dt-E.png} }}%
+    \qquad\subfigure[\centering $dt$ vs $T_{sim}$]{{\includegraphics[width=0.8\textwidth]{./figures/analiz/mag_lf_rk2_dt-Tsim.png} }}%
+    \vspace{20pt}
+    \caption{Comparing Leap-frog, RK4-2 performance on \eB interaction $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns.}
     \label{fig:mag_lf_rk2_comparison}
 \end{figure}
 The data from these tests can be found in \fromtabs{lf_mag_table}{rk2_mag_table} of \fromapp{data_graph}.
-To investigate the data further, one can define a performance measurement, $F$.
-\begin{eqnarray*}
-    F &\propto& 1/T \\
-    F &\propto& 1/\Delta E 
-\end{eqnarray*}
-When $dt=10^{-5}$ ns was taken as reference point due to providing a good balance of accuracy and computational intensity,
-\begin{eqnarray} \label{eq:f_lf_rk_mag_1}
-    \Delta E_{LF} &=& 110 \times 10^{-5} MeV \nonumber\\
-    \Delta E_{RK}^1 &=& 64 \times 10^{-5} MeV \nonumber\\
-    T_{LF}^1 &=& 9.44 \pm 0.03 s \nonumber\\
-    T_{RK}^1 &=& 21.33 \pm 0.02 s \nonumber\\
-    \Delta E_{LF} \times T_{LF} &=& 104 \times 10^{-4} \pm 10^{-4} MeV s \nonumber\\ %0.003
-    \Delta E_{RK} \times T_{RK} &=& 137 \times 10^{-4} \pm 2\times 10^{-4}  MeV s \nonumber\\ %0.001
-    F_{LF}/F_{RK} &=& \frac{\Delta E_{RK} \times T_{RK} }{\Delta E_{LF} \times T_{LF}^1} = 1.32 \pm 0.01
-\end{eqnarray}
-Also, observing from the data,
-\begin{eqnarray} \label{eq:f_lf_rk_mag_2}
-    \Delta E_{LF} (dt=3 \times 10^{-5}) \approx \Delta E_{RK} (dt=5 \times 10^{-5}) &\approx& 32.5 \times 10^{-4} MeV \nonumber\\
-    T_{LF}(dt=3 \times 10^{-5})  &=& 3.18 \pm 0.02 s \nonumber\\ %0.0032
-    T_{RK}(dt=5 \times 10^{-5})  &=& 4.30 \pm 0.01 s \nonumber\\ %0.0022
-    F_{LF}/F_{RK} = \frac{T_{RK}(dt=5 \times 10^{-5})}{T_{LF}(dt=3 \times 10^{-5})} &=& 1.4 \pm 0.1
-\end{eqnarray}
-Uncertainty of \fromeq{f_lf_rk_mag_2} was taken high due to the approximation. After combining \fromeqs{f_lf_rk_mag_1}{f_lf_rk_mag_2}, $F$ can be calculated as
-\begin{equation}
-    F_{LF}/F_{RK} = 1.36 \pm 0.05
-\end{equation}
+To investigate the data further, one can define a performance measurement, $F$ as
+\vspace{-10pt}\begin{eqnarray*}
+    F &\propto& 1/T  , \\
+    F &\propto& 1/\Delta E . 
+\vspace{-10pt}\end{eqnarray*}
+When $dt=10^{-5}$ ns was taken as reference point due to providing a good balance of accuracy and computational intensity, 
+relative performance can be calculated as
+\vspace{-10pt}\begin{eqnarray} \label{eq:f_lf_rk_mag_1}
+    \Delta E_{LF} &=& 110 \times 10^{-5} MeV,\nonumber\\
+    \Delta E_{RK}^1 &=& 64 \times 10^{-5} MeV,\nonumber\\
+    T_{LF}^1 &=& 9.44 \pm 0.03 s, \nonumber\\
+    T_{RK}^1 &=& 21.33 \pm 0.02 s, \nonumber\\
+    \Delta E_{LF} \times T_{LF} &=& 104 \times 10^{-4} \pm 10^{-4} MeV s, \nonumber\\ %0.003
+    \Delta E_{RK} \times T_{RK} &=& 137 \times 10^{-4} \pm 2\times 10^{-4}  MeV s, \nonumber\\ %0.001
+    F_{LF}/F_{RK} &=& \frac{\Delta E_{RK} \times T_{RK} }{\Delta E_{LF} \times T_{LF}^1} = 1.32 \pm 0.01 .
+\vspace{-10pt}\end{eqnarray}
+Also, another relative performance can be obsered from the data as
+\vspace{-10pt}\begin{eqnarray} \label{eq:f_lf_rk_mag_2}
+    \Delta E_{LF} (dt=3 \times 10^{-5}) \approx \Delta E_{RK} (dt=5 \times 10^{-5}) &\approx& 32.5 \times 10^{-4} MeV, \nonumber\\
+    T_{LF}(dt=3 \times 10^{-5})  &=& 3.18 \pm 0.02 s, \nonumber\\ %0.0032
+    T_{RK}(dt=5 \times 10^{-5})  &=& 4.30 \pm 0.01 s, \nonumber\\ %0.0022
+    F_{LF}/F_{RK} = \frac{T_{RK}(dt=5 \times 10^{-5})}{T_{LF}(dt=3 \times 10^{-5})} &=& 1.4 \pm 0.1.
+\vspace{-10pt}\end{eqnarray}
+Uncertainty of \fromeq{f_lf_rk_mag_2} was taken high due to the approximation. 
+After combining \fromeqs{f_lf_rk_mag_1}{f_lf_rk_mag_2}, $F$ can be calculated as
+\vspace{-10pt}\begin{equation}
+    F_{LF}/F_{RK} = 1.36 \pm 0.05.
+\vspace{-10pt}\end{equation}
 Therefore, \textit{Leap-frog} was found to be the better choice as it provided with $1.36 \pm 0.05$ times accuracy in \eB interactions at a given time with respect to \textit{RK4}. However,
 \textit{RK4} was promising in situations where decreasing the stepsize, $dt$, is not viable. Therefore both were integrated into \textit{Rhodotron Simulation} for the user to decide.
 \textit{RK4-2} renders from these test can be found in \fromfig{mag_rk_render} of \fromapp{example_simulation_runs}.
@@ -1638,7 +1874,7 @@ After the accuracy concerns regarding the \eB interaction were raised, it was de
 
 As test setups, two simulation confgurations were made. They aimed to test the accuracy of acceleration of a beam in parallel and perpendicular static uniform electric fields.
 Both configurations had an \egun located at $(-0.753, 0, 0)$m, directed at $(1, 0, 0)$ firing electrons with the kinetic energy of $1$MeV. 
-\begin{figure}[H]
+\iffalse \begin{figure}[H]
     \centering
     \begin{subfigure}{0.47\textwidth}
         \centering
@@ -1651,33 +1887,42 @@ Both configurations had an \egun located at $(-0.753, 0, 0)$m, directed at $(1, 
         \caption*{Setup-2, perpendicular $\vecthreeBF{E}$ field}
     \end{subfigure}
     \caption{Illustration of test setups.}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering Setup-1 parallel $\vecthreeBF{E}$ field]{{\includegraphics[width=0.423\textwidth]{./figures/illustrations/statE_1.png} }}%
+    \qquad\subfigure[\centering Setup-2, perpendicular $\vecthreeBF{E}$ field]{{\includegraphics[width=0.432\textwidth]{./figures/illustrations/statE_2.png} }}%
+    \vspace{20pt}
+    \caption{Illustration of test setups.}
 \end{figure}
 In the first test, the beam would be injected into a static uniform electric field \\
 $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.753$, $\vecthreeBF{E}=0$ elsewhere.
 
 Considering the $\vecthreeBF{E}$ is parallel to the beam path, potential difference $V$ in the trejectory until \vecNum{-0.753}{0}{0}m is
-\begin{eqnarray}
+\vspace{-10pt}\begin{eqnarray}
     \Delta V^1 &=& - \int \dotProdBF{E}{ds} \\
              &=& - \int_{-0.753}^{0.753} -2.65616 \times dx \\
              &=& 2.65616 \times 1.506 \\
-    \Delta V^1 &=& 4 MV \\
-    \Delta E^1 &=& 4 MeV \\
-    E_{exitTH}^1 &=& 5 MeV
-\end{eqnarray}
-In the second test on the other hand, the beam would be injected into a different static uniform electric field, \\
+             &=& 4 MV, \\
+    \Delta E^1 &=& 4 MeV, \\
+    E_{exitTH}^1 &=& 5 MeV.
+\vspace{-10pt}\end{eqnarray}
+
+In the second test on the other hand, the beam would be injected into a different static uniform electric field,
 $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.753$, $\vecthreeBF{E}=0$ elsewhere.
-\begin{eqnarray}
+\vspace{-10pt}\begin{eqnarray}
     \Delta V^2   &=& - \int \dotProdBF{E}{ds} \\
                  &=& - \int_{0}^{0.753} -5.31232 \times dy \\
                  &=& 5.31232 \times 0.753 \\
-    \Delta V^2   &=& 4 MV \\
-    \Delta E^2   &=& 4 MeV \\
-    E_{exitTH}^2 &=& 5 MeV
-\end{eqnarray}
+                 &=& 4 MV, \\
+    \Delta E^2   &=& 4 MeV, \\
+    E_{exitTH}^2 &=& 5 MeV.
+\vspace{-10pt}\end{eqnarray}
+
 Therefore, in the both tests, the beam was expected to exit $\vecthreeBF{E}$ with $E_{exitTH} = 5$ MeV. 
 To also measure the variance in simulation completion times, $T_{sim}$, set of $10$ runs were completed at the configuration for each $dt$ value.
 Results from these tests can be observed in \fromfig{lf_rk2_perp_stat_E_comparison} and \fromfig{lf_rk2_par_stat_E_comparison} of \fromapp{data_graph}.
-\begin{figure}[H]
+\iffalse \begin{figure}[H]
     \centering
     \begin{subfigure}{0.9\textwidth}
         \centering
@@ -1689,12 +1934,20 @@ Results from these tests can be observed in \fromfig{lf_rk2_perp_stat_E_comparis
         \includegraphics[width=\linewidth]{./figures/rhodoSim/statE_perp.png}
         \caption*{Setup-2, $\textbf{V}_{\perp}$=4MV}
     \end{subfigure}
-    \caption{Render of the test setups. \\ $E_{in}=1$ MeV, $t_{end}=6$ ns}
+    \caption{Render of the test setups.  $E_{in}=1$ MeV, $t_{end}=6$ ns}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering Setup-1, $\textbf{V}_{\parallel}$=4MV]{{\includegraphics[width=0.85\textwidth]{./figures/rhodoSim/statE_par.png} }}%
+    \vspace{15pt}
+    \subfigure[\centering Setup-2, $\textbf{V}_{\perp}$=4MV]{{\includegraphics[width=0.85\textwidth]{./figures/rhodoSim/statE_perp.png} }}%
+    \vspace{15pt}
+    \caption{Render of the test setups.  $E_{in}=1$ MeV, $t_{end}=6$ ns.}
 \end{figure}
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{0.9\textwidth}
         \centering
@@ -1705,56 +1958,69 @@ Results from these tests can be observed in \fromfig{lf_rk2_perp_stat_E_comparis
         \centering
         \includegraphics[width=\linewidth]{./figures/analiz/90staticE_lf_rk2_dt-Tsim.png}
     \end{subfigure}
-    \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\perp}$=4MV, $t_{end}=6$ ns}
+    \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction $E_{in}=1$MeV, $\textbf{V}_{\perp}$=4MV, $t_{end}=6$ ns}
+    \label{fig:lf_rk2_perp_stat_E_comparison}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering $dt$ vs $\Delta E$]{{\includegraphics[width=0.9\textwidth]{./figures/analiz/90staticE_lf_rk2_dt-E_3.png} }}%
+    \vspace{15pt}
+    \subfigure[\centering $dt$ vs $T_{sim}$]{{\includegraphics[width=0.9\textwidth]{./figures/analiz/90staticE_lf_rk2_dt-Tsim.png} }}%
+    \vspace{15pt}
+    \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction $E_{in}=1$MeV, $\textbf{V}_{\perp}$=4MV, $t_{end}=6$ ns.}
     \label{fig:lf_rk2_perp_stat_E_comparison}
 \end{figure}
-Taking the $dt=10^{-5}$ ns for the reference point as before, the relative performance can be calculated.
-\begin{eqnarray*}
+Taking the $dt=10^{-5}$ ns for the reference point as before, using the data
+\vspace{-10pt}\begin{eqnarray*}
     \begin{aligned}
-        \Delta E_{LF}^1 &=& 22 \times 10^{-6} MeV \\
-        \Delta E_{RK}^1 &=& 16 \times 10^{-6} MeV \\
-        T_{LF}^1 &=& 12.40 \pm 0.04 s \\
-        T_{RK}^1 &=& 40.08 \pm 0.12 s \\
+        \Delta E_{LF}^1 &=& 22 \times 10^{-6} MeV, \\
+        \Delta E_{RK}^1 &=& 16 \times 10^{-6} MeV, \\
+        T_{LF}^1 &=& 12.40 \pm 0.04 s, \\
+        T_{RK}^1 &=& 40.08 \pm 0.12 s, 
     \end{aligned}
     \qquad
     \begin{aligned}
-        \Delta E_{LF}^2 &=& 15 \times 10^{-5} MeV \\
-        \Delta E_{RK}^2 &=& 9.3 \times 10^{-5} MeV \\
-        T_{LF}^2 &=& 10.75 \pm 0.04 s \\
-        T_{RK}^2 &=& 34.93 \pm 0.39 s 
+        \Delta E_{LF}^2 &=& 15 \times 10^{-5} MeV, \\
+        \Delta E_{RK}^2 &=& 9.3 \times 10^{-5} MeV, \\
+        T_{LF}^2 &=& 10.75 \pm 0.04 s, \\
+        T_{RK}^2 &=& 34.93 \pm 0.39 s, 
     \end{aligned}
-\end{eqnarray*}
+\vspace{-10pt}\end{eqnarray*}
+the relative performances can be calculated as
+\vspace{-10pt}\begin{eqnarray} 
+    \Delta E_{LF}^1 \times T_{LF}^1 &=& 270 \times 10^{-6} \pm 10^{-6} MeV s, \nonumber\\ %0.003
+    \Delta E_{RK}^1 \times T_{RK}^1 &=& 640 \times 10^{-6} \pm 2\times 10^{-6}  MeV s, \nonumber\\ %0.003
+    F_{LF}^1/F_{RK}^1 &=& \frac{\Delta E_{RK}^1 \times T_{RK}^1 }{\Delta E_{LF}^1 \times T_{LF}^1} = 2.4 \pm 0.02, \label{eq:f_lf_rk_1}
+\vspace{-10pt}\end{eqnarray}
+and
+\vspace{-10pt}\begin{eqnarray}  
+    \Delta E_{LF}^2 \times T_{LF}^2 &=& 160 \times 10^{-5} \pm 10^{-5} MeV s, \nonumber\\ %0.004
+    \Delta E_{RK}^2 \times T_{RK}^2 &=& 320 \times 10^{-5} 4 \pm 10^{-5} MeV s, \nonumber\\ %0.011
+    F_{LF}^2/F_{RK}^2 &=& \frac{\Delta E_{RK}^2 \times T_{RK}^2 }{\Delta E_{LF}^2 \times T_{LF}^2} = 2.0  \pm 0.03. \label{eq:f_lf_rk_2}
+\vspace{-10pt}\end{eqnarray}
 
-\begin{eqnarray} \label{eq:f_lf_rk_1}
-    \Delta E_{LF}^1 \times T_{LF}^1 &=& 270 \times 10^{-6} \pm 10^{-6} MeV s \nonumber\\ %0.003
-    \Delta E_{RK}^1 \times T_{RK}^1 &=& 640 \times 10^{-6} \pm 2\times 10^{-6}  MeV s \nonumber\\ %0.003
-    F_{LF}^1/F_{RK}^1 &=& \frac{\Delta E_{RK}^1 \times T_{RK}^1 }{\Delta E_{LF}^1 \times T_{LF}^1} = 2.4 \pm 0.02
-\end{eqnarray}
-
-\begin{eqnarray} \label{eq:f_lf_rk_2}
-    \Delta E_{LF}^2 \times T_{LF}^2 &=& 160 \times 10^{-5} \pm 10^{-5} MeV s \nonumber\\ %0.004
-    \Delta E_{RK}^2 \times T_{RK}^2 &=& 320 \times 10^{-5} 4 \pm 10^{-5} MeV s \nonumber\\ %0.011
-    F_{LF}^2/F_{RK}^2 &=& \frac{\Delta E_{RK}^2 \times T_{RK}^2 }{\Delta E_{LF}^2 \times T_{LF}^2} = 2.0  \pm 0.03
-\end{eqnarray}
-\textit{Leap-frog} provides $2.4$ times and $2.0$ times less overacceleration per simulation time than \textit{RK4} in parallel and perpendicular electric fields respectably.
-This results can be tested further with obsering from the data (see \fromtabf{lf_statE_table}{rk2_statE_table}{lf_statE90_table}{rk2_statE90_table} of \fromapp{data_graph}),
-\begin{eqnarray} \label{eq:f_lf_rk_3}
-    \Delta E_{LF}^1 (dt=2 \times 10^{-5}) = \Delta E_{RK}^1 (dt=3 \times 10^{-5}) &=& 45 \times 10^{-6} MeV \nonumber\\
-    T_{LF}^1(dt=2 \times 10^{-5})  &=& 6.23 \pm 0.02 s \nonumber\\ %0.0032
-    T_{RK}^1(dt=3 \times 10^{-5})  &=& 13.40 \pm 0.03 s \nonumber\\ %0.0022
-    F_{LF}^1/F_{RK}^1 = \frac{T_{RK}^1(dt=3 \times 10^{-5})}{T_{LF}^1(dt=2 \times 10^{-5})} &=& 2.15 \pm 0.02
-\end{eqnarray}
-\begin{eqnarray} \label{eq:f_lf_rk_4}
-    \Delta E_{LF}^2 (dt=3 \times 10^{-5}) \approx \Delta E_{RK}^2 (dt=5 \times 10^{-5}) &\approx& 470 \times 10^{-6} MeV \nonumber\\
-    T_{LF}^2(dt=3 \times 10^{-5})  &=& 3.62 \nonumber\\ %0.0055
-    T_{RK}^2(dt=5 \times 10^{-5})  &=& 7.00 \nonumber\\ %0.0071 -> 0,0126
-    F_{LF}^2/F_{RK}^2 = \frac{T_{RK}^2(dt=5 \times 10^{-5})}{T_{LF}^2(dt=3 \times 10^{-5})} &=& 1.9 \pm 0.1
-\end{eqnarray}
+\textit{Leap-frog} provides $2.4$ times and $2.0$ times less overacceleration per simulation time than 
+\textit{RK4} in parallel and perpendicular electric fields respectably.
+This results can be tested further with obsering from the data (see \fromtabf{lf_statE_table}{rk2_statE_table}{lf_statE90_table}{rk2_statE90_table} of \fromapp{data_graph})
+and calculating other relative performances as
+\vspace{-10pt}\begin{eqnarray} \label{eq:f_lf_rk_3}
+    \Delta E_{LF}^1 (dt=2 \times 10^{-5}) = \Delta E_{RK}^1 (dt=3 \times 10^{-5}) &=& 45 \times 10^{-6} MeV, \nonumber\\
+    T_{LF}^1(dt=2 \times 10^{-5})  &=& 6.23 \pm 0.02 s, \nonumber\\ %0.0032
+    T_{RK}^1(dt=3 \times 10^{-5})  &=& 13.40 \pm 0.03 s, \nonumber\\ %0.0022
+    F_{LF}^1/F_{RK}^1 = \frac{T_{RK}^1(dt=3 \times 10^{-5})}{T_{LF}^1(dt=2 \times 10^{-5})} &=& 2.15 \pm 0.02,
+\vspace{-10pt}\end{eqnarray}
+and
+\vspace{-10pt}\begin{eqnarray} \label{eq:f_lf_rk_4}
+    \Delta E_{LF}^2 (dt=3 \times 10^{-5}) \approx \Delta E_{RK}^2 (dt=5 \times 10^{-5}) &\approx& 470 \times 10^{-6} MeV, \nonumber\\
+    T_{LF}^2(dt=3 \times 10^{-5})  &=& 3.62, \nonumber\\ %0.0055
+    T_{RK}^2(dt=5 \times 10^{-5})  &=& 7.00, \nonumber\\ %0.0071 -> 0,0126
+    F_{LF}^2/F_{RK}^2 = \frac{T_{RK}^2(dt=5 \times 10^{-5})}{T_{LF}^2(dt=3 \times 10^{-5})} &=& 1.9 \pm 0.1.
+\vspace{-10pt}\end{eqnarray}
 The last uncertainty was taken high due to the approximation of $467 \approx 471$. After combining \fromeqsf{f_lf_rk_1}{f_lf_rk_2}{f_lf_rk_3}{f_lf_rk_4},
-the performance of \textit{Leap-frog} relative to \textit{RK4} in \eE interaction can be calculated as in \fromeq{lf_rk_eE_relative_performance}.
-\begin{equation}\label{eq:lf_rk_eE_relative_performance}
-    F_{LF}/F_{RK} = 2.11 \pm 0.03
-\end{equation}
+the performance of \textit{Leap-frog} relative to \textit{RK4} in \eE interaction can be calculated as
+\vspace{-10pt}\begin{equation}\label{eq:lf_rk_eE_relative_performance}
+    F_{LF}/F_{RK} = 2.11 \pm 0.03.
+\vspace{-10pt}\end{equation}
 Therefore, it can be concluded that \textit{Leap-frog} outperforms \textit{RK4} with the relative performance of $2.11 \pm 0.03$ in \eE interactions with static uniform $\vecthreeBF{E}$ field. 
 
 \subsection{Multithreading}
@@ -1775,27 +2041,28 @@ or communucating with the \textit{GUI} that will be disscussed in the next secti
 
 Focus of this section is the worker threads, also known as \eEM interaction threads.
 There were four competing architecture for these worker threads,
-\begin{enumerate}
-    \item Have a thread pool that calculates \eEM in a queue 
-    \item Assign a thread to each bunch
-    \item Assign random electrons to each thread and calculate \eEM with global time
-    \item Assign random electrons to each thread and calculate \eEM with local thread time
-\end{enumerate}
-\textbf{Architecture 1} would require constant waiting in worker threads to get mutexes of $\vecthreeBF{E}$ field, especially in \textit{RK4}.
+\begin{itemize}
+    \item \textit{Architecture 1:} Have a thread pool that calculates \eEM in a queue 
+    \item \textit{Architecture 2:} Assign a thread to each bunch
+    \item \textit{Architecture 3:} A ssign random electrons to each thread and calculate \eEM with global time
+    \item \textit{Architecture 4:} Assign random electrons to each thread and calculate \eEM with local thread time
+\end{itemize}
 
-\textbf{Architecture 2} was performing well in configurations with a large number of bunches, but was not increasing performance in lower bunch count configurations as expected.
+\textit{Architecture 1} would require constant waiting in worker threads to get mutexes of $\vecthreeBF{E}$ field, especially in \textit{RK4}.
 
-\textbf{Architecture 3} was inefficient and wasteful since all the worker threads would wait the main thread to get the next time after they finish calculation, while the main thread would be waiting for the slowest worker thread.
+\textit{Architecture 2} was performing well in configurations with a large number of bunches, but was not increasing performance in lower bunch count configurations as expected.
 
-\textbf{Architecture 4} was thought to be the best performer. It would give freedom to calculate the whole simulation to each thread while giving up the global time.
+\textit{Architecture 3} was inefficient and wasteful since all the worker threads would wait the main thread to get the next time after they finish calculation, while the main thread would be waiting for the slowest worker thread.
+
+\textit{Architecture 4} was thought to be the best performer. It would give freedom to calculate the whole simulation to each thread while giving up the global time.
 This would also mean thread-safety is ensured since there is no shared data between the worker threads. 
 However, this architecture can cause issues if \ee interactions were decided to be implemented in the future.
 
 Another caveat is that a copy operation of $\vecthreeBF{E}$ and $\vecthreeBF{B}$ objects for each worker thread would be needed.
 This would lead to larger memory allocations and more time spent setting up simulations. 
 Therefore, \textit{Architecture 4} is not ideal for fast calculations and when the memory is an important constraint.
-An implementation that can use both \textbf{Architecture 2} \& \textbf{Architecture 4} when necessary would be a better approach considering these methods;
-nevertheless, \textbf{Architecture 4} was chosed to be implemented.
+An implementation that can use both \textit{Architecture 2} \& \textit{Architecture 4} when necessary would be a better approach considering these methods;
+nevertheless, \textit{Architecture 4} was chosed to be implemented.
 
 The implemenation can be found in \fromfigf{_runMT}{fireAllWithFireTimesMT}{setupPool}{threadLoop} in \fromapp{intermediate_codes}.
 
@@ -1804,71 +2071,73 @@ The implemenation can be found in \fromfigf{_runMT}{fireAllWithFireTimesMT}{setu
 % Start of intermediate.tex
 \section{Graphical User Interface}
 
+Until this point, \textit{Rhodotron Simulation} could be used with a configration file, defining the problem that would be simulated.
+An example of this configuration file can be found in \fromfig{config_file} of \fromapp{example_simulation_runs}. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{./figures/illustrations/RhodoSim_GUI_Draft_V02.pdf}
+    \includegraphics[width=0.95\linewidth]{./figures/illustrations/RhodoSim_GUI_Draft_V02.pdf}
     \caption{An Illustration of the first GUI design.}
     \label{fig:gui_illustration}
 \end{figure}
-Until this point, \textit{Rhodotron Simulation} could be used with a configration file, defining the problem that would be simulated.
-An example of this configuration file can be found in \fromfig{config_file} of \fromapp{example_simulation_runs}. 
 This approach was simple and fast; however, it was not suitable for the average target user since required basic knowledge of command line interface and was not up to modern standards.
 For this reason, a GUI was decided to be built, using \textit{ROOT framework}. 
 This would also enable \textit{Rhodotron simulation} to make use of analysis tools offered by \textit{ROOT}.
 
-
 The initial design of the \textit{Rhodotron Simulation GUI} can be observed in \fromfig{gui_illustration}.
+The \textit{GUI} would be a standalone application, running the \textit{Rhodotron Simulation} as a service when needed. 
+For this reason, the now called \textit{simulation engine} was updated to be able to run as a background service of \textit{GUI}.
+By this approach, one could also ignore the \textit{GUI} altogether and use the \textit{simulation engine} as before, as these are two seperate products.
+
+In the \fromfig{gui_config}, the implemented version of \fromfig{gui_illustration} can be observed. 
+Available frames of this version of the \textit{GUI} are discussed further in the following sections.
+\subsection{Simulation Frame}
+This frame spawns and manages the \textit{simulation engine}, configures and starts the simulation. 
+It has a progress bar that shows the current progress of the simulation, communucating with \textit{UI handler thread} in \textit{simulation engine}.
+Simulation frame while a simulation is running can be observed in \fromfig{gui_simulate_1} of \fromapp{supp}.
+
+\newpage
+\subsection{Configuration Frame}
+This frame provides an interface for specifying, saving or loading a configuration, consists of $\vecthreeBF{B}$ field, $\vecthreeBF{E}$ field, \textit{RF} description, \egun, \textit{simulation} configuration regions.
+Each one having an illustration of what the parameters are as can be seen in \fromfig{gui_config}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_config_frame.png}
     \caption{The configuration frame of implementated first GUI design.}
     \label{fig:gui_config}
 \end{figure}
-The \textit{GUI} would be a standalone application, running the \textit{Rhodotron Simulation} as a service when needed. 
-For this reason, the now called \textit{simulation engine} was updated to be able to run as a background service of \textit{GUI}.
-By this approach, one could also ignore the \textit{GUI} altogether and use the \textit{simulation engine} as before, as these are two seperate products.
 
-In the \fromfig{gui_config}, the implemented version of \fromfig{gui_illustration} can be observed. This version of the \textit{GUI} has the following frames;
-
-\subsection{Configuration Frame}
-This frame provides an interface for specifying, saving or loading a configuration, consists of $\vecthreeBF{B}$ field, $\vecthreeBF{E}$ field, \textit{RF} description, \egun, \textit{simulation} configuration regions.
-Each one having an illustration of what the parameters are as can be seen in \fromfig{gui_config}.
-
-\subsection{Simulation Frame}
-This frame spawns and manages the \textit{simulation engine}, configures and starts the simulation. 
-It has a progress bar that shows the current progress of the simulation, communucating with \textit{UI handler thread} in \textit{simulation engine}.
-Simulation frame while a simulation is running can be observed in \fromfig{gui_simulate_1} of \fromapp{supp}.
-
+\newpage
 \subsection{Render Frame}
 Since the rendering capabilities of \textit{ROOT} is superior than \textit{gnuplot}, the user can render a playback of the simulation in real time, 
 see a specific time frame, export as snapshot or animated gif file.
 Two example renders can be seen in \fromfig{gui_render_1} and \fromfig{gui_render_2} of \fromapp{supp}.
-\begin{figure}
+\begin{figure}[h]
     \centering
-    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_render_frame_5.png}
+    \includegraphics[width=0.85\linewidth]{./figures/rhodoSim/GUI_render_frame_5.png}
     \caption{Render frame of \textit{GUI}.}
     \label{fig:gui_render_1}
 \end{figure}
 
 \subsection{Analyze Frame}
 Analyze frame provides tools for analyzing and visualizing the simulation data. 
-In the current version, \textbf{E} distribution histogram and \textbf{E(t)} graph of each electron are implementated into this frame.
+In the current version, energy distribution histogram and \textit{E(t)} graph of each electron are implementated into this frame.
 This frame is a work in progress and will be the focus of improvement and become a really powerfull tool in the near future.
-In \fromfig{gui_analyze_Edist}, \textit{Analyze Frame} plotting \textbf{E} distribution histogram, and in \fromfig{gui_analyze_Et} and \fromfig{gui_analyze_Et2} of \fromapp{supp}, \textit{Analyze Frame} plotting \textbf{E(t)} graphs can be observed.
-\begin{figure}
+In \fromfig{gui_analyze_Edist}, \textit{Analyze Frame} plotting energy distribution histogram, and in \fromfig{gui_analyze_Et} and \fromfig{gui_analyze_Et2} of \fromapp{supp}, \textit{Analyze Frame} plotting \textbf{E(t)} graphs can be observed.
+\begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_analyze_Edist_2.png}
+    \includegraphics[width=0.8\linewidth]{./figures/rhodoSim/GUI_analyze_Edist_2.png}
     \caption{Analyze frame of \textit{GUI} E distribution.}
     \label{fig:gui_analyze_Edist}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_analyze_Et_3.png}
     \caption{Analyze frame of \textit{GUI} E(t).}
     \label{fig:gui_analyze_Et}
 \end{figure}
 
+\newpage
 
 \subsection{Sweep Frame}
 Parameter sweep method that was discussed in \fromsecs{lout_sweep}{philag_sweep} was integrated into \textit{GUI} in a seperate frame named \textit{Sweep Frame}.
@@ -1878,16 +2147,17 @@ It takes the range of sweep, draws $\phi_{lag}$ vs $\mu E$, $\phi_{lag}$ vs $\si
 This enables user with an already built accelerator to optimize \egun parameters quickly. 
 In the \fromfigf{gui_sweep_muE}{gui_sweep_sE}{gui_sweep_running}{gui_sweep_sR} of \fromapp{supp}, this frame can be inspected in detail.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
-    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_sweep_muE_3.png}
-    \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ $\mu E$ result.}
+    \includegraphics[width=0.85\linewidth]{./figures/rhodoSim/GUI_sweep_muE_3.png}
+    \caption{Sweep frame of \textit{GUI} $\phi_{lag}$ $\mu E$ result.}
     \label{fig:gui_sweep_muE}
 \end{figure}
-\begin{figure}
+\newpage
+\begin{figure}[h]
     \centering
-    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_sweep_sE_3.png}
-    \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ sweep $\sigma E$ result.}
+    \includegraphics[width=0.85\linewidth]{./figures/rhodoSim/GUI_sweep_sE_3.png}
+    \caption{Sweep frame of \textit{GUI} $\phi_{lag}$ sweep $\sigma E$ result.}
     \label{fig:gui_sweep_sE}
 \end{figure}
 
@@ -1910,25 +2180,25 @@ In the following figures, rendered visuals of the final design can be observed \
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{./figures/design/final_design_in_lab.JPG}
-    \caption{Rhodotron in KAHVELab}
+    \caption{Rhodotron in KAHVELab.}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{./figures/design/final_design_1.png}
-    \caption{Rhodotron cavity and \e gun}
+    \caption{Rhodotron cavity and \e gun.}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{./figures/design/final_design_2.png}
-    \caption{Vertical cross section of the beam injection line}
+    \caption{Vertical cross section of the beam injection line.}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[angle=90, origin=c, width=\linewidth]{./figures/design/final_design_3.png}
-    \caption{Cross section of the acceleration plane}
+    \caption{Cross section of the acceleration plane.}
 \end{figure}
 
 
@@ -1960,10 +2230,10 @@ Elastic version of the 304, 304L was chosen to be the production material for ea
 These sheets were then pressed to achieve the shapes of the parts. 
 Several flanges were then machined, including
 \begin{itemize}
-    \item $4.5$in EIA RF flange for RF input
-    \item ISO-100KF vacuum connector flanges for vacuum pumps
-    \item ISO-63 KF flange for probe insertion
-    \item KF-40 flanges for beam line vacuum gauges
+    \item $4.5$in EIA RF flange for RF input,
+    \item ISO-100KF vacuum connector flanges for vacuum pumps,
+    \item ISO-63 KF flange for probe insertion,
+    \item KF-40 flanges for beam line vacuum gauges.
 \end{itemize}
 After desired shapes were produced inside surface of the sheets were polished with 2000 grits. 
 304 stainless steel sheet bars of different sizes were then added by 
@@ -1972,9 +2242,9 @@ TIG welding to achieve pressure resistance.
 Because the main body of the cavity was 5mm thick and 304L was used, deformations on cylinderical symmetry were encountered. 
 This problem was solved by welding 6 10mm thick toroidal sheets between the coaxial cylinders, 
 which would be removed after the heat treatment.
-\begin{figure}
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -1989,12 +2259,19 @@ which would be removed after the heat treatment.
     \end{subfigure}
     \caption{Polishing of the inner surface of cavity.}
     \label{fig:manif_polishing}
+\end{figure} \fi
+\begin{figure}
+    \centering
+    \subfigure[\centering Bottom part of the cavity while polishing]{{\includegraphics[width=.48\textwidth]{./figures/manif/polish/rhodo_bottom_unpolished_cropped.jpeg} }}%
+    \qquad\subfigure[\centering Top part of the cavity after polishing]{{\includegraphics[width=.48\textwidth]{./figures/manif/polish/rhodo_upper_polished_cropped.jpeg} }}%
+    \vspace{20pt}
+    \caption{Polishing of the inner surface of cavity.}
+    \label{fig:manif_polishing}
 \end{figure}
 
-
-\begin{figure}
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -2009,26 +2286,33 @@ which would be removed after the heat treatment.
     \end{subfigure}
     \caption{Deformation prevention measure, 10 mm thick toroidal sheets.}
     \label{fig:manif_toroidal_sheets}
+\end{figure} \fi
+\begin{figure}
+    \centering
+    \subfigure[\centering Bottom part of the cavity with the exposed beam line in inner cylinder]{{\includegraphics[width=.48\textwidth]{./figures/manif/toroidal_sheets/rhodo_bottom_cropped.jpeg} }}%
+    \qquad\subfigure[\centering Bottom part of the cavity with the beam line assembled]{{\includegraphics[width=.48\textwidth]{./figures/manif/toroidal_sheets/rhodo_middle_toroidal_sheets_welded_cropped.jpeg} }}%
+    \vspace{20pt}
+    \caption{Deformation prevention measure, 10 mm thick toroidal sheets.}
+    \label{fig:manif_toroidal_sheets}
 \end{figure}
 
 \begin{figure}
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \centering
     \includegraphics[width=.8\linewidth]{./figures/manif/welding/rhodo_middle_sheetbars_cropped.jpeg}
     \caption{Welded sheet bars.}
 \end{figure}
 
 \begin{figure}
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \centering
     \includegraphics[width=.7\linewidth]{./figures/manif/toroidal_sheets/rhodo_middle_only_cropped.jpeg}
     \caption{Middle part of the cavity containing the beam line.}
 \end{figure}
 
-
-\begin{figure}
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -2043,11 +2327,19 @@ which would be removed after the heat treatment.
     \end{subfigure}
     \caption{TIG welding.}
     \label{fig:manif_welding}
+\end{figure} \fi
+\begin{figure}
+    \centering
+    \subfigure[\centering Welding sheet bars]{{\includegraphics[width=.48\textwidth]{./figures/manif/welding/rhodo_assembled_welding_cropped.jpeg} }}%
+    \qquad\subfigure[\centering Welding toroidal sheets]{{\includegraphics[width=.48\textwidth]{./figures/manif/welding/rhodo_middle_welding_toroidal_sheets_cropped.jpeg} }}%
+    \vspace{20pt}
+    \caption{\centering TIG welding.} 
+    \label{fig:manif_welding}
 \end{figure}
 
-\begin{figure}
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -2062,10 +2354,18 @@ which would be removed after the heat treatment.
     \end{subfigure}
     \caption{Flanges on the assembled cavity.}
     \label{fig:manif_assembled_flanges}
+\end{figure} \fi
+\begin{figure}
+    \centering
+    \subfigure[\centering Beam enter \& exit flanges]{{\includegraphics[width=.48\textwidth]{./figures/manif/assembled/rhodo_final_cropped_5.jpeg} }}%
+    \qquad\subfigure[\centering RF input \& probe flanges]{{\includegraphics[width=.48\textwidth]{./figures/manif/assembled/rhodo_final_4_cropped.jpeg} }}%
+    \vspace{20pt}
+    \caption{\centering Flanges on the assembled cavity.} 
+    \label{fig:manif_assembled_flanges}
 \end{figure}
 
 \begin{figure}
-    \captionsetup{justification=centering}
+    %%\captionsetup{justification=centering}
     \centering
     \includegraphics[width=.9\linewidth]{./figures/manif/assembled/rhodo_final_cropped.jpeg}
     \caption{Current stage of the cavity.}
@@ -2101,7 +2401,7 @@ The software is planned to be used in magnet design and beam optimizations in KA
 \textit{Rhodotron Simulation}, which has been the main focus of this thesis, is ready and waiting to be tested with the cavity that is being manufactured; 
 Several improvements and new feature implementations are underway in the meantime. 
 They include the following;
-\begin{figure}[H]
+\iffalse \begin{figure}[H]
     \begin{subfigure}[t]{0.5\textwidth}
         \begin{itemize}
             \item Electric and magnetic field import
@@ -2121,7 +2421,29 @@ They include the following;
             \item $L_{out}$ sweep in Sweep Frame
         \end{itemize}
     \end{subfigure}
+\end{figure} \fi
+\begin{figure}[H]
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{itemize}
+            \item Electric and magnetic field import
+            \item Field generator module to directly produce field files from specified cavity
+            \item Synchrotron radiation calculations to determine radiation and energy loss
+            \item \ee interactions
+            \item Redesign of the GUI
+            \item 3D render in GUI
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{itemize}
+            \item Refactoring of the \eEM interaction and logging to improve performance
+            \item Refactoring of the GUI Render Frame to improve render speed
+            \item Refactoring the magnet class to introduce field leaks
+            \item Extention of analysis tools in Analyze Frame
+            \item $L_{out}$ sweep in Sweep Frame
+        \end{itemize}
+    \end{minipage}
 \end{figure}
+
 After the cavity manufacturing is concluded, energy gain predictions of this software will be tested on this cavity. 
 Complementary bending magnet design will be the first challange of \textit{Rhodotron Simulation}, which will provide tremendous testing and improvement opportunities.
 
@@ -2143,8 +2465,8 @@ lead to the inference that it holds promise.
 \chapter{Intermediate Codes} \label{appendix:intermediate_codes}
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
-    \begin{subfigure}{\textwidth}
+    %\captionsetup{justification=centering}
+    \begin{minipage}{\textwidth}
         \centering
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             for(double i = 2; i < 9; i += dT_out){
@@ -2157,9 +2479,9 @@ lead to the inference that it holds promise.
                 t_dum = t;
             }
         \end{minted}
-    \end{subfigure} 
+    \end{minipage} 
     \\
-    \begin{subfigure}{\textwidth}
+    \begin{minipage}{\textwidth}
         \centering
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm,  fontsize=\scriptsize]{c++}
             double gecis(double r_pos, double vel, double Et, double &t){
@@ -2181,14 +2503,14 @@ lead to the inference that it holds promise.
                 return Et;
             }
         \end{minted}
-    \end{subfigure}
-    \caption{$L_{out}$ Optimization For Single \e}
+    \end{minipage}
+    \caption{$L_{out}$ Optimization For Single \e.}
     \label{fig:lout_opt_single_e}
 \end{figure}
 
 \begin{figure}[H]
         \centering
-        \captionsetup{justification=centering}
+        %\captionsetup{justification=centering}
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             int phase_opt(const vector<double>& Louts, int phase_sweep_range){
                 double minrms = 1;
@@ -2212,14 +2534,14 @@ lead to the inference that it holds promise.
                 return opt_phase;
             }
         \end{minted}
-    \caption{$\phi_{lag}$ Optimization For Initial Bunch Design}
+    \caption{$\phi_{lag}$ Optimization For Initial Bunch Design.}
     \label{fig:phlag_opt_n_pass}
 \end{figure}
 
 \begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
-    \begin{subfigure}{\textwidth}
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
+    \begin{minipage}{\textwidth}
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             double vector3d::operator* (const vector3d& other){
                 double dot = 0;
@@ -2229,9 +2551,9 @@ lead to the inference that it holds promise.
                 return dot;
             }
         \end{minted}
-    \end{subfigure}
+    \end{minipage}
 
-    \begin{subfigure}{\textwidth}
+    \begin{minipage}{\textwidth}
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d vector3d::operator% (const vector3d& other){
                 double x_ = (this->y * other.z) - (this->z * other.y);
@@ -2241,14 +2563,14 @@ lead to the inference that it holds promise.
                 return crossed;
             }
         \end{minted}
-    \end{subfigure}
-    \caption{* and \% operators of \textit{vector3d} class}
+    \end{minipage}
+    \caption{* and \% operators of \textit{vector3d} class.}
     \label{fig:vector3d_dot_cross_product}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         bool isInsideHalfSphere(vector3d e_position, double r, vector3d hs_position){
             vector3d relative = e_position - hs_position;       
@@ -2259,13 +2581,13 @@ lead to the inference that it holds promise.
             return false;
         }
     \end{minted}
-\caption{Logic of is \e inside the shape of magnet}
+\caption{Logic of is \e inside the shape of magnet.}
 \label{fig:is_inside_halfsphere}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         vector3d Electron2D::interactB_RK(const MagneticField& B, double time_interval){
             if (B.isInside(pos) == -1){
@@ -2303,7 +2625,7 @@ lead to the inference that it holds promise.
 \end{figure}
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         void Electron2D::interactRK_ActorE(const RFField& E, const MagneticField& B, double time_interval){
             vector3d run_kut_E = interactE_RK(E, time_interval);
@@ -2316,13 +2638,13 @@ lead to the inference that it holds promise.
             move(acc, time_interval/2);
         }
     \end{minted}
-\caption{RK4-1 implemenation of \eEM}
+\caption{RK4-1 implemenation of \eEM.}
 \label{fig:rk1_EM}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void Electron2D::interactRK(RFField& E, MagneticField& B, const double time, double time_interval){
             Electron2D e_dummy;
@@ -2380,13 +2702,13 @@ lead to the inference that it holds promise.
             Et = gamma()*E0;
     }
     \end{minted}
-\caption{RK4-2 implemenation of \eEM}
+\caption{RK4-2 implemenation of \eEM.}
 \label{fig:rk2_EM}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void RhodotronSimulator::_runMT(){
             gun.fireAllWithFireTimesMT();
@@ -2423,7 +2745,7 @@ lead to the inference that it holds promise.
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void Gun::fireAllWithFireTimesMT(){
             std::random_device rd;
@@ -2452,7 +2774,7 @@ lead to the inference that it holds promise.
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void MultiThreadEngine::setupPool( double _time_interval, double _start_time, double _end_time, Gun& gun, 
             CoaxialRFField& RF, MagneticField& B, vector<shared_ptr<vector<shared_ptr<Electron2D>>>>& e_list){
@@ -2480,7 +2802,7 @@ lead to the inference that it holds promise.
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void threadLoop(ThreadArguments thread_arguments){
             uint64_t count = 0;
@@ -2516,7 +2838,7 @@ lead to the inference that it holds promise.
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void UIThreadWork(UIThreadArgs args){
             int UI_WORK_PIECE = SIM_WORK_MASK;
@@ -2584,7 +2906,7 @@ lead to the inference that it holds promise.
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Electron{
             std::vector<ElectronLog> log;
@@ -2627,13 +2949,13 @@ lead to the inference that it holds promise.
             double gamma_inv();
         };
     \end{minted}
-    \caption{Electron class definition}
+    \caption{Electron class definition.}
     \label{fig:e_class}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Bunch{
         private:
@@ -2682,13 +3004,13 @@ lead to the inference that it holds promise.
             void logPaths(vector<DataStorage>& pathStorage, std::string header);
         };
     \end{minted}
-    \caption{Bunch class definition}
+    \caption{Bunch class definition.}
     \label{fig:bunch_class}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Gun{
             double Ein;
@@ -2743,13 +3065,13 @@ lead to the inference that it holds promise.
             void logPaths(vector<vector<DataStorage> >& pathsStorage, std::string pathsPath, std::string header);
         };
     \end{minted}
-    \caption{Gun class definition}
+    \caption{Gun class definition.}
     \label{fig:gun_class}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Simulator{        // E in MV/m,   En in MeV,   B in T,    t in ns
         protected:
@@ -2817,13 +3139,13 @@ lead to the inference that it holds promise.
             shared_ptr<mutex> getUIMutex();
         };
     \end{minted}
-    \caption{Simulator class definition}
+    \caption{Simulator class definition.}
     \label{fig:sim_class}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class RhodotronSimulator : public Simulator{
         private:
@@ -2861,14 +3183,14 @@ lead to the inference that it holds promise.
             void setState(uint8_t state_);
         };
     \end{minted}
-    \caption{RhodotronSimulator class definition}
+    \caption{RhodotronSimulator class definition.}
     \label{fig:rhodosim_class}
 \end{figure}
 
 \begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
-    \begin{subfigure}{\textwidth}
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
+    \begin{minipage}{\textwidth}
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
             class RFField{
             protected:
@@ -2894,9 +3216,9 @@ lead to the inference that it holds promise.
                 virtual void update(double time);
             };
         \end{minted}
-    \end{subfigure}
+    \end{minipage}
 
-    \begin{subfigure}{\textwidth}
+    \begin{minipage}{\textwidth}
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
             class CoaxialRFField : public RFField{
             private:
@@ -2926,8 +3248,8 @@ lead to the inference that it holds promise.
                 CoaxialRFField* child(uint32_t index);
             };
         \end{minted}
-    \end{subfigure}
-    \caption{CoaxialRFField class definition}
+    \end{minipage}
+    \caption{CoaxialRFField class definition.}
     \label{fig:rf_class}
 \end{figure}
 
@@ -2935,7 +3257,7 @@ lead to the inference that it holds promise.
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         Optimal phase with the least RMS : -5
 
@@ -2976,13 +3298,13 @@ lead to the inference that it holds promise.
         Simulation finished in : 632050015 us     ( 632.1 s )
         
     \end{minted}
-\caption{$\phi_{lag}$, $\rho$ \& $L$ optimization at \\$P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=1$ns, $E_{in}=40$KeV}
+\caption{$\phi_{lag}$, $\rho$ \& $L$ optimization at $P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=1$ns, $E_{in}=40$KeV.}
 \label{fig:lout_opt_1ns_Erms}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         Optimal phase with the least RMS : 0
 
@@ -3022,13 +3344,13 @@ lead to the inference that it holds promise.
         Total steps calculated : 12455378454
         Simulation finished in : 631136046 us     ( 631.1 s )        
     \end{minted}
-\caption{$\phi_{lag}$ \& $\rho$ \& $L$ optimization at \\$P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=0.8$ns, $E_{in}=40$KeV}
+\caption{$\phi_{lag}$ \& $\rho$ \& $L$ optimization at $P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=0.8$ns, $E_{in}=40$KeV.}
 \label{fig:lout_opt_08ns_Erms}
 \end{figure}
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{0.9\textwidth}
         \centering
@@ -3040,13 +3362,22 @@ lead to the inference that it holds promise.
         \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_00001dt.png}
         \caption*{$dt=10^{-4}$ns, $\Delta E=0.006$MeV}
     \end{subfigure}
-    \caption{Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T using RK4-2}
+    \caption{Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T using RK4-2.}
+    \label{fig:mag_rk_render}
+\end{figure} \fi
+\begin{figure}
+    \centering
+    \subfigure[\centering $dt=10^{-2}$ns, $\Delta E=1.047$MeV]{{\includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_001dt.png} }}%
+    \vspace{20pt}\newline
+    \subfigure[\centering $dt=10^{-4}$ns, $\Delta E=0.006$MeV]{{\includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_00001dt.png} }}%
+    \vspace{20pt}
+    \caption{\centering Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T using RK4-2.} 
     \label{fig:mag_rk_render}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny, style=staroffice]{c++}
         #            Rhodotron Simulation Configuration File
         # ================================================================
@@ -3115,7 +3446,7 @@ lead to the inference that it holds promise.
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         -- Simulation Configuration --
         Emax : 0.96     MV/m
@@ -3144,9 +3475,9 @@ lead to the inference that it holds promise.
 
 \chapter{Data and Graphs}\label{appendix:data_graph}
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{0.9\textwidth}
         \centering
@@ -3157,13 +3488,22 @@ lead to the inference that it holds promise.
         \centering
         \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim_3.png}
     \end{subfigure}
-    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns.}
+    \label{fig:lf_rk1_rk2_comparison}
+\end{figure} \fi
+\begin{figure}
+    \centering
+    \subfigure{{\includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-E_3.png} }}%
+    \vspace{20pt}\newline
+    \subfigure{{\includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim_3.png} }}%
+    \vspace{20pt}
+    \caption{\centering Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns.} 
     \label{fig:lf_rk1_rk2_comparison}
 \end{figure}
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{0.9\textwidth}
         \centering
@@ -3174,12 +3514,22 @@ lead to the inference that it holds promise.
         \centering
         \includegraphics[width=\linewidth]{./figures/analiz/staticE_lf_rk2_dt-Tsim.png}
     \end{subfigure}
-    \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns}
+    \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns.}
+    \label{fig:lf_rk2_par_stat_E_comparison}
+\end{figure}\fi 
+\begin{figure}
+    \centering
+    \subfigure{{\includegraphics[width=\linewidth]{./figures/analiz/staticE_lf_rk2_dt-E.png} }}%
+    \vspace{20pt}\newline
+    \subfigure{{\includegraphics[width=\linewidth]{./figures/analiz/staticE_lf_rk2_dt-Tsim.png}}}%
+    \vspace{20pt}
+    \caption{\centering Comparing Leap-frog, RK4-2 performance on \eE interaction $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns.} 
     \label{fig:lf_rk2_par_stat_E_comparison}
 \end{figure}
 
 \begin{table}[H]
     \centering
+    \caption{\textit{Leap-frog} data on $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns.}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -3205,12 +3555,12 @@ lead to the inference that it holds promise.
         1e-05 & 0.001094     & 9.441138  & 0.027266 \\\hline
         1e-06 & 0.000109     & 93.888320 & 0.290820 \\ \hline
     \end{tabular}
-    \caption{\textit{Leap-frog} data on \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
     \label{tab:lf_mag_table}
 \end{table}
 
 \begin{table}[H]
     \centering
+    \caption{\textit{RK4-2} data on $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns.}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -3236,12 +3586,12 @@ lead to the inference that it holds promise.
         1e-05 & 0.000641     & 21.325229  & 0.011661 \\\hline
         1e-06 & 0.000064     & 212.824121 & 0.040967 \\\hline
     \end{tabular}
-    \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
     \label{tab:rk2_mag_table}
 \end{table}
 
 \begin{table}[H]
     \centering
+    \caption{\textit{LF} data on $E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns.}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -3268,12 +3618,12 @@ lead to the inference that it holds promise.
     1.00E-05 & 0.000022     & 12.39871 & 0.039575 \\\hline
     1.00E-06 & 0.000003     & 123.318  & 0.299559 \\\hline
     \end{tabular}
-    \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:lf_statE_table}
 \end{table}
 
 \begin{table}[H]
     \centering
+    \caption{\textit{RK4-2} data on $E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns.}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -3300,14 +3650,13 @@ lead to the inference that it holds promise.
         1.00E-05 & 0.000016     & 40.0818  & 0.120627 \\\hline
         1.00E-06 & 0.000003     & 400.2421 & 0.554172 \\\hline 
     \end{tabular}
-    \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:rk2_statE_table}
 \end{table}
 
 
 \begin{table}[H]
     \centering
-    \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m, $t_{end}=6$ns}
+    \caption{\textit{LF} data on $E_{in}=1$MeV, $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m, $t_{end}=6$ns.}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -3339,6 +3688,7 @@ lead to the inference that it holds promise.
 
 \begin{table}[H]
     \centering
+    \caption{\textit{RK4-2} data on $E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns.}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -3365,7 +3715,6 @@ lead to the inference that it holds promise.
         1.00E-05 & 0.000093     & 34.93332 & 0.391012 \\\hline
         1.00E-06 & 0.000011     & 348.494  & 3.237203 \\\hline
     \end{tabular}
-    \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:rk2_statE90_table}
 \end{table}
 
@@ -3402,14 +3751,14 @@ lead to the inference that it holds promise.
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_sweep_running.png}
-    \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ sweep running.}
+    \caption{Sweep frame of \textit{GUI}  $\phi_{lag}$ sweep running.}
     \label{fig:gui_sweep_running}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_sweep_sR_3.png}
-    \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ sweep $\sigma R$ result.}
+    \caption{Sweep frame of \textit{GUI}  $\phi_{lag}$ sweep $\sigma R$ result.}
     \label{fig:gui_sweep_sR}
 \end{figure}
 % START OF BIBLIOGRAPHY

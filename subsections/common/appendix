@@ -3,8 +3,8 @@
 \chapter{Intermediate Codes} \label{appendix:intermediate_codes}
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
-    \begin{subfigure}{\textwidth}
+    %\captionsetup{justification=centering}
+    \begin{minipage}{\textwidth}
         \centering
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             for(double i = 2; i < 9; i += dT_out){
@@ -17,9 +17,9 @@
                 t_dum = t;
             }
         \end{minted}
-    \end{subfigure} 
+    \end{minipage} 
     \\
-    \begin{subfigure}{\textwidth}
+    \begin{minipage}{\textwidth}
         \centering
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm,  fontsize=\scriptsize]{c++}
             double gecis(double r_pos, double vel, double Et, double &t){
@@ -41,14 +41,14 @@
                 return Et;
             }
         \end{minted}
-    \end{subfigure}
-    \caption{$L_{out}$ Optimization For Single \e}
+    \end{minipage}
+    \caption{$L_{out}$ Optimization For Single \e.}
     \label{fig:lout_opt_single_e}
 \end{figure}
 
 \begin{figure}[H]
         \centering
-        \captionsetup{justification=centering}
+        %\captionsetup{justification=centering}
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             int phase_opt(const vector<double>& Louts, int phase_sweep_range){
                 double minrms = 1;
@@ -72,14 +72,14 @@
                 return opt_phase;
             }
         \end{minted}
-    \caption{$\phi_{lag}$ Optimization For Initial Bunch Design}
+    \caption{$\phi_{lag}$ Optimization For Initial Bunch Design.}
     \label{fig:phlag_opt_n_pass}
 \end{figure}
 
 \begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
-    \begin{subfigure}{\textwidth}
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
+    \begin{minipage}{\textwidth}
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             double vector3d::operator* (const vector3d& other){
                 double dot = 0;
@@ -89,9 +89,9 @@
                 return dot;
             }
         \end{minted}
-    \end{subfigure}
+    \end{minipage}
 
-    \begin{subfigure}{\textwidth}
+    \begin{minipage}{\textwidth}
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d vector3d::operator% (const vector3d& other){
                 double x_ = (this->y * other.z) - (this->z * other.y);
@@ -101,14 +101,14 @@
                 return crossed;
             }
         \end{minted}
-    \end{subfigure}
-    \caption{* and \% operators of \textit{vector3d} class}
+    \end{minipage}
+    \caption{* and \% operators of \textit{vector3d} class.}
     \label{fig:vector3d_dot_cross_product}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         bool isInsideHalfSphere(vector3d e_position, double r, vector3d hs_position){
             vector3d relative = e_position - hs_position;       
@@ -119,13 +119,13 @@
             return false;
         }
     \end{minted}
-\caption{Logic of is \e inside the shape of magnet}
+\caption{Logic of is \e inside the shape of magnet.}
 \label{fig:is_inside_halfsphere}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         vector3d Electron2D::interactB_RK(const MagneticField& B, double time_interval){
             if (B.isInside(pos) == -1){
@@ -163,7 +163,7 @@
 \end{figure}
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         void Electron2D::interactRK_ActorE(const RFField& E, const MagneticField& B, double time_interval){
             vector3d run_kut_E = interactE_RK(E, time_interval);
@@ -176,13 +176,13 @@
             move(acc, time_interval/2);
         }
     \end{minted}
-\caption{RK4-1 implemenation of \eEM}
+\caption{RK4-1 implemenation of \eEM.}
 \label{fig:rk1_EM}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void Electron2D::interactRK(RFField& E, MagneticField& B, const double time, double time_interval){
             Electron2D e_dummy;
@@ -240,13 +240,13 @@
             Et = gamma()*E0;
     }
     \end{minted}
-\caption{RK4-2 implemenation of \eEM}
+\caption{RK4-2 implemenation of \eEM.}
 \label{fig:rk2_EM}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void RhodotronSimulator::_runMT(){
             gun.fireAllWithFireTimesMT();
@@ -283,7 +283,7 @@
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void Gun::fireAllWithFireTimesMT(){
             std::random_device rd;
@@ -312,7 +312,7 @@
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void MultiThreadEngine::setupPool( double _time_interval, double _start_time, double _end_time, Gun& gun, 
             CoaxialRFField& RF, MagneticField& B, vector<shared_ptr<vector<shared_ptr<Electron2D>>>>& e_list){
@@ -340,7 +340,7 @@
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void threadLoop(ThreadArguments thread_arguments){
             uint64_t count = 0;
@@ -376,7 +376,7 @@
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void UIThreadWork(UIThreadArgs args){
             int UI_WORK_PIECE = SIM_WORK_MASK;
@@ -444,7 +444,7 @@
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Electron{
             std::vector<ElectronLog> log;
@@ -487,13 +487,13 @@
             double gamma_inv();
         };
     \end{minted}
-    \caption{Electron class definition}
+    \caption{Electron class definition.}
     \label{fig:e_class}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Bunch{
         private:
@@ -542,13 +542,13 @@
             void logPaths(vector<DataStorage>& pathStorage, std::string header);
         };
     \end{minted}
-    \caption{Bunch class definition}
+    \caption{Bunch class definition.}
     \label{fig:bunch_class}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Gun{
             double Ein;
@@ -603,13 +603,13 @@
             void logPaths(vector<vector<DataStorage> >& pathsStorage, std::string pathsPath, std::string header);
         };
     \end{minted}
-    \caption{Gun class definition}
+    \caption{Gun class definition.}
     \label{fig:gun_class}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Simulator{        // E in MV/m,   En in MeV,   B in T,    t in ns
         protected:
@@ -677,13 +677,13 @@
             shared_ptr<mutex> getUIMutex();
         };
     \end{minted}
-    \caption{Simulator class definition}
+    \caption{Simulator class definition.}
     \label{fig:sim_class}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class RhodotronSimulator : public Simulator{
         private:
@@ -721,14 +721,14 @@
             void setState(uint8_t state_);
         };
     \end{minted}
-    \caption{RhodotronSimulator class definition}
+    \caption{RhodotronSimulator class definition.}
     \label{fig:rhodosim_class}
 \end{figure}
 
 \begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
-    \begin{subfigure}{\textwidth}
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
+    \begin{minipage}{\textwidth}
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
             class RFField{
             protected:
@@ -754,9 +754,9 @@
                 virtual void update(double time);
             };
         \end{minted}
-    \end{subfigure}
+    \end{minipage}
 
-    \begin{subfigure}{\textwidth}
+    \begin{minipage}{\textwidth}
         \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
             class CoaxialRFField : public RFField{
             private:
@@ -786,8 +786,8 @@
                 CoaxialRFField* child(uint32_t index);
             };
         \end{minted}
-    \end{subfigure}
-    \caption{CoaxialRFField class definition}
+    \end{minipage}
+    \caption{CoaxialRFField class definition.}
     \label{fig:rf_class}
 \end{figure}
 
@@ -795,7 +795,7 @@
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         Optimal phase with the least RMS : -5
 
@@ -836,13 +836,13 @@
         Simulation finished in : 632050015 us     ( 632.1 s )
         
     \end{minted}
-\caption{$\phi_{lag}$, $\rho$ \& $L$ optimization at \\$P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=1$ns, $E_{in}=40$KeV}
+\caption{$\phi_{lag}$, $\rho$ \& $L$ optimization at $P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=1$ns, $E_{in}=40$KeV.}
 \label{fig:lout_opt_1ns_Erms}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         Optimal phase with the least RMS : 0
 
@@ -882,13 +882,13 @@
         Total steps calculated : 12455378454
         Simulation finished in : 631136046 us     ( 631.1 s )        
     \end{minted}
-\caption{$\phi_{lag}$ \& $\rho$ \& $L$ optimization at \\$P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=0.8$ns, $E_{in}=40$KeV}
+\caption{$\phi_{lag}$ \& $\rho$ \& $L$ optimization at $P=12$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=0.8$ns, $E_{in}=40$KeV.}
 \label{fig:lout_opt_08ns_Erms}
 \end{figure}
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{0.9\textwidth}
         \centering
@@ -900,13 +900,22 @@
         \includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_00001dt.png}
         \caption*{$dt=10^{-4}$ns, $\Delta E=0.006$MeV}
     \end{subfigure}
-    \caption{Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T using RK4-2}
+    \caption{Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T using RK4-2.}
+    \label{fig:mag_rk_render}
+\end{figure} \fi
+\begin{figure}
+    \centering
+    \subfigure[\centering $dt=10^{-2}$ns, $\Delta E=1.047$MeV]{{\includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_001dt.png} }}%
+    \vspace{20pt}\newline
+    \subfigure[\centering $dt=10^{-4}$ns, $\Delta E=0.006$MeV]{{\includegraphics[width=\linewidth]{./figures/rhodoSim/mag_rk_00001dt.png} }}%
+    \vspace{20pt}
+    \caption{\centering Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T using RK4-2.} 
     \label{fig:mag_rk_render}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny, style=staroffice]{c++}
         #            Rhodotron Simulation Configuration File
         # ================================================================
@@ -975,7 +984,7 @@
 
 \begin{figure}[H]
     \centering
-    \captionsetup{justification=centering}
+    %\captionsetup{justification=centering}
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         -- Simulation Configuration --
         Emax : 0.96     MV/m
@@ -1004,9 +1013,9 @@
 
 \chapter{Data and Graphs}\label{appendix:data_graph}
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{0.9\textwidth}
         \centering
@@ -1017,13 +1026,22 @@
         \centering
         \includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim_3.png}
     \end{subfigure}
-    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction\\ $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
+    \caption{Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns.}
+    \label{fig:lf_rk1_rk2_comparison}
+\end{figure} \fi
+\begin{figure}
+    \centering
+    \subfigure{{\includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-E_3.png} }}%
+    \vspace{20pt}\newline
+    \subfigure{{\includegraphics[width=\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim_3.png} }}%
+    \vspace{20pt}
+    \caption{\centering Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns.} 
     \label{fig:lf_rk1_rk2_comparison}
 \end{figure}
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{0.9\textwidth}
         \centering
@@ -1034,12 +1052,22 @@
         \centering
         \includegraphics[width=\linewidth]{./figures/analiz/staticE_lf_rk2_dt-Tsim.png}
     \end{subfigure}
-    \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction\\ $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns}
+    \caption{Comparing Leap-frog, RK4-2 performance on \eE interaction $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns.}
+    \label{fig:lf_rk2_par_stat_E_comparison}
+\end{figure}\fi 
+\begin{figure}
+    \centering
+    \subfigure{{\includegraphics[width=\linewidth]{./figures/analiz/staticE_lf_rk2_dt-E.png} }}%
+    \vspace{20pt}\newline
+    \subfigure{{\includegraphics[width=\linewidth]{./figures/analiz/staticE_lf_rk2_dt-Tsim.png}}}%
+    \vspace{20pt}
+    \caption{\centering Comparing Leap-frog, RK4-2 performance on \eE interaction $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns.} 
     \label{fig:lf_rk2_par_stat_E_comparison}
 \end{figure}
 
 \begin{table}[H]
     \centering
+    \caption{\textit{Leap-frog} data on $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns.}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -1065,12 +1093,12 @@
         1e-05 & 0.001094     & 9.441138  & 0.027266 \\\hline
         1e-06 & 0.000109     & 93.888320 & 0.290820 \\ \hline
     \end{tabular}
-    \caption{\textit{Leap-frog} data on \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
     \label{tab:lf_mag_table}
 \end{table}
 
 \begin{table}[H]
     \centering
+    \caption{\textit{RK4-2} data on $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns.}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -1096,12 +1124,12 @@
         1e-05 & 0.000641     & 21.325229  & 0.011661 \\\hline
         1e-06 & 0.000064     & 212.824121 & 0.040967 \\\hline
     \end{tabular}
-    \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
     \label{tab:rk2_mag_table}
 \end{table}
 
 \begin{table}[H]
     \centering
+    \caption{\textit{LF} data on $E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns.}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -1128,12 +1156,12 @@
     1.00E-05 & 0.000022     & 12.39871 & 0.039575 \\\hline
     1.00E-06 & 0.000003     & 123.318  & 0.299559 \\\hline
     \end{tabular}
-    \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:lf_statE_table}
 \end{table}
 
 \begin{table}[H]
     \centering
+    \caption{\textit{RK4-2} data on $E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns.}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -1160,14 +1188,13 @@
         1.00E-05 & 0.000016     & 40.0818  & 0.120627 \\\hline
         1.00E-06 & 0.000003     & 400.2421 & 0.554172 \\\hline 
     \end{tabular}
-    \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:rk2_statE_table}
 \end{table}
 
 
 \begin{table}[H]
     \centering
-    \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m, $t_{end}=6$ns}
+    \caption{\textit{LF} data on $E_{in}=1$MeV, $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m, $t_{end}=6$ns.}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -1199,6 +1226,7 @@
 
 \begin{table}[H]
     \centering
+    \caption{\textit{RK4-2} data on $E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns.}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -1225,7 +1253,6 @@
         1.00E-05 & 0.000093     & 34.93332 & 0.391012 \\\hline
         1.00E-06 & 0.000011     & 348.494  & 3.237203 \\\hline
     \end{tabular}
-    \caption{\textit{RK4-2} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:rk2_statE90_table}
 \end{table}
 
@@ -1262,13 +1289,13 @@
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_sweep_running.png}
-    \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ sweep running.}
+    \caption{Sweep frame of \textit{GUI}  $\phi_{lag}$ sweep running.}
     \label{fig:gui_sweep_running}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_sweep_sR_3.png}
-    \caption{Sweep frame of \textit{GUI} \\ $\phi_{lag}$ sweep $\sigma R$ result.}
+    \caption{Sweep frame of \textit{GUI}  $\phi_{lag}$ sweep $\sigma R$ result.}
     \label{fig:gui_sweep_sR}
 \end{figure}

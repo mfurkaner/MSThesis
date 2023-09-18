@@ -1,0 +1,27 @@
+\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{{\tt #1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{}\fi
+
+\bibitem{IEEEexample:BSTcontrol}
+
+
+\bibitem{espinoza2012inverse}
+Espinoza, M.~S., J.~Goncalves, P.~Leitao, J.~L.~G. Sanchez and A.~Herreros,
+  \enquote{Inverse Kinematics of a 10 DOF modular hyper-redundant robot
+  resorting to exhaustive and error-optimization methods: A comparative study},
+  {\em Robotics Symposium and Latin American Robotics Symposium (SBR-LARS),
+  2012 Brazilian\/}, pp. 125--130, IEEE, 2012.
+
+\bibitem{espinoza2012optimization}
+Espinoza, M.~S., A.~I. Pereira and J.~Gon{\c{c}}alves, \enquote{Optimization
+  methods for hyper-redundant robots' inverse kinematics in biomedical
+  applications}, {\em AIP Conference Proceedings\/}, Vol. 1479, p. 818, 2012.
+
+\bibitem{kn:Tha01}
+Tham, M., \enquote{Writing Research Theses or Dissertations}, , May 2001,
+  \urlprefix\url{http://lorien.ncl.ac.uk/ming/dept/Tips/writing/thesis/thesis-intro.htm},
+  university of Newcastle Upon Tyne.
+
+\end{thebibliography}

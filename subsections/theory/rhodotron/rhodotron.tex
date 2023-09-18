@@ -8,7 +8,8 @@
 \usepackage{svg}
 \usepackage{mathtools}
 \usepackage{tabu}
-\usepackage{subcaption}
+%\usepackage{subcaption}
+\usepackage{subfigure}
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 
 \begin{document}
@@ -63,7 +64,7 @@ Special relativity governs the increase in mass and energy of the particles as t
 \begin{figure}[H]
     \centering
     \includegraphics[width=.9\textwidth]{../../../figures/kahvelab_linac.png}
-    \caption{A linear proton accelerator in KAHVELab \cite{kahvelab_linac}}
+    \caption{A linear proton accelerator in KAHVELab. \cite{kahvelab_linac}}
 \end{figure}
 
 \subsection{Acceleration Cavities} \label{sec:theory_cavities}
@@ -84,7 +85,7 @@ These oscillating fields then transfer energy to the passing particles, increasi
 \begin{figure}[H]
     \centering
     \includegraphics[width=.75\textwidth]{../../../figures/pill_box.jpeg}
-    \caption{An RF cavity used in KAHVELab}
+    \caption{An RF cavity used in KAHVELab.}
 \end{figure}
 
 In addition to accelerating the particles, RF cavities are often designed to provide focusing forces. 
@@ -107,10 +108,10 @@ vector and the magnetic field direction. This force causes the particle's trajec
 Resonance frequency is the frequency in which the electromagnetic fields form standing waves in a cavity.
 It is determined by the physical dimensions and the speed of light in the cavity's medium. 
 In a rectangular cavity for example, the resonance frequency can be calculated by
-\begin{equation}
-    f_{klm} = \frac{c}{2\pi \sqrt{\mu_r \epsilon_r}} \sqrt{(\frac{k}{w})^2 + (\frac{l}{u})^2 + (\frac{m}{v})^2}
+\vspace{-10pt}\begin{equation}
+    f_{klm} = \frac{c}{2\pi \sqrt{\mu_r \epsilon_r}} \sqrt{(\frac{k}{w})^2 + (\frac{l}{u})^2 + (\frac{m}{v})^2}  ,
     \label{eq:f_r_rec}
-\end{equation}
+\vspace{-10pt}\end{equation}
 where $w$, $u$, $v$ are the dimensions of the cavity, $\mu_r$ and $\epsilon_r$ are relative permability and permittivity of the cavity respectably.
 
 \subsubsection{Bunch}
@@ -132,9 +133,9 @@ It describes the difference in phase angles within their respective cycles, betw
 The shunt impedance of an RF accelerator is a measure of the efficiency 
 at which the accelerator can transform the supplied RF power into acceleration.
 It is defined as
-\begin{equation} \label{eq:shunt}
-    Z_s = \frac{V_{acc}^2}{P_{diss}}
-\end{equation}
+\vspace{-10pt}\begin{equation} \label{eq:shunt}
+    Z_s = \frac{V_{acc}^2}{P_{diss}}  ,
+\vspace{-10pt}\end{equation}
 where $V_{acc}$ is the accelerating potential in which the particle is subjected to, 
 $P_{diss}$ is the power dissipated on the cavity walls. 
 An example \textit{shunt impedance} calculation can be found in \fromsec{cavity_of_a_rhodotron}.
@@ -178,9 +179,9 @@ This process is explained further in the \fromfigf{rhod_cycle_1}{rhod_cycle_2}{r
 Coaxial design of the cavity concentrates the electric field, while the magnetic field diminishes in the middle of the cylinders. 
 Therefore the electrons are injected and accelerated in the plane of zero magnetic field where the electric field is strongest. (\fromfig{rhodo_cavity_field_dist})
 
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=centering}
-    \captionsetup{justification=centering}
+\iffalse \begin{figure}[H]
+    %\captionsetup[subfigure]{justification=centering}
+    %\captionsetup{justification=centering}
     \centering
     \begin{subfigure}{0.45\textwidth}
         \centering
@@ -194,94 +195,99 @@ Therefore the electrons are injected and accelerated in the plane of zero magnet
     \end{subfigure}
     \caption{$\vecthreeBF{E}$ and $\vecthreeBF{B}$ eigenmode field distributions inside a coaxial cavity.}
     \label{fig:rhodo_cavity_field_dist}
+\end{figure} \fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering $\vecthreeBF{E}$ field]{{\includegraphics[width=0.45\textwidth]{../../../figures/cst/cavity_E_field_dist.png} }}%
+    \qquad\subfigure[\centering $\vecthreeBF{B}$ field]{{\includegraphics[width=0.45\textwidth]{../../../figures/cst/cavity_B_field_dist.png} }}%
+    \vspace{20pt}
+    \caption{$\vecthreeBF{E}$ and $\vecthreeBF{B}$ eigenmode field distributions inside a coaxial cavity.}
+    \label{fig:rhodo_cavity_field_dist}
 \end{figure}
 For a cavity defined by the volume between two coaxial cylinders of equal lengths ($h$) with radii of $R_1$ and $R_2$, where $R_1 < R_2$, located at the origin (\fromfig{int_curve}),
 first eigenmode solution of the $E$ and $B$ fields are \cite{rhodo_pottier}
-\begin{eqnarray}
-    E &=& \frac{E_0}{r} \cos(\frac{\pi z}{h}) \sin(\omega t + \phi) \\
-    B &=& \frac{B_0}{r} \sin(\frac{\pi z}{h}) \cos(\omega t + \phi)
-\end{eqnarray}
+\vspace{-10pt}\begin{eqnarray}
+    E &=& \frac{E_0}{r} \cos(\frac{\pi z}{h}) \sin(\omega t + \phi)  , \\
+    B &=& \frac{B_0}{r} \sin(\frac{\pi z}{h}) \cos(\omega t + \phi)  ,
+\vspace{-10pt}\end{eqnarray}
 where $\omega=2\pi f$, $f$ is the resonance frequency.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=.6\textwidth]{../../../figures/illustrations/rhodo_integral_curve.pdf}
-    \caption{Illustration of a simple coaxial cavity with the curve \textbf{C} in \fromeq{p_diss_C_curve}}
+    \caption{Illustration of a simple coaxial cavity with the curve \textbf{C} in \fromeq{p_diss_C_curve}.}
     \label{fig:int_curve}
 \end{figure}
-Because acceleration potential is located on the $z=0$ plane and $\vecthreeBF{E} \parallel \hat{r}$, $V_{acc}$ can be found by the following equation:
-\begin{eqnarray} 
+Because acceleration potential is located on the $z=0$ plane and $\vecthreeBF{E} \parallel \hat{r}$, $V_{acc}$ can be found by
+\vspace{-10pt}\begin{eqnarray} 
     V_{acc} &=& 2 \int_{R_1}^{R_2} |E|^2 dr \\
             &=& 2 E_0 \int_{R_1}^{R_2} \frac{dr}{r} \\
-            &=& 2 E_0 \ln(\frac{R_2}{R_1}) \label{eq:v_acc}
-\end{eqnarray}
-Dissipated power $P_{diss}$, on the other hand, can be calculated as follows \cite{rf}:
-\begin{eqnarray} 
+            &=& 2 E_0 \ln(\frac{R_2}{R_1}). \label{eq:v_acc}
+\vspace{-10pt}\end{eqnarray}
+Dissipated power $P_{diss}$, on the other hand, can be calculated as \cite{rf}
+\vspace{-10pt}\begin{eqnarray} 
     P_{diss} &=& \frac{1}{2} \int \int \rho_s | H_{||} |^2 dA \nonumber \\
-             &=& \frac{\rho_s}{2\mu_0^2} \int_0^{2\pi} \int_C | B_{||} |^2 r ds d\theta \label{eq:p_diss_C_curve}
-\end{eqnarray}
+             &=& \frac{\rho_s}{2\mu_0^2} \int_0^{2\pi} \int_C | B_{||} |^2 r ds d\theta . \label{eq:p_diss_C_curve}
+\vspace{-10pt}\end{eqnarray}
 where $\rho_s$ is the areal skin resistivity ( $\rho_s \approx 2.51 \times 10^{-7} f^{1/2}$ for copper \cite{rhodo_pottier} ), $B=\mu H$, $\mu$ is permeability, $\mu_0$ is the vacuum permability. 
 Integral curve \textbf{C} is defined as the circumference of cylindrically symmetrical cross sectional area of the cavity (\fromfig{int_curve}).
 This curve can be seperated to its line components and total power dissipation of this curve, $P_C$ will be equal to sum of the power dissipated in these lines.
-Since $\vecthreeBF{B}$ is always parallel to the surface we can use $\vecthreeBF{B}$ directly:
-\begin{eqnarray}
+Since $\vecthreeBF{B}$ is always parallel to the surface we can use $\vecthreeBF{B}$ directly as
+\vspace{-10pt}\begin{eqnarray}
     P_{diss} &=& \frac{\rho_s}{2\mu_0^2} \int_0^{2\pi} (
                    2\int_{0}^{\frac{h}{2}} |B|^2 r dz \Big|_{r=R_1}
                  + 2\int_{0}^{\frac{h}{2}} |B|^2 r dz \Big|_{r=R_2} 
                  + 2\int_{R_1}^{R_2} |B|^2 r dr \Big|_{z=\frac{h}{2}})d\theta \nonumber\\
-             %&=& \frac{\rho_s B_0^2 \cos^2(\omega t + \phi)}{2\mu_0^2} \int_0^{2\pi} 
              &=& \frac{\rho_s}{2\mu_0^2} \int_0^{2\pi} (2I_A + 2I_B + 2I_C)d\theta 
-                 = \frac{2\rho_s \pi}{\mu_0^2}(I_A + I_B + I_C)
-\end{eqnarray}
-\begin{eqnarray}
-    I_A = \int_{0}^{\frac{h}{2}} |B|^2 r dz \Big|_{r=R_1} &=& B_0^2 \frac{h}{4R_1} \\
-    I_B = \int_{0}^{\frac{h}{2}} |B|^2 r dz \Big|_{r=R_2} &=& B_0^2 \frac{h}{4R_2} \\
-    I_C = \int_{R_1}^{R_2} |B|^2 r dr \Big|_{z=\frac{h}{2}} &=& B_0^2 \ln(\frac{R_2}{R_1})
-\end{eqnarray}
-inserting $H_0=B_0/\mu_0$, finally we have the dissipated power:
-\begin{equation} \label{eq:p_diss}
-    P_{diss} = \rho_s \pi H_o ( \frac{h}{2R_1} + \frac{h}{2R_2} + 2\ln(\frac{R_2}{R_1}) )
-\end{equation}
-Therefore, from \fromeq{shunt}, using \fromeqs{v_acc}{p_diss} also $E_0/H_0 = Z_0 \approx 120 \pi$:
-\begin{eqnarray}
+                 = \frac{2\rho_s \pi}{\mu_0^2}(I_A + I_B + I_C)   ,\\
+    I_A &=& \int_{0}^{\frac{h}{2}} |B|^2 r dz \Big|_{r=R_1} = B_0^2 \frac{h}{4R_1}   ,\\
+    I_B &=& \int_{0}^{\frac{h}{2}} |B|^2 r dz \Big|_{r=R_2} = B_0^2 \frac{h}{4R_2}   ,\\
+    I_C &=& \int_{R_1}^{R_2} |B|^2 r dr \Big|_{z=\frac{h}{2}} = B_0^2 \ln(\frac{R_2}{R_1}) .
+\vspace{-10pt}\end{eqnarray}
+Inserting $H_0=B_0/\mu_0$, finally we have the dissipated power
+\vspace{-10pt}\begin{equation} \label{eq:p_diss}
+    P_{diss} = \rho_s \pi H_o ( \frac{h}{2R_1} + \frac{h}{2R_2} + 2\ln(\frac{R_2}{R_1}) ).
+\vspace{-10pt}\end{equation}
+Therefore, from \fromeq{shunt}, using \fromeqs{v_acc}{p_diss} also $E_0/H_0 = Z_0 \approx 120 \pi$ we have
+\vspace{-10pt}\begin{eqnarray}
     Z_s &=& \frac{4E_0^2}{H_0^2 \pi \rho_s} \frac{ \ln^2(\frac{R_2}{R_1})}{(\frac{h}{2R_1} + \frac{h}{2R_2} + 2 \ln(\frac{R_2}{R_1}))} \\
-        &=& \frac{8 \pi 60^2}{\rho_s} \frac{ \ln^2(\frac{R_2}{R_1})}{(\frac{h}{4}(\frac{1}{R_1} + \frac{1}{R_2}) + \ln(\frac{R_2}{R_1}))}
-\end{eqnarray}
+        &=& \frac{8 \pi 60^2}{\rho_s} \frac{ \ln^2(\frac{R_2}{R_1})}{(\frac{h}{4}(\frac{1}{R_1} + \frac{1}{R_2}) + \ln(\frac{R_2}{R_1}))}   ,
+\vspace{-10pt}\end{eqnarray}
 where, time dependencies have been removed from $\vecthreeBF{E}$ and $\vecthreeBF{B}$ 
 and the maximum values for $V_{acc}$ and $P_{diss}$ have been used. 
 However, particles do not interact with constant $\vecthreeBF{E}$ field during acceleration. 
-Therefore, a more useful parameter called \textit{effective shunt impedance} can be defined:
-\begin{equation}
-    Z_{se} = Z_s T^2
-\end{equation}
+Therefore, a more useful parameter called \textit{effective shunt impedance} can be defined as
+\vspace{-10pt}\begin{equation}
+    Z_{se} = Z_s T^2  ,
+\vspace{-10pt}\end{equation}
 where $T$ is the \textit{transit time factor}, a correctional coefficent that contain the changing field effects during acceleration.
-For a relativistic electron crossing the axis at time 0, $T$ can be found by \cite{rhodo_pottier}:
-\begin{eqnarray}
-    T &=& \frac{S_i(\frac{2 \pi R_2}{\lambda}) - S_i(\frac{2 \pi R_1}{\lambda})}{\ln(\frac{R_2}{R_1})} \\
-    S_i(\theta) &=& \int_0^{\theta} \frac{\sin(x)}{x} dx
-\end{eqnarray}
-for a relativistic electron crossing the axis at $2\pi f t_0 = \phi$ on the other hand, $T$ needs to be multiplied by $\cos(\phi)$:
-\begin{equation}
-    T(\phi) = T \cos(\phi)
-\end{equation} 
+For a relativistic electron crossing the axis at time 0, $T$ can be found by \cite{rhodo_pottier}
+\vspace{-10pt}\begin{eqnarray}
+    T &=& \frac{S_i(\frac{2 \pi R_2}{\lambda}) - S_i(\frac{2 \pi R_1}{\lambda})}{\ln(\frac{R_2}{R_1})}   ,\\
+    S_i(\theta) &=& \int_0^{\theta} \frac{\sin(x)}{x} dx .
+\vspace{-10pt}\end{eqnarray}
+For a relativistic electron crossing the axis at $2\pi f t_0 = \phi$ on the other hand, $T$ needs to be multiplied by $\cos(\phi)$ as
+\vspace{-10pt}\begin{equation}
+    T(\phi) = T \cos(\phi) .
+\vspace{-10pt}\end{equation} 
 Putting all these calculations together, energy gain of a relativistic electron, passing the origin at $\phi / \omega$ as calculated by \textit{J. Pottier} is \cite{rhodo_pottier}
-\begin{eqnarray}
+\vspace{-10pt}\begin{eqnarray}
     \Delta E &=& q V_{acc}^{ef} \\
-    \Delta E &=& q Z_{se}^{1/2}P_{diss}^{1/2} \cos(\phi)
-\end{eqnarray}
+             &=& q Z_{se}^{1/2}P_{diss}^{1/2} \cos(\phi)  ,
+\vspace{-10pt}\end{eqnarray}
 where $ V_{acc}^{ef} = V_{acc} T(\phi)$ is the effective accelerating potential.
 If $\Delta E$ is taken in \textit{MeV}, $Z_{se}$ in $M\Omega$ and $P_{diss}$ in \textit{MW}, this equality becomes
-\begin{equation} \label{eq:W_gain_each_pass_pottier}
-    \Delta E = Z_{se}^{1/2}P_{diss}^{1/2} \cos(\phi) \quad MeV
-\end{equation}
+\vspace{-10pt}\begin{equation} \label{eq:W_gain_each_pass_pottier}
+    \Delta E = Z_{se}^{1/2}P_{diss}^{1/2} \cos(\phi) \quad MeV .
+\vspace{-10pt}\end{equation}
 With the expectation that the electrons will accelerate to speeds $\approx c$ after the first pass, a rhodotron cavity is designed so that the length of the path between successive passes is an integer multiple of $\lambda$, wavelength of the RF field ($l=p\lambda \label{eq:lpl}$).
 This constraint helps with  phase stability and synchronization of the beam.
 
-In the table below, optimized characteristics of a rhodotron cavity can be observed. 
+In the \fromfig{pottier_table1}, optimized characteristics of a rhodotron cavity can be observed. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=.9\textwidth]{../../../figures/pottier_table1.png}
-    \caption{Optimized characteristics of a rhodotron cavity \cite{rhodo_pottier}}
+    \caption{Optimized characteristics of a rhodotron cavity. \cite{rhodo_pottier}}
     \label{fig:pottier_table1}
 \end{figure}
 Here, $p$ is the integer multiplier in the equation ($l=p\lambda$) mentioned above, $R_1$ is the radius of the inner cylinder, $R_2$ is the radius of the outer cylinder, 
@@ -291,38 +297,38 @@ Considering $Z_{sp} \propto \lambda^{1/2}$, \,\,\, $\Delta E \propto \lambda^{1/
 \begin{figure}[H]
     \centering
     \includegraphics[width=.9\textwidth]{../../../figures/pottier_table2.png}
-    \caption{Energy of a synchronous electron after each pass for both $p=1$ and $p=2$ \cite{rhodo_pottier}}
+    \caption{Energy of a synchronous electron after each pass for both $p=1$ and $p=2$. \cite{rhodo_pottier}}
     \label{fig:pottier_table2}
 \end{figure}
-Total energy gain after $n$ passes, $\Delta E_n$, can then be found by \fromeq{W_gain_each_pass_pottier}, taking $\phi = 15^\circ$, $p=1$, i.e $R_2 = 0.27 \lambda$, $P$ in \textit{W}, $\lambda$ in \textit{m}.
-\begin{equation}
+Total energy gain after $n$ passes, $\Delta E_n$, can then be found by \fromeq{W_gain_each_pass_pottier}, taking $\phi = 15^\circ$, $p=1$, i.e $R_2 = 0.27 \lambda$, $P$ in \textit{W}, $\lambda$ in \textit{m} as
+\vspace{-10pt}\begin{equation}
     \label{eq:W_total_gain_pottier}
-    \Delta E_n \approx 2.14 \lambda^{1/4} P^{1/2} n \quad keV
-\end{equation}
+    \Delta E_n \approx 2.14 \lambda^{1/4} P^{1/2} n \quad keV .
+\vspace{-10pt}\end{equation}
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{../../../figures/illustrations/rhod1.pdf}
-    \caption{$[0, \frac{T}{4}]$ time frame of a rhodotron}
+    \caption{$[0, \frac{T}{4}]$ time frame of a rhodotron.}
     \label{fig:rhod_cycle_1}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{../../../figures/illustrations/rhod2.pdf}
-    \caption{$[\frac{T}{4}, \frac{T}{2}]$ time frame of a rhodotron}
+    \caption{$[\frac{T}{4}, \frac{T}{2}]$ time frame of a rhodotron.}
     \label{fig:rhod_cycle_2}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{../../../figures/illustrations/rhod3.pdf}
-    \caption{$[\frac{T}{2}, \frac{3T}{4}]$ time frame of a rhodotron}
+    \caption{$[\frac{T}{2}, \frac{3T}{4}]$ time frame of a rhodotron.}
     \label{fig:rhod_cycle_3}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{../../../figures/illustrations/rhod4.pdf}
-    \caption{$[\frac{3T}{4}, T]$ time frame of a rhodotron}
+    \caption{$[\frac{3T}{4}, T]$ time frame of a rhodotron.}
     \label{fig:rhod_cycle_4}
 \end{figure}
 

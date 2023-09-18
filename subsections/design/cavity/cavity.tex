@@ -8,7 +8,8 @@
 \usepackage{svg}
 \usepackage{mathtools}
 \usepackage{tabu}
-\usepackage{subcaption}
+%\usepackage{subcaption}
+\usepackage{subfigure}
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 
 
@@ -34,7 +35,10 @@
 
 \newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
 \newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
+\newcommand{\fromfigth}[3]{\textit{figures \ref{fig:#1}, \ref{fig:#2} and \ref{fig:#3}}}
 \newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
+
+\newcommand{\comment}[1]{}
 
 %----../../..++++.
 
@@ -52,24 +56,26 @@ Simulation tools such as \textit{CST Studio}, \textit{Poisson SUPERFISH} can be 
 
 In the following examples, $p=1$ from \fromfig{pottier_table1} was used, and it will be the focus of all further calculations.
 Using $f_{RF}=107.5$ MHz \& $f_{RF}=180$ MHz for comparison:
-\begin{eqnarray} \label{eq:107_180_MHZ_cavity_design_parameters}
+\vspace{-10pt}\begin{eqnarray} \label{eq:107_180_MHZ_cavity_design_parameters}
     \begin{aligned}
-        f_{107.5} = 107.5 \textrm{ MHz} \\
-        \lambda_{107.5}  = \frac{c}{f_{107.5}} = 2.789 m \\
-        R_2 = 0.27 \times \lambda_{107.5} = 0.753 m \\
-        R_1 = \frac{R_2}{4} = 0.188 m \\
-        h = \frac{\lambda}{2} = 1.394 m 
+        f_{107.5} = 107.5 \textrm{ MHz}  , \\
+        \lambda_{107.5}  = \frac{c}{f_{107.5}} = 2.789 m   ,\\
+        R_2 = 0.27 \times \lambda_{107.5} = 0.753 m   ,\\
+        R_1 = \frac{R_2}{4} = 0.188 m   ,\\
+        h = \frac{\lambda}{2} = 1.394 m .
     \end{aligned}
     \qquad\qquad
     \begin{aligned}
-        f_{180} = 180 \textrm{ MHz} \\
-        \lambda_{180}  = \frac{c}{f_{180}} = 1.666 m \\
-        R_2 = 0.27 \times\lambda_{180} = 0.450 m \\
-        R_1 = \frac{R_2}{4} = 0.113 m \\
-        h = \frac{\lambda}{2} = 0.833 m 
+        f_{180} = 180 \textrm{ MHz}   ,\\
+        \lambda_{180}  = \frac{c}{f_{180}} = 1.666 m  , \\
+        R_2 = 0.27 \times\lambda_{180} = 0.450 m  , \\
+        R_1 = \frac{R_2}{4} = 0.113 m  , \\
+        h = \frac{\lambda}{2} = 0.833 m . 
     \end{aligned}
-\end{eqnarray}
-In the following figures, \textit{Poisson Superfish} and \textit{CST} simulations of two cavities defined by \fromeq{107_180_MHZ_cavity_design_parameters} can be observed.
+\vspace{-10pt}\end{eqnarray}
+In the \fromfigth{107_simple_cavity_design}{180_simple_cavity_design}{cst_simple_cavity_designs}, 
+\textit{Poisson Superfish} and \textit{CST} simulations of two cavities defined by \fromeq{107_180_MHZ_cavity_design_parameters} can be observed.
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -86,7 +92,17 @@ In the following figures, \textit{Poisson Superfish} and \textit{CST} simulation
     \caption{Poission Superfish results for \fromeq{107_180_MHZ_cavity_design_parameters}}
     \label{fig:107_simple_cavity_design}
 \end{figure}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz]{{\includegraphics[width=.45\textwidth]{../../../figures/superfish/superfish107.png} }}%
+    \qquad\subfigure[\centering 180 MHz]{{\includegraphics[width=.45\textwidth]{../../../figures/superfish/superfish180.png} }}%
+    \vspace{20pt}
+    \caption{\centering Poission Superfish results for \fromeq{107_180_MHZ_cavity_design_parameters}.} 
+    \label{fig:107_simple_cavity_design}
+\end{figure}
 
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -102,7 +118,17 @@ In the following figures, \textit{Poisson Superfish} and \textit{CST} simulation
     \caption{CST Eigenmode results for \fromeq{107_180_MHZ_cavity_design_parameters}}
     \label{fig:180_simple_cavity_design}
 \end{figure}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz]{{\includegraphics[width=.48\textwidth]{../../../figures/cst/cst107.png} }}%
+    \qquad\subfigure[\centering 180 MHz]{{\includegraphics[width=.44\textwidth]{../../../figures/cst/cst180.png} }}%
+    \vspace{20pt}
+    \caption{\centering CST Eigenmode results for \fromeq{107_180_MHZ_cavity_design_parameters}.} 
+    \label{fig:180_simple_cavity_design}
+\end{figure}
 
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -118,8 +144,18 @@ In the following figures, \textit{Poisson Superfish} and \textit{CST} simulation
     \caption{CST Electric field solutions for \fromeq{107_180_MHZ_cavity_design_parameters}}
     \label{fig:cst_simple_cavity_designs}
 \end{figure}
-As mentioned by POTTIER, truncated cone terminations in inner cylinder can improve the shunt empedance $Z$ of the cavity \cite{rhodo_pottier}. 
-Below, \textit{Poission superfish} results of such a modification with matching height increase to keep resonant frequency can be found.
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz]{{\includegraphics[width=.45\textwidth]{../../../figures/cst/cst107_e.png} }}%
+    \qquad\subfigure[\centering 180 MHz]{{\includegraphics[width=.47\textwidth]{../../../figures/cst/cst180_e.png} }}%
+    \vspace{20pt}
+    \caption{\centering CST Electric field solutions for \fromeq{107_180_MHZ_cavity_design_parameters}.} 
+    \label{fig:cst_simple_cavity_designs}
+\end{figure}
+As mentioned by \textit{Pottier}, truncated cone terminations in inner cylinder can improve the shunt empedance $Z$ of the cavity \cite{rhodo_pottier}. 
+In the \fromfig{107_180_modified_cavities_superfish}, \textit{Poission Superfish} results of such a modification with matching height increase to keep resonant frequency can be found.
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -135,7 +171,17 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \caption{Poisson SUPERFISH field results of truncated cavities}
     \label{fig:107_180_modified_cavities_superfish}
 \end{figure}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz truncated]{{\includegraphics[width=.45\textwidth]{../../../figures/superfish/superfish107mod.png} }}%
+    \qquad\subfigure[\centering 180 MHz truncated]{{\includegraphics[width=.45\textwidth]{../../../figures/superfish/superfish180mod.png} }}%
+    \vspace{20pt}
+    \caption{\centering Poisson SUPERFISH field results of truncated cavities.} 
+    \label{fig:107_180_modified_cavities_superfish}
+\end{figure}
 
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -151,7 +197,17 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \caption{CST eigenmode results of truncated cavities}
     \label{fig:107_180_modified_cavities_cst_eigenmode}
 \end{figure}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz truncated]{{\includegraphics[width=.45\textwidth]{../../../figures/cst/cst107mod.png} }}%
+    \qquad\subfigure[\centering 180 MHz truncated]{{\includegraphics[width=.47\textwidth]{../../../figures/cst/cst180mod.png} }}%
+    \vspace{20pt}
+    \caption{\centering CST eigenmode results of truncated cavities.} 
+    \label{fig:107_180_modified_cavities_cst_eigenmode}
+\end{figure}
 
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -167,7 +223,17 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \caption{CST electric field results of truncated cavities}
     \label{fig:107_180_modified_cavities_cst_field}
 \end{figure}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz truncated]{{\includegraphics[width=.46\textwidth]{../../../figures/cst/cst107mod_e.png} }}%
+    \qquad\subfigure[\centering 180 MHz truncated]{{\includegraphics[width=.44\textwidth]{../../../figures/cst/cst180mod_e.png} }}%
+    \vspace{20pt}
+    \caption{\centering CST electric field results of truncated cavities.} 
+    \label{fig:107_180_modified_cavities_cst_field}
+\end{figure}
 
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -183,7 +249,17 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \caption{Poisson Superfish calculations with \textit{unmodified} cavities}
     \label{fig:107_cavity_shunt_diff}
 \end{figure}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz unmodified]{{\includegraphics[width=.485\textwidth]{../../../figures/superfish/superfish107_z_highlighted.png} }}%
+    \qquad\subfigure[\centering 180 MHz unmodified]{{\includegraphics[width=0.495\linewidth]{../../../figures/superfish/superfish180_z_highlighted.png} }}%
+    \vspace{20pt}
+    \caption{\centering Poisson Superfish calculations with \textit{unmodified} cavities.} 
+    \label{fig:107_cavity_shunt_diff}
+\end{figure}
     
+\iffalse
 \begin{figure}[H]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -199,16 +275,25 @@ Below, \textit{Poission superfish} results of such a modification with matching 
     \caption{Poisson Superfish calculations with \textit{truncated} cavities}
     \label{fig:180_cavity_shunt_diff}
 \end{figure}
-One can observe the shunt impedance gain between truncated and unmodified cavities in \fromfigs{107_cavity_shunt_diff}{180_cavity_shunt_diff};
-\begin{equation*}
+\fi
+\begin{figure}[H]
+    \centering
+    \subfigure[\centering 107.5 MHz truncated]{{\includegraphics[width=.475\textwidth]{../../../figures/superfish/superfish107mod_z_highlighted.png} }}%
+    \qquad\subfigure[\centering 180 MHz truncated]{{\includegraphics[width=.5\textwidth]{../../../figures/superfish/superfish180mod_z_highlighted.png} }}%
+    \vspace{20pt}
+    \caption{\centering Poisson Superfish calculations with \textit{truncated} cavities.} 
+    \label{fig:180_cavity_shunt_diff}
+\end{figure}
+One can observe the shunt impedance gain between truncated and unmodified cavities in \fromfigs{107_cavity_shunt_diff}{180_cavity_shunt_diff} as
+\vspace{-10pt}\begin{equation*}
     \begin{aligned}
-        \Delta Z_{107.5}=2.5\%
+        \Delta Z_{107.5}=2.5\%   ,
     \end{aligned}
     \qquad
     \begin{aligned}
-        \Delta Z_{180}=2.7\%
+        \Delta Z_{180}=2.7\% .
     \end{aligned}
-\end{equation*}
+\vspace{-10pt}\end{equation*}
 
 %%%%%%
 

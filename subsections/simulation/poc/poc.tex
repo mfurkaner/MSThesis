@@ -48,16 +48,16 @@
 The POC worked with interacting an electron with the EM field provided, at discrete time steps $dt$. The core sequence of this software is provided below.
 Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the $e^-$;
 \begin{itemize}
-    \item Get electron energy $E_{in}$
-    \item Get the RF field definitions
-    \item Get the magnet design parameters if there is any
-    \item Do following until the simulation time has ellapsed
+    \item Get electron energy $E_{in}$,
+    \item Get the RF field definitions,
+    \item Get the magnet design parameters if there is any,
+    \item Do following until the simulation time has ellapsed,
     \begin{enumerate}
-        \item Calculate $\vecthreeBF{E}_{||}$($\vecthreeBF{r}$)
-        \item Calculate $\vecthreeBF{a}_{E ||}$ using \fromeq{para_and_perp_acc_of_lorentz_force}
-        \item Calculate $\vecthreeBF{r}$($t+dt$) using \fromeq{leapfrog_sync_x}
-        \item Calculate $\vecthreeBF{v}$($t+dt$) using \fromeq{leapfrog_sync_v}
-        \item Calculate new $E_t$
+        \item Calculate $\vecthreeBF{E}_{||}$($\vecthreeBF{r}$),
+        \item Calculate $\vecthreeBF{a}_{E ||}$ using \fromeq{para_and_perp_acc_of_lorentz_force},
+        \item Calculate $\vecthreeBF{r}$($t+dt$) using \fromeq{leapfrog_sync_x},
+        \item Calculate $\vecthreeBF{v}$($t+dt$) using \fromeq{leapfrog_sync_v},
+        \item Calculate new $E_t$.
     \end{enumerate}
 \end{itemize}
 The implemenation of this logic can be observed in \fromfig{POC_core_logic}. 
@@ -78,27 +78,26 @@ The implemenation of this logic can be observed in \fromfig{POC_core_logic}.
             Et=RelGamma*E0; 
         }
     \end{minted}
-    \caption{Core logic loop of the POC}
+    \caption{Core logic loop of the POC.}
     \label{fig:POC_core_logic}
 \end{figure}
-After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} with $\phi_{lag}=15^\circ$ for one pass, the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} are compared.
+After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} 
+with $\phi_{lag}=15^\circ$, $P_{diss}=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz for one pass, 
+the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} were found to be
 % 40 kW total power
 % Emax = 0.96 in old, 2.08 in new version
 % R1 = 0.1882
 % R2 = 0.753
 % f = 107.5
-\begin{figure}[H]
-    \begin{eqnarray}
-        E_{Pottier} &=& 0.593 MeV \nonumber\\
-        E_{CST} &=& 0.521 MeV  \label{eq:poc_E_results}\\
-        E_{POC} &=& 0.532 MeV \nonumber
-    \end{eqnarray}
-    \caption*{$P_{diss}=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz}
-\end{figure}
-As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced similar results, $\Delta E_{(POC-CST)}/E_{CST} \approx 2\%$.
+\vspace{-10pt}\begin{eqnarray}
+    E_{Pottier} &=& 0.593 MeV  , \nonumber\\
+    E_{CST} &=& 0.521 MeV  ,  \label{eq:poc_E_results}\\
+    E_{POC} &=& 0.532 MeV . \nonumber
+\vspace{-10pt}\end{eqnarray}
 
-However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
-This inconsistency between $E_{Pottier}$ and $E_{CST}$, $\Delta E_{(Pottier-CST)}/E_{CST} \approx 14\%$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
+As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced similar results; $\Delta E_{(POC-CST)}/E_{CST} \approx 2\%$.
+while \fromeq{W_gain_each_pass_pottier} was noticably different; $\Delta E_{(Pottier-CST)}/E_{CST} \approx 14\%$.
+This inconsistency between \fromeq{W_gain_each_pass_pottier} and  \textit{CST} simulation was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
 Since using a single software would have made the process error prone.
 
 After the results obtained from \textit{POC} were found to be promising, a decision was made to develop a more robust simulation software. This software was named \textit{Rhodotron Simulation} for the current stage and started development in October, 2021.
