@@ -79,17 +79,19 @@ The resonant frequency is determined by the cavity's dimensions and the speed of
 To achieve efficient energy transfer to the particles, the RF cavity is driven by an external RF power source operating at the resonant frequency. 
 The power source supplies radiofrequency energy to the cavity, which causes the electric fields inside the cavity to oscillate at the desired frequency. 
 These oscillating fields then transfer energy to the passing particles, increasing their kinetic energy by pushing and pulling on the charged particles as they pass through the cavity. 
+\newline
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.75\textwidth]{../../../figures/pill_box.jpeg}
+    \caption{An RF cavity used in KAHVELab}
+\end{figure}
 
 In addition to accelerating the particles, RF cavities are often designed to provide focusing forces. 
 By carefully shaping the cavity and adjusting the electromagnetic fields, the particles can experience focusing effects as they pass through the cavity. 
 This helps to maintain a tight and controlled beam. To ensure efficient acceleration, it is essential to maintain phase stability. 
 This means that the particles should experience the strongest electric fields at the correct time during their passage through the cavity. 
 Precise timing and synchronization of the RF power source with the particle beam are crucial to achieve phase stability and maximize energy transfer.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=.75\textwidth]{../../../figures/pill_box.jpeg}
-    \caption{An RF cavity used in KAHVELab}
-\end{figure}
 
 \subsection{Bending Magnets}
 Bending magnets, also known as dipole magnets, are fundamental components used in particle accelerators to control the trajectory of charged particles. 
@@ -104,7 +106,7 @@ vector and the magnetic field direction. This force causes the particle's trajec
 \subsubsection{Resonance Frequency}
 Resonance frequency is the frequency in which the electromagnetic fields form standing waves in a cavity.
 It is determined by the physical dimensions and the speed of light in the cavity's medium. 
-In a rectangular cavity for example, the resonance frequency can be calculated from \fromeq{f_r_rec}.
+In a rectangular cavity for example, the resonance frequency can be calculated by
 \begin{equation}
     f_{klm} = \frac{c}{2\pi \sqrt{\mu_r \epsilon_r}} \sqrt{(\frac{k}{w})^2 + (\frac{l}{u})^2 + (\frac{m}{v})^2}
     \label{eq:f_r_rec}
@@ -150,13 +152,21 @@ The design of a rhodotron mainly consists of a coaxial cylindrical RF cavity and
 
 Electrons undergo four different stages inside the accelerator. 
 They are accelerated between the cylinderical plates and are shielded from the changing RF field while inside the inner cylinder and outside the cavity. 
+This stages are explained further below.
 
-\begin{description}
-    \item[First acceleration] Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity. (\fromfig{rhod_cycle_1})
-    \item[Inner shielding] While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed. (\fromfig{rhod_cycle_2})
-    \item[Second acceleration] Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity. (\fromfig{rhod_cycle_3})
-    \item[Recirculating Magnets] After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again. (\fromfig{rhod_cycle_4})
-\end{description}
+%\begin{description}
+%    \item[First acceleration] Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity. (\fromfig{rhod_cycle_1})
+%    \item[Inner shielding] While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed. (\fromfig{rhod_cycle_2})
+%    \item[Second acceleration] Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity. (\fromfig{rhod_cycle_3})
+%    \item[Recirculating Magnets] After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again. (\fromfig{rhod_cycle_4})
+%\end{description}
+
+\begin{itemize}
+    \item \textit{First Acceleration:} Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity. (\fromfig{rhod_cycle_1})
+    \item \textit{Inner Shielding:} Inner shielding While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed. (\fromfig{rhod_cycle_2})
+    \item \textit{Second Acceleration:} Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity. (\fromfig{rhod_cycle_3})
+    \item \textit{Recirculating Magnets:} After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again. (\fromfig{rhod_cycle_4})
+\end{itemize}
 
 This cycle can be repeated as long as real world constraints such as; placements and dimensions of the electromagnets, power requirements due to increasing magnetic field in order for sharper turns, can be overcomed.
 After the desired amount of cycles, also called passes, has been completed, the electrons exit the accelerator.

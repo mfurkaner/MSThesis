@@ -89,14 +89,16 @@ After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_
 % f = 107.5
 \begin{figure}[H]
     \begin{eqnarray}
-        E_{Pottier} &=& 0.565 MeV \nonumber\\
-        E_{CST} &=& 0.872 MeV  \label{eq:poc_E_results}\\
-        E_{POC} &=& 0.873 MeV \nonumber
+        E_{Pottier} &=& 0.593 MeV \nonumber\\
+        E_{CST} &=& 0.521 MeV  \label{eq:poc_E_results}\\
+        E_{POC} &=& 0.532 MeV \nonumber
     \end{eqnarray}
-    \caption*{$P=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz}
+    \caption*{$P_{diss}=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz}
 \end{figure}
-As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced very similar results. However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
-This inconsistency between $E_{Pottier}$ and $E_{CST}$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
+As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced similar results, $\Delta E_{(POC-CST)}/E_{CST} \approx 2\%$.
+
+However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
+This inconsistency between $E_{Pottier}$ and $E_{CST}$, $\Delta E_{(Pottier-CST)}/E_{CST} \approx 14\%$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
 Since using a single software would have made the process error prone.
 
 After the results obtained from \textit{POC} were found to be promising, a decision was made to develop a more robust simulation software. This software was named \textit{Rhodotron Simulation} for the current stage and started development in October, 2021.

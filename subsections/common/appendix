@@ -1167,6 +1167,7 @@
 
 \begin{table}[H]
     \centering
+    \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m, $t_{end}=6$ns}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -1193,7 +1194,6 @@
     1.00E-05 & 0.00015      & 10.75182 & 0.03301  \\\hline
     1.00E-06 & 0.000017     & 106.9198 & 0.373175 \\\hline
     \end{tabular}
-    \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:lf_statE90_table}
 \end{table}
 

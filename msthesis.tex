@@ -179,6 +179,7 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
 
 \newcommand{\parDeriv}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\parDerivS}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\deriv}[2]{\frac{d #1}{d #2}}
 \newcommand{\derivS}[2]{\frac{d^2 #1}{d#2^2}}
 
 \newcommand{\dotProdBF}[2]{\vecthreeBF{#1} \cdot \vecthreeBF{#2}}
@@ -195,20 +196,20 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
 \newcommand{\ee}{$\textbf{e}^-$ - $\textbf{e}^-$ }
 
 
-\newcommand{\fromeq}[1]{\textit{equation \ref{eq:#1}}}
-\newcommand{\fromeqs}[2]{\textit{equations \ref{eq:#1} and \ref{eq:#2}}}
-\newcommand{\fromeqsth}[3]{\textit{equations \ref{eq:#1}, \ref{eq:#2} and \ref{eq:#3}}}
-\newcommand{\fromeqsf}[4]{\textit{equations \ref{eq:#1}, \ref{eq:#2}, \ref{eq:#3} and \ref{eq:#4}}}
+\newcommand{\fromeq}[1]{\textit{Equation \ref{eq:#1}}}
+\newcommand{\fromeqs}[2]{\textit{Equations \ref{eq:#1} and \ref{eq:#2}}}
+\newcommand{\fromeqsth}[3]{\textit{Equations \ref{eq:#1}, \ref{eq:#2} and \ref{eq:#3}}}
+\newcommand{\fromeqsf}[4]{\textit{Equations \ref{eq:#1}, \ref{eq:#2}, \ref{eq:#3} and \ref{eq:#4}}}
 
-\newcommand{\fromfig}[1]{\textit{figure \ref{fig:#1}}}
-\newcommand{\fromfigs}[2]{\textit{figures \ref{fig:#1} and \ref{fig:#2}}}
-\newcommand{\fromfigf}[4]{\textit{figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3} and \ref{fig:#4}}}
-\newcommand{\fromfigsix}[6]{\textit{figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3}, \ref{fig:#4}, \ref{fig:#5} and \ref{fig:#6}}}
+\newcommand{\fromfig}[1]{\textit{Figure \ref{fig:#1}}}
+\newcommand{\fromfigs}[2]{\textit{Figures \ref{fig:#1} and \ref{fig:#2}}}
+\newcommand{\fromfigf}[4]{\textit{Figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3} and \ref{fig:#4}}}
+\newcommand{\fromfigsix}[6]{\textit{Figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3}, \ref{fig:#4}, \ref{fig:#5} and \ref{fig:#6}}}
 
-\newcommand{\fromch}[1]{\textit{chapter \ref{ch:#1}}}
+\newcommand{\fromch}[1]{\textit{Chapter \ref{ch:#1}}}
 
-\newcommand{\fromsec}[1]{\textit{section \ref{sec:#1}}}
-\newcommand{\fromsecs}[2]{\textit{sections \ref{sec:#1} and \ref{sec:#2}}}
+\newcommand{\fromsec}[1]{\textit{Section \ref{sec:#1}}}
+\newcommand{\fromsecs}[2]{\textit{Sections \ref{sec:#1} and \ref{sec:#2}}}
 
 \newcommand{\fromapp}[1]{\textit{Appendix \ref{appendix:#1}}}
 
@@ -239,50 +240,50 @@ It was developed in 1989 and was named \textit{Rhodotron} \cite{rhodo_pottier}. 
 \section{Accelerating Charged Particles}
 
 \subsection{Relation between momentum and acceleration}
-In classical mechanics, Newton's second law defines force, $\vecthreeBF{F}$, and states 
+In classical mechanics, Newton's second law defines force, $\vecthreeBF{F}$, and relation
 \begin{equation} \label{eq:newton_second_law}
-    \vecthreeBF{F} = \frac{\partial \vecthreeBF{p}}{\partial t} = m \frac{\partial \vecthreeBF{v}}{\partial t} = m \vecthreeBF{a}
+    \vecthreeBF{F} = \frac{d \vecthreeBF{p}}{d t} = m \frac{d \vecthreeBF{v}}{d t} = m \vecthreeBF{a} ,
 \end{equation}
-where $\vecthreeBF{p}$ is the momentum, $m\vecthreeBF{v}$ of the particle. In special relativity however, relativistic momentum is defined as $\vecthree{p} = \gamma m_0 \vecthree{v} $ where $\gamma$ is the Lorentz Factor:
+where $\vecthreeBF{p}$ is the momentum, $m\vecthreeBF{v}$ of the particle. 
+In special relativity however, relativistic momentum is defined as $\vecthree{p} = \gamma m_0 \vecthree{v} $ where 
 \begin{equation}
-    \gamma = \frac{1}{\sqrt{1-v^2 / c^2}} = = \frac{1}{\sqrt{1-\beta^2}}
+    \gamma = \frac{1}{\sqrt{1-v^2 / c^2}} = \frac{1}{\sqrt{1-\beta^2}}
             = \frac{1}{\sqrt{1- (\dotProd{v}{v})/ c^2}} =  \frac{1}{\sqrt{1- \dotProd{\beta}{\beta}}}
 \end{equation}
-Considering these two statements, we can find the relation between momentum and acceleration as follows:
-\begin{eqnarray}
-    \parDeriv{\vecthree{p}}{t} &=& m_0 \parDeriv{(\gamma \vecthree{v})}{t} = m_0 \{  \parDeriv{\gamma}{t}\vecthree{v} + \gamma \parDeriv{\vecthree{v}}{t}  \} \\
-    \parDeriv{\gamma}{t} &=& \gamma^3 \dotProd{\beta}{\parDeriv{\beta}{t}} = \frac{\gamma^3}{c} \dotProd{\beta}{a} \\
-    \parDeriv{\vecthree{p}}{t}  &=& m_0 \{   \frac{\gamma^3}{c} (\dotProd{\beta}{a} )\vecthree{v} + \gamma \parDeriv{\vecthree{v}}{t}  \} 
-\end{eqnarray}
-thus,
-\begin{equation} \label{eq:Frel}
-    \vecthreeBF{F}  = \gamma m_0 \{ \vecthreeBF{a} + \gamma^2(\dotProd{\beta}{\textbf{a}})\vecthree{\beta} \}
-\end{equation}
-It is clear that acceleration is not necessarily parallel to the force anymore. 
+is the Lorentz Factor.
 
-To start separating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and $\vecthreeBF{F}_{||}$.
+Considering these two statements, we can find the relation between momentum and acceleration as 
+\begin{eqnarray}
+    \deriv{\vecthree{p}}{t} &=& m_0 \deriv{(\gamma \vecthree{v})}{t} = m_0 \{  \deriv{\gamma}{t}\vecthree{v} + \gamma \deriv{\vecthree{v}}{t}  \} \\
+    \deriv{\gamma}{t} &=& \gamma^3 \dotProd{\beta}{\deriv{\beta}{t}} = \frac{\gamma^3}{c} \dotProd{\beta}{a} \\
+    \deriv{\vecthree{p}}{t}  &=& m_0 \{   \frac{\gamma^3}{c} (\dotProd{\beta}{a} )\vecthree{v} + \gamma \deriv{\vecthree{v}}{t}  \} .
+\end{eqnarray}
+Therefore force can be written as
+\begin{equation} \label{eq:Frel}
+    \vecthreeBF{F}  = \gamma m_0 \{ \vecthreeBF{a} + \gamma^2(\dotProd{\beta}{\textbf{a}})\vecthree{\beta} \} .
+\end{equation}
+It is clear that acceleration is not necessarily parallel to the force. 
+To start separating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and $\vecthreeBF{F}_{||}$ as
 \begin{equation} \label{eq:a_F_parallels}
     \begin{aligned}
         \vecthreeBF{a}_{||} = \frac{(\dotProd{a}{\beta})}{\beta^2}\beta 
     \end{aligned}
     \qquad \qquad
     \begin{aligned}
-        \vecthreeBF{F}_{||} = \frac{(\dotProd{F}{\beta})}{\beta^2}\beta 
+        \vecthreeBF{F}_{||} = \frac{(\dotProd{F}{\beta})}{\beta^2}\beta \: ,
     \end{aligned}
 \end{equation}
+where 
 \begin{eqnarray}
     \dotProd{\textbf{F}}{\beta} &=& \gamma m_0 \{ \dotProd{\textbf{a}}{\beta} + \gamma^2(\dotProd{\beta}{\textbf{a}})\beta^2 \} \\
-                                &=& \gamma m_0 (\dotProd{\textbf{a}}{\beta}) \{ \gamma^2\beta^2  + 1\} 
+                                &=& \gamma m_0 (\dotProd{\textbf{a}}{\beta}) \{ \gamma^2\beta^2  + 1\} .
 \end{eqnarray}
-Using $\gamma^2 \beta^2 + 1 = \gamma^2 $ we have:
-\begin{equation}
-    \dotProd{\textbf{F}}{\beta} = m_0 \gamma^3 (\dotProd{\textbf{a}}{\beta} )
-\end{equation}
-inserting this into \fromeq{a_F_parallels},
+$\gamma^2 \beta^2 + 1 = \gamma^2 $ and \fromeq{a_F_parallels} can be used to achieve
 \begin{eqnarray}
+    \dotProd{\textbf{F}}{\beta} &=& m_0 \gamma^3 (\dotProd{\textbf{a}}{\beta} ) \nonumber \\
     \vecthreeBF{F}_{||} &=& \frac{(\dotProd{\textbf{F}}{\beta})}{\beta^2} \vec{\beta} \nonumber \\
                         &=& m_0 \gamma^3 \frac{(\dotProd{\textbf{a}}{\beta} )}{\beta^2} \vec{\beta} \nonumber \\
-                        &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \label{eq:Frel_parallel}
+                        &=& m_0 \gamma^3 \vecthreeBF{a}_{||} . \label{eq:Frel_parallel}
 \end{eqnarray}
 Therefore from \fromeqs{Frel}{Frel_parallel},
 \begin{eqnarray}
@@ -290,34 +291,33 @@ Therefore from \fromeqs{Frel}{Frel_parallel},
                     &=& m_0 \gamma^3 \vecthreeBF{a}_{||} \beta^2 + m_0 \gamma \{ \vecthreeBF{a}_{||} +  \vecthreeBF{a}_{\perp} \} \\
                     &=& m_0 \vecthreeBF{a}_{||} \gamma \{ \gamma^2\beta^2 + 1 \} + m_0 \gamma \vecthreeBF{a}_{\perp} \\
                     &=& m_0 \vecthreeBF{a}_{||} \gamma^3 + m_0 \gamma \vecthreeBF{a}_{\perp} \\
-                    &=& \vecthreeBF{F}_{||} + m_0 \gamma \vecthreeBF{a}_{\perp}
+                    &=& \vecthreeBF{F}_{||} + m_0 \gamma \vecthreeBF{a}_{\perp} .
 \end{eqnarray}
-We finally have two separate equations which are in similar form with \fromeq{newton_second_law}.
+We finally have two separate equations which are in similar form with \fromeq{newton_second_law},
 \begin{equation} \label{eq:Frel_para_and_perp}
     \begin{aligned}
         \vecthreeBF{F}_{||} = \gamma^3  m_0 \vecthreeBF{a}_{||}
     \end{aligned}
     \qquad \qquad
     \begin{aligned}
-        \vecthreeBF{F}_{\perp} = \gamma  m_0\vecthreeBF{a}_{\perp}
+        \vecthreeBF{F}_{\perp} = \gamma  m_0\vecthreeBF{a}_{\perp} .
     \end{aligned}
 \end{equation}
 
-
 \subsection{Lorentz Force} \label{sec:lorentz-force}
-Force acting on a charged particle moving in electromagnetic fields is called Lorentz Force and is given by the formula
+Force acting on a charged particle moving in electromagnetic fields is called Lorentz Force and is given by 
 \begin{equation} \label{eq:lf}
-    \frac{\partial \vecthree{p}}{\partial t} = \vecthree{F}_L=q(\vecthree{E}+ \vecthree{v} \times \vecthree{B})
+    \frac{d \vecthree{p}}{d t} = \vecthree{F}_L=q(\vecthree{E}+ \vecthree{v} \times \vecthree{B}) , 
 \end{equation}
 where the $q$ is the charge and $\vecthree{v}$ is the velocity of the particle. 
 
 \subsection{Relativistic Lorentz Force}
-Similar to non-relativistic version, relativistic Lorentz Force is given by the following 4-vector equality:
+Similar to non-relativistic version, relativistic Lorentz Force is given by the 4-vector equality
 \begin{equation}
-    \frac{\partial p^{\mu}}{\partial \tau} = q F^{\mu \nu} u_{\nu}
+    \frac{d p^{\mu}}{d \tau} = q F^{\mu \nu} u_{\nu} ,
 \end{equation}
-where $ \partial \tau = \partial t / \gamma $ and greek letters are Lorentz indices,
-\begin{equation}
+where $ d \tau = d t / \gamma $ and greek letters are Lorentz indices
+\begin{equation*}
     \begin{aligned}
         p^{\mu} = 
         \begin{bmatrix}
@@ -346,47 +346,52 @@ where $ \partial \tau = \partial t / \gamma $ and greek letters are Lorentz indi
                 -v_y \\
                 -v_z \\
         \end{bmatrix} 
-    \end{aligned}
-\end{equation}
+    \end{aligned} ,
+\end{equation*}
 where $W$ is the energy of the particle and $\gamma$ is the Lorentz factor mentioned in the previous section.
 
-For $ \mu = 0 $, we have the time component of the equation:
+For $ \mu = 0 $, we have the time component of the equation
 \begin{eqnarray}
-    \frac{\gamma}{c}\frac{\partial W}{\partial t} &=& \frac{q \gamma \vecthree{E}\cdot \vecthree{v}}{c} = \frac{q \gamma}{c}  \frac{\vecthree{E}  \cdot \partial \vecthree{r}}{\partial t} \\
-    \frac{\partial W}{\partial t} &=& q \frac{\vecthree{E}\cdot \partial \vecthree{r}} {\partial t}
+    \frac{\gamma}{c}\frac{d W}{d t} &=& \frac{q \gamma \vecthree{E}\cdot \vecthree{v}}{c} = \frac{q \gamma}{c}  \frac{\vecthree{E}  \cdot d \vecthree{r}}{d t} \\
+    \frac{d W}{d t} &=& q \frac{\vecthree{E}\cdot d \vecthree{r}} {d t} .
 \end{eqnarray}
-This is the definition of work done by an electric field. For $ \mu = 1,2,3 $, we have the spacial components:
+This is the definition of work done by an electric field. For $ \mu = 1,2,3 $, we have the spacial components
 \begin{equation*}
-    \frac{\partial \vecthree{p}}{\partial \tau} = \gamma \frac{\partial \vecthree{p}}{\partial t} = q \gamma (\vecthree{E} + \vecthree{v} \times \vecthree{B})
+    \frac{d \vecthree{p}}{d \tau} = \gamma \frac{d \vecthree{p}}{d t} = q \gamma (\vecthree{E} + \vecthree{v} \times \vecthree{B}) ,
 \end{equation*}
 which simplifies to non-relativistic Lorentz Force in \fromeq{lf}.
 
 
 \subsection{Acceleration caused by Lorentz force}
 Due to the nature of the cross product, Lorentz force caused by a magnetic field is always perpendicular to the velocity of the particle. 
-Therefore the acceleration of the magnetic field is straightforward
+Therefore the acceleration of the magnetic field is straightforward,
+\vspace{-10pt}
 \begin{equation*}
-    \vecthreeBF{F}_B = \vecthreeBF{F}_{\perp} = \gamma  m_0\vecthreeBF{a}_{\perp} = \gamma  m_0\vecthreeBF{a}_{B}
+    \vecthreeBF{F}_B = \vecthreeBF{F}_{\perp} = \gamma  m_0\vecthreeBF{a}_{\perp} = \gamma  m_0\vecthreeBF{a}_{B} .
 \end{equation*}
+\vspace{-10pt}
 The same thing cannot be said about electric field however. 
-It can create force in any direction with respect to velocity. Therefore, we have the following equality:
+It can create force in any direction with respect to velocity. Therefore, we have the equality
 \begin{equation} \label{eq:para_and_perp_acc_of_lorentz_force}
     \begin{aligned}
         \vecthreeBF{a}_{||} = \frac{q }{\gamma^3 m_0} \vecthreeBF{E}_{||}
     \end{aligned}
     \qquad \qquad
     \begin{aligned}
-        \vecthreeBF{a}_{\perp} = \frac{q}{\gamma m_0} \{ \vecthreeBF{E}_{\perp} + \crossProdBF{v}{B}   \}
+        \vecthreeBF{a}_{\perp} = \frac{q}{\gamma m_0} \{ \vecthreeBF{E}_{\perp} + \crossProdBF{v}{B}   \} .
     \end{aligned}    
 \end{equation}
-Acceleration due to electric field can be simplified as:
+
+Acceleration due to electric field can be simplified as
+\vspace{-10pt}
 \begin{eqnarray*}
     \vecthreeBF{a}_{\{B=0\}} = \vecthreeBF{a}_{E}   &=&  \vecthreeBF{a}_{||} + \vecthreeBF{a}_{\perp \{B=0\}} \\
                                 &=& \frac{q}{m_0 \gamma} \{ \frac{\vecthreeBF{E}_{||}}{\gamma^2} + \vecthreeBF{E}_{\perp} \} \\
                                 &=& \frac{q}{m_0 \gamma} \{ \{1 - \beta^2\}\vecthreeBF{E}_{||} + \vecthreeBF{E}_{\perp} \} \\
                                 &=& \frac{q}{m_0 \gamma} \{ \vecthreeBF{E}_{||} + \vecthreeBF{E}_{\perp}-\beta^2\vecthreeBF{E}_{||} \} \\
-                                &=& \frac{q}{m_0 \gamma} \{ \vecthreeBF{E} - \beta^2\vecthreeBF{E}_{||} \} \\
+                                &=& \frac{q}{m_0 \gamma} \{ \vecthreeBF{E} - \beta^2\vecthreeBF{E}_{||} \} .
 \end{eqnarray*}
+\vspace{-10pt}
 Using the fact that $\vecthreeBF{E}_{||} = \vec{\beta}(\dotProd{\textbf{E}}{\beta})/\beta^2 $, we finally have
 \begin{equation} \label{eq:acc_of_E_and_B}
     \begin{aligned}
@@ -394,7 +399,7 @@ Using the fact that $\vecthreeBF{E}_{||} = \vec{\beta}(\dotProd{\textbf{E}}{\bet
     \end{aligned}
     \qquad \qquad
     \begin{aligned}
-        \vecthreeBF{a}_{B} = \frac{q}{\gamma m_0} ( \crossProdBF{v}{B} )
+        \vecthreeBF{a}_{B} = \frac{q}{\gamma m_0} ( \crossProdBF{v}{B} ) ,
     \end{aligned}
 \end{equation}
 where $\vecthreeBF{a}_{E}$ consists of two components in the direction of $\vecthreeBF{E}$ and $\vecthreeBF{v}$.
@@ -441,17 +446,19 @@ The resonant frequency is determined by the cavity's dimensions and the speed of
 To achieve efficient energy transfer to the particles, the RF cavity is driven by an external RF power source operating at the resonant frequency. 
 The power source supplies radiofrequency energy to the cavity, which causes the electric fields inside the cavity to oscillate at the desired frequency. 
 These oscillating fields then transfer energy to the passing particles, increasing their kinetic energy by pushing and pulling on the charged particles as they pass through the cavity. 
+\newline
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.75\textwidth]{./figures/pill_box.jpeg}
+    \caption{An RF cavity used in KAHVELab}
+\end{figure}
 
 In addition to accelerating the particles, RF cavities are often designed to provide focusing forces. 
 By carefully shaping the cavity and adjusting the electromagnetic fields, the particles can experience focusing effects as they pass through the cavity. 
 This helps to maintain a tight and controlled beam. To ensure efficient acceleration, it is essential to maintain phase stability. 
 This means that the particles should experience the strongest electric fields at the correct time during their passage through the cavity. 
 Precise timing and synchronization of the RF power source with the particle beam are crucial to achieve phase stability and maximize energy transfer.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=.75\textwidth]{./figures/pill_box.jpeg}
-    \caption{An RF cavity used in KAHVELab}
-\end{figure}
 
 \subsection{Bending Magnets}
 Bending magnets, also known as dipole magnets, are fundamental components used in particle accelerators to control the trajectory of charged particles. 
@@ -466,7 +473,7 @@ vector and the magnetic field direction. This force causes the particle's trajec
 \subsubsection{Resonance Frequency}
 Resonance frequency is the frequency in which the electromagnetic fields form standing waves in a cavity.
 It is determined by the physical dimensions and the speed of light in the cavity's medium. 
-In a rectangular cavity for example, the resonance frequency can be calculated from \fromeq{f_r_rec}.
+In a rectangular cavity for example, the resonance frequency can be calculated by
 \begin{equation}
     f_{klm} = \frac{c}{2\pi \sqrt{\mu_r \epsilon_r}} \sqrt{(\frac{k}{w})^2 + (\frac{l}{u})^2 + (\frac{m}{v})^2}
     \label{eq:f_r_rec}
@@ -519,6 +526,13 @@ They are accelerated between the cylinderical plates and are shielded from the c
     \item[Second acceleration] Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity. (\fromfig{rhod_cycle_3})
     \item[Recirculating Magnets] After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again. (\fromfig{rhod_cycle_4})
 \end{description}
+
+\begin{itemize}
+    \item \textit{First Acceleration:} Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity. (\fromfig{rhod_cycle_1})
+    \item \textit{Inner Shielding:} Inner shielding While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed. (\fromfig{rhod_cycle_2})
+    \item \textit{Second Acceleration:} Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity. (\fromfig{rhod_cycle_3})
+    \item \textit{Recirculating Magnets:} After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again. (\fromfig{rhod_cycle_4})
+\end{itemize}
 
 This cycle can be repeated as long as real world constraints such as; placements and dimensions of the electromagnets, power requirements due to increasing magnetic field in order for sharper turns, can be overcomed.
 After the desired amount of cycles, also called passes, has been completed, the electrons exit the accelerator.
@@ -808,7 +822,7 @@ This version provides more time resolution to our calculation; however, it incre
 The Runge-Kutta methods, named after the German mathematicians Carl Runge and Martin Wilhelm Kutta \cite{runge} \cite{kutta}, family of numerical methods
 used to solve ordinary differential equations (ODEs) that are in the following form
 \begin{equation} \label{eq:first-order-ODE}
-    \parDeriv{y}{x} = f(x, y)
+    \deriv{y}{x} = f(x, y)
 \end{equation}
 The basic idea behind the Runge-Kutta method is to approximate the solution of an ODE by taking small steps and using a weighted average 
 of function evaluations at different points within each step.
@@ -1095,7 +1109,7 @@ Considering the nature of coaxial cavity, simplest path for beams inside magnets
     \caption{Geometry and modeling, outside trajectory of a rhodotron (TT300) \cite{cite:rhodo_design}}
     \label{fig:magnet_design_illustrations}
 \end{figure}
-In rhodotron accelerators, magnets are used for not only guiding the electron beam to desired path, but also for syncronizing them with the RF field in the cavity. 
+In rhodotron accelerators, magnets are used for not only guiding the electron beam to desired path, but also for synchronizing them with the RF field in the cavity. 
 This syncronization, also called phase stability, is the fundamental constraint of magnet design. 
 Time spent outside of the RF cavity should be precisely tuned to maximize acceleration in the succeeding pass. 
 
@@ -1394,14 +1408,16 @@ After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_
 % f = 107.5
 \begin{figure}[H]
     \begin{eqnarray}
-        E_{Pottier} &=& 0.565 MeV \nonumber\\
-        E_{CST} &=& 0.872 MeV  \label{eq:poc_E_results}\\
-        E_{POC} &=& 0.873 MeV \nonumber
+        E_{Pottier} &=& 0.593 MeV \nonumber\\
+        E_{CST} &=& 0.521 MeV  \label{eq:poc_E_results}\\
+        E_{POC} &=& 0.532 MeV \nonumber
     \end{eqnarray}
-    \caption*{$P=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz}
+    \caption*{$P_{diss}=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz}
 \end{figure}
-As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced very similar results. However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
-This inconsistency between $E_{Pottier}$ and $E_{CST}$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
+As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced similar results, $\Delta E_{(POC-CST)}/E_{CST} \approx 2\%$.
+
+However, we cannot make the same claim regarding \fromeq{W_gain_each_pass_pottier}.
+This inconsistency between $E_{Pottier}$ and $E_{CST}$, $\Delta E_{(Pottier-CST)}/E_{CST} \approx 14\%$ was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
 Since using a single software would have made the process error prone.
 
 After the results obtained from \textit{POC} were found to be promising, a decision was made to develop a more robust simulation software. This software was named \textit{Rhodotron Simulation} for the current stage and started development in October, 2021.
@@ -3291,6 +3307,7 @@ lead to the inference that it holds promise.
 
 \begin{table}[H]
     \centering
+    \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m, $t_{end}=6$ns}
     \begin{tabular}{|l|l|l|l|}
     \hline
     dt(ns)       & $\Delta E_{avg}$(MeV) & $\mu T_{sim}$(s)    & $\sigma T_{sim}$(s) \\\hline
@@ -3317,7 +3334,6 @@ lead to the inference that it holds promise.
     1.00E-05 & 0.00015      & 10.75182 & 0.03301  \\\hline
     1.00E-06 & 0.000017     & 106.9198 & 0.373175 \\\hline
     \end{tabular}
-    \caption{\textit{LF} data on \\$E_{in}=1$MeV, $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m, $t_{end}=6$ns}
     \label{tab:lf_statE90_table}
 \end{table}
 
