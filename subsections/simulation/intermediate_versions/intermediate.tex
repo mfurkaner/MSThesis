@@ -82,18 +82,20 @@ Although the results from this optimization sweep were promising after they were
 \subsection{$\phi_{lag}$ Optimization For Bunches} \label{sec:philag_sweep}
 After successfully accelerating single \e, particle bunches were implemented to approximate a real \e gun. 
 They were modeled as $N$ electrons fired from an \e gun at even time intervals. This approach was taken because the amount of time gun fires, defined as \textit{Gun Active Time, $t_g$}, is a crucial part of pulsed \e gun design.
-
+\clearpage
 Addition of bunches would immediately proven useful when finding optimal phase lag for bunch entry.
 $\phi_{lag}$ for a bunch was defined as the RF phase when the first \e of the bunch has entered the cavity and it defines the starting time of the current pass.
 To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimization}, relevant bunch characteristics are defined as
-\begin{itemize}
+\vspace{-10pt}\begin{itemize}
     \item $\mu E$: Average energy,
     \item $E_{rms}$: Root mean square of energy,
     \item $R_{rms}$: Root mean square of \e positions.
 \end{itemize}
+
 Optimal $\phi_{lag}$ would produce maximum $\mu E$ while minimizing $E_{rms}$ \& $R_{rms}$. For the first pass, 
 $E_{rms}$ and $R_{rms}$ would be vaguely dependent of each other; therefore, initial implementation of $\phi_{lag}$ sweep was based on minimizing $E_{rms}$ during simulation (\textit{see \fromfig{phlag_opt}}). 
 For $\mu E$ considerations, data from the software would be analyzed either manually or by using external tools such as \textit{ROOT framework}. 
+\vspace{20pt}
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
@@ -115,9 +117,11 @@ For $\mu E$ considerations, data from the software would be analyzed either manu
             return opt_phase;
         }
     \end{minted}
+    \vspace{20pt}
     \caption{$\phi_{lag}$ Optimization For Initial Bunch Design.}
     \label{fig:phlag_opt}
 \end{figure}
+\clearpage
 Since $\phi_{lag}$ is relatively easy to change after production, another version of \fromfig{phlag_opt} that was modified for given magnet design parameters was also implemented (\textit{see \fromfig{phlag_opt_n_pass} in \fromapp{intermediate_codes}}). 
 This version can be useful for optimizing $\phi_{lag}$ in case of production issues in magnets. 
 
@@ -132,7 +136,8 @@ The refactoring effort included proper implementation of \textit{OOP}, details o
 Magnets were modeled as major segments of a circle, defined with $\vecthreeBF{r}_{mag}$, $\textbf{R}$ and $|\textbf{B}|$. 
 For the initial implementation, $\vecthreeBF{B}$ assumed to be uniform and has no leaks outside the magnet boundary (\fromfig{is_inside_halfsphere} in \fromapp{intermediate_codes}).
 
-Interaction logic for \eE and \eB in 3D can be found in \fromfig{3D_e_EM_interaction_first}.
+Implementations for \eE and \eB interactions in 3D can be found in \fromfigs{3D_e_E_interaction_first}{3D_e_B_interaction_first}, 
+where * and \% are, dot-product and cross-product respectably. (\fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes})
 \iffalse \begin{figure}[H]
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
@@ -162,6 +167,7 @@ Interaction logic for \eE and \eB in 3D can be found in \fromfig{3D_e_EM_interac
     \caption{\eEM  interaction logic from \fromeq{acc_of_E_and_B}.}
     \label{fig:3D_e_EM_interaction_first}
 \end{figure} \fi
+\iffalse \vspace{20pt}
 \begin{figure}[H]
     %%\captionsetup[subfigure]{justification=centering}
     %%\captionsetup{justification=centering}
@@ -188,10 +194,39 @@ Interaction logic for \eE and \eB in 3D can be found in \fromfig{3D_e_EM_interac
             }
         \end{minted}
     \end{minipage}
+    \vspace{20pt}
     \caption{\eEM  interaction logic from \fromeq{acc_of_E_and_B}.}
     \label{fig:3D_e_EM_interaction_first}
+\end{figure}\fi
+\begin{figure}[H]
+    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
+        vector3d CoaxialRFField::actOn(Electron& e){
+            vector3d Efield = getField(e.pos);                        // Calculate E vector
+            vector3d F_m = Efield*1E6*eQMratio;                       // Calculate F/m vector
+            vector3d acc = (F_m - e.vel*(e.vel*F_m)/(c*c))/e.gamma(); // Calculate a vector
+            return acc;
+        }
+    \end{minted}
+    \vspace{20pt}
+    \caption{\eE interaction logic from \fromeq{acc_of_E_and_B}.}
+    \label{fig:3D_e_E_interaction_first}
 \end{figure}
-Where * and \% are, dot-product and cross-product respectably. (\fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes})
+\vspace{20pt}
+\begin{figure}[H]
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
+            vector3d MagneticField::actOn(Electron& e){
+                if (isInside(e.pos) == -1)
+                    return vector3d(0,0,0);
+                vector3d Bfield = getField(e.pos);                        // Calculate B vector
+                vector3d F_m = (e.vel % Bfield)*eQMratio;                 // Calculate F/m vector
+                vector3d acc = (F_m)/e.gamma();                           // Calculate a vector
+                return acc;
+            }
+        \end{minted}
+    \vspace{20pt}
+    \caption{\eB interaction logic from \fromeq{acc_of_E_and_B}.}
+    \label{fig:3D_e_B_interaction_first}
+\end{figure}
 
 Simulating in 3D had one other benefit; it was now possible to visualize the results by rendering the interaction data. 
 For this purpose, \textit{gnuplot} was integrated into \textit{Rhodotron Simulation} to produce 2D visualization of acceleration plane. 
@@ -270,10 +305,7 @@ Instead of calculating $\vecthreeBF{a}_{EM}$ using \textit{RK4}, $\vecthreeBF{r}
 
 These three methods were then tested in the same setup as \fromfig{mag_lf_render}. The results can be found in \fromfig{lf_rk1_rk2_comparison} of \fromapp{data_graph}.
 \textit{RK4-1} was decided to be abandoned as it produced the same accuracy in twice the simulation time of \textit{RK4-2}.
-
-More rigerous testing was done with \textit{Leap-frog} and \textit{RK4-2} however. 
-Still using the setup in \fromfig{mag_lf_render}, each $dt$ configuration was simulated 10 times, calculating average and standard deviations afterwards.
-Results from these tests can be observed in \fromfig{mag_lf_rk2_comparison}.
+\clearpage
 \iffalse \begin{figure}
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
@@ -292,7 +324,7 @@ Results from these tests can be observed in \fromfig{mag_lf_rk2_comparison}.
     \caption{Comparing Leap-frog, RK4-2 performance on \eB interaction $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns}
     \label{fig:mag_lf_rk2_comparison}
 \end{figure} \fi
-\begin{figure}
+\begin{figure}[h]
     \centering
     \subfigure[\centering $dt$ vs $\Delta E$]{{\includegraphics[width=0.8\textwidth]{../../../figures/analiz/mag_lf_rk2_dt-E.png} }}%
     \qquad\subfigure[\centering $dt$ vs $T_{sim}$]{{\includegraphics[width=0.8\textwidth]{../../../figures/analiz/mag_lf_rk2_dt-Tsim.png} }}%
@@ -300,28 +332,32 @@ Results from these tests can be observed in \fromfig{mag_lf_rk2_comparison}.
     \caption{Comparing Leap-frog, RK4-2 performance on \eB interaction $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns.}
     \label{fig:mag_lf_rk2_comparison}
 \end{figure}
-The data from these tests can be found in \fromtabs{lf_mag_table}{rk2_mag_table} of \fromapp{data_graph}.
+More rigorous testing was done with \textit{Leap-frog} and \textit{RK4-2} however. 
+Still using the setup in \fromfig{mag_lf_render}, each $dt$ configuration was simulated 10 times, calculating average and standard deviations afterwards.
+
+Example renders from these tests can be observed in \fromfig{mag_lf_rk2_comparison} and
+the data from these tests can be found in \fromtabs{lf_mag_table}{rk2_mag_table} of \fromapp{data_graph}.
 To investigate the data further, one can define a performance measurement, $F$ as
-\vspace{-10pt}\begin{eqnarray*}
+\vspace{-10pt}\begin{eqnarray}
     F &\propto& 1/T  , \\
     F &\propto& 1/\Delta E . 
-\vspace{-10pt}\end{eqnarray*}
+\vspace{-10pt}\end{eqnarray}
 When $dt=10^{-5}$ ns was taken as reference point due to providing a good balance of accuracy and computational intensity, 
 relative performance can be calculated as
 \vspace{-10pt}\begin{eqnarray} \label{eq:f_lf_rk_mag_1}
-    \Delta E_{LF} &=& 110 \times 10^{-5} MeV,\nonumber\\
-    \Delta E_{RK}^1 &=& 64 \times 10^{-5} MeV,\nonumber\\
-    T_{LF}^1 &=& 9.44 \pm 0.03 s, \nonumber\\
-    T_{RK}^1 &=& 21.33 \pm 0.02 s, \nonumber\\
-    \Delta E_{LF} \times T_{LF} &=& 104 \times 10^{-4} \pm 10^{-4} MeV s, \nonumber\\ %0.003
-    \Delta E_{RK} \times T_{RK} &=& 137 \times 10^{-4} \pm 2\times 10^{-4}  MeV s, \nonumber\\ %0.001
+    \Delta E_{LF} &=& 110 \times 10^{-5} MeV,\\
+    \Delta E_{RK}^1 &=& 64 \times 10^{-5} MeV,\\
+    T_{LF}^1 &=& 9.44 \pm 0.03 s, \\
+    T_{RK}^1 &=& 21.33 \pm 0.02 s, \\
+    \Delta E_{LF} \times T_{LF} &=& 104 \times 10^{-4} \pm 10^{-4} MeV s, \\ %0.003
+    \Delta E_{RK} \times T_{RK} &=& 137 \times 10^{-4} \pm 2\times 10^{-4}  MeV s, \\ %0.001
     F_{LF}/F_{RK} &=& \frac{\Delta E_{RK} \times T_{RK} }{\Delta E_{LF} \times T_{LF}^1} = 1.32 \pm 0.01 .
 \vspace{-10pt}\end{eqnarray}
 Also, another relative performance can be obsered from the data as
 \vspace{-10pt}\begin{eqnarray} \label{eq:f_lf_rk_mag_2}
-    \Delta E_{LF} (dt=3 \times 10^{-5}) \approx \Delta E_{RK} (dt=5 \times 10^{-5}) &\approx& 32.5 \times 10^{-4} MeV, \nonumber\\
-    T_{LF}(dt=3 \times 10^{-5})  &=& 3.18 \pm 0.02 s, \nonumber\\ %0.0032
-    T_{RK}(dt=5 \times 10^{-5})  &=& 4.30 \pm 0.01 s, \nonumber\\ %0.0022
+    \Delta E_{LF} (dt=3 \times 10^{-5}) \approx \Delta E_{RK} (dt=5 \times 10^{-5}) &\approx& 32.5 \times 10^{-4} MeV, \\
+    T_{LF}(dt=3 \times 10^{-5})  &=& 3.18 \pm 0.02 s, \\ %0.0032
+    T_{RK}(dt=5 \times 10^{-5})  &=& 4.30 \pm 0.01 s, \\ %0.0022
     F_{LF}/F_{RK} = \frac{T_{RK}(dt=5 \times 10^{-5})}{T_{LF}(dt=3 \times 10^{-5})} &=& 1.4 \pm 0.1.
 \vspace{-10pt}\end{eqnarray}
 Uncertainty of \fromeq{f_lf_rk_mag_2} was taken high due to the approximation. 
@@ -352,6 +388,7 @@ Both configurations had an \egun located at $(-0.753, 0, 0)$m, directed at $(1, 
     \end{subfigure}
     \caption{Illustration of test setups.}
 \end{figure} \fi
+\vspace{20pt}
 \begin{figure}[H]
     \centering
     \subfigure[\centering Setup-1 parallel $\vecthreeBF{E}$ field]{{\includegraphics[width=0.423\textwidth]{../../../figures/illustrations/statE_1.png} }}%
@@ -359,14 +396,14 @@ Both configurations had an \egun located at $(-0.753, 0, 0)$m, directed at $(1, 
     \vspace{20pt}
     \caption{Illustration of test setups.}
 \end{figure}
+\clearpage
 In the first test, the beam would be injected into a static uniform electric field \\
 $\vecthreeBF{E}=(-2.65616, 0, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.753$, $\vecthreeBF{E}=0$ elsewhere.
-
-Considering the $\vecthreeBF{E}$ is parallel to the beam path, potential difference $V$ in the trejectory until \vecNum{-0.753}{0}{0}m is
+Considering the $\vecthreeBF{E}$ is parallel to the beam path, beam energy at exit can be calculated as
 \vspace{-10pt}\begin{eqnarray}
-    \Delta V^1 &=& - \int \dotProdBF{E}{ds} \\
-             &=& - \int_{-0.753}^{0.753} -2.65616 \times dx \\
-             &=& 2.65616 \times 1.506 \\
+    \Delta V^1 &=& - \int \dotProdBF{E}{ds} \nonumber\\
+             &=& - \int_{-0.753}^{0.753} -2.65616 \times dx \nonumber\\
+             &=& 2.65616 \times 1.506 \nonumber\\
              &=& 4 MV, \\
     \Delta E^1 &=& 4 MeV, \\
     E_{exitTH}^1 &=& 5 MeV.
@@ -374,10 +411,11 @@ Considering the $\vecthreeBF{E}$ is parallel to the beam path, potential differe
 
 In the second test on the other hand, the beam would be injected into a different static uniform electric field,
 $\vecthreeBF{E}=(0, -5.31232, 0)$ MV/m where $-0.753<x<0.753$ and $-0.753<y<0.753$, $\vecthreeBF{E}=0$ elsewhere.
+Beam energy at exit can be calculated as
 \vspace{-10pt}\begin{eqnarray}
-    \Delta V^2   &=& - \int \dotProdBF{E}{ds} \\
-                 &=& - \int_{0}^{0.753} -5.31232 \times dy \\
-                 &=& 5.31232 \times 0.753 \\
+    \Delta V^2   &=& - \int \dotProdBF{E}{ds} \nonumber \\
+                 &=& - \int_{0}^{0.753} -5.31232 \times dy \nonumber \\
+                 &=& 5.31232 \times 0.753 \nonumber \\
                  &=& 4 MV, \\
     \Delta E^2   &=& 4 MeV, \\
     E_{exitTH}^2 &=& 5 MeV.
@@ -449,17 +487,17 @@ Taking the $dt=10^{-5}$ ns for the reference point as before, using the data
         T_{LF}^2 &=& 10.75 \pm 0.04 s, \\
         T_{RK}^2 &=& 34.93 \pm 0.39 s, 
     \end{aligned}
-\vspace{-10pt}\end{eqnarray*}
+\vspace{-20pt}\end{eqnarray*}
 the relative performances can be calculated as
 \vspace{-10pt}\begin{eqnarray} 
-    \Delta E_{LF}^1 \times T_{LF}^1 &=& 270 \times 10^{-6} \pm 10^{-6} MeV s, \nonumber\\ %0.003
-    \Delta E_{RK}^1 \times T_{RK}^1 &=& 640 \times 10^{-6} \pm 2\times 10^{-6}  MeV s, \nonumber\\ %0.003
+    \Delta E_{LF}^1 \times T_{LF}^1 &=& 270 \times 10^{-6} \pm 10^{-6} MeV s, \\ %0.003
+    \Delta E_{RK}^1 \times T_{RK}^1 &=& 640 \times 10^{-6} \pm 2\times 10^{-6}  MeV s, \\ %0.003
     F_{LF}^1/F_{RK}^1 &=& \frac{\Delta E_{RK}^1 \times T_{RK}^1 }{\Delta E_{LF}^1 \times T_{LF}^1} = 2.4 \pm 0.02, \label{eq:f_lf_rk_1}
-\vspace{-10pt}\end{eqnarray}
+\vspace{-20pt}\end{eqnarray}
 and
 \vspace{-10pt}\begin{eqnarray}  
-    \Delta E_{LF}^2 \times T_{LF}^2 &=& 160 \times 10^{-5} \pm 10^{-5} MeV s, \nonumber\\ %0.004
-    \Delta E_{RK}^2 \times T_{RK}^2 &=& 320 \times 10^{-5} 4 \pm 10^{-5} MeV s, \nonumber\\ %0.011
+    \Delta E_{LF}^2 \times T_{LF}^2 &=& 160 \times 10^{-5} \pm 10^{-5} MeV s, \\ %0.004
+    \Delta E_{RK}^2 \times T_{RK}^2 &=& 320 \times 10^{-5} 4 \pm 10^{-5} MeV s, \\ %0.011
     F_{LF}^2/F_{RK}^2 &=& \frac{\Delta E_{RK}^2 \times T_{RK}^2 }{\Delta E_{LF}^2 \times T_{LF}^2} = 2.0  \pm 0.03. \label{eq:f_lf_rk_2}
 \vspace{-10pt}\end{eqnarray}
 
@@ -468,16 +506,16 @@ and
 This results can be tested further with obsering from the data (see \fromtabf{lf_statE_table}{rk2_statE_table}{lf_statE90_table}{rk2_statE90_table} of \fromapp{data_graph})
 and calculating other relative performances as
 \vspace{-10pt}\begin{eqnarray} \label{eq:f_lf_rk_3}
-    \Delta E_{LF}^1 (dt=2 \times 10^{-5}) = \Delta E_{RK}^1 (dt=3 \times 10^{-5}) &=& 45 \times 10^{-6} MeV, \nonumber\\
-    T_{LF}^1(dt=2 \times 10^{-5})  &=& 6.23 \pm 0.02 s, \nonumber\\ %0.0032
-    T_{RK}^1(dt=3 \times 10^{-5})  &=& 13.40 \pm 0.03 s, \nonumber\\ %0.0022
+    \Delta E_{LF}^1 (dt=2 \times 10^{-5}) = \Delta E_{RK}^1 (dt=3 \times 10^{-5}) &=& 45 \times 10^{-6} MeV, \\
+    T_{LF}^1(dt=2 \times 10^{-5})  &=& 6.23 \pm 0.02 s, \\ %0.0032
+    T_{RK}^1(dt=3 \times 10^{-5})  &=& 13.40 \pm 0.03 s, \\ %0.0022
     F_{LF}^1/F_{RK}^1 = \frac{T_{RK}^1(dt=3 \times 10^{-5})}{T_{LF}^1(dt=2 \times 10^{-5})} &=& 2.15 \pm 0.02,
 \vspace{-10pt}\end{eqnarray}
 and
 \vspace{-10pt}\begin{eqnarray} \label{eq:f_lf_rk_4}
-    \Delta E_{LF}^2 (dt=3 \times 10^{-5}) \approx \Delta E_{RK}^2 (dt=5 \times 10^{-5}) &\approx& 470 \times 10^{-6} MeV, \nonumber\\
-    T_{LF}^2(dt=3 \times 10^{-5})  &=& 3.62, \nonumber\\ %0.0055
-    T_{RK}^2(dt=5 \times 10^{-5})  &=& 7.00, \nonumber\\ %0.0071 -> 0,0126
+    \Delta E_{LF}^2 (dt=3 \times 10^{-5}) \approx \Delta E_{RK}^2 (dt=5 \times 10^{-5}) &\approx& 470 \times 10^{-6} MeV, \\
+    T_{LF}^2(dt=3 \times 10^{-5})  &=& 3.62, \\ %0.0055
+    T_{RK}^2(dt=5 \times 10^{-5})  &=& 7.00, \\ %0.0071 -> 0,0126
     F_{LF}^2/F_{RK}^2 = \frac{T_{RK}^2(dt=5 \times 10^{-5})}{T_{LF}^2(dt=3 \times 10^{-5})} &=& 1.9 \pm 0.1.
 \vspace{-10pt}\end{eqnarray}
 The last uncertainty was taken high due to the approximation of $467 \approx 471$. After combining \fromeqsf{f_lf_rk_1}{f_lf_rk_2}{f_lf_rk_3}{f_lf_rk_4},
@@ -492,28 +530,31 @@ As already mentioned before, multithreading implementation efforts were ongoing 
 There have been a number of different approaches for implementation. 
 First implemenation was done when the \textit{Rhodotron Simulation} was only capable of 1D simulations.
 After the sizable refactoring done for 3D capabilities, this implementation was obselete. 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{../../../figures/illustrations/multh_arc.png}
-    \caption{An Illustration of the multithreading architecture.}
-    \label{fig:multh_illustration}
-\end{figure}
+
 For the current version, a main thread that spawns and manages several other worker threads would be used as can be seen in \fromfig{multh_illustration}.
 The UI-Console thread would handle incoming and outgoing communication, notifying the user about the status of simulation 
 (see \fromfig{console_output_running} in \fromapp{example_simulation_runs} for example console notification, \fromfig{ui_thread} in \fromapp{intermediate_codes} for implemenation)
 or communucating with the \textit{GUI} that will be disscussed in the next section.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{../../../figures/illustrations/multh_arc.png}
+    \vspace{20pt}
+    \caption{An Illustration of the multithreading architecture.}
+    \label{fig:multh_illustration}
+\end{figure}
+
 Focus of this section is the worker threads, also known as \eEM interaction threads.
 There were four competing architecture for these worker threads,
 \begin{itemize}
-    \item \textit{Architecture 1:} Have a thread pool that calculates \eEM in a queue 
-    \item \textit{Architecture 2:} Assign a thread to each bunch
-    \item \textit{Architecture 3:} A ssign random electrons to each thread and calculate \eEM with global time
-    \item \textit{Architecture 4:} Assign random electrons to each thread and calculate \eEM with local thread time
+    \item \textit{Architecture 1:} Have a thread pool that calculates \eEM in a queue. 
+    \item \textit{Architecture 2:} Assign a thread to each bunch.
+    \item \textit{Architecture 3:} A ssign random electrons to each thread and calculate \eEM with global time.
+    \item \textit{Architecture 4:} Assign random electrons to each thread and calculate \eEM with local thread time.
 \end{itemize}
 
 \textit{Architecture 1} would require constant waiting in worker threads to get mutexes of $\vecthreeBF{E}$ field, especially in \textit{RK4}.
-
+\clearpage
 \textit{Architecture 2} was performing well in configurations with a large number of bunches, but was not increasing performance in lower bunch count configurations as expected.
 
 \textit{Architecture 3} was inefficient and wasteful since all the worker threads would wait the main thread to get the next time after they finish calculation, while the main thread would be waiting for the slowest worker thread.
@@ -528,7 +569,7 @@ Therefore, \textit{Architecture 4} is not ideal for fast calculations and when t
 An implementation that can use both \textit{Architecture 2} \& \textit{Architecture 4} when necessary would be a better approach considering these methods;
 nevertheless, \textit{Architecture 4} was chosed to be implemented.
 
-The implemenation can be found in \fromfigf{_runMT}{fireAllWithFireTimesMT}{setupPool}{threadLoop} in \fromapp{intermediate_codes}.
+The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWithFireTimesMT}{setupPool}{threadLoop} in \fromapp{intermediate_codes}.
 
 
 %%%%%%

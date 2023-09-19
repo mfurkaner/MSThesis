@@ -50,15 +50,15 @@ The Leapfrog method is a variant of the finite difference method, and it approxi
 It is a simple and efficient algorithm that is often used in simulations of physical systems, such as celestial mechanics or molecular dynamics.
 The idea is straight forward; in the time interval $\Delta t$, 
 \vspace{-10pt}\begin{eqnarray}
-    a(t_0) &=& f(x_0)   , \nonumber \\
+    a(t_0) &=& f(x_0)   , \\
     x(t_0 + \Delta t) &=& x(t_0) + v(t_0)\Delta t + a(t_0)\frac{\Delta t^2}{2}   ,\label{eq:leapfrog_sync_x}\\
     v(t_0 + \Delta t) &=& v(t_0) + \{ a(t_0) + a(t_0 + \Delta t)\}\frac{\Delta t}{2} . \label{eq:leapfrog_sync_v}
 \vspace{-10pt}\end{eqnarray}
 For more stability, this version can be rearranged to what is called 'kick-drift-kick' form as
 \vspace{-10pt}\begin{eqnarray} \label{eq:leapfrog}
-    v(t_0 + \Delta t/2) &=& v(t_0) +  a(t_0)\frac{\Delta t}{2}   , \nonumber \\
+    v(t_0 + \Delta t/2) &=& v(t_0) +  a(t_0)\frac{\Delta t}{2}   ,  \\
     x(t_0 + \Delta t) &=& x(t_0) + v(t_0 + \Delta t/2)\Delta t   , \\
-    v(t_0 + \Delta t) &=& v(t_0 + \Delta t/2) + a(t_0 + \Delta t)\frac{\Delta t}{2} . \nonumber
+    v(t_0 + \Delta t) &=& v(t_0 + \Delta t/2) + a(t_0 + \Delta t)\frac{\Delta t}{2} . 
 \vspace{-10pt}\end{eqnarray}
 This version provides more time resolution to our calculation; however, it increases the number of calculations needed by about $50\%$.
 

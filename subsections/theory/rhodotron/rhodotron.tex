@@ -85,6 +85,7 @@ These oscillating fields then transfer energy to the passing particles, increasi
 \begin{figure}[H]
     \centering
     \includegraphics[width=.75\textwidth]{../../../figures/pill_box.jpeg}
+    \vspace{20pt}
     \caption{An RF cavity used in KAHVELab.}
 \end{figure}
 
@@ -163,10 +164,10 @@ This stages are explained further below.
 %\end{description}
 
 \begin{itemize}
-    \item \textit{First Acceleration:} Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity. (\fromfig{rhod_cycle_1})
-    \item \textit{Inner Shielding:} Inner shielding While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed. (\fromfig{rhod_cycle_2})
-    \item \textit{Second Acceleration:} Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity. (\fromfig{rhod_cycle_3})
-    \item \textit{Recirculating Magnets:} After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again. (\fromfig{rhod_cycle_4})
+    \item \textit{First Acceleration:} Electrons in the rhodotron cavity are accelerated by the electric field created between two coaxial cylinders, towards the inner cylinder when they are ejected into the cavity (\fromfig{rhod_cycle_1}).
+    \item \textit{Inner Shielding:} Inner shielding While inside the inner cylinder, the cylinder acts as a faraday cage and shields the electrons inside while the electric field is being reversed (\fromfig{rhod_cycle_2}). 
+    \item \textit{Second Acceleration:} Once the electrons leave the inner cylinder, they accelerate towards the outer cylinder by the reversed electric field until they leave the cavity (\fromfig{rhod_cycle_3}). 
+    \item \textit{Recirculating Magnets:} After leaving the cavity, an electromagnet placed in their path steers the electrons back into the cavity in which time the electric field changes the direction again (\fromfig{rhod_cycle_4}). 
 \end{itemize}
 
 This cycle can be repeated as long as real world constraints such as; placements and dimensions of the electromagnets, power requirements due to increasing magnetic field in order for sharper turns, can be overcomed.
@@ -177,7 +178,7 @@ This process is explained further in the \fromfigf{rhod_cycle_1}{rhod_cycle_2}{r
 \subsubsection{Cavity of a Rhodotron} \label{sec:cavity_of_a_rhodotron}
 
 Coaxial design of the cavity concentrates the electric field, while the magnetic field diminishes in the middle of the cylinders. 
-Therefore the electrons are injected and accelerated in the plane of zero magnetic field where the electric field is strongest. (\fromfig{rhodo_cavity_field_dist})
+Therefore the electrons are injected and accelerated in the plane of zero magnetic field where the electric field is strongest (\fromfig{rhodo_cavity_field_dist}).
 
 \iffalse \begin{figure}[H]
     %\captionsetup[subfigure]{justification=centering}
@@ -207,21 +208,23 @@ Therefore the electrons are injected and accelerated in the plane of zero magnet
 For a cavity defined by the volume between two coaxial cylinders of equal lengths ($h$) with radii of $R_1$ and $R_2$, where $R_1 < R_2$, located at the origin (\fromfig{int_curve}),
 first eigenmode solution of the $E$ and $B$ fields are \cite{rhodo_pottier}
 \vspace{-10pt}\begin{eqnarray}
-    E &=& \frac{E_0}{r} \cos(\frac{\pi z}{h}) \sin(\omega t + \phi)  , \\
-    B &=& \frac{B_0}{r} \sin(\frac{\pi z}{h}) \cos(\omega t + \phi)  ,
+    E &=& \frac{E_0}{r} \cos\left( \frac{\pi z}{h} \right) \sin \left( \omega t + \phi \right)  , \\
+    B &=& \frac{B_0}{r} \sin\left( \frac{\pi z}{h}\right) \cos\left( \omega t + \phi\right)  ,
 \vspace{-10pt}\end{eqnarray}
 where $\omega=2\pi f$, $f$ is the resonance frequency.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=.6\textwidth]{../../../figures/illustrations/rhodo_integral_curve.pdf}
+    \vspace{20pt}
     \caption{Illustration of a simple coaxial cavity with the curve \textbf{C} in \fromeq{p_diss_C_curve}.}
     \label{fig:int_curve}
 \end{figure}
+
 Because acceleration potential is located on the $z=0$ plane and $\vecthreeBF{E} \parallel \hat{r}$, $V_{acc}$ can be found by
 \vspace{-10pt}\begin{eqnarray} 
-    V_{acc} &=& 2 \int_{R_1}^{R_2} |E|^2 dr \\
-            &=& 2 E_0 \int_{R_1}^{R_2} \frac{dr}{r} \\
+    V_{acc} &=& 2 \int_{R_1}^{R_2} |E|^2 dr \nonumber\\
+            &=& 2 E_0 \int_{R_1}^{R_2} \frac{dr}{r} \nonumber\\
             &=& 2 E_0 \ln(\frac{R_2}{R_1}). \label{eq:v_acc}
 \vspace{-10pt}\end{eqnarray}
 Dissipated power $P_{diss}$, on the other hand, can be calculated as \cite{rf}
@@ -229,6 +232,7 @@ Dissipated power $P_{diss}$, on the other hand, can be calculated as \cite{rf}
     P_{diss} &=& \frac{1}{2} \int \int \rho_s | H_{||} |^2 dA \nonumber \\
              &=& \frac{\rho_s}{2\mu_0^2} \int_0^{2\pi} \int_C | B_{||} |^2 r ds d\theta . \label{eq:p_diss_C_curve}
 \vspace{-10pt}\end{eqnarray}
+\clearpage
 where $\rho_s$ is the areal skin resistivity ( $\rho_s \approx 2.51 \times 10^{-7} f^{1/2}$ for copper \cite{rhodo_pottier} ), $B=\mu H$, $\mu$ is permeability, $\mu_0$ is the vacuum permability. 
 Integral curve \textbf{C} is defined as the circumference of cylindrically symmetrical cross sectional area of the cavity (\fromfig{int_curve}).
 This curve can be seperated to its line components and total power dissipation of this curve, $P_C$ will be equal to sum of the power dissipated in these lines.
@@ -250,7 +254,7 @@ Inserting $H_0=B_0/\mu_0$, finally we have the dissipated power
 \vspace{-10pt}\end{equation}
 Therefore, from \fromeq{shunt}, using \fromeqs{v_acc}{p_diss} also $E_0/H_0 = Z_0 \approx 120 \pi$ we have
 \vspace{-10pt}\begin{eqnarray}
-    Z_s &=& \frac{4E_0^2}{H_0^2 \pi \rho_s} \frac{ \ln^2(\frac{R_2}{R_1})}{(\frac{h}{2R_1} + \frac{h}{2R_2} + 2 \ln(\frac{R_2}{R_1}))} \\
+    Z_s &=& \frac{4E_0^2}{H_0^2 \pi \rho_s} \frac{ \ln^2(\frac{R_2}{R_1})}{(\frac{h}{2R_1} + \frac{h}{2R_2} + 2 \ln(\frac{R_2}{R_1}))} \nonumber\\
         &=& \frac{8 \pi 60^2}{\rho_s} \frac{ \ln^2(\frac{R_2}{R_1})}{(\frac{h}{4}(\frac{1}{R_1} + \frac{1}{R_2}) + \ln(\frac{R_2}{R_1}))}   ,
 \vspace{-10pt}\end{eqnarray}
 where, time dependencies have been removed from $\vecthreeBF{E}$ and $\vecthreeBF{B}$ 
@@ -272,17 +276,18 @@ For a relativistic electron crossing the axis at $2\pi f t_0 = \phi$ on the othe
 \vspace{-10pt}\end{equation} 
 Putting all these calculations together, energy gain of a relativistic electron, passing the origin at $\phi / \omega$ as calculated by \textit{J. Pottier} is \cite{rhodo_pottier}
 \vspace{-10pt}\begin{eqnarray}
-    \Delta E &=& q V_{acc}^{ef} \\
+    \Delta E &=& q V_{acc}^{ef} \nonumber\\
              &=& q Z_{se}^{1/2}P_{diss}^{1/2} \cos(\phi)  ,
-\vspace{-10pt}\end{eqnarray}
+\vspace{-20pt}\end{eqnarray}
 where $ V_{acc}^{ef} = V_{acc} T(\phi)$ is the effective accelerating potential.
 If $\Delta E$ is taken in \textit{MeV}, $Z_{se}$ in $M\Omega$ and $P_{diss}$ in \textit{MW}, this equality becomes
 \vspace{-10pt}\begin{equation} \label{eq:W_gain_each_pass_pottier}
     \Delta E = Z_{se}^{1/2}P_{diss}^{1/2} \cos(\phi) \quad MeV .
 \vspace{-10pt}\end{equation}
+
+
 With the expectation that the electrons will accelerate to speeds $\approx c$ after the first pass, a rhodotron cavity is designed so that the length of the path between successive passes is an integer multiple of $\lambda$, wavelength of the RF field ($l=p\lambda \label{eq:lpl}$).
 This constraint helps with  phase stability and synchronization of the beam.
-
 In the \fromfig{pottier_table1}, optimized characteristics of a rhodotron cavity can be observed. 
 \begin{figure}[H]
     \centering

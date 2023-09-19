@@ -45,8 +45,9 @@
 %%%%%%
 % Start of poc.tex
 \section{Proof of Concept}
-The POC worked with interacting an electron with the EM field provided, at discrete time steps $dt$. The core sequence of this software is provided below.
-Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the $e^-$;
+The proof of concept (POC) worked with interacting an electron with the EM field provided, at discrete time steps $dt$. 
+The core sequence of this software is provided below and the implemenation of this logic can be observed in \fromfig{POC_core_logic}. 
+Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the $e^-$:
 \begin{itemize}
     \item Get electron energy $E_{in}$,
     \item Get the RF field definitions,
@@ -60,7 +61,7 @@ Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the 
         \item Calculate new $E_t$.
     \end{enumerate}
 \end{itemize}
-The implemenation of this logic can be observed in \fromfig{POC_core_logic}. 
+\clearpage
 \begin{figure}[H]
     \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
         for (double t=0; t<SimuTime; t+=dT){
@@ -78,9 +79,11 @@ The implemenation of this logic can be observed in \fromfig{POC_core_logic}.
             Et=RelGamma*E0; 
         }
     \end{minted}
+    \vspace{20pt}
     \caption{Core logic loop of the POC.}
     \label{fig:POC_core_logic}
 \end{figure}
+
 After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} 
 with $\phi_{lag}=15^\circ$, $P_{diss}=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz for one pass, 
 the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} were found to be
@@ -90,10 +93,10 @@ the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier
 % R2 = 0.753
 % f = 107.5
 \vspace{-10pt}\begin{eqnarray}
-    E_{Pottier} &=& 0.593 MeV  , \nonumber\\
+    E_{Pottier} &=& 0.593 MeV  , \\
     E_{CST} &=& 0.521 MeV  ,  \label{eq:poc_E_results}\\
-    E_{POC} &=& 0.532 MeV . \nonumber
-\vspace{-10pt}\end{eqnarray}
+    E_{POC} &=& 0.532 MeV . 
+\vspace{-20pt}\end{eqnarray}
 
 As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced similar results; $\Delta E_{(POC-CST)}/E_{CST} \approx 2\%$.
 while \fromeq{W_gain_each_pass_pottier} was noticably different; $\Delta E_{(Pottier-CST)}/E_{CST} \approx 14\%$.

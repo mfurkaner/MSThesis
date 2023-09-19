@@ -74,7 +74,8 @@ Until this point, \textit{Rhodotron Simulation} could be used with a configratio
 An example of this configuration file can be found in \fromfig{config_file} of \fromapp{example_simulation_runs}. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\linewidth]{../../../figures/illustrations/RhodoSim_GUI_Draft_V02.pdf}
+    \includegraphics[width=\linewidth]{../../../figures/illustrations/RhodoSim_GUI_Draft_V02.pdf}
+    \vspace{20pt}
     \caption{An Illustration of the first GUI design.}
     \label{fig:gui_illustration}
 \end{figure}
@@ -94,18 +95,20 @@ This frame spawns and manages the \textit{simulation engine}, configures and sta
 It has a progress bar that shows the current progress of the simulation, communucating with \textit{UI handler thread} in \textit{simulation engine}.
 Simulation frame while a simulation is running can be observed in \fromfig{gui_simulate_1} of \fromapp{supp}.
 
-\newpage
 \subsection{Configuration Frame}
 This frame provides an interface for specifying, saving or loading a configuration, consists of $\vecthreeBF{B}$ field, $\vecthreeBF{E}$ field, \textit{RF} description, \egun, \textit{simulation} configuration regions.
 Each one having an illustration of what the parameters are as can be seen in \fromfig{gui_config}.
+
+\clearpage
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{../../../figures/rhodoSim/GUI_config_frame.png}
+    \vspace{20pt}
     \caption{The configuration frame of implementated first GUI design.}
     \label{fig:gui_config}
 \end{figure}
 
-\newpage
+\clearpage
 \subsection{Render Frame}
 Since the rendering capabilities of \textit{ROOT} is superior than \textit{gnuplot}, the user can render a playback of the simulation in real time, 
 see a specific time frame, export as snapshot or animated gif file.
@@ -131,12 +134,10 @@ In \fromfig{gui_analyze_Edist}, \textit{Analyze Frame} plotting energy distribut
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{../../../figures/rhodoSim/GUI_analyze_Et_3.png}
+    \includegraphics[width=0.9\linewidth]{../../../figures/rhodoSim/GUI_analyze_Et_3.png}
     \caption{Analyze frame of \textit{GUI} E(t).}
     \label{fig:gui_analyze_Et}
 \end{figure}
-
-\newpage
 
 \subsection{Sweep Frame}
 Parameter sweep method that was discussed in \fromsecs{lout_sweep}{philag_sweep} was integrated into \textit{GUI} in a seperate frame named \textit{Sweep Frame}.
@@ -152,7 +153,7 @@ In the \fromfigf{gui_sweep_muE}{gui_sweep_sE}{gui_sweep_running}{gui_sweep_sR} o
     \caption{Sweep frame of \textit{GUI} $\phi_{lag}$ $\mu E$ result.}
     \label{fig:gui_sweep_muE}
 \end{figure}
-\newpage
+\clearpage
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.85\linewidth]{../../../figures/rhodoSim/GUI_sweep_sE_3.png}
