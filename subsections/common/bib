@@ -6,63 +6,87 @@
     Jacques Pottier,
     \emph{A new type of rf electron accelerator: The rhodotron},
     Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
-    Volumes 40–41, Part 2,
-    1989,
-    Pages 943-945, 
-
-    \bibitem{rhodo_prototype}
-    J.M. Bassaler, J.M. Capdevila, O. Gal, F. Lainé, A. Nguyen, J.P. Nicolaï, K. Umiastowski,
-    \emph{Rhodotron: an accelerator for industrial irradiation},
-    Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
-    Volume 68, Issues 1–4,
-    1992,
-    Pages 92-95,A:
-
-    \bibitem{rhodos}
-    Y. Jongen. (2001). \emph{Manufacturing of Electron Accelerators}. Ion Beam Applications s.a. (IBA) Chemin du Cyclotron 3, B-1348 Louvain-la-Neuve, Belgium.
-
-    \bibitem{cpu_instruction_speed}
-    Fukushima, Toshio. (2001). \emph{Reduction of Round-off Errors in Symplectic Integrators}. The Astronomical Journal. 121. 1768-1775. 
-
-    \bibitem{runge}
-    Runge, Carl David Tolmé (1895), \emph{Über die numerische Auflösung von Differentialgleichungen}, Mathematische Annalen, Springer, 46 (2): 167–178.
-
-    \bibitem{kutta}
-    Kutta, Wilhelm (1901), \emph{Beitrag zur näherungsweisen Integration totaler Differentialgleichungen}, Zeitschrift für Mathematik und Physik, 46: 435–453.
-
-    \bibitem{cite:rhodo_design}
-    W.~Kleeven, M.~Abs, J.~Brison, E.~Forton, J.~Hubert and J.~Van de Walle,
-    \emph{Design and Simulation Tools for the High-Intensity Industrial Rhodotron Electron Accelerator},
-    9th International Particle Accelerator Conference,
-    2018
-    
-    \bibitem{sinan}
-    Privite communication, Sinan ÖZ
-
-    \bibitem{gnuplot}
-    Williams, T. and Kelley, C. (2020). Gnuplot 5.4: An Interactive
-    Plotting Program. URL http://gnuplot.info.
-
-    \bibitem{root}
-    Rene Brun and Fons Rademakers, ROOT - An Object Oriented Data Analysis Framework,
-    Proceedings AIHENP'96 Workshop, Lausanne, Sep. 1996,
-    Nucl. Inst. \& Meth. in Phys. Res. A 389 (1997) 81-86.
-    See also "ROOT" [software], Release v6.20/04, 01/04/2020,
-    (https://zenodo.org/record/3895855).
-    
-    \bibitem{poi-sup}
-    J. H. Billen and L. M. Young, “Poisson Superfish,” LA-UR-96-1834.
+    Vol. 40–41,
+    No 2,
+    pp 943-945,
+    1989.
 
     \bibitem{kahvelab_linac}
-    A. Adıgüzel, S. Açıksöz, A. Çağlar, H. Çetinkaya, Ş. Esen, D. Halis, A. Hamparsunoğlu, T.B. İlhan, A. Kılıçgedik, O. Koçer, S. Oğur, S. Öz, A. Özbey, V.E. Özcan and N.G. Ünel
+    Adıgüzel, A., S. Açıksöz, A. Çağlar, H. Çetinkaya, Ş. Esen, D. Halis, A. Hamparsunoğlu, T.B. İlhan, A. Kılıçgedik, O. Koçer, S. Oğur, S. Öz, A. Özbey, V.E. Özcan and N.G. Ünel
     \emph{Ion source and LEBT of KAHVELab proton beamline},
     Journal of Instrumentation,
-    Volume 18, January 2023
+    Vol. 18,
+    2023
+
+    \bibitem{rhodo_prototype}
+    Bassaler, J.M., J.M. Capdevila, O. Gal, F. Lainé, A. Nguyen, J.P. Nicolaï, K. Umiastowski,
+    \emph{Rhodotron: an accelerator for industrial irradiation},
+    Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
+    Volume 68, No. 1–4,
+    Pages 92-95,
+    1992.
+
+    \bibitem{rhodos}
+    Jongen, Y.,
+    \emph{Manufacturing of Electron Accelerators},
+    Ion Beam Applications (IBA) Chemin du Cyclotron 3,
+    B-1348 Louvain-la-Neuve, Belgium.
+    2001.
 
     \bibitem{rf}
-    E. Jensen,
-    \emph{RF Cavity Design},
-    CERN Yellow Report CERN-2014-009, pp.405-429
+    Jensen E., in Proceedings of the CAS–CERN Accelerator School: Advanced Accelerator Physics CERN–2014–009,
+    edited by W. Herr, Trondheim, Norway,
+    pp. 405–430,
+    2013.
+
+    \bibitem{cpu_instruction_speed}
+    Fukushima, T., 
+    \emph{Reduction of Round-off Errors in Symplectic Integrators},
+    The Astronomical Journal,
+    Vol. 121,
+    pp. 1768-1775,
+    2001.
+
+    \bibitem{poi-sup}
+    User's Guide for the POISSON / SUPERFISH group of codes, 
+    Los Alamos National Laboratory, New Mexico, USA, 1987. Accessed on Aug 10, 2023. 
+    
+    \bibitem{root}
+    The European Organization for Nuclear Research, 
+    "ROOT - An Object Oriented Data Analysis Framework Release v6.20/04, 01/04/2020", 2020,
+    https://zenodo.org/record/3895855, accessed on Aug 10, 2023.
+
+    \bibitem{gnuplot}
+    Williams, T, "Gnuplot 5.4: An Interactive
+    Plotting Program", 2020, http://gnuplot.info, accessed on Aug 10, 2023.
+
+    \bibitem{runge}
+    Runge, C. D. T.,
+    \emph{Über die numerische Auflösung von Differentialgleichungen}, 
+    Mathematische Annalen, 
+    Springer, 
+    Vol. 46,
+    No. 2,
+    pp. 167–178,
+    1895.
+
+    \bibitem{kutta}
+    Kutta, W, 
+    \emph{Beitrag zur näherungsweisen Integration totaler Differentialgleichungen}, 
+    Zeitschrift für Mathematik und Physik, 
+    Vol. 46,
+    pp. 435–453,
+    1901.
+
+    \bibitem{cite:rhodo_design}
+    Kleeven, W., M. Abs, J. Brison, E. Forton, J. Hubert and J. Van de Walle,
+    \emph{Design and Simulation Tools for the High-Intensity Industrial Rhodotron Electron Accelerator},
+    9th International Particle Accelerator Conference,
+    2018.
+    
+    \bibitem{sinan}
+    Privite communication with Sinan Öz.
+
 
 \end{thebibliography}
 

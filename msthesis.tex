@@ -151,15 +151,18 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
 % LIST OF ABBREV PAGE
 \begin{abbreviations}
     % Abbreviations in alphabetical order
-   \sym{2D}{One Dimensional}
+   \sym{1D}{One Dimensional}
    \sym{2D}{Two Dimensional}
    \sym{3D}{Three Dimensional}
    \sym{eV}{Electron Volt}
    \sym{Hz}{Hertz}
    \sym{KAHVELab}{Kandilli Detector Accelerator and \\Instrumentation Laboratory}
+   \sym{LF}{Leap-Frog}
    \sym{Linac}{Linear Particle Accelerator}
    \sym{ODE}{Ordinary Differential Equation}
    \sym{RF}{Radio Frequency}
+   \sym{RK}{Runge-Kutta}
+   \sym{RK4}{Forth Order Runge-Kutta}
    \sym{RMS}{Root Mean Square}
    \sym{POC}{Proof of Concept}
    \sym{CPU}{Central Processing Unit}
@@ -169,10 +172,6 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
    \sym{W}{Watt}
 
 \end{abbreviations}
-
-
-\pagenumbering{arabic}
-
 
 
 \newcommand{\vecthreeBF}[1]{\vec{\textbf{#1}}}
@@ -224,6 +223,7 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
 % START OF INTRODUCTION AND THEORY
 
 \chapter{INTRODUCTION AND THEORY}
+\pagenumbering{arabic}
 
 Particle accelerators are essential tools for scientific research. They enable scientists to probe the fundamental constituents of matter, study particle interactions, and explore the laws of physics. 
 Accelerators have been instrumental in discovering and characterizing fundamental particles, such as quarks, leptons, and more recently the Higgs boson. 
@@ -275,7 +275,7 @@ Therefore force can be written as
     \vecthreeBF{F}  = \gamma m_0 \{ \vecthreeBF{a} + \gamma^2(\dotProd{\beta}{\textbf{a}})\vecthree{\beta} \} .
     \vspace{-10pt}
 \end{equation}
-
+\clearpage
 It is clear that acceleration is not necessarily parallel to the force. 
 To start separating the parallel and perpendicular components relative to $\vecthree{\beta}$, we can find $\vecthreeBF{a}_{||}$ and $\vecthreeBF{F}_{||}$ as
 \vspace{-10pt}
@@ -468,7 +468,8 @@ Special relativity governs the increase in mass and energy of the particles as t
 \begin{figure}[H]
     \centering
     \includegraphics[width=.9\textwidth]{./figures/kahvelab_linac.png}
-    \caption{A linear proton accelerator in KAHVELab. \cite{kahvelab_linac}}
+    \vspace{20pt}
+    \caption{A linear proton accelerator in KAHVELab \cite{kahvelab_linac}.}
 \end{figure}
 
 \subsection{Acceleration Cavities} \label{sec:theory_cavities}
@@ -476,7 +477,6 @@ Radiofrequency (RF) cavities, also known as accelerating cavities or resonant ca
 These cavities generate strong electromagnetic fields at specific frequencies to accelerate charged particles through clever engineering.
 
 RF cavities are typically hollow metallic structures made of or coated with high-conductivity materials such as copper. 
-They are designed to resonate at a specific frequency, which is determined by the size and shape of the cavity. 
 The cavity is often cylindrical or spherical in shape, and its inner surface is polished to minimize energy losses through resistive heating.
 The RF cavity is designed to be resonant, meaning that it naturally amplifies the electric fields at its resonant frequency. 
 The resonant frequency is determined by the cavity's dimensions and the speed of light in the cavity material.
@@ -619,7 +619,7 @@ where $\omega=2\pi f$, $f$ is the resonance frequency.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.6\textwidth]{./figures/illustrations/rhodo_integral_curve.pdf}
+    \includegraphics[width=.55\textwidth]{./figures/illustrations/rhodo_integral_curve.pdf}
     \vspace{20pt}
     \caption{Illustration of a simple coaxial cavity with the curve \textbf{C} in \fromeq{p_diss_C_curve}.}
     \label{fig:int_curve}
@@ -636,7 +636,6 @@ Dissipated power $P_{diss}$, on the other hand, can be calculated as \cite{rf}
     P_{diss} &=& \frac{1}{2} \int \int \rho_s | H_{||} |^2 dA \nonumber \\
              &=& \frac{\rho_s}{2\mu_0^2} \int_0^{2\pi} \int_C | B_{||} |^2 r ds d\theta . \label{eq:p_diss_C_curve}
 \vspace{-10pt}\end{eqnarray}
-\clearpage
 where $\rho_s$ is the areal skin resistivity ( $\rho_s \approx 2.51 \times 10^{-7} f^{1/2}$ for copper \cite{rhodo_pottier} ), $B=\mu H$, $\mu$ is permeability, $\mu_0$ is the vacuum permability. 
 Integral curve \textbf{C} is defined as the circumference of cylindrically symmetrical cross sectional area of the cavity (\fromfig{int_curve}).
 This curve can be seperated to its line components and total power dissipation of this curve, $P_C$ will be equal to sum of the power dissipated in these lines.
@@ -669,11 +668,13 @@ Therefore, a more useful parameter called \textit{effective shunt impedance} can
     Z_{se} = Z_s T^2  ,
 \vspace{-10pt}\end{equation}
 where $T$ is the \textit{transit time factor}, a correctional coefficent that contain the changing field effects during acceleration.
+\clearpage
 For a relativistic electron crossing the axis at time 0, $T$ can be found by \cite{rhodo_pottier}
 \vspace{-10pt}\begin{eqnarray}
     T &=& \frac{S_i(\frac{2 \pi R_2}{\lambda}) - S_i(\frac{2 \pi R_1}{\lambda})}{\ln(\frac{R_2}{R_1})}   ,\\
     S_i(\theta) &=& \int_0^{\theta} \frac{\sin(x)}{x} dx .
 \vspace{-10pt}\end{eqnarray}
+
 For a relativistic electron crossing the axis at $2\pi f t_0 = \phi$ on the other hand, $T$ needs to be multiplied by $\cos(\phi)$ as
 \vspace{-10pt}\begin{equation}
     T(\phi) = T \cos(\phi) .
@@ -696,7 +697,7 @@ In the \fromfig{pottier_table1}, optimized characteristics of a rhodotron cavity
 \begin{figure}[H]
     \centering
     \includegraphics[width=.9\textwidth]{./figures/pottier_table1.png}
-    \caption{Optimized characteristics of a rhodotron cavity. \cite{rhodo_pottier}}
+    \caption{Optimized characteristics of a rhodotron cavity \cite{rhodo_pottier}.}
     \label{fig:pottier_table1}
 \end{figure}
 Here, $p$ is the integer multiplier in the equation ($l=p\lambda$) mentioned above, $R_1$ is the radius of the inner cylinder, $R_2$ is the radius of the outer cylinder, 
@@ -706,7 +707,7 @@ Considering $Z_{sp} \propto \lambda^{1/2}$, \,\,\, $\Delta E \propto \lambda^{1/
 \begin{figure}[H]
     \centering
     \includegraphics[width=.9\textwidth]{./figures/pottier_table2.png}
-    \caption{Energy of a synchronous electron after each pass for both $p=1$ and $p=2$. \cite{rhodo_pottier}}
+    \caption{Energy of a synchronous electron after each pass for both $p=1$ and $p=2$ \cite{rhodo_pottier}.}
     \label{fig:pottier_table2}
 \end{figure}
 Total energy gain after $n$ passes, $\Delta E_n$, can then be found by \fromeq{W_gain_each_pass_pottier}, taking $\phi = 15^\circ$, $p=1$, i.e $R_2 = 0.27 \lambda$, $P$ in \textit{W}, $\lambda$ in \textit{m} as
@@ -744,7 +745,7 @@ Total energy gain after $n$ passes, $\Delta E_n$, can then be found by \fromeq{W
 
 
 
-
+\clearpage
 \section{Basic Concepts in Programming}
 
 \subsection{Clock Cycle}
@@ -759,16 +760,16 @@ Each clock cycle is associated with a specific duration, which is determined by 
 The concept of clock cycles is often used when considering the performance and efficiency of algorithms and code. 
 Since the execution time of instructions is influenced by the number of clock cycles required, minimizing the number of clock cycles needed for a program or algorithm can lead to faster and more efficient code execution.
 Table below shows the amount of clock cycles required for some mathematical calculations in various processors.
-\vspace{20pt}
-\begin{figure}[h!]
+
+Note that \textit{division} is by far the most time consuming basic mathematical operation between addition, subtraction and multiplication.
+Although not discussed in the following chapters, mathematical operations were reduced to addition, subtraction and multiplication when found to be possible while developing computationally intensive software in \fromch{simulation}.
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=.95\textwidth]{./figures/cpu_instruction_speed.png}
     \vspace{20pt}
     \caption{Amount of clock cycle for mathematical operations in various processors \cite{cpu_instruction_speed}.}
 \end{figure}
-
-Note that \textit{division} is by far the most time consuming basic mathematical operation between addition, subtraction and multiplication.
-Although not discussed in the following chapters, mathematical operations were reduced to addition, subtraction and multiplication when found to be possible while developing computationally intensive software in \fromch{simulation}.
 
 \subsection{Concurrency}
 
@@ -843,7 +844,7 @@ It is widely utilized in various fields, including scientific research, data ana
 to represent and analyze data in a graphical format. 
 
 
-
+\clearpage
 \section{Algorithms}
 
 \subsection{Leapfrog} \label{sec:leapfrog}
@@ -909,6 +910,7 @@ The coefficients of any Runge-Kutta method can be visualized by a tableau called
     \caption{Butcher Tableau.}
     \label{fig:Butcher}
 \end{figure}
+
 The simplest Runge-Kutta method is the \textit{Euler's method} with the following \textit{Butcher tableau},
 \[ 
     \begin{array} 
@@ -980,10 +982,10 @@ By following the cylinderical design mentioned in \fromsec{theory_rhodo}, the on
 This parameter can be found using the constraint mentioned in \fromsec{theory_cavities}; the fact that operating RF frequency must be equal to resonant frequency of the cavity.
 For simple coaxial cavity, the height should be $\lambda/2$, where $\lambda$ is the wavelength of the external RF supply \cite{rhodo_pottier}.
 Simulation tools such as \textit{CST Studio}, \textit{Poisson SUPERFISH} can be used to confirm this condition.
-
+\clearpage
 In the following examples, $p=1$ from \fromfig{pottier_table1} was used, and it will be the focus of all further calculations.
 Using $f_{RF}=107.5$ MHz \& $f_{RF}=180$ MHz for comparison:
-\vspace{-10pt}\begin{eqnarray} \label{eq:107_180_MHZ_cavity_design_parameters}
+\vspace{-20pt}\begin{eqnarray} \label{eq:107_180_MHZ_cavity_design_parameters}
     \begin{aligned}
         f_{107.5} = 107.5 \textrm{ MHz}  , \\
         \lambda_{107.5}  = \frac{c}{f_{107.5}} = 2.789 m   ,\\
@@ -1231,7 +1233,7 @@ One can observe the shunt impedance gain between truncated and unmodified caviti
 \vspace{-10pt}\end{equation}
 
 
-
+\clearpage
 \section{Magnet Design} \label{sec:magnet_design}
 Magnet design in rhodotron type accelerators depend heavily on the design of the cavities.
 Because the limiting factors usually are frequency and total volume of the accelerator, magnet design parameters are considered after cavity design has been completed.
@@ -1285,7 +1287,7 @@ Since $n>1$ would require unnecessarily long and expensive beam guide and magnet
 
 \begin{figure}[H]    
     \centering
-    \includegraphics[width=.8\linewidth]{./figures/design/magnet_design.png}
+    \includegraphics[width=.7\linewidth]{./figures/design/magnet_design.png}
     \vspace{20pt}
     \caption{Trejectory of a particle in single pass.}
     \label{fig:magnet_design}
@@ -1705,7 +1707,7 @@ Magnets were modeled as major segments of a circle, defined with $\vecthreeBF{r}
 For the initial implementation, $\vecthreeBF{B}$ assumed to be uniform and has no leaks outside the magnet boundary (\fromfig{is_inside_halfsphere} in \fromapp{intermediate_codes}).
 
 Implementations for \eE and \eB interactions in 3D can be found in \fromfigs{3D_e_E_interaction_first}{3D_e_B_interaction_first}, 
-where * and \% are, dot-product and cross-product respectably. (\fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes})
+where * and \% are, dot-product and cross-product respectably (\fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes}).
 \iffalse \begin{figure}[H]
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
@@ -1928,6 +1930,7 @@ Also, another relative performance can be obsered from the data as
     T_{RK}(dt=5 \times 10^{-5})  &=& 4.30 \pm 0.01 s, \\ %0.0022
     F_{LF}/F_{RK} = \frac{T_{RK}(dt=5 \times 10^{-5})}{T_{LF}(dt=3 \times 10^{-5})} &=& 1.4 \pm 0.1.
 \vspace{-10pt}\end{eqnarray}
+\clearpage
 Uncertainty of \fromeq{f_lf_rk_mag_2} was taken high due to the approximation. 
 After combining \fromeqs{f_lf_rk_mag_1}{f_lf_rk_mag_2}, $F$ can be calculated as
 \vspace{-10pt}\begin{equation}
@@ -1956,12 +1959,12 @@ Both configurations had an \egun located at $(-0.753, 0, 0)$m, directed at $(1, 
     \end{subfigure}
     \caption{Illustration of test setups.}
 \end{figure} \fi
-\vspace{20pt}
+\vspace{10pt}
 \begin{figure}[H]
     \centering
-    \subfigure[\centering Setup-1 parallel $\vecthreeBF{E}$ field]{{\includegraphics[width=0.423\textwidth]{./figures/illustrations/statE_1.png} }}%
-    \qquad\subfigure[\centering Setup-2, perpendicular $\vecthreeBF{E}$ field]{{\includegraphics[width=0.432\textwidth]{./figures/illustrations/statE_2.png} }}%
-    \vspace{20pt}
+    \subfigure[\centering Setup-1 parallel $\vecthreeBF{E}$ field]{{\includegraphics[width=0.381\textwidth]{./figures/illustrations/statE_1.png} }}%
+    \qquad\subfigure[\centering Setup-2, perpendicular $\vecthreeBF{E}$ field]{{\includegraphics[width=0.389\textwidth]{./figures/illustrations/statE_2.png} }}%
+    \vspace{15pt}
     \caption{Illustration of test setups.}
 \end{figure}
 \clearpage
@@ -2142,17 +2145,19 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 
 
 % Start of intermediate.tex
+\clearpage
 \section{Graphical User Interface}
 
 Until this point, \textit{Rhodotron Simulation} could be used with a configration file, defining the problem that would be simulated.
 An example of this configuration file can be found in \fromfig{config_file} of \fromapp{example_simulation_runs}. 
+\vspace{10pt}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{./figures/illustrations/RhodoSim_GUI_Draft_V02.pdf}
-    \vspace{20pt}
     \caption{An Illustration of the first GUI design.}
     \label{fig:gui_illustration}
 \end{figure}
+\clearpage
 This approach was simple and fast; however, it was not suitable for the average target user since required basic knowledge of command line interface and was not up to modern standards.
 For this reason, a GUI was decided to be built, using \textit{ROOT framework}. 
 This would also enable \textit{Rhodotron simulation} to make use of analysis tools offered by \textit{ROOT}.
@@ -2168,16 +2173,14 @@ Available frames of this version of the \textit{GUI} are discussed further in th
 This frame spawns and manages the \textit{simulation engine}, configures and starts the simulation. 
 It has a progress bar that shows the current progress of the simulation, communucating with \textit{UI handler thread} in \textit{simulation engine}.
 Simulation frame while a simulation is running can be observed in \fromfig{gui_simulate_1} of \fromapp{supp}.
-
+\clearpage
 \subsection{Configuration Frame}
 This frame provides an interface for specifying, saving or loading a configuration, consists of $\vecthreeBF{B}$ field, $\vecthreeBF{E}$ field, \textit{RF} description, \egun, \textit{simulation} configuration regions.
 Each one having an illustration of what the parameters are as can be seen in \fromfig{gui_config}.
-
-\clearpage
+\vspace{10pt}
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_config_frame.png}
-    \vspace{20pt}
     \caption{The configuration frame of implementated first GUI design.}
     \label{fig:gui_config}
 \end{figure}
@@ -2187,6 +2190,7 @@ Each one having an illustration of what the parameters are as can be seen in \fr
 Since the rendering capabilities of \textit{ROOT} is superior than \textit{gnuplot}, the user can render a playback of the simulation in real time, 
 see a specific time frame, export as snapshot or animated gif file.
 Two example renders can be seen in \fromfig{gui_render_1} and \fromfig{gui_render_2} of \fromapp{supp}.
+\vspace{10pt}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.85\linewidth]{./figures/rhodoSim/GUI_render_frame_5.png}
@@ -2199,6 +2203,7 @@ Analyze frame provides tools for analyzing and visualizing the simulation data.
 In the current version, energy distribution histogram and \textit{E(t)} graph of each electron are implementated into this frame.
 This frame is a work in progress and will be the focus of improvement and become a really powerfull tool in the near future.
 In \fromfig{gui_analyze_Edist}, \textit{Analyze Frame} plotting energy distribution histogram, and in \fromfig{gui_analyze_Et} and \fromfig{gui_analyze_Et2} of \fromapp{supp}, \textit{Analyze Frame} plotting \textbf{E(t)} graphs can be observed.
+\vspace{10pt}
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\linewidth]{./figures/rhodoSim/GUI_analyze_Edist_2.png}
@@ -2211,6 +2216,7 @@ In \fromfig{gui_analyze_Edist}, \textit{Analyze Frame} plotting energy distribut
     \includegraphics[width=0.9\linewidth]{./figures/rhodoSim/GUI_analyze_Et_3.png}
     \caption{Analyze frame of \textit{GUI} E(t).}
     \label{fig:gui_analyze_Et}
+    \vspace{20pt}
 \end{figure}
 
 \subsection{Sweep Frame}
@@ -2220,7 +2226,7 @@ $\phi_{lag}$ sweep was the first parameter to be implemented.
 It takes the range of sweep, draws $\phi_{lag}$ vs $\mu E$, $\phi_{lag}$ vs $\sigma E$ and $\phi_{lag}$ vs $\sigma R$ mentioned in \fromsec{philag_sweep}.
 This enables user with an already built accelerator to optimize \egun parameters quickly. 
 In the \fromfigf{gui_sweep_muE}{gui_sweep_sE}{gui_sweep_running}{gui_sweep_sR} of \fromapp{supp}, this frame can be inspected in detail.
-
+\vspace{10pt}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.85\linewidth]{./figures/rhodoSim/GUI_sweep_muE_3.png}
@@ -2233,6 +2239,7 @@ In the \fromfigf{gui_sweep_muE}{gui_sweep_sE}{gui_sweep_running}{gui_sweep_sR} o
     \includegraphics[width=0.85\linewidth]{./figures/rhodoSim/GUI_sweep_sE_3.png}
     \caption{Sweep frame of \textit{GUI} $\phi_{lag}$ sweep $\sigma E$ result.}
     \label{fig:gui_sweep_sE}
+    \vspace{10pt}
 \end{figure}
 
 As mentioned before, \textit{GUI} is the latest and ongoing development effort in this project.
@@ -2261,7 +2268,7 @@ rendered visuals of the final design can be observed \cite{sinan}.
     \label{fig:fin_rend_lab}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{./figures/design/final_design_1.png}
     \vspace{20pt}
@@ -2269,7 +2276,7 @@ rendered visuals of the final design can be observed \cite{sinan}.
     \label{fig:fin_rend_cav_egun}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{./figures/design/final_design_2.png}
     \vspace{20pt}
@@ -2277,7 +2284,7 @@ rendered visuals of the final design can be observed \cite{sinan}.
     \label{fig:fin_rend_cs_bil}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[angle=90, origin=c, width=\linewidth]{./figures/design/final_design_3.png}
     \vspace{20pt}
@@ -3475,7 +3482,7 @@ lead to the inference that it holds promise.
 \begin{figure}
     \centering
     \subfigure[\centering $dt=10^{-2}$ns, $\Delta E=1.047$MeV]{{\includegraphics[width=0.85\textwidth]{./figures/rhodoSim/mag_rk_001dt.png} }}%
-    \vspace{20pt}\newline
+    \vspace{20pt}
     \subfigure[\centering $dt=10^{-4}$ns, $\Delta E=0.006$MeV]{{\includegraphics[width=0.85\textwidth]{./figures/rhodoSim/mag_rk_00001dt.png} }}%
     \vspace{20pt}
     \caption{\centering Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T using RK4-2.} 
@@ -3885,63 +3892,87 @@ lead to the inference that it holds promise.
     Jacques Pottier,
     \emph{A new type of rf electron accelerator: The rhodotron},
     Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
-    Volumes 40–41, Part 2,
-    1989,
-    Pages 943-945, 
-
-    \bibitem{rhodo_prototype}
-    J.M. Bassaler, J.M. Capdevila, O. Gal, F. Lainé, A. Nguyen, J.P. Nicolaï, K. Umiastowski,
-    \emph{Rhodotron: an accelerator for industrial irradiation},
-    Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
-    Volume 68, Issues 1–4,
-    1992,
-    Pages 92-95,A:
-
-    \bibitem{rhodos}
-    Y. Jongen. (2001). \emph{Manufacturing of Electron Accelerators}. Ion Beam Applications s.a. (IBA) Chemin du Cyclotron 3, B-1348 Louvain-la-Neuve, Belgium.
-
-    \bibitem{cpu_instruction_speed}
-    Fukushima, Toshio. (2001). \emph{Reduction of Round-off Errors in Symplectic Integrators}. The Astronomical Journal. 121. 1768-1775. 
-
-    \bibitem{runge}
-    Runge, Carl David Tolmé (1895), \emph{Über die numerische Auflösung von Differentialgleichungen}, Mathematische Annalen, Springer, 46 (2): 167–178.
-
-    \bibitem{kutta}
-    Kutta, Wilhelm (1901), \emph{Beitrag zur näherungsweisen Integration totaler Differentialgleichungen}, Zeitschrift für Mathematik und Physik, 46: 435–453.
-
-    \bibitem{cite:rhodo_design}
-    W.~Kleeven, M.~Abs, J.~Brison, E.~Forton, J.~Hubert and J.~Van de Walle,
-    \emph{Design and Simulation Tools for the High-Intensity Industrial Rhodotron Electron Accelerator},
-    9th International Particle Accelerator Conference,
-    2018
-    
-    \bibitem{sinan}
-    Privite communication, Sinan ÖZ
-
-    \bibitem{gnuplot}
-    Williams, T. and Kelley, C. (2020). Gnuplot 5.4: An Interactive
-    Plotting Program. URL http://gnuplot.info.
-
-    \bibitem{root}
-    Rene Brun and Fons Rademakers, ROOT - An Object Oriented Data Analysis Framework,
-    Proceedings AIHENP'96 Workshop, Lausanne, Sep. 1996,
-    Nucl. Inst. \& Meth. in Phys. Res. A 389 (1997) 81-86.
-    See also "ROOT" [software], Release v6.20/04, 01/04/2020,
-    (https://zenodo.org/record/3895855).
-    
-    \bibitem{poi-sup}
-    J. H. Billen and L. M. Young, “Poisson Superfish,” LA-UR-96-1834.
+    Vol. 40–41,
+    No 2,
+    pp 943-945,
+    1989.
 
     \bibitem{kahvelab_linac}
-    A. Adıgüzel, S. Açıksöz, A. Çağlar, H. Çetinkaya, Ş. Esen, D. Halis, A. Hamparsunoğlu, T.B. İlhan, A. Kılıçgedik, O. Koçer, S. Oğur, S. Öz, A. Özbey, V.E. Özcan and N.G. Ünel
+    Adıgüzel, A., S. Açıksöz, A. Çağlar, H. Çetinkaya, Ş. Esen, D. Halis, A. Hamparsunoğlu, T.B. İlhan, A. Kılıçgedik, O. Koçer, S. Oğur, S. Öz, A. Özbey, V.E. Özcan and N.G. Ünel
     \emph{Ion source and LEBT of KAHVELab proton beamline},
     Journal of Instrumentation,
-    Volume 18, January 2023
+    Vol. 18,
+    2023
+
+    \bibitem{rhodo_prototype}
+    Bassaler, J.M., J.M. Capdevila, O. Gal, F. Lainé, A. Nguyen, J.P. Nicolaï, K. Umiastowski,
+    \emph{Rhodotron: an accelerator for industrial irradiation},
+    Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
+    Volume 68, No. 1–4,
+    Pages 92-95,
+    1992.
+
+    \bibitem{rhodos}
+    Jongen, Y.,
+    \emph{Manufacturing of Electron Accelerators},
+    Ion Beam Applications (IBA) Chemin du Cyclotron 3,
+    B-1348 Louvain-la-Neuve, Belgium.
+    2001.
 
     \bibitem{rf}
-    E. Jensen,
-    \emph{RF Cavity Design},
-    CERN Yellow Report CERN-2014-009, pp.405-429
+    Jensen E., in Proceedings of the CAS–CERN Accelerator School: Advanced Accelerator Physics CERN–2014–009,
+    edited by W. Herr, Trondheim, Norway,
+    pp. 405–430,
+    2013.
+
+    \bibitem{cpu_instruction_speed}
+    Fukushima, T., 
+    \emph{Reduction of Round-off Errors in Symplectic Integrators},
+    The Astronomical Journal,
+    Vol. 121,
+    pp. 1768-1775,
+    2001.
+
+    \bibitem{poi-sup}
+    User's Guide for the POISSON / SUPERFISH group of codes, 
+    Los Alamos National Laboratory, New Mexico, USA, 1987. Accessed on Aug 10, 2023. 
+    
+    \bibitem{root}
+    The European Organization for Nuclear Research, 
+    "ROOT - An Object Oriented Data Analysis Framework Release v6.20/04, 01/04/2020", 2020,
+    https://zenodo.org/record/3895855, accessed on Aug 10, 2023.
+
+    \bibitem{gnuplot}
+    Williams, T, "Gnuplot 5.4: An Interactive
+    Plotting Program", 2020, http://gnuplot.info, accessed on Aug 10, 2023.
+
+    \bibitem{runge}
+    Runge, C. D. T.,
+    \emph{Über die numerische Auflösung von Differentialgleichungen}, 
+    Mathematische Annalen, 
+    Springer, 
+    Vol. 46,
+    No. 2,
+    pp. 167–178,
+    1895.
+
+    \bibitem{kutta}
+    Kutta, W, 
+    \emph{Beitrag zur näherungsweisen Integration totaler Differentialgleichungen}, 
+    Zeitschrift für Mathematik und Physik, 
+    Vol. 46,
+    pp. 435–453,
+    1901.
+
+    \bibitem{cite:rhodo_design}
+    Kleeven, W., M. Abs, J. Brison, E. Forton, J. Hubert and J. Van de Walle,
+    \emph{Design and Simulation Tools for the High-Intensity Industrial Rhodotron Electron Accelerator},
+    9th International Particle Accelerator Conference,
+    2018.
+    
+    \bibitem{sinan}
+    Privite communication with Sinan Öz.
+
 
 \end{thebibliography}
 

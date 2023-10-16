@@ -923,7 +923,7 @@
 \begin{figure}
     \centering
     \subfigure[\centering $dt=10^{-2}$ns, $\Delta E=1.047$MeV]{{\includegraphics[width=0.85\textwidth]{./figures/rhodoSim/mag_rk_001dt.png} }}%
-    \vspace{20pt}\newline
+    \vspace{20pt}
     \subfigure[\centering $dt=10^{-4}$ns, $\Delta E=0.006$MeV]{{\includegraphics[width=0.85\textwidth]{./figures/rhodoSim/mag_rk_00001dt.png} }}%
     \vspace{20pt}
     \caption{\centering Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T using RK4-2.} 

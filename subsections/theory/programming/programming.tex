@@ -36,7 +36,7 @@
 %----../../..++++.
 
 %%%%%%
-
+\clearpage
 \section{Basic Concepts in Programming}
 
 \subsection{Clock Cycle}
@@ -51,16 +51,16 @@ Each clock cycle is associated with a specific duration, which is determined by 
 The concept of clock cycles is often used when considering the performance and efficiency of algorithms and code. 
 Since the execution time of instructions is influenced by the number of clock cycles required, minimizing the number of clock cycles needed for a program or algorithm can lead to faster and more efficient code execution.
 Table below shows the amount of clock cycles required for some mathematical calculations in various processors.
-\vspace{20pt}
-\begin{figure}[h!]
+
+Note that \textit{division} is by far the most time consuming basic mathematical operation between addition, subtraction and multiplication.
+Although not discussed in the following chapters, mathematical operations were reduced to addition, subtraction and multiplication when found to be possible while developing computationally intensive software in \fromch{simulation}.
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=.95\textwidth]{../../../figures/cpu_instruction_speed.png}
     \vspace{20pt}
     \caption{Amount of clock cycle for mathematical operations in various processors \cite{cpu_instruction_speed}.}
 \end{figure}
-
-Note that \textit{division} is by far the most time consuming basic mathematical operation between addition, subtraction and multiplication.
-Although not discussed in the following chapters, mathematical operations were reduced to addition, subtraction and multiplication when found to be possible while developing computationally intensive software in \fromch{simulation}.
 
 \subsection{Concurrency}
 

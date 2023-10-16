@@ -137,7 +137,7 @@ Magnets were modeled as major segments of a circle, defined with $\vecthreeBF{r}
 For the initial implementation, $\vecthreeBF{B}$ assumed to be uniform and has no leaks outside the magnet boundary (\fromfig{is_inside_halfsphere} in \fromapp{intermediate_codes}).
 
 Implementations for \eE and \eB interactions in 3D can be found in \fromfigs{3D_e_E_interaction_first}{3D_e_B_interaction_first}, 
-where * and \% are, dot-product and cross-product respectably. (\fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes})
+where * and \% are, dot-product and cross-product respectably (\fromfig{vector3d_dot_cross_product} of \fromapp{intermediate_codes}).
 \iffalse \begin{figure}[H]
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
@@ -360,6 +360,7 @@ Also, another relative performance can be obsered from the data as
     T_{RK}(dt=5 \times 10^{-5})  &=& 4.30 \pm 0.01 s, \\ %0.0022
     F_{LF}/F_{RK} = \frac{T_{RK}(dt=5 \times 10^{-5})}{T_{LF}(dt=3 \times 10^{-5})} &=& 1.4 \pm 0.1.
 \vspace{-10pt}\end{eqnarray}
+\clearpage
 Uncertainty of \fromeq{f_lf_rk_mag_2} was taken high due to the approximation. 
 After combining \fromeqs{f_lf_rk_mag_1}{f_lf_rk_mag_2}, $F$ can be calculated as
 \vspace{-10pt}\begin{equation}
@@ -388,12 +389,12 @@ Both configurations had an \egun located at $(-0.753, 0, 0)$m, directed at $(1, 
     \end{subfigure}
     \caption{Illustration of test setups.}
 \end{figure} \fi
-\vspace{20pt}
+\vspace{10pt}
 \begin{figure}[H]
     \centering
-    \subfigure[\centering Setup-1 parallel $\vecthreeBF{E}$ field]{{\includegraphics[width=0.423\textwidth]{../../../figures/illustrations/statE_1.png} }}%
-    \qquad\subfigure[\centering Setup-2, perpendicular $\vecthreeBF{E}$ field]{{\includegraphics[width=0.432\textwidth]{../../../figures/illustrations/statE_2.png} }}%
-    \vspace{20pt}
+    \subfigure[\centering Setup-1 parallel $\vecthreeBF{E}$ field]{{\includegraphics[width=0.381\textwidth]{../../../figures/illustrations/statE_1.png} }}%
+    \qquad\subfigure[\centering Setup-2, perpendicular $\vecthreeBF{E}$ field]{{\includegraphics[width=0.389\textwidth]{../../../figures/illustrations/statE_2.png} }}%
+    \vspace{15pt}
     \caption{Illustration of test setups.}
 \end{figure}
 \clearpage
