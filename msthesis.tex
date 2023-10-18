@@ -912,6 +912,8 @@ The coefficients of any Runge-Kutta method can be visualized by a tableau called
 \end{figure}
 
 The simplest Runge-Kutta method is the \textit{Euler's method} with the following \textit{Butcher tableau},
+
+\begin{figure}[h!]
 \[ 
     \begin{array} 
         {c|cccc}
@@ -920,6 +922,9 @@ The simplest Runge-Kutta method is the \textit{Euler's method} with the followin
         & 1
     \end{array} .
 \] 
+\caption{Butcher tableau of Euler's method.}
+\label{fig:Butcher_euler}
+\end{figure}
 
 The most commonly used version of the Runge-Kutta method is the fourth-order Runge-Kutta method, also known as RK4. 
 The RK4 method involves four function evaluations per step and has an error term that is proportional to the step size raised to the fifth power.
