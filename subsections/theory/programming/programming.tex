@@ -52,7 +52,7 @@ The concept of clock cycles is often used when considering the performance and e
 Since the execution time of instructions is influenced by the number of clock cycles required, minimizing the number of clock cycles needed for a program or algorithm can lead to faster and more efficient code execution.
 Table below shows the amount of clock cycles required for some mathematical calculations in various processors.
 
-Note that \textit{division} is by far the most time consuming basic mathematical operation between addition, subtraction and multiplication.
+Note that division is by far the most time consuming basic mathematical operation between addition, subtraction and multiplication.
 Although not discussed in the following chapters, mathematical operations were reduced to addition, subtraction and multiplication when found to be possible while developing computationally intensive software in \fromch{simulation}.
 
 \begin{figure}[H]
@@ -66,13 +66,13 @@ Although not discussed in the following chapters, mathematical operations were r
 
 Concurrency in programming refers to the ability of a program to execute multiple tasks or processes simultaneously. It allows different parts of a program to make progress independently, potentially improving performance, responsiveness, and resource utilization.
 
-Concurrency in single core can be achieved by implementing clever scheduling of list of operations called \textit{threads}. This results in non-blocking execution of multiple threads, but only one thread would be executed at any given time. 
+Concurrency in single core can be achieved by implementing clever scheduling of list of operations called threads. This results in non-blocking execution of multiple threads, but only one thread would be executed at any given time. 
 True concurrency on the other hand, can only be achieved by using multiple cores. Each core would be able to execute one thread at any time.
 
 Programs that implement concurrency using multiple cores executes more operations per clock cycle. 
 However, this does not directly lead to an improved performance due to the heavy burden of scheduling and managing multiple threads.
 
-Threads utilize \textit{mutexes}, short for "mutual exclusion," 
+Threads utilize mutexes, short for ``mutual exclusion,''
 to synchronize and manage access to shared resources 
 in a multi-threaded or multi-process environment. 
 
@@ -83,8 +83,8 @@ Definition called class serves as a blueprint that defines the structure and beh
 Each object encapsulates both data, and the functions that manipulate that data. 
 This encapsulation promotes modular code design and enhances data security by controlling access to the object's internal state. 
 
-In OOP, \textit{inheritance} enables the creation of new classes based on existing ones, facilitating code reuse and hierarchy. 
-\textit{Polymorphism} allows objects of different classes to be treated uniformly through a common interface, enhancing flexibility and extensibility. 
+In OOP, inheritance enables the creation of new classes based on existing ones, facilitating code reuse and hierarchy. 
+Polymorphism allows objects of different classes to be treated uniformly through a common interface, enhancing flexibility and extensibility. 
 By providing abstraction, OOP simplifies complex systems by focusing on essential features and interactions, making software development more manageable, scalable, and maintainable.
 
 %%%%%%

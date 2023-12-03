@@ -84,9 +84,9 @@ Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the 
     \label{fig:POC_core_logic}
 \end{figure}
 
-After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} 
+After simulating the synchronous electron mentioned in \fromsec{cavity_of_a_rhodotron} 
 with $\phi_{lag}=15^\circ$, $P_{diss}=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz for one pass, 
-the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} were found to be
+the results from POC, CST and \fromeq{W_gain_each_pass_pottier} were found to be
 % 40 kW total power
 % Emax = 0.96 in old, 2.08 in new version
 % R1 = 0.1882
@@ -98,15 +98,15 @@ the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier
     E_{POC} &=& 0.532 MeV . 
 \vspace{-20pt}\end{eqnarray}
 
-As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced similar results; $\Delta E_{(POC-CST)}/E_{CST} \approx 2\%$.
+As can be observed in \fromeq{poc_E_results}, POC software and CST produced similar results; $\Delta E_{(POC-CST)}/E_{CST} \approx 2\%$.
 while \fromeq{W_gain_each_pass_pottier} was noticably different; $\Delta E_{(Pottier-CST)}/E_{CST} \approx 14\%$.
-This inconsistency between \fromeq{W_gain_each_pass_pottier} and  \textit{CST} simulation was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
+This inconsistency between \fromeq{W_gain_each_pass_pottier} and  CST simulation was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on CST.
 Since using a single software would have made the process error prone.
 
-After the results obtained from \textit{POC} were found to be promising, a decision was made to develop a more robust simulation software. This software was named \textit{Rhodotron Simulation} for the current stage and started development in October, 2021.
+After the results obtained from POC were found to be promising, a decision was made to develop a more robust simulation software. This software was named Rhodotron Simulation for the current stage and started development in October, 2021.
 The development and improvement efforts are still ongoing. 
 
-During the development of \textit{Rhodotron Simulation} software, several intermediate builds have been implemented and tested. The following sections in this chapter investigates their implementations further.
+During the development of Rhodotron Simulation software, several intermediate builds have been implemented and tested. The following sections in this chapter investigates their implementations further.
 
 
 %%%%%%

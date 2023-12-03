@@ -46,7 +46,8 @@ The Leapfrog method is a numerical method commonly used to solve ordinary differ
     \ddot{x} = \derivS{x}{t} = f(x) .\label{eq:second-order-ODE}
 \vspace{-10pt}\end{equation}
 
-The Leapfrog method is a variant of the finite difference method, and it approximates the solution of an ODE by discretizing both time and space. The method gets its name from the way it calculates the values of the solution at each time step, which resembles a "leapfrogging" motion. 
+The Leapfrog method is a variant of the finite difference method, and it approximates the solution of an ODE by discretizing both time and space. 
+The method gets its name from the way it calculates the values of the solution at each time step, which resembles a leapfrogging motion. 
 It is a simple and efficient algorithm that is often used in simulations of physical systems, such as celestial mechanics or molecular dynamics.
 The idea is straight forward; in the time interval $\Delta t$, 
 \vspace{-10pt}\begin{eqnarray}
@@ -86,7 +87,7 @@ where
     k_i = f(x_n + c_i \delta x, y_n + \delta x \sum_{j = 1}^{i - 1}a_{ij}k_j) .
 \vspace{-10pt}\end{eqnarray}
 These \fromeqs{general-rk}{general-rk-coef} define the family of methods. To specify a particular method, order $m$, coefficients $a_{ij}$, $b_i$ and $c_i$ should be provided.
-The coefficients of any Runge-Kutta method can be visualized by a tableau called $\textit{Butcher Tableau}$ which can be observed in \fromfig{Butcher}.
+The coefficients of any Runge-Kutta method can be visualized by a tableau called Butcher Tableau which can be observed in \fromfig{Butcher}.
 \begin{figure}[h!]
     \[ 
     \begin{array} 
@@ -104,7 +105,7 @@ The coefficients of any Runge-Kutta method can be visualized by a tableau called
     \label{fig:Butcher}
 \end{figure}
 
-The simplest Runge-Kutta method is the \textit{Euler's method} with the following \textit{Butcher tableau},
+The simplest Runge-Kutta method is the Euler's method the Butcher tableau of which can be observed in \fromfig{Butcher_euler}.
 
 \begin{figure}[h!]
 \[ 
@@ -113,7 +114,7 @@ The simplest Runge-Kutta method is the \textit{Euler's method} with the followin
         0\\
         \hline
         & 1
-    \end{array} .
+    \end{array}
 \] 
 \caption{Butcher tableau of Euler's method.}
 \label{fig:Butcher_euler}
@@ -121,8 +122,8 @@ The simplest Runge-Kutta method is the \textit{Euler's method} with the followin
 
 The most commonly used version of the Runge-Kutta method is the fourth-order Runge-Kutta method, also known as RK4. 
 The RK4 method involves four function evaluations per step and has an error term that is proportional to the step size raised to the fifth power.
-Two of the most used \textit{Butcher tableaus} for \textit{RK4} given in \fromfig{Butcher-RK4}.
-The second tableau in \fromfig{Butcher-RK4} is called the \textit{"3/8 rule"}. Its main advantage is that its error coefficients are smaller than the other. But it costs more floating point operations per step. 
+Two of the most used Butcher tableaus for RK4 given in \fromfig{Butcher-RK4}.
+The second tableau in \fromfig{Butcher-RK4} is called the ``3/8 rule''. Its main advantage is that its error coefficients are smaller than the other. But it costs more floating point operations per step. 
 Resulting in slower calculations. 
 
 \begin{figure}[h!]

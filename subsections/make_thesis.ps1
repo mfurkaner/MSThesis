@@ -26,7 +26,7 @@ $future = (Get-Content -Path future\out)
 
 $np = "\newpage" + [System.Environment]::NewLine
 
-$thesis = ($theory + $np + $tools + $np + $design + $np + $sim + $np + $prod + $np + $future + $np + $app + $bib + $end)
+$thesis = ($theory + $np + $tools + $np + $design + $np + $sim + $np + $prod + $np + $future + $np + $bib + $app + $end)
 
 Remove-Item .\*\out
 

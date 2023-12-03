@@ -197,27 +197,27 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
 \newcommand{\ee}{$\textbf{e}^-$ - $\textbf{e}^-$ }
 
 
-\newcommand{\fromeq}[1]{\textit{Equation \ref{eq:#1}}}
-\newcommand{\fromeqs}[2]{\textit{Equations \ref{eq:#1} and \ref{eq:#2}}}
-\newcommand{\fromeqsth}[3]{\textit{Equations \ref{eq:#1}, \ref{eq:#2} and \ref{eq:#3}}}
-\newcommand{\fromeqsf}[4]{\textit{Equations \ref{eq:#1}, \ref{eq:#2}, \ref{eq:#3} and \ref{eq:#4}}}
+\newcommand{\fromeq}[1]{Equation \ref{eq:#1}}
+\newcommand{\fromeqs}[2]{Equations \ref{eq:#1} and \ref{eq:#2}}
+\newcommand{\fromeqsth}[3]{Equations \ref{eq:#1}, \ref{eq:#2} and \ref{eq:#3}}
+\newcommand{\fromeqsf}[4]{Equations \ref{eq:#1}, \ref{eq:#2}, \ref{eq:#3} and \ref{eq:#4}}
 
-\newcommand{\fromfig}[1]{\textit{Figure \ref{fig:#1}}}
-\newcommand{\fromfigs}[2]{\textit{Figures \ref{fig:#1} and \ref{fig:#2}}}
-\newcommand{\fromfigth}[3]{\textit{figures \ref{fig:#1}, \ref{fig:#2} and \ref{fig:#3}}}
-\newcommand{\fromfigf}[4]{\textit{Figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3} and \ref{fig:#4}}}
-\newcommand{\fromfigsix}[6]{\textit{Figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3}, \ref{fig:#4}, \ref{fig:#5} and \ref{fig:#6}}}
+\newcommand{\fromfig}[1]{Figure \ref{fig:#1}}
+\newcommand{\fromfigs}[2]{Figures \ref{fig:#1} and \ref{fig:#2}}
+\newcommand{\fromfigth}[3]{Figures \ref{fig:#1}, \ref{fig:#2} and \ref{fig:#3}}
+\newcommand{\fromfigf}[4]{Figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3} and \ref{fig:#4}}
+\newcommand{\fromfigsix}[6]{Figures \ref{fig:#1}, \ref{fig:#2}, \ref{fig:#3}, \ref{fig:#4}, \ref{fig:#5} and \ref{fig:#6}}
 
-\newcommand{\fromch}[1]{\textit{Chapter \ref{ch:#1}}}
+\newcommand{\fromch}[1]{Chapter \ref{ch:#1}}
 
-\newcommand{\fromsec}[1]{\textit{Section \ref{sec:#1}}}
-\newcommand{\fromsecs}[2]{\textit{Sections \ref{sec:#1} and \ref{sec:#2}}}
+\newcommand{\fromsec}[1]{Section \ref{sec:#1}}
+\newcommand{\fromsecs}[2]{Sections \ref{sec:#1} and \ref{sec:#2}}
 
-\newcommand{\fromapp}[1]{\textit{Appendix \ref{appendix:#1}}}
+\newcommand{\fromapp}[1]{Appendix \ref{appendix:#1}}
 
-\newcommand{\fromtab}[1]{\textit{Table \ref{tab:#1}}}
-\newcommand{\fromtabs}[2]{\textit{Tables \ref{tab:#1} and \ref{tab:#2}}}
-\newcommand{\fromtabf}[4]{\textit{Tables \ref{tab:#1}, \ref{tab:#2}, \ref{tab:#3} and \ref{tab:#4}}}
+\newcommand{\fromtab}[1]{Table \ref{tab:#1}}
+\newcommand{\fromtabs}[2]{Tables \ref{tab:#1} and \ref{tab:#2}}
+\newcommand{\fromtabf}[4]{Tables \ref{tab:#1}, \ref{tab:#2}, \ref{tab:#3} and \ref{tab:#4}}
 
 
 % START OF INTRODUCTION AND THEORY
@@ -262,15 +262,17 @@ In special relativity however, relativistic momentum is defined as $\vecthree{p}
 
 
 Considering these two statements, we can find the relation between momentum and acceleration as 
-\vspace{-10pt}
+\vspace{-15pt}
 \begin{eqnarray}
     \deriv{\vecthree{p}}{t} &=& m_0 \deriv{(\gamma \vecthree{v})}{t} = m_0 \{  \deriv{\gamma}{t}\vecthree{v} + \gamma \deriv{\vecthree{v}}{t}   \} ,\\
     \deriv{\gamma}{t} &=& \gamma^3 \dotProd{\beta}{\deriv{\beta}{t}} = \frac{\gamma^3}{c} \dotProd{\beta}{a}   , \\
     \deriv{\vecthree{p}}{t}  &=& m_0 \{   \frac{\gamma^3}{c} (\dotProd{\beta}{a} )\vecthree{v} + \gamma \deriv{\vecthree{v}}{t}  \} .
     \vspace{-10pt}
 \end{eqnarray}
+\vspace{-30pt}
+\newline
 Therefore force can be written as
-\vspace{-10pt}
+\vspace{-15pt}
 \begin{equation} \label{eq:Frel}
     \vecthreeBF{F}  = \gamma m_0 \{ \vecthreeBF{a} + \gamma^2(\dotProd{\beta}{\textbf{a}})\vecthree{\beta} \} .
     \vspace{-10pt}
@@ -548,13 +550,13 @@ An example \textit{shunt impedance} calculation can be found in \fromsec{cavity_
 
 \subsection{Rhodotron Accelerator} \label{sec:theory_rhodo}
 
-Rhodotron Accelerator is a type of particle accelerator that was proposed by \textit{Jacques POTTIER} in 1989 \cite{rhodo_pottier}. 
+Rhodotron Accelerator is a type of particle accelerator that was proposed by Jacques POTTIER in 1989 \cite{rhodo_pottier}. 
 First prototype was built at CEA Saclay later in 1992 \cite{rhodo_prototype}. It is named after the greek word for rose, \textit{rhodos}, due to the shape of the design \cite{rhodos}.
 
 The design of a rhodotron mainly consists of a coaxial cylindrical RF cavity and bending magnets surrounding it. RF cavity is fed by an external RF source, accelerating the electrons entering from an attached electron injector.
 
 
-\subsubsection{Acceleration cycle of Rhodotron}
+\subsubsection{Acceleration Cycle of Rhodotron}
 
 Electrons undergo four different stages inside the accelerator. 
 They are accelerated between the cylinderical plates and are shielded from the changing RF field while inside the inner cylinder and outside the cavity. 
@@ -761,7 +763,7 @@ The concept of clock cycles is often used when considering the performance and e
 Since the execution time of instructions is influenced by the number of clock cycles required, minimizing the number of clock cycles needed for a program or algorithm can lead to faster and more efficient code execution.
 Table below shows the amount of clock cycles required for some mathematical calculations in various processors.
 
-Note that \textit{division} is by far the most time consuming basic mathematical operation between addition, subtraction and multiplication.
+Note that division is by far the most time consuming basic mathematical operation between addition, subtraction and multiplication.
 Although not discussed in the following chapters, mathematical operations were reduced to addition, subtraction and multiplication when found to be possible while developing computationally intensive software in \fromch{simulation}.
 
 \begin{figure}[H]
@@ -775,13 +777,13 @@ Although not discussed in the following chapters, mathematical operations were r
 
 Concurrency in programming refers to the ability of a program to execute multiple tasks or processes simultaneously. It allows different parts of a program to make progress independently, potentially improving performance, responsiveness, and resource utilization.
 
-Concurrency in single core can be achieved by implementing clever scheduling of list of operations called \textit{threads}. This results in non-blocking execution of multiple threads, but only one thread would be executed at any given time. 
+Concurrency in single core can be achieved by implementing clever scheduling of list of operations called threads. This results in non-blocking execution of multiple threads, but only one thread would be executed at any given time. 
 True concurrency on the other hand, can only be achieved by using multiple cores. Each core would be able to execute one thread at any time.
 
 Programs that implement concurrency using multiple cores executes more operations per clock cycle. 
 However, this does not directly lead to an improved performance due to the heavy burden of scheduling and managing multiple threads.
 
-Threads utilize \textit{mutexes}, short for "mutual exclusion," 
+Threads utilize mutexes, short for ``mutual exclusion,''
 to synchronize and manage access to shared resources 
 in a multi-threaded or multi-process environment. 
 
@@ -792,8 +794,8 @@ Definition called class serves as a blueprint that defines the structure and beh
 Each object encapsulates both data, and the functions that manipulate that data. 
 This encapsulation promotes modular code design and enhances data security by controlling access to the object's internal state. 
 
-In OOP, \textit{inheritance} enables the creation of new classes based on existing ones, facilitating code reuse and hierarchy. 
-\textit{Polymorphism} allows objects of different classes to be treated uniformly through a common interface, enhancing flexibility and extensibility. 
+In OOP, inheritance enables the creation of new classes based on existing ones, facilitating code reuse and hierarchy. 
+Polymorphism allows objects of different classes to be treated uniformly through a common interface, enhancing flexibility and extensibility. 
 By providing abstraction, OOP simplifies complex systems by focusing on essential features and interactions, making software development more manageable, scalable, and maintainable.
 
 
@@ -823,13 +825,13 @@ algorithms, and computational techniques to simulate the behavior of the system 
 \section{Available Tools}
 
 \subsection{Poisson Superfish}
-Poisson Superfish is a software package developed by the \textit{Los Alamos National Laboratory} 
+Poisson Superfish is a software package developed by the Los Alamos National Laboratory 
 for the design and analysis of electromagnetic fields, particularly those related to particle accelerators and high-energy physics experiments \cite{poi-sup}.
 It is commonly used in the field of accelerator physics to simulate and optimize the behavior of charged particle beams as they pass through various electromagnetic structures, such as cavities and magnets.
 
 
 \subsection{CST Studio Suite}
-CST Studio Suite is a powerful software package developed by \textit{Simulia} for electromagnetic simulation and analysis. It is widely used in various industries, including electronics, telecommunications, automotive, aerospace, and more, to design and optimize electromagnetic devices and systems. 
+CST Studio Suite is a powerful software package developed by Simulia for electromagnetic simulation and analysis. It is widely used in various industries, including electronics, telecommunications, automotive, aerospace, and more, to design and optimize electromagnetic devices and systems. 
 The software provides a comprehensive set of tools for simulating and analyzing the behavior of electromagnetic fields and their interactions with different materials, structures and charged particles.
 
 \subsection{ROOT}
@@ -853,7 +855,8 @@ The Leapfrog method is a numerical method commonly used to solve ordinary differ
     \ddot{x} = \derivS{x}{t} = f(x) .\label{eq:second-order-ODE}
 \vspace{-10pt}\end{equation}
 
-The Leapfrog method is a variant of the finite difference method, and it approximates the solution of an ODE by discretizing both time and space. The method gets its name from the way it calculates the values of the solution at each time step, which resembles a "leapfrogging" motion. 
+The Leapfrog method is a variant of the finite difference method, and it approximates the solution of an ODE by discretizing both time and space. 
+The method gets its name from the way it calculates the values of the solution at each time step, which resembles a leapfrogging motion. 
 It is a simple and efficient algorithm that is often used in simulations of physical systems, such as celestial mechanics or molecular dynamics.
 The idea is straight forward; in the time interval $\Delta t$, 
 \vspace{-10pt}\begin{eqnarray}
@@ -893,7 +896,7 @@ where
     k_i = f(x_n + c_i \delta x, y_n + \delta x \sum_{j = 1}^{i - 1}a_{ij}k_j) .
 \vspace{-10pt}\end{eqnarray}
 These \fromeqs{general-rk}{general-rk-coef} define the family of methods. To specify a particular method, order $m$, coefficients $a_{ij}$, $b_i$ and $c_i$ should be provided.
-The coefficients of any Runge-Kutta method can be visualized by a tableau called $\textit{Butcher Tableau}$ which can be observed in \fromfig{Butcher}.
+The coefficients of any Runge-Kutta method can be visualized by a tableau called Butcher Tableau which can be observed in \fromfig{Butcher}.
 \begin{figure}[h!]
     \[ 
     \begin{array} 
@@ -911,7 +914,7 @@ The coefficients of any Runge-Kutta method can be visualized by a tableau called
     \label{fig:Butcher}
 \end{figure}
 
-The simplest Runge-Kutta method is the \textit{Euler's method} with the following \textit{Butcher tableau},
+The simplest Runge-Kutta method is the Euler's method the Butcher tableau of which can be observed in \fromfig{Butcher_euler}.
 
 \begin{figure}[h!]
 \[ 
@@ -920,7 +923,7 @@ The simplest Runge-Kutta method is the \textit{Euler's method} with the followin
         0\\
         \hline
         & 1
-    \end{array} .
+    \end{array}
 \] 
 \caption{Butcher tableau of Euler's method.}
 \label{fig:Butcher_euler}
@@ -928,8 +931,8 @@ The simplest Runge-Kutta method is the \textit{Euler's method} with the followin
 
 The most commonly used version of the Runge-Kutta method is the fourth-order Runge-Kutta method, also known as RK4. 
 The RK4 method involves four function evaluations per step and has an error term that is proportional to the step size raised to the fifth power.
-Two of the most used \textit{Butcher tableaus} for \textit{RK4} given in \fromfig{Butcher-RK4}.
-The second tableau in \fromfig{Butcher-RK4} is called the \textit{"3/8 rule"}. Its main advantage is that its error coefficients are smaller than the other. But it costs more floating point operations per step. 
+Two of the most used Butcher tableaus for RK4 given in \fromfig{Butcher-RK4}.
+The second tableau in \fromfig{Butcher-RK4} is called the ``3/8 rule''. Its main advantage is that its error coefficients are smaller than the other. But it costs more floating point operations per step. 
 Resulting in slower calculations. 
 
 \begin{figure}[h!]
@@ -986,7 +989,7 @@ After an operating RF frequency is set and the desired $R1/R2$ relation in \from
 By following the cylinderical design mentioned in \fromsec{theory_rhodo}, the only main design parameter remaining is the height of the cylindrical cavity.
 This parameter can be found using the constraint mentioned in \fromsec{theory_cavities}; the fact that operating RF frequency must be equal to resonant frequency of the cavity.
 For simple coaxial cavity, the height should be $\lambda/2$, where $\lambda$ is the wavelength of the external RF supply \cite{rhodo_pottier}.
-Simulation tools such as \textit{CST Studio}, \textit{Poisson SUPERFISH} can be used to confirm this condition.
+Simulation tools such as CST Studio and Poisson Superfish can be used to confirm this condition.
 \clearpage
 In the following examples, $p=1$ from \fromfig{pottier_table1} was used, and it will be the focus of all further calculations.
 Using $f_{RF}=107.5$ MHz \& $f_{RF}=180$ MHz for comparison:
@@ -1008,7 +1011,7 @@ Using $f_{RF}=107.5$ MHz \& $f_{RF}=180$ MHz for comparison:
     \end{aligned}
 \vspace{-10pt}\end{eqnarray}
 In the \fromfigth{107_simple_cavity_design}{180_simple_cavity_design}{cst_simple_cavity_designs}, 
-\textit{Poisson Superfish} and \textit{CST} simulations of two cavities defined by \fromeq{107_180_MHZ_cavity_design_parameters} can be observed.
+Poisson Superfish and CST simulations of two cavities defined by \fromeq{107_180_MHZ_cavity_design_parameters} can be observed.
 \iffalse
 \begin{figure}[H]
     \centering
@@ -1091,8 +1094,8 @@ In the \fromfigth{107_simple_cavity_design}{180_simple_cavity_design}{cst_simple
     \caption{\centering CST Electric field solutions for \fromeq{107_180_MHZ_cavity_design_parameters}.} 
     \label{fig:cst_simple_cavity_designs}
 \end{figure}
-As mentioned by \textit{Pottier}, truncated cone terminations in inner cylinder can improve the shunt empedance $Z$ of the cavity \cite{rhodo_pottier}. 
-In the \fromfig{107_180_modified_cavities_superfish}, \textit{Poission Superfish} results of such a modification with matching height increase to keep resonant frequency can be found.
+As mentioned by Pottier, truncated cone terminations in inner cylinder can improve the shunt empedance $Z$ of the cavity \cite{rhodo_pottier}. 
+In the \fromfig{107_180_modified_cavities_superfish}, Poission Superfish results of such a modification with matching height increase to keep resonant frequency can be found.
 \iffalse
 \begin{figure}[H]
     \centering
@@ -1186,7 +1189,7 @@ In the \fromfig{107_180_modified_cavities_superfish}, \textit{Poission Superfish
       \includegraphics[width=0.99\linewidth]{./figures/superfish/superfish180_z_highlighted.png}
       \caption{180 MHz unmodified}
     \end{subfigure}
-    \caption{Poisson Superfish calculations with \textit{unmodified} cavities}
+    \caption{Poisson Superfish calculations with unmodified cavities}
     \label{fig:107_cavity_shunt_diff}
 \end{figure}
 \fi
@@ -1196,7 +1199,7 @@ In the \fromfig{107_180_modified_cavities_superfish}, \textit{Poission Superfish
     \vspace{20pt}
     \subfigure[\centering 180 MHz unmodified]{{\includegraphics[width=0.495\linewidth]{./figures/superfish/superfish180_z_highlighted.png} }}%
     \vspace{20pt}
-    \caption{\centering Poisson Superfish calculations with \textit{unmodified} cavities.} 
+    \caption{\centering Poisson Superfish calculations with unmodified cavities.} 
     \label{fig:107_cavity_shunt_diff}
 \end{figure}
     
@@ -1213,7 +1216,7 @@ In the \fromfig{107_180_modified_cavities_superfish}, \textit{Poission Superfish
       \includegraphics[width=\linewidth]{./figures/superfish/superfish180mod_z_highlighted.png}
       \caption{180 MHz truncated}
     \end{subfigure}
-    \caption{Poisson Superfish calculations with \textit{truncated} cavities}
+    \caption{Poisson Superfish calculations with truncated cavities}
     \label{fig:180_cavity_shunt_diff}
 \end{figure}
 \fi
@@ -1223,7 +1226,7 @@ In the \fromfig{107_180_modified_cavities_superfish}, \textit{Poission Superfish
     \vspace{20pt}
     \subfigure[\centering 180 MHz truncated]{{\includegraphics[width=.5\textwidth]{./figures/superfish/superfish180mod_z_highlighted.png} }}%
     \vspace{20pt}
-    \caption{\centering Poisson Superfish calculations with \textit{truncated} cavities.} 
+    \caption{\centering Poisson Superfish calculations with truncated cavities.} 
     \label{fig:180_cavity_shunt_diff}
 \end{figure}
 One can observe the shunt impedance gain between truncated and unmodified cavities in \fromfigs{107_cavity_shunt_diff}{180_cavity_shunt_diff} as
@@ -1318,7 +1321,7 @@ Observing the \fromfig{magnet_design} and using \fromeq{magnet_lambda_constraint
     L + d &=& \frac{\rho}{\tan (\gamma)} - R_2 . \label{eq:magnet_L_constraint}
 \vspace{-20pt}\end{eqnarray}
 
-\textit{Equations \ref{eq:magnet_rho_constraint} and \ref{eq:magnet_L_constraint}} define 2 constraints. As already discussed, it has been assumed that cavity design is set (\textit{i.e} $R_2$, $\lambda$, $d$ are already defined).
+\fromeqs{magnet_rho_constraint}{magnet_L_constraint} define 2 constraints. As already discussed, it has been assumed that cavity design is set (\textit{i.e} $R_2$, $\lambda$, $d$ are already defined).
 Therefore only the magnet design parameters $\rho$, $\gamma$ and $L$ are left. Together with the constraints, one free variable defines the whole magnet design. 
 Considering the importance of $\gamma$ for maximum number of possible passes, it will be used as the free magnet design variable in the further discussions.
 
@@ -1359,11 +1362,11 @@ To start, an optimization criteria for the following pass such as
     \item Minimize the phase lag spread of the beam
     \item All of the above with decided weights
 \vspace{-10pt}\end{itemize}
-needs be selected. Using a simulation software such as \textit{CST Studio Particle Module}, the optimum value of $K$ for the criteria can be found by simulating for different values of $K$ (\textit{sweeping}) and analyzing the results.
+needs be selected. Using a simulation software such as CST Studio Particle Module, the optimum value of $K$ for the criteria can be found by simulating for different values of $K$ (sweeping) and analyzing the results.
 This process can be repeated for each magnet until the desired beam characteristics in the end of the accelerator are achieved.
 
-However, one caviat of this technique is that, available simulation softwares are not well suited for this kind of process. As mentioned above, \textit{CST Studio Particle Module} has a \textit{parameter sweep} functionality.
-But the calculation times are too slow to be useful in this particular problem. \textit{A custom built software offering magnet optimizing sweep functionality will be discussed in the following chapter.}
+However, one caviat of this technique is that, available simulation softwares are not well suited for this kind of process. As mentioned above, CST Studio Particle Module has a parameter sweep functionality.
+But the calculation times are too slow to be useful in this particular problem. A custom built software offering magnet optimizing sweep functionality will be discussed in the following chapter.
 
 
 
@@ -1454,7 +1457,7 @@ After adding two more magnets and using $\gamma=15^\circ$, the second prototype 
     \caption{Initial cavity with three magnets as shown in \fromfig{initial_magnet_design}, $\gamma=15^\circ$.}
     \label{fig:initial_three_magnet_design}
 \end{figure}
-These designs, together with $40$ keV $e^-$ gun injecting with phase lag of $15^\circ$ for $1$ ns, was simulated at RF power of $12$ kW using \textit{CST Studio Particle Module PIC Solver}.
+These designs, together with $40$ keV $e^-$ gun injecting with phase lag of $15^\circ$ for $1$ ns, was simulated at RF power of $12$ kW using CST Studio Particle Module PIC Solver.
 Results of these simulations can be found in \fromfig{initial_designs_PIC_phase_space_monitor}.
 \iffalse \begin{figure}[H]
     %\captionsetup[subfigure]{justification=centering}
@@ -1488,9 +1491,9 @@ When the simulation results are examined further, it was observed that the beam 
 Considering the starting phase lag $\phi_{lag}=15^\circ$, this would mean phase lag of the second pass was $\phi_{lag2}=120^\circ$.
 This result can be observed in \fromfig{initial_designs_PIC_phase_space_monitor}, as the beam decelerates after a short acceleration in the beginning of the second pass.
 
-After various similar observations in \textit{CST} similations, underlying cause of this problem was thought to be the $L_{pass} = n \lambda$ approach on magnet design failing in low energies, 
+After various similar observations in CST similations, underlying cause of this problem was thought to be the $L_{pass} = n \lambda$ approach on magnet design failing in low energies, 
 as anticipated and discussed earlier in the \fromsec{parameter_sweep}.
-\emph{The necessity for an alternative tool, capable of aiding researchers in improving beam behavior, was deemed evident.}
+The necessity for an alternative tool, capable of aiding researchers in improving beam behavior, was deemed evident.
 
 Several improvements were made to KAHVELab Rhodotron initial designs \cite{sinan}. These include curved edges on cavity which reduce the power loss on cavity walls, and redesigned iron casing on magnets for ease of production and maintenance.
 Improved designs can be seen in the figures below.
@@ -1618,9 +1621,9 @@ Where $\vecthreeBF{r}$ is the position, $\vecthreeBF{v}$ is the velocity of the 
     \label{fig:POC_core_logic}
 \end{figure}
 
-After simulating the \textit{synchronous electron} mentioned in \fromsec{cavity_of_a_rhodotron} 
+After simulating the synchronous electron mentioned in \fromsec{cavity_of_a_rhodotron} 
 with $\phi_{lag}=15^\circ$, $P_{diss}=40$kW, $R_1=0.188$m, $R_2=0.753$m, $f=107.5$MHz for one pass, 
-the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier} were found to be
+the results from POC, CST and \fromeq{W_gain_each_pass_pottier} were found to be
 % 40 kW total power
 % Emax = 0.96 in old, 2.08 in new version
 % R1 = 0.1882
@@ -1632,15 +1635,15 @@ the results from \textit{POC}, \textit{CST} and \fromeq{W_gain_each_pass_pottier
     E_{POC} &=& 0.532 MeV . 
 \vspace{-20pt}\end{eqnarray}
 
-As can be observed in \fromeq{poc_E_results}, \textit{POC software} and \textit{CST} produced similar results; $\Delta E_{(POC-CST)}/E_{CST} \approx 2\%$.
+As can be observed in \fromeq{poc_E_results}, POC software and CST produced similar results; $\Delta E_{(POC-CST)}/E_{CST} \approx 2\%$.
 while \fromeq{W_gain_each_pass_pottier} was noticably different; $\Delta E_{(Pottier-CST)}/E_{CST} \approx 14\%$.
-This inconsistency between \fromeq{W_gain_each_pass_pottier} and  \textit{CST} simulation was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on \textit{CST}.
+This inconsistency between \fromeq{W_gain_each_pass_pottier} and  CST simulation was noticed in the earlier simulations as well, which supported the idea of using another simulation software to reduce reliance on CST.
 Since using a single software would have made the process error prone.
 
-After the results obtained from \textit{POC} were found to be promising, a decision was made to develop a more robust simulation software. This software was named \textit{Rhodotron Simulation} for the current stage and started development in October, 2021.
+After the results obtained from POC were found to be promising, a decision was made to develop a more robust simulation software. This software was named Rhodotron Simulation for the current stage and started development in October, 2021.
 The development and improvement efforts are still ongoing. 
 
-During the development of \textit{Rhodotron Simulation} software, several intermediate builds have been implemented and tested. The following sections in this chapter investigates their implementations further.
+During the development of Rhodotron Simulation software, several intermediate builds have been implemented and tested. The following sections in this chapter investigates their implementations further.
 
 
 
@@ -1648,19 +1651,19 @@ During the development of \textit{Rhodotron Simulation} software, several interm
 \section{Intermediate Versions}
 
 \subsection{$L_{out}$ Optimization For Single \e} \label{sec:lout_sweep}
-Initial step of improving \textit{POC} towards \textit{Rhodotron Simulation} was to implement \textit{$L_{out}$ optimizations} to help optimazing magnet designs, as discussed in \fromsec{parameter_sweep}.
+Initial step of improving POC towards Rhodotron Simulation was to implement $L_{out}$ optimizations to help optimazing magnet designs, as discussed in \fromsec{parameter_sweep}.
 First approach was to hang the \e outside of the cavity for $t_{out} = L_{out}/v$, then inject it back to the cavity with reversed $\vecthreeBF{v}$. One can sweep the $t_{out}$ parameter to find the optimal value.
 This simple implementation can be found in \fromfig{lout_opt_single_e} of \fromapp{intermediate_codes}.
 
 Although the results from this optimization sweep were promising after they were simulated with $CST$, simulating one particle would not be sufficiently useful for designing a magnet.
 
-\subsection{$\phi_{lag}$ Optimization For Bunches} \label{sec:philag_sweep}
+\subsection{$\phi_{lag}$ Optimization for Bunches} \label{sec:philag_sweep}
 After successfully accelerating single \e, particle bunches were implemented to approximate a real \e gun. 
-They were modeled as $N$ electrons fired from an \e gun at even time intervals. This approach was taken because the amount of time gun fires, defined as \textit{Gun Active Time, $t_g$}, is a crucial part of pulsed \e gun design.
+They were modeled as $N$ electrons fired from an \e gun at even time intervals. This approach was taken because the amount of time gun fires, defined as Gun Active Time, $t_g$, is a crucial part of pulsed \e gun design.
 \clearpage
 Addition of bunches would immediately proven useful when finding optimal phase lag for bunch entry.
 $\phi_{lag}$ for a bunch was defined as the RF phase when the first \e of the bunch has entered the cavity and it defines the starting time of the current pass.
-To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimization}, relevant bunch characteristics are defined as
+To use the parameter sweep method, as used in $L_{out}$ optimization, relevant bunch characteristics are defined as
 \vspace{-10pt}\begin{itemize}
     \item $\mu E$: Average energy,
     \item $E_{rms}$: Root mean square of energy,
@@ -1668,8 +1671,8 @@ To use the \textit{parameter sweep} method, as used in \textit{$L_{out}$ optimiz
 \end{itemize}
 
 Optimal $\phi_{lag}$ would produce maximum $\mu E$ while minimizing $E_{rms}$ \& $R_{rms}$. For the first pass, 
-$E_{rms}$ and $R_{rms}$ would be vaguely dependent of each other; therefore, initial implementation of $\phi_{lag}$ sweep was based on minimizing $E_{rms}$ during simulation (\textit{see \fromfig{phlag_opt}}). 
-For $\mu E$ considerations, data from the software would be analyzed either manually or by using external tools such as \textit{ROOT framework}. 
+$E_{rms}$ and $R_{rms}$ would be vaguely dependent of each other; therefore, initial implementation of $\phi_{lag}$ sweep was based on minimizing $E_{rms}$ during simulation (see \fromfig{phlag_opt}). 
+For $\mu E$ considerations, data from the software would be analyzed either manually or by using external tools such as ROOT framework. 
 \vspace{20pt}
 \begin{figure}[H]
     \centering
@@ -1697,16 +1700,16 @@ For $\mu E$ considerations, data from the software would be analyzed either manu
     \label{fig:phlag_opt}
 \end{figure}
 \clearpage
-Since $\phi_{lag}$ is relatively easy to change after production, another version of \fromfig{phlag_opt} that was modified for given magnet design parameters was also implemented (\textit{see \fromfig{phlag_opt_n_pass} in \fromapp{intermediate_codes}}). 
+Since $\phi_{lag}$ is relatively easy to change after production, another version of \fromfig{phlag_opt} that was modified for given magnet design parameters was also implemented ({see \fromfig{phlag_opt_n_pass} in \fromapp{intermediate_codes}). 
 This version can be useful for optimizing $\phi_{lag}$ in case of production issues in magnets. 
 
 After the bunch and $\phi_{lag}$ sweep implementations, $L_{out}$ sweep was also updated to minimize $E_{rms}$. $\rho$ and $L$ calculations, using \fromeqs{magnet_rho_constraint}{magnet_L_constraint}, were also integrated. 
 Two example runs from this intermediate build can be found in \fromfigs{lout_opt_1ns_Erms}{lout_opt_08ns_Erms} of \fromapp{example_simulation_runs}.
 
 \subsection{Simulation in 3D}
-After successfully implementing \eE interaction in 1D and confirming the usefulness of this tool, the decision was made to proceed with implementing a 3D version of the \textit{Rhodotron Simulation}.
+After successfully implementing \eE interaction in 1D and confirming the usefulness of this tool, the decision was made to proceed with implementing a 3D version of the Rhodotron Simulation.
 Although complete refactoring of the software was necessary, this upgrade was crucial for implementation of \eB interaction.
-The refactoring effort included proper implementation of \textit{OOP}, details of which can be seen in \fromfigsix{e_class}{bunch_class}{gun_class}{sim_class}{rhodosim_class}{rf_class} of \fromapp{intermediate_codes}.
+The refactoring effort included proper implementation of OOP, details of which can be seen in \fromfigsix{e_class}{bunch_class}{gun_class}{sim_class}{rhodosim_class}{rf_class} of \fromapp{intermediate_codes}.
 
 Magnets were modeled as major segments of a circle, defined with $\vecthreeBF{r}_{mag}$, $\textbf{R}$ and $|\textbf{B}|$. 
 For the initial implementation, $\vecthreeBF{B}$ assumed to be uniform and has no leaks outside the magnet boundary (\fromfig{is_inside_halfsphere} in \fromapp{intermediate_codes}).
@@ -1804,8 +1807,8 @@ where * and \% are, dot-product and cross-product respectably (\fromfig{vector3d
 \end{figure}
 
 Simulating in 3D had one other benefit; it was now possible to visualize the results by rendering the interaction data. 
-For this purpose, \textit{gnuplot} was integrated into \textit{Rhodotron Simulation} to produce 2D visualization of acceleration plane. 
-Rendered results could be stored as \textit{gif} animations. 
+For this purpose, gnuplot was integrated into Rhodotron Simulation to produce 2D visualization of acceleration plane. 
+Rendered results could be stored as gif animations. 
 Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
 \iffalse \begin{figure}[H]
     %\captionsetup[subfigure]{justification=centering}
@@ -1821,7 +1824,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
         \includegraphics[width=\linewidth]{./figures/rhodoSim/9_3ns_gnuplot.png}
         \caption*{Syncronized \e gun period, $T_g = 9.3ns$}
     \end{subfigure}
-    \caption{Example \textit{gnuplot} renders of \textit{Rhodotron Simulation} $P=40$kW, $f=107.5$MHz.}
+    \caption{Example gnuplot renders of Rhodotron Simulation $P=40$kW, $f=107.5$MHz.}
     \label{fig:example_gnuplot_renders}
 \end{figure} \fi
 \begin{figure}[H]
@@ -1831,7 +1834,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
     \centering
     \subfigure[\centering Syncronized \e gun period, $T_g = 9.3ns$]{{\includegraphics[width=0.85\textwidth]{./figures/rhodoSim/9_3ns_gnuplot.png}}}%
     \vspace{15pt}
-    \caption{Example \textit{gnuplot} renders of \textit{Rhodotron Simulation}, $P=40$kW, $f=107.5$MHz.} 
+    \caption{Example gnuplot renders of Rhodotron Simulation, $P=40$kW, $f=107.5$MHz.} 
     \label{fig:example_gnuplot_renders}
 \end{figure}
 
@@ -1866,20 +1869,20 @@ Initial results at $dt=0.01$ns proved the suspicion of \eB interaction being bro
     \label{fig:mag_lf_render}
 \end{figure}
 Decreasing $dt$ would be the best way to increase accuracy of the results; however, this is not sustainable due to computing power limitations. 
-Until this point, \textit{Rhodotron Simulation} have been using \fromsec{leapfrog} for \eEM interactions. 
+Until this point, Rhodotron Simulation have been using \fromsec{leapfrog} for \eEM interactions. 
 To test newer approaches, two additional version of  \eEM interaction that are using \fromsec{rungekutta} were added.
 \subsubsection{RK4-1}
-First approach for integrating \fromsec{rungekutta} into \eEM interaction was to calculate $\vecthreeBF{a}_{E}$ and $\vecthreeBF{a}_{B}$ from \fromeq{acc_of_E_and_B} using \textit{RK4}.
-After $\vecthreeBF{a}_{EM} = \vecthreeBF{a}_{E} + \vecthreeBF{a}_{B}$ was calculated, \e would move and accelerate using the \textit{Leap-frog} method. 
+First approach for integrating \fromsec{rungekutta} into \eEM interaction was to calculate $\vecthreeBF{a}_{E}$ and $\vecthreeBF{a}_{B}$ from \fromeq{acc_of_E_and_B} using RK4.
+After $\vecthreeBF{a}_{EM} = \vecthreeBF{a}_{E} + \vecthreeBF{a}_{B}$ was calculated, \e would move and accelerate using the Leap-frog method. 
 The idea was to produce more refined interaction results, leading to improved accuracy especially in \eB.
-RF field was kept static during the RK4 computation, due to ongoing \textit{multithreading} implementation efforts. 
+RF field was kept static during the RK4 computation, due to ongoing multithreading implementation efforts. 
 The implementation can be found in \fromfigs{rk1_B}{rk1_EM}.
 \subsubsection{RK4-2}
-Following the implementation of \textit{RK4-1}, revisions were made to the integration method for \textit{RK4} to replace \textit{Leap-frog}.
-Instead of calculating $\vecthreeBF{a}_{EM}$ using \textit{RK4}, $\vecthreeBF{r}$ and $\vecthreeBF{v}$ would be determined directly.
+Following the implementation of RK4-1, revisions were made to the integration method for RK4 to replace Leap-frog.
+Instead of calculating $\vecthreeBF{a}_{EM}$ using RK4, $\vecthreeBF{r}$ and $\vecthreeBF{v}$ would be determined directly.
 
 These three methods were then tested in the same setup as \fromfig{mag_lf_render}. The results can be found in \fromfig{lf_rk1_rk2_comparison} of \fromapp{data_graph}.
-\textit{RK4-1} was decided to be abandoned as it produced the same accuracy in twice the simulation time of \textit{RK4-2}.
+RK4-1 was decided to be abandoned as it produced the same accuracy in twice the simulation time of RK4-2.
 \clearpage
 \iffalse \begin{figure}
     %\captionsetup[subfigure]{justification=centering}
@@ -1907,7 +1910,7 @@ These three methods were then tested in the same setup as \fromfig{mag_lf_render
     \caption{Comparing Leap-frog, RK4-2 performance on \eB interaction $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns.}
     \label{fig:mag_lf_rk2_comparison}
 \end{figure}
-More rigorous testing was done with \textit{Leap-frog} and \textit{RK4-2} however. 
+More rigorous testing was done with Leap-frog and RK4-2 however. 
 Still using the setup in \fromfig{mag_lf_render}, each $dt$ configuration was simulated 10 times, calculating average and standard deviations afterwards.
 
 Example renders from these tests can be observed in \fromfig{mag_lf_rk2_comparison} and
@@ -1941,12 +1944,12 @@ After combining \fromeqs{f_lf_rk_mag_1}{f_lf_rk_mag_2}, $F$ can be calculated as
 \vspace{-10pt}\begin{equation}
     F_{LF}/F_{RK} = 1.36 \pm 0.05.
 \vspace{-10pt}\end{equation}
-Therefore, \textit{Leap-frog} was found to be the better choice as it provided with $1.36 \pm 0.05$ times accuracy in \eB interactions at a given time with respect to \textit{RK4}. However,
-\textit{RK4} was promising in situations where decreasing the stepsize, $dt$, is not viable. Therefore both were integrated into \textit{Rhodotron Simulation} for the user to decide.
-\textit{RK4-2} renders from these test can be found in \fromfig{mag_rk_render} of \fromapp{example_simulation_runs}.
+Therefore, Leap-frog was found to be the better choice as it provided with $1.36 \pm 0.05$ times accuracy in \eB interactions at a given time with respect to RK4. However,
+RK4 was promising in situations where decreasing the stepsize, $dt$, is not viable. Therefore both were integrated into Rhodotron Simulation for the user to decide.
+RK4-2 renders from these test can be found in \fromfig{mag_rk_render} of \fromapp{example_simulation_runs}.
 
 \subsection{Acceleration in Electric Field}
-After the accuracy concerns regarding the \eB interaction were raised, it was decided to test \eE and compare the performance of \textit{Leap-frog} and \textit{RK4}.
+After the accuracy concerns regarding the \eB interaction were raised, it was decided to test \eE and compare the performance of Leap-frog and RK4.
 
 As test setups, two simulation confgurations were made. They aimed to test the accuracy of acceleration of a beam in parallel and perpendicular static uniform electric fields.
 Both configurations had an \egun located at $(-0.753, 0, 0)$m, directed at $(1, 0, 0)$ firing electrons with the kinetic energy of $1$MeV. 
@@ -2077,8 +2080,8 @@ and
     F_{LF}^2/F_{RK}^2 &=& \frac{\Delta E_{RK}^2 \times T_{RK}^2 }{\Delta E_{LF}^2 \times T_{LF}^2} = 2.0  \pm 0.03. \label{eq:f_lf_rk_2}
 \vspace{-10pt}\end{eqnarray}
 
-\textit{Leap-frog} provides $2.4$ times and $2.0$ times less overacceleration per simulation time than 
-\textit{RK4} in parallel and perpendicular electric fields respectably.
+Leap-frog provides $2.4$ times and $2.0$ times less overacceleration per simulation time than 
+RK4 in parallel and perpendicular electric fields respectably.
 This results can be tested further with obsering from the data (see \fromtabf{lf_statE_table}{rk2_statE_table}{lf_statE90_table}{rk2_statE90_table} of \fromapp{data_graph})
 and calculating other relative performances as
 \vspace{-10pt}\begin{eqnarray} \label{eq:f_lf_rk_3}
@@ -2095,22 +2098,22 @@ and
     F_{LF}^2/F_{RK}^2 = \frac{T_{RK}^2(dt=5 \times 10^{-5})}{T_{LF}^2(dt=3 \times 10^{-5})} &=& 1.9 \pm 0.1.
 \vspace{-10pt}\end{eqnarray}
 The last uncertainty was taken high due to the approximation of $467 \approx 471$. After combining \fromeqsf{f_lf_rk_1}{f_lf_rk_2}{f_lf_rk_3}{f_lf_rk_4},
-the performance of \textit{Leap-frog} relative to \textit{RK4} in \eE interaction can be calculated as
+the performance of Leap-frog relative to RK4 in \eE interaction can be calculated as
 \vspace{-10pt}\begin{equation}\label{eq:lf_rk_eE_relative_performance}
     F_{LF}/F_{RK} = 2.11 \pm 0.03.
 \vspace{-10pt}\end{equation}
-Therefore, it can be concluded that \textit{Leap-frog} outperforms \textit{RK4} with the relative performance of $2.11 \pm 0.03$ in \eE interactions with static uniform $\vecthreeBF{E}$ field. 
+Therefore, it can be concluded that Leap-frog outperforms RK4 with the relative performance of $2.11 \pm 0.03$ in \eE interactions with static uniform $\vecthreeBF{E}$ field. 
 
 \subsection{Multithreading}
 As already mentioned before, multithreading implementation efforts were ongoing since right after the start of this project. 
 There have been a number of different approaches for implementation. 
-First implemenation was done when the \textit{Rhodotron Simulation} was only capable of 1D simulations.
+First implemenation was done when the Rhodotron Simulation was only capable of 1D simulations.
 After the sizable refactoring done for 3D capabilities, this implementation was obselete. 
 
 For the current version, a main thread that spawns and manages several other worker threads would be used as can be seen in \fromfig{multh_illustration}.
 The UI-Console thread would handle incoming and outgoing communication, notifying the user about the status of simulation 
 (see \fromfig{console_output_running} in \fromapp{example_simulation_runs} for example console notification, \fromfig{ui_thread} in \fromapp{intermediate_codes} for implemenation)
-or communucating with the \textit{GUI} that will be disscussed in the next section.
+or communucating with the GUI that will be disscussed in the next section.
 
 \begin{figure}[H]
     \centering
@@ -2123,27 +2126,27 @@ or communucating with the \textit{GUI} that will be disscussed in the next secti
 Focus of this section is the worker threads, also known as \eEM interaction threads.
 There were four competing architecture for these worker threads,
 \begin{itemize}
-    \item \textit{Architecture 1:} Have a thread pool that calculates \eEM in a queue. 
-    \item \textit{Architecture 2:} Assign a thread to each bunch.
-    \item \textit{Architecture 3:} A ssign random electrons to each thread and calculate \eEM with global time.
-    \item \textit{Architecture 4:} Assign random electrons to each thread and calculate \eEM with local thread time.
+    \item Architecture 1: Have a thread pool that calculates \eEM in a queue. 
+    \item Architecture 2: Assign a thread to each bunch.
+    \item Architecture 3: A ssign random electrons to each thread and calculate \eEM with global time.
+    \item Architecture 4: Assign random electrons to each thread and calculate \eEM with local thread time.
 \end{itemize}
 
-\textit{Architecture 1} would require constant waiting in worker threads to get mutexes of $\vecthreeBF{E}$ field, especially in \textit{RK4}.
+Architecture 1 would require constant waiting in worker threads to get mutexes of $\vecthreeBF{E}$ field, especially in RK4.
 \clearpage
-\textit{Architecture 2} was performing well in configurations with a large number of bunches, but was not increasing performance in lower bunch count configurations as expected.
+Architecture 2 was performing well in configurations with a large number of bunches, but was not increasing performance in lower bunch count configurations as expected.
 
-\textit{Architecture 3} was inefficient and wasteful since all the worker threads would wait the main thread to get the next time after they finish calculation, while the main thread would be waiting for the slowest worker thread.
+Architecture 3 was inefficient and wasteful since all the worker threads would wait the main thread to get the next time after they finish calculation, while the main thread would be waiting for the slowest worker thread.
 
-\textit{Architecture 4} was thought to be the best performer. It would give freedom to calculate the whole simulation to each thread while giving up the global time.
+Architecture 4 was thought to be the best performer. It would give freedom to calculate the whole simulation to each thread while giving up the global time.
 This would also mean thread-safety is ensured since there is no shared data between the worker threads. 
 However, this architecture can cause issues if \ee interactions were decided to be implemented in the future.
 
 Another caveat is that a copy operation of $\vecthreeBF{E}$ and $\vecthreeBF{B}$ objects for each worker thread would be needed.
 This would lead to larger memory allocations and more time spent setting up simulations. 
-Therefore, \textit{Architecture 4} is not ideal for fast calculations and when the memory is an important constraint.
-An implementation that can use both \textit{Architecture 2} \& \textit{Architecture 4} when necessary would be a better approach considering these methods;
-nevertheless, \textit{Architecture 4} was chosed to be implemented.
+Therefore, Architecture 4 is not ideal for fast calculations and when the memory is an important constraint.
+An implementation that can use both Architecture 2 \& Architecture 4 when necessary would be a better approach considering these methods;
+nevertheless, Architecture 4 was chosed to be implemented.
 
 The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWithFireTimesMT}{setupPool}{threadLoop} in \fromapp{intermediate_codes}.
 
@@ -2153,7 +2156,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \clearpage
 \section{Graphical User Interface}
 
-Until this point, \textit{Rhodotron Simulation} could be used with a configration file, defining the problem that would be simulated.
+Until this point, Rhodotron Simulation could be used with a configration file, defining the problem that would be simulated.
 An example of this configuration file can be found in \fromfig{config_file} of \fromapp{example_simulation_runs}. 
 \vspace{10pt}
 \begin{figure}[H]
@@ -2164,23 +2167,23 @@ An example of this configuration file can be found in \fromfig{config_file} of \
 \end{figure}
 \clearpage
 This approach was simple and fast; however, it was not suitable for the average target user since required basic knowledge of command line interface and was not up to modern standards.
-For this reason, a GUI was decided to be built, using \textit{ROOT framework}. 
-This would also enable \textit{Rhodotron simulation} to make use of analysis tools offered by \textit{ROOT}.
+For this reason, a GUI was decided to be built, using ROOT framework. 
+This would also enable Rhodotron simulation to make use of analysis tools offered by ROOT.
 
-The initial design of the \textit{Rhodotron Simulation GUI} can be observed in \fromfig{gui_illustration}.
-The \textit{GUI} would be a standalone application, running the \textit{Rhodotron Simulation} as a service when needed. 
-For this reason, the now called \textit{simulation engine} was updated to be able to run as a background service of \textit{GUI}.
-By this approach, one could also ignore the \textit{GUI} altogether and use the \textit{simulation engine} as before, as these are two seperate products.
+The initial design of the Rhodotron Simulation GUI can be observed in \fromfig{gui_illustration}.
+The GUI would be a standalone application, running the Rhodotron Simulation as a service when needed. 
+For this reason, the now called simulation engine was updated to be able to run as a background service of GUI.
+By this approach, one could also ignore the GUI altogether and use the simulation engine as before, as these are two seperate products.
 
 In the \fromfig{gui_config}, the implemented version of \fromfig{gui_illustration} can be observed. 
-Available frames of this version of the \textit{GUI} are discussed further in the following sections.
+Available frames of this version of the GUI are discussed further in the following sections.
 \subsection{Simulation Frame}
-This frame spawns and manages the \textit{simulation engine}, configures and starts the simulation. 
-It has a progress bar that shows the current progress of the simulation, communucating with \textit{UI handler thread} in \textit{simulation engine}.
+This frame spawns and manages the simulation engine, configures and starts the simulation. 
+It has a progress bar that shows the current progress of the simulation, communucating with UI handler thread in simulation engine.
 Simulation frame while a simulation is running can be observed in \fromfig{gui_simulate_1} of \fromapp{supp}.
 \clearpage
 \subsection{Configuration Frame}
-This frame provides an interface for specifying, saving or loading a configuration, consists of $\vecthreeBF{B}$ field, $\vecthreeBF{E}$ field, \textit{RF} description, \egun, \textit{simulation} configuration regions.
+This frame provides an interface for specifying, saving or loading a configuration, consists of $\vecthreeBF{B}$ field, $\vecthreeBF{E}$ field, RF description, \egun, simulation configuration regions.
 Each one having an illustration of what the parameters are as can be seen in \fromfig{gui_config}.
 \vspace{10pt}
 \begin{figure}[h]
@@ -2192,40 +2195,40 @@ Each one having an illustration of what the parameters are as can be seen in \fr
 
 \clearpage
 \subsection{Render Frame}
-Since the rendering capabilities of \textit{ROOT} is superior than \textit{gnuplot}, the user can render a playback of the simulation in real time, 
+Since the rendering capabilities of ROOT is superior than gnuplot, the user can render a playback of the simulation in real time, 
 see a specific time frame, export as snapshot or animated gif file.
 Two example renders can be seen in \fromfig{gui_render_1} and \fromfig{gui_render_2} of \fromapp{supp}.
 \vspace{10pt}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.85\linewidth]{./figures/rhodoSim/GUI_render_frame_5.png}
-    \caption{Render frame of \textit{GUI}.}
+    \caption{Render frame of GUI.}
     \label{fig:gui_render_1}
 \end{figure}
 
 \subsection{Analyze Frame}
 Analyze frame provides tools for analyzing and visualizing the simulation data. 
-In the current version, energy distribution histogram and \textit{E(t)} graph of each electron are implementated into this frame.
+In the current version, energy distribution histogram and \textbf{E(t)} graph of each electron are implementated into this frame.
 This frame is a work in progress and will be the focus of improvement and become a really powerfull tool in the near future.
-In \fromfig{gui_analyze_Edist}, \textit{Analyze Frame} plotting energy distribution histogram, and in \fromfig{gui_analyze_Et} and \fromfig{gui_analyze_Et2} of \fromapp{supp}, \textit{Analyze Frame} plotting \textbf{E(t)} graphs can be observed.
+In \fromfig{gui_analyze_Edist}, Analyze Frame plotting energy distribution histogram, and in \fromfig{gui_analyze_Et} and \fromfig{gui_analyze_Et2} of \fromapp{supp}, Analyze Frame plotting \textbf{E(t)} graphs can be observed.
 \vspace{10pt}
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\linewidth]{./figures/rhodoSim/GUI_analyze_Edist_2.png}
-    \caption{Analyze frame of \textit{GUI} E distribution.}
+    \caption{Analyze frame of GUI E distribution.}
     \label{fig:gui_analyze_Edist}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\linewidth]{./figures/rhodoSim/GUI_analyze_Et_3.png}
-    \caption{Analyze frame of \textit{GUI} E(t).}
+    \caption{Analyze frame of GUI E(t).}
     \label{fig:gui_analyze_Et}
     \vspace{20pt}
 \end{figure}
 
 \subsection{Sweep Frame}
-Parameter sweep method that was discussed in \fromsecs{lout_sweep}{philag_sweep} was integrated into \textit{GUI} in a seperate frame named \textit{Sweep Frame}.
+Parameter sweep method that was discussed in \fromsecs{lout_sweep}{philag_sweep} was integrated into GUI in a seperate frame named Sweep Frame.
 $\phi_{lag}$ sweep was the first parameter to be implemented. 
 
 It takes the range of sweep, draws $\phi_{lag}$ vs $\mu E$, $\phi_{lag}$ vs $\sigma E$ and $\phi_{lag}$ vs $\sigma R$ mentioned in \fromsec{philag_sweep}.
@@ -2235,19 +2238,19 @@ In the \fromfigf{gui_sweep_muE}{gui_sweep_sE}{gui_sweep_running}{gui_sweep_sR} o
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.85\linewidth]{./figures/rhodoSim/GUI_sweep_muE_3.png}
-    \caption{Sweep frame of \textit{GUI} $\phi_{lag}$ $\mu E$ result.}
+    \caption{Sweep frame of GUI $\phi_{lag}$ $\mu E$ result.}
     \label{fig:gui_sweep_muE}
 \end{figure}
 \clearpage
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.85\linewidth]{./figures/rhodoSim/GUI_sweep_sE_3.png}
-    \caption{Sweep frame of \textit{GUI} $\phi_{lag}$ sweep $\sigma E$ result.}
+    \caption{Sweep frame of GUI $\phi_{lag}$ sweep $\sigma E$ result.}
     \label{fig:gui_sweep_sE}
     \vspace{10pt}
 \end{figure}
 
-As mentioned before, \textit{GUI} is the latest and ongoing development effort in this project.
+As mentioned before, GUI is the latest and ongoing development effort in this project.
 New analysis and sweep features will be implemented and current capabilities will be improved in the near future.
 
 
@@ -2258,7 +2261,7 @@ New analysis and sweep features will be implemented and current capabilities wil
 
 \chapter{PRODUCTION}
 
-As discussed before, production efforts of a \textit{Rhodotron-type} accelerator are still ongoing in KAHVELab.
+As discussed before, production efforts of a Rhodotron-type accelerator are still ongoing in KAHVELab.
 This accelerator will be used at $f=107.5$MHz $P=50-100$kW to achieve beams with the energy range of $1-5$MeV.
 % Start of final.tex
 \section{Final Design} \label{sec:final_design}
@@ -2324,7 +2327,6 @@ Technical drawings of the design mentioned in \fromsec{final_design} can be foun
 Manifacturing of the rhodotron cavity has been ongoing, planned to be completed in the following months.
 
 The cavity itself was manifactured as 5 main parts, using 5mm thick stainless steel sheet. 
-
 Elastic version of the 304, 304L was chosen to be the production material for ease of bending.
 These sheets were then pressed to achieve the shapes of the parts. 
 Several flanges were then machined, including
@@ -2496,11 +2498,11 @@ The sheet bars and the flanges of the upper and the lower parts have been welded
 After the heat treatment operation, the supporting toroidal sheets will be removed and the inside surface will be polished before cyanide copper plating. 
 
 As far as the magnets were concerned, it was decided to be kept on hold in the early stages of the project, 
-due to the disagreement on the energy gain amount between the calculations of \textit{J. POTTIER} \cite{rhodo_pottier} 
-and the simulation results from \textit{CST Studio Suite} \& \textit{Rhodotron Simulation}. 
+due to the disagreement on the energy gain amount between the calculations of J. POTTIER \cite{rhodo_pottier} 
+and the simulation results from CST Studio Suite \& Rhodotron Simulation. 
 The software is planned to be used in magnet design and beam optimizations in KAHVELab after the initial tests are completed.
 
-\textit{Rhodotron Simulation}, which has been the main focus of this thesis, is ready and waiting to be tested with the cavity that is being manufactured; 
+Rhodotron Simulation, which has been the main focus of this thesis, is ready and waiting to be tested with the cavity that is being manufactured; 
 Several improvements and new feature implementations are underway in the meantime:
 \iffalse \begin{figure}[H]
     \begin{subfigure}[t]{0.5\textwidth}
@@ -2523,34 +2525,27 @@ Several improvements and new feature implementations are underway in the meantim
         \end{itemize}
     \end{subfigure}
 \end{figure} \fi
-\begin{figure}[H]
-    \begin{minipage}[t]{0.5\textwidth}
-        \begin{itemize}
-            \item Electric and magnetic field import
-            \item Field generator module to directly produce field files from specified cavity
-            \item Synchrotron radiation calculations to determine radiation and energy loss
-            \item \ee interactions
-            \item Redesign of the GUI
-            \item 3D render in GUI
-        \end{itemize}
-    \end{minipage}
-    \begin{minipage}[t]{0.5\textwidth}
-        \begin{itemize}
-            \item Refactoring of the \eEM interaction and logging to improve performance
-            \item Refactoring of the GUI Render Frame to improve render speed
-            \item Refactoring the magnet class to introduce field leaks
-            \item Extention of analysis tools in Analyze Frame
-            \item $L_{out}$ sweep in Sweep Frame
-        \end{itemize}
-    \end{minipage}
-\vspace{-10pt}\end{figure}
+\begin{itemize}
+    \item Electric and magnetic field import
+    \item Field generator module to directly produce field files from specified cavity
+    \item Synchrotron radiation calculations to determine radiation and energy loss
+    \item \ee interactions
+    \item Redesign of the GUI
+    \item 3D render in GUI
+    \item Refactoring of the \eEM interaction and logging to improve performance
+    \item Refactoring of the GUI Render Frame to improve render speed
+    \item Refactoring the magnet class to introduce field leaks
+    \item Extention of analysis tools in Analyze Frame
+    \item $L_{out}$ sweep in Sweep Frame
+\end{itemize} 
+
 
 After the cavity manufacturing is concluded, energy gain predictions of this software will be tested on this cavity. 
-Complementary bending magnet design will be the first challange of \textit{Rhodotron Simulation}, which will provide tremendous testing and improvement opportunities.
+Complementary bending magnet design will be the first challange of Rhodotron Simulation, which will provide tremendous testing and improvement opportunities.
 
 \section{Discussion}
-In conclusion, a new computational \eEM interaction simulation and analysis tool that focuses on designing and improving \textit{Rhodotron-type} accelerators has been successfully developed; 
-a \textit{Rhodotron-type} accelerator with an operating frequency of $107.5$ MHz and a target energy of $1-5$ MeV has been designed and is currently being manufactured.
+In conclusion, a new computational \eEM interaction simulation and analysis tool that focuses on designing and improving Rhodotron-type accelerators has been successfully developed; 
+a Rhodotron-type accelerator with an operating frequency of $107.5$ MHz and a target energy of $1-5$ MeV has been designed and is currently being manufactured.
 
 The software features a robust GUI that is capable of rendering and analyzing simulation results.
 Leap-frog and Runge-Kutta numerical methods have been implemented for initial speed and accuracy tests.
@@ -2561,6 +2556,99 @@ lead to the inference that it holds promise.
 
 \newpage
 
+% START OF BIBLIOGRAPHY
+
+\begin{thebibliography}{9}
+
+    \bibitem{rhodo_pottier}
+    Jacques Pottier,
+    \emph{A new type of rf electron accelerator: The rhodotron},
+    Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
+    Vol. 40–41,
+    No 2,
+    pp 943-945,
+    1989.
+
+    \bibitem{kahvelab_linac}
+    Adıgüzel, A., S. Açıksöz, A. Çağlar, H. Çetinkaya, Ş. Esen, D. Halis, A. Hamparsunoğlu, T.B. İlhan, A. Kılıçgedik, O. Koçer, S. Oğur, S. Öz, A. Özbey, V.E. Özcan and N.G. Ünel
+    \emph{Ion source and LEBT of KAHVELab proton beamline},
+    Journal of Instrumentation,
+    Vol. 18,
+    2023
+
+    \bibitem{rhodo_prototype}
+    Bassaler, J.M., J.M. Capdevila, O. Gal, F. Lainé, A. Nguyen, J.P. Nicolaï, K. Umiastowski,
+    \emph{Rhodotron: an accelerator for industrial irradiation},
+    Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
+    Volume 68, No. 1–4,
+    Pages 92-95,
+    1992.
+
+    \bibitem{rhodos}
+    Jongen, Y.,
+    \emph{Manufacturing of Electron Accelerators},
+    Ion Beam Applications (IBA) Chemin du Cyclotron 3,
+    B-1348 Louvain-la-Neuve, Belgium.
+    2001.
+
+    \bibitem{rf}
+    Jensen E., in Proceedings of the CAS–CERN Accelerator School: Advanced Accelerator Physics CERN–2014–009,
+    edited by W. Herr, Trondheim, Norway,
+    pp. 405–430,
+    2013.
+
+    \bibitem{cpu_instruction_speed}
+    Fukushima, T., 
+    \emph{Reduction of Round-off Errors in Symplectic Integrators},
+    The Astronomical Journal,
+    Vol. 121,
+    pp. 1768-1775,
+    2001.
+
+    \bibitem{poi-sup}
+    User's Guide for the POISSON / SUPERFISH group of codes, 
+    Los Alamos National Laboratory, New Mexico, USA, 1987. Accessed on Aug 10, 2023. 
+    
+    \bibitem{root}
+    The European Organization for Nuclear Research, 
+    "ROOT - An Object Oriented Data Analysis Framework Release v6.20/04, 01/04/2020", 2020,
+    https://zenodo.org/record/3895855, accessed on Aug 10, 2023.
+
+    \bibitem{gnuplot}
+    Williams, T, "Gnuplot 5.4: An Interactive
+    Plotting Program", 2020, http://gnuplot.info, accessed on Aug 10, 2023.
+
+    \bibitem{runge}
+    Runge, C. D. T.,
+    \emph{Über die numerische Auflösung von Differentialgleichungen}, 
+    Mathematische Annalen, 
+    Springer, 
+    Vol. 46,
+    No. 2,
+    pp. 167–178,
+    1895.
+
+    \bibitem{kutta}
+    Kutta, W, 
+    \emph{Beitrag zur näherungsweisen Integration totaler Differentialgleichungen}, 
+    Zeitschrift für Mathematik und Physik, 
+    Vol. 46,
+    pp. 435–453,
+    1901.
+
+    \bibitem{cite:rhodo_design}
+    Kleeven, W., M. Abs, J. Brison, E. Forton, J. Hubert and J. Van de Walle,
+    \emph{Design and Simulation Tools for the High-Intensity Industrial Rhodotron Electron Accelerator},
+    9th International Particle Accelerator Conference,
+    2018.
+    
+    \bibitem{sinan}
+    Privite communication with Sinan Öz.
+
+
+\end{thebibliography}
+
+% END OF BIBLIOGRAPHY
 
 \appendix
 \chapter{Intermediate Codes} \label{appendix:intermediate_codes}
@@ -3888,99 +3976,6 @@ lead to the inference that it holds promise.
     \caption{Sweep frame of \textit{GUI}  $\phi_{lag}$ sweep $\sigma R$ result.}
     \label{fig:gui_sweep_sR}
 \end{figure}
-% START OF BIBLIOGRAPHY
-
-\begin{thebibliography}{9}
-
-    \bibitem{rhodo_pottier}
-    Jacques Pottier,
-    \emph{A new type of rf electron accelerator: The rhodotron},
-    Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
-    Vol. 40–41,
-    No 2,
-    pp 943-945,
-    1989.
-
-    \bibitem{kahvelab_linac}
-    Adıgüzel, A., S. Açıksöz, A. Çağlar, H. Çetinkaya, Ş. Esen, D. Halis, A. Hamparsunoğlu, T.B. İlhan, A. Kılıçgedik, O. Koçer, S. Oğur, S. Öz, A. Özbey, V.E. Özcan and N.G. Ünel
-    \emph{Ion source and LEBT of KAHVELab proton beamline},
-    Journal of Instrumentation,
-    Vol. 18,
-    2023
-
-    \bibitem{rhodo_prototype}
-    Bassaler, J.M., J.M. Capdevila, O. Gal, F. Lainé, A. Nguyen, J.P. Nicolaï, K. Umiastowski,
-    \emph{Rhodotron: an accelerator for industrial irradiation},
-    Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
-    Volume 68, No. 1–4,
-    Pages 92-95,
-    1992.
-
-    \bibitem{rhodos}
-    Jongen, Y.,
-    \emph{Manufacturing of Electron Accelerators},
-    Ion Beam Applications (IBA) Chemin du Cyclotron 3,
-    B-1348 Louvain-la-Neuve, Belgium.
-    2001.
-
-    \bibitem{rf}
-    Jensen E., in Proceedings of the CAS–CERN Accelerator School: Advanced Accelerator Physics CERN–2014–009,
-    edited by W. Herr, Trondheim, Norway,
-    pp. 405–430,
-    2013.
-
-    \bibitem{cpu_instruction_speed}
-    Fukushima, T., 
-    \emph{Reduction of Round-off Errors in Symplectic Integrators},
-    The Astronomical Journal,
-    Vol. 121,
-    pp. 1768-1775,
-    2001.
-
-    \bibitem{poi-sup}
-    User's Guide for the POISSON / SUPERFISH group of codes, 
-    Los Alamos National Laboratory, New Mexico, USA, 1987. Accessed on Aug 10, 2023. 
-    
-    \bibitem{root}
-    The European Organization for Nuclear Research, 
-    "ROOT - An Object Oriented Data Analysis Framework Release v6.20/04, 01/04/2020", 2020,
-    https://zenodo.org/record/3895855, accessed on Aug 10, 2023.
-
-    \bibitem{gnuplot}
-    Williams, T, "Gnuplot 5.4: An Interactive
-    Plotting Program", 2020, http://gnuplot.info, accessed on Aug 10, 2023.
-
-    \bibitem{runge}
-    Runge, C. D. T.,
-    \emph{Über die numerische Auflösung von Differentialgleichungen}, 
-    Mathematische Annalen, 
-    Springer, 
-    Vol. 46,
-    No. 2,
-    pp. 167–178,
-    1895.
-
-    \bibitem{kutta}
-    Kutta, W, 
-    \emph{Beitrag zur näherungsweisen Integration totaler Differentialgleichungen}, 
-    Zeitschrift für Mathematik und Physik, 
-    Vol. 46,
-    pp. 435–453,
-    1901.
-
-    \bibitem{cite:rhodo_design}
-    Kleeven, W., M. Abs, J. Brison, E. Forton, J. Hubert and J. Van de Walle,
-    \emph{Design and Simulation Tools for the High-Intensity Industrial Rhodotron Electron Accelerator},
-    9th International Particle Accelerator Conference,
-    2018.
-    
-    \bibitem{sinan}
-    Privite communication with Sinan Öz.
-
-
-\end{thebibliography}
-
-% END OF BIBLIOGRAPHY
 
 
 \end{document}

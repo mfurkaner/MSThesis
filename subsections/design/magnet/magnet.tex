@@ -121,7 +121,7 @@ Observing the \fromfig{magnet_design} and using \fromeq{magnet_lambda_constraint
     L + d &=& \frac{\rho}{\tan (\gamma)} - R_2 . \label{eq:magnet_L_constraint}
 \vspace{-20pt}\end{eqnarray}
 
-\textit{Equations \ref{eq:magnet_rho_constraint} and \ref{eq:magnet_L_constraint}} define 2 constraints. As already discussed, it has been assumed that cavity design is set (\textit{i.e} $R_2$, $\lambda$, $d$ are already defined).
+\fromeqs{magnet_rho_constraint}{magnet_L_constraint} define 2 constraints. As already discussed, it has been assumed that cavity design is set (\textit{i.e} $R_2$, $\lambda$, $d$ are already defined).
 Therefore only the magnet design parameters $\rho$, $\gamma$ and $L$ are left. Together with the constraints, one free variable defines the whole magnet design. 
 Considering the importance of $\gamma$ for maximum number of possible passes, it will be used as the free magnet design variable in the further discussions.
 
@@ -162,11 +162,11 @@ To start, an optimization criteria for the following pass such as
     \item Minimize the phase lag spread of the beam
     \item All of the above with decided weights
 \vspace{-10pt}\end{itemize}
-needs be selected. Using a simulation software such as \textit{CST Studio Particle Module}, the optimum value of $K$ for the criteria can be found by simulating for different values of $K$ (\textit{sweeping}) and analyzing the results.
+needs be selected. Using a simulation software such as CST Studio Particle Module, the optimum value of $K$ for the criteria can be found by simulating for different values of $K$ (sweeping) and analyzing the results.
 This process can be repeated for each magnet until the desired beam characteristics in the end of the accelerator are achieved.
 
-However, one caviat of this technique is that, available simulation softwares are not well suited for this kind of process. As mentioned above, \textit{CST Studio Particle Module} has a \textit{parameter sweep} functionality.
-But the calculation times are too slow to be useful in this particular problem. \textit{A custom built software offering magnet optimizing sweep functionality will be discussed in the following chapter.}
+However, one caviat of this technique is that, available simulation softwares are not well suited for this kind of process. As mentioned above, CST Studio Particle Module has a parameter sweep functionality.
+But the calculation times are too slow to be useful in this particular problem. A custom built software offering magnet optimizing sweep functionality will be discussed in the following chapter.
 
 
 %%%%%%
