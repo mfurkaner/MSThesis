@@ -41,11 +41,14 @@
 %----../../..++++.
 
 %%%%%%
-\clearpage
 \section{Magnet Design} \label{sec:magnet_design}
 Magnet design in rhodotron type accelerators depend heavily on the design of the cavities.
 Because the limiting factors usually are frequency and total volume of the accelerator, magnet design parameters are considered after cavity design has been completed.
 Considering the nature of coaxial cavity, simplest path for beams inside magnets is major segment of a circle, which was used as the reference for following discussions.
+
+In rhodotron accelerators, magnets are used for not only guiding the electron beam to desired path, but also for synchronizing them with the RF field in the cavity. 
+This syncronization, also called phase stability, is the fundamental constraint of magnet design. 
+Time spent outside of the RF cavity should be precisely tuned to maximize acceleration in the succeeding pass. 
 \iffalse \begin{figure}[H]
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
@@ -65,15 +68,13 @@ Considering the nature of coaxial cavity, simplest path for beams inside magnets
 \vspace{20pt}
 \begin{figure}[H]
     \centering
-    \subfigure[\centering ]{{\includegraphics[width=.45\textwidth]{../../../figures/design/Ltot.png} }}%
-    \qquad\subfigure[\centering ]{{\includegraphics[width=.45\textwidth]{../../../figures/design/tt300_mag.png} }}%
-    \vspace{20pt}
+    \subfigure{{\includegraphics[width=.45\textwidth]{../../../figures/design/Ltot.png} }}%
+    \qquad\subfigure{{\includegraphics[width=.45\textwidth]{../../../figures/design/tt300_mag.png} }}%
+    \vspace{0pt}
     \caption{\centering Geometry and modeling, outside trajectory of a rhodotron (TT300) \cite{cite:rhodo_design}.} 
     \label{fig:magnet_design_illustrations}
+    \vspace{-15pt}
 \end{figure}
-In rhodotron accelerators, magnets are used for not only guiding the electron beam to desired path, but also for synchronizing them with the RF field in the cavity. 
-This syncronization, also called phase stability, is the fundamental constraint of magnet design. 
-Time spent outside of the RF cavity should be precisely tuned to maximize acceleration in the succeeding pass. 
 
 Two different approaches have been used to achieve phase stability.
 These approaches are discussed further in the following sections.
@@ -85,42 +86,45 @@ First approach for phase stability considiration assumes that from the start of 
 To maintain the phase synchronization, a particle that started the current pass at $t=0$, should start the next pass at $t=nT$, where $n$ is an integer and $T$ is the period of RF field inside cavity.
 As discussed earlier, by assuming the electron is traveling at $c$, phase stability can be achieved by designing the whole trajectory to be $n \lambda$, where $\lambda$ is the wavelength of the RF field. 
 In other words, total trajectory of synchronous particle needs to satisfy
-\vspace{-10pt}\begin{equation}
+\vspace{-22pt}\begin{equation}
     L_{pass} = n \lambda .
-\vspace{-10pt}\end{equation} 
+\vspace{-22pt}\end{equation} 
 Since $n>1$ would require unnecessarily long and expensive beam guide and magnets, $n=1$ is the most efficient choice, which leads to
-\vspace{-10pt}\begin{equation}
+\vspace{-22pt}\begin{equation}
     L_{pass} = \lambda .
 \vspace{-10pt}\end{equation} 
 
 \begin{figure}[H]    
     \centering
     \includegraphics[width=.7\linewidth]{../../../figures/design/magnet_design.png}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{Trejectory of a particle in single pass.}
     \label{fig:magnet_design}
+    \vspace{-15pt}
 \end{figure}
-\clearpage
+
 From \fromfig{magnet_design}, where $\gamma$ is half the angle between trajectories of successive passes, $\rho$ is the radius of the circular path inside magnet, 
 $L$ is the length of the magnet guide, $d$ is the thickness of the RF cavity wall the constraints are
-\vspace{-10pt}\begin{eqnarray}
+\vspace{-22pt}\begin{eqnarray}
     L_{in} &=& 2R_2   , \\
     L_{out} &=& 2L + 2d + (\pi + 2\gamma)\rho  , \\
     L_{pass} &=& L_{in} + L_{out}  ,   \\
     \lambda &=& 2R_2 + 2d + 2L + (\pi + 2\gamma)\rho . \label{eq:magnet_lambda_constraint}
-\vspace{-20pt}\end{eqnarray}
+\end{eqnarray}
 
+\vspace{-20pt}
 After the cavity design is complete, only $L$, $\gamma$ and $\rho$ remain, which are the design parameters of magnets.
 Observing the \fromfig{magnet_design} and using \fromeq{magnet_lambda_constraint},
-\vspace{-10pt}\begin{eqnarray}
+\vspace{-20pt}\begin{eqnarray}
     \tan (\gamma) &=& \frac{\rho}{R_2 + d + L}  ,\\
     \rho &=&  \tan (\gamma) (R_2 + d + L)  , \\
     2\rho &=& \tan (\gamma) (\lambda - (\pi + 2\gamma)\rho)  , \\
     \rho (2 + \tan (\gamma)(\pi + 2\gamma)) &=&  \tan (\gamma) \lambda   ,\\
     \rho &=& \frac{\lambda}{\pi + 2\gamma + \frac{2}{\tan (\gamma)}}   ,\label{eq:magnet_rho_constraint} \\
     L + d &=& \frac{\rho}{\tan (\gamma)} - R_2 . \label{eq:magnet_L_constraint}
-\vspace{-20pt}\end{eqnarray}
+\end{eqnarray}
 
+\vspace{-10pt}
 \fromeqs{magnet_rho_constraint}{magnet_L_constraint} define 2 constraints. As already discussed, it has been assumed that cavity design is set (\textit{i.e} $R_2$, $\lambda$, $d$ are already defined).
 Therefore only the magnet design parameters $\rho$, $\gamma$ and $L$ are left. Together with the constraints, one free variable defines the whole magnet design. 
 Considering the importance of $\gamma$ for maximum number of possible passes, it will be used as the free magnet design variable in the further discussions.
@@ -135,34 +139,41 @@ This scenario can happen when RF power is not sufficiently high.
 Consider an RF supply with $f=1$ GHz, $P=50$ kW. Using \fromeq{W_total_gain_pottier}, 
 after the first pass the synchronous electron that entered the accelerator with $40$ keV and $\phi=15^\circ$ phase lag,
 it can be observed that
-\vspace{-10pt}\begin{eqnarray}
+\vspace{-20pt}\begin{eqnarray}
     W_{gain} &=& 2.14\times0.2998^{1/4}\times 50000^{1/2} = 354keV   ,\\
     W_{total} &=& 394 keV   ,\\
     \beta_{40keV} &\approx& 0.374   ,\\
     \beta_{394keV} &\approx& 0.825 .
-\vspace{-20pt}\end{eqnarray}
+\end{eqnarray}
+
+\vspace{-40pt}
+\noindent
 It is clear that $\beta_{avg}$ is not fast enough to sustain phase stability if the magnet is designed for $\beta = 1$. 
 For these cases, \fromeq{magnet_lambda_constraint} fails to deliver phase stability.
 Another approach for designing a magnet would be to find a new constraint, $K$ for total path length.
-\vspace{-10pt}\begin{eqnarray}
+\vspace{-20pt}\begin{eqnarray}
     L_{pass} &=& K ,\\
     L_{in} + L_{out} &=& K .
-\vspace{-20pt}\end{eqnarray}
+\end{eqnarray}
+
+\vspace{-40pt}
+\noindent
 Since $L_{in}$ is set previously from cavity design, we can remove it from our equation and continue with
-\vspace{-10pt}\begin{equation} \label{eq:mag_sweep_constraint}
+\vspace{-20pt}\begin{equation} \label{eq:mag_sweep_constraint}
     L_{out} = K .
-\vspace{-10pt}\end{equation}
-\clearpage
-To start, an optimization criteria for the following pass such as
-\vspace{-10pt}
+\vspace{-15pt}\end{equation}
+
+To start, an optimization criteria for the following pass needs to be selected. 
+Some example criteria can be found in the list below.
 \begin{itemize}
     \item Ensure the phase stability of the synchronous electron
     \item Maximize the energy gain of the synchronous electron
     \item Minimize the energy spread of the beam
     \item Minimize the phase lag spread of the beam
     \item All of the above with decided weights
-\vspace{-10pt}\end{itemize}
-needs be selected. Using a simulation software such as CST Studio Particle Module, the optimum value of $K$ for the criteria can be found by simulating for different values of $K$ (sweeping) and analyzing the results.
+\end{itemize}
+
+Using a simulation software such as CST Studio Particle Module, the optimum value of $K$ for the criteria can be found by simulating for different values of $K$ (sweeping) and analyzing the results.
 This process can be repeated for each magnet until the desired beam characteristics in the end of the accelerator are achieved.
 
 However, one caviat of this technique is that, available simulation softwares are not well suited for this kind of process. As mentioned above, CST Studio Particle Module has a parameter sweep functionality.

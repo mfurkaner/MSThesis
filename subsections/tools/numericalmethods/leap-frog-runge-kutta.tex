@@ -37,30 +37,39 @@
 
 
 %%%%%%
-\clearpage
 \section{Algorithms}
 
 \subsection{Leapfrog} \label{sec:leapfrog}
 The Leapfrog method is a numerical method commonly used to solve ordinary differential equations (ODEs) that involve second-order time derivatives. Such an ODE can be written as
-\vspace{-10pt}\begin{equation}
+\vspace{-15pt}
+\begin{equation}
     \ddot{x} = \derivS{x}{t} = f(x) .\label{eq:second-order-ODE}
 \vspace{-10pt}\end{equation}
 
 The Leapfrog method is a variant of the finite difference method, and it approximates the solution of an ODE by discretizing both time and space. 
 The method gets its name from the way it calculates the values of the solution at each time step, which resembles a leapfrogging motion. 
 It is a simple and efficient algorithm that is often used in simulations of physical systems, such as celestial mechanics or molecular dynamics.
+
 The idea is straight forward; in the time interval $\Delta t$, 
-\vspace{-10pt}\begin{eqnarray}
+\vspace{-20pt}
+\begin{eqnarray}
     a(t_0) &=& f(x_0)   , \\
     x(t_0 + \Delta t) &=& x(t_0) + v(t_0)\Delta t + a(t_0)\frac{\Delta t^2}{2}   ,\label{eq:leapfrog_sync_x}\\
     v(t_0 + \Delta t) &=& v(t_0) + \{ a(t_0) + a(t_0 + \Delta t)\}\frac{\Delta t}{2} . \label{eq:leapfrog_sync_v}
-\vspace{-10pt}\end{eqnarray}
-For more stability, this version can be rearranged to what is called 'kick-drift-kick' form as
-\vspace{-10pt}\begin{eqnarray} \label{eq:leapfrog}
+\end{eqnarray}
+
+\vspace{-40pt}
+\noindent
+For more stability, this version can be rearranged to what is called `kick-drift-kick' form as
+\vspace{-20pt}
+\begin{eqnarray} \label{eq:leapfrog}
     v(t_0 + \Delta t/2) &=& v(t_0) +  a(t_0)\frac{\Delta t}{2}   ,  \\
     x(t_0 + \Delta t) &=& x(t_0) + v(t_0 + \Delta t/2)\Delta t   , \\
     v(t_0 + \Delta t) &=& v(t_0 + \Delta t/2) + a(t_0 + \Delta t)\frac{\Delta t}{2} . 
-\vspace{-10pt}\end{eqnarray}
+\end{eqnarray}
+
+\vspace{-40pt}
+\noindent
 This version provides more time resolution to our calculation; however, it increases the number of calculations needed by about $50\%$.
 
 \subsection{Runge Kutta} \label{sec:rungekutta}
@@ -68,12 +77,15 @@ This version provides more time resolution to our calculation; however, it incre
 The Runge-Kutta methods, named after the German mathematicians Carl Runge and Martin Wilhelm Kutta \cite{runge} \cite{kutta}, 
 family of numerical methods
 used to solve ordinary differential equations (ODEs) that are in the form as
-\vspace{-10pt}\begin{equation} \label{eq:first-order-ODE}
+\vspace{-15pt}\begin{equation} \label{eq:first-order-ODE}
     \deriv{y}{x} = f(x, y) .
 \vspace{-10pt}\end{equation}
+
+\vspace{-20pt}
+\noindent
 The basic idea behind the Runge-Kutta method is to approximate the solution of an ODE by taking small steps and using a weighted average 
 of function evaluations at different points within each step as
-\vspace{-10pt}\begin{equation} \label{eq:general-rk}
+\vspace{-15pt}\begin{equation} \label{eq:general-rk}
     \begin{aligned}
         y_{n+1} = y_n + \delta x \sum_{i=1}^{m} b_i k_i  ,
     \end{aligned}
@@ -81,11 +93,17 @@ of function evaluations at different points within each step as
     \begin{aligned}
         x_{n+1} = x_n + \delta x   ,
     \end{aligned}
-\vspace{-10pt}\end{equation}
+\end{equation}
+
+\vspace{-35pt}
+\noindent
 where 
-\vspace{-10pt}\begin{eqnarray} \label{eq:general-rk-coef}
+\vspace{-15pt}\begin{eqnarray} \label{eq:general-rk-coef}
     k_i = f(x_n + c_i \delta x, y_n + \delta x \sum_{j = 1}^{i - 1}a_{ij}k_j) .
-\vspace{-10pt}\end{eqnarray}
+\end{eqnarray}
+
+\vspace{-35pt}
+\noindent
 These \fromeqs{general-rk}{general-rk-coef} define the family of methods. To specify a particular method, order $m$, coefficients $a_{ij}$, $b_i$ and $c_i$ should be provided.
 The coefficients of any Runge-Kutta method can be visualized by a tableau called Butcher Tableau which can be observed in \fromfig{Butcher}.
 \begin{figure}[h!]
@@ -101,13 +119,15 @@ The coefficients of any Runge-Kutta method can be visualized by a tableau called
         & b_1 & b_2 &\cdots & b_m
     \end{array}
     \]
+    \vspace{-24pt}
     \caption{Butcher Tableau.}
     \label{fig:Butcher}
 \end{figure}
 
+\vspace{-13pt}
 The simplest Runge-Kutta method is the Euler's method the Butcher tableau of which can be observed in \fromfig{Butcher_euler}.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \[ 
     \begin{array} 
         {c|cccc}
@@ -116,10 +136,12 @@ The simplest Runge-Kutta method is the Euler's method the Butcher tableau of whi
         & 1
     \end{array}
 \] 
+\vspace{-24pt}
 \caption{Butcher tableau of Euler's method.}
 \label{fig:Butcher_euler}
 \end{figure}
 
+\vspace{-15pt}
 The most commonly used version of the Runge-Kutta method is the fourth-order Runge-Kutta method, also known as RK4. 
 The RK4 method involves four function evaluations per step and has an error term that is proportional to the step size raised to the fifth power.
 Two of the most used Butcher tableaus for RK4 given in \fromfig{Butcher-RK4}.
@@ -154,7 +176,7 @@ Resulting in slower calculations.
         \end{array}
         \]  
     \end{minipage}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{Butcher Tableau for RK4.}
     \label{fig:Butcher-RK4}
 \end{figure}

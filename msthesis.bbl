@@ -1,0 +1,73 @@
+\begin{thebibliography}{10}
+\newcommand{\enquote}[1]{``#1''}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{{\tt #1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{}\fi
+
+\bibitem{rhodo_pottier}
+Pottier, J., \enquote{A New Type of RF Electron Accelerator: The Rhodotron},
+  {\em Nuclear Instruments and Methods in Physics Research Section B: Beam
+  Interactions with Materials and Atoms\/}, Vol. 40-41, No.~2, pp. 943--945,
+  1989.
+
+\bibitem{kahvelab_linac}
+Adıgüzel, A., S.~Açıksöz, A.~Çağlar, H.~Çetinkaya, S.~Esen, D.~Halis,
+  A.~Hamparsunoğlu, T.~İlhan, A.~Kılıçgedik, O.~Koçer, S.~Oğur, S.~Öz,
+  A.~Özbey, V.~Özcan and N.~Ünel, \enquote{Ion Source and LEBT of KAHVELab
+  Proton Beamline}, {\em Journal of Instrumentation\/}, Vol.~18, No.~01, 2023.
+
+\bibitem{rhodo_prototype}
+Bassaler, J., J.~Capdevila, O.~Gal, F.~Lainé, A.~Nguyen, J.~Nicolaï and
+  K.~Umiastowski, \enquote{Rhodotron: An Accelerator for Industrial
+  Irradiation}, {\em Nuclear Instruments and Methods in Physics Research
+  Section B: Beam Interactions with Materials and Atoms\/}, Vol.~68, No.~1, pp.
+  92--95, 1992.
+
+\bibitem{rhodos}
+Jongen, Y., \enquote{Manufacturing of Electron Accelerators}, {\em Proceedings
+  of EPAC\/}, Vol.~96, 1996.
+
+\bibitem{rf}
+Jensen, E., \enquote{{RF Cavity Design}}, W.~Herr (Editor), {\em Proceedings of
+  the CAS–CERN Accelerator School: Advanced Accelerator Physics\/}, pp.
+  405--430, 2014.
+
+\bibitem{cpu_instruction_speed}
+Fukushima, T., \enquote{Reduction of Round-off Error in Symplectic
+  Integrators}, {\em The Astronomical Journal\/}, Vol. 121, No.~3, pp.
+  1768--1775, 2001.
+
+\bibitem{poi-sup}
+Menzel, M.~T. and H.~K. Stokes, {\em {User’s Guide for the POISSON/SUPERFISH
+  Group of Codes}\/}, Technical report, Los Alamos Nat. Lab., Los Alamos, NM,
+  1987.
+
+\bibitem{root}
+The\hspace{3pt}European\hspace{3pt}Organization\hspace{3pt}for\hspace{3pt}Nuclear\hspace{3pt}Research,
+  {\em \textup{``ROOT - An Object Oriented Data Analysis Framework Release
+  v6.20/04"}\/}, 2020, accessed on Aug 10, 2023.
+
+\bibitem{gnuplot}
+Williams, T., {\em \textup{``Gnuplot 5.4: An Interactive Plotting Program"}\/},
+  2020, accessed on Aug 10, 2023.
+
+\bibitem{runge}
+Runge, C., \enquote{Über Die Numerische Auflösung Von
+  Differentialgleichungen}, {\em Mathematische Annalen\/}, Vol.~46, No.~2, pp.
+  167--178, 1895.
+
+\bibitem{kutta}
+Kutta, W., \enquote{Beitrag Zur Näherungsweisen Integration Totaler
+  Differentialgleichungen}, {\em Zeitschrift für Mathematik und Physik\/},
+  Vol.~46, No.~2, pp. 435--453, 1901.
+
+\bibitem{cite:rhodo_design}
+Kleeven, W., M.~Abs, J.~Brison, E.~Forton, J.~Hubert and J.~Van~de Walle,
+  \enquote{{Design and Simulation Tools for the High-Intensity Industrial
+  Rhodotron Electron Accelerator}}, {\em {9th International Particle
+  Accelerator Conference}\/}, 2018.
+
+\bibitem{sinan}
+S. Öz, personal communication, May 2023.
+
+\end{thebibliography}

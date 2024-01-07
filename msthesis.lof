@@ -1,0 +1,140 @@
+\contentsline {figure}{\numberline {Figure 1.1.}{\ignorespaces A linear proton accelerator in KAHVELab \cite {kahvelab_linac}.}\vspace \baselineskip }{6}{}%
+\contentsline {figure}{\numberline {Figure 1.2.}{\ignorespaces An RF cavity used in KAHVELab.}\vspace \baselineskip }{7}{}%
+\contentsline {figure}{\numberline {Figure 1.3.}{\ignorespaces $\vec {\textbf {E}}$ and $\vec {\textbf {B}}$ eigenmode field distributions inside a coaxial cavity.}\vspace \baselineskip }{11}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering $\vec {\textbf {E}}$ field}}}{11}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering $\vec {\textbf {B}}$ field}}}{11}{}%
+\contentsline {figure}{\numberline {Figure 1.4.}{\ignorespaces Illustration of a simple coaxial cavity with the curve \textbf {C} in Equation \ref {eq:p_diss_C_curve}.}\vspace \baselineskip }{12}{}%
+\contentsline {figure}{\numberline {Figure 1.5.}{\ignorespaces Optimized characteristics of a rhodotron cavity \cite {rhodo_pottier}.}\vspace \baselineskip }{14}{}%
+\contentsline {figure}{\numberline {Figure 1.6.}{\ignorespaces Energy of a synchronous electron after each pass for both $p=1$ and $p=2$ \cite {rhodo_pottier}.}\vspace \baselineskip }{15}{}%
+\contentsline {figure}{\numberline {Figure 1.7.}{\ignorespaces $[0, \frac {T}{4}]$ time frame of a rhodotron.}\vspace \baselineskip }{15}{}%
+\contentsline {figure}{\numberline {Figure 1.8.}{\ignorespaces $[\frac {T}{4}, \frac {T}{2}]$ time frame of a rhodotron.}\vspace \baselineskip }{16}{}%
+\contentsline {figure}{\numberline {Figure 1.9.}{\ignorespaces $[\frac {T}{2}, \frac {3T}{4}]$ time frame of a rhodotron.}\vspace \baselineskip }{16}{}%
+\contentsline {figure}{\numberline {Figure 1.10.}{\ignorespaces $[\frac {3T}{4}, T]$ time frame of a rhodotron.}\vspace \baselineskip }{17}{}%
+\contentsline {figure}{\numberline {Figure 1.11.}{\ignorespaces Amount of clock cycle for mathematical operations in various processors \cite {cpu_instruction_speed}.}\vspace \baselineskip }{18}{}%
+\contentsline {figure}{\numberline {Figure 2.1.}{\ignorespaces Butcher Tableau.}\vspace \baselineskip }{23}{}%
+\contentsline {figure}{\numberline {Figure 2.2.}{\ignorespaces Butcher tableau of Euler's method.}\vspace \baselineskip }{23}{}%
+\contentsline {figure}{\numberline {Figure 2.3.}{\ignorespaces Butcher Tableau for RK4.}\vspace \baselineskip }{24}{}%
+\contentsline {figure}{\numberline {Figure 3.1.}{\ignorespaces \centering Poission Superfish results for Equation \ref {eq:107_180_MHZ_cavity_design_parameters}.}\vspace \baselineskip }{26}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering 107.5 MHz}}}{26}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering 180 MHz}}}{26}{}%
+\contentsline {figure}{\numberline {Figure 3.2.}{\ignorespaces \centering CST Eigenmode results for Equation \ref {eq:107_180_MHZ_cavity_design_parameters}.}\vspace \baselineskip }{26}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering 107.5 MHz}}}{26}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering 180 MHz}}}{26}{}%
+\contentsline {figure}{\numberline {Figure 3.3.}{\ignorespaces \centering CST Electric field solutions for Equation \ref {eq:107_180_MHZ_cavity_design_parameters}.}\vspace \baselineskip }{27}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering 107.5 MHz}}}{27}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering 180 MHz}}}{27}{}%
+\contentsline {figure}{\numberline {Figure 3.4.}{\ignorespaces \centering Poisson Superfish field results of truncated cavities.}\vspace \baselineskip }{27}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering 107.5 MHz truncated}}}{27}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering 180 MHz truncated}}}{27}{}%
+\contentsline {figure}{\numberline {Figure 3.5.}{\ignorespaces \centering CST eigenmode results of truncated cavities.}\vspace \baselineskip }{28}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering 107.5 MHz truncated}}}{28}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering 180 MHz truncated}}}{28}{}%
+\contentsline {figure}{\numberline {Figure 3.6.}{\ignorespaces \centering CST electric field results of truncated cavities.}\vspace \baselineskip }{28}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering 107.5 MHz truncated}}}{28}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering 180 MHz truncated}}}{28}{}%
+\contentsline {figure}{\numberline {Figure 3.7.}{\ignorespaces \centering Poisson Superfish calculations with unmodified cavities.}\vspace \baselineskip }{28}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering 107.5 MHz unmodified}}}{28}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering 180 MHz unmodified}}}{28}{}%
+\contentsline {figure}{\numberline {Figure 3.8.}{\ignorespaces \centering Poisson Superfish calculations with truncated cavities.}\vspace \baselineskip }{29}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering 107.5 MHz truncated}}}{29}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering 180 MHz truncated}}}{29}{}%
+\contentsline {figure}{\numberline {Figure 3.9.}{\ignorespaces \centering Geometry and modeling, outside trajectory of a rhodotron (TT300) \cite {cite:rhodo_design}.}\vspace \baselineskip }{30}{}%
+\contentsline {figure}{\numberline {Figure 3.10.}{\ignorespaces Trejectory of a particle in single pass.}\vspace \baselineskip }{31}{}%
+\contentsline {figure}{\numberline {Figure 3.11.}{\ignorespaces Initial design of the proposed rhodotron, $\gamma =9^\circ $.}\vspace \baselineskip }{34}{}%
+\contentsline {figure}{\numberline {Figure 3.12.}{\ignorespaces \centering Cross sections of the initial design.}\vspace \baselineskip }{34}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Axial cross section}}}{34}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Cross section at acceleration plane}}}{34}{}%
+\contentsline {figure}{\numberline {Figure 3.13.}{\ignorespaces \centering Initial magnet design.}\vspace \baselineskip }{35}{}%
+\contentsline {figure}{\numberline {Figure 3.14.}{\ignorespaces Magnetic field in acceleration plate of initial magnet design.}\vspace \baselineskip }{35}{}%
+\contentsline {figure}{\numberline {Figure 3.15.}{\ignorespaces Initial cavity with three magnets as shown in Figure \ref {fig:initial_magnet_design}, $\gamma =15^\circ $.}\vspace \baselineskip }{36}{}%
+\contentsline {figure}{\numberline {Figure 3.16.}{\ignorespaces \centering $|r|$ vs $Energy$ simulation of initial design.}\vspace \baselineskip }{37}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering One pass simulation of Figure \ref {fig:initial_design}}}}{37}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Two pass simulation of Figure \ref {fig:initial_three_magnet_design}}}}{37}{}%
+\contentsline {figure}{\numberline {Figure 3.17.}{\ignorespaces \centering Improved cavity design.}\vspace \baselineskip }{38}{}%
+\contentsline {figure}{\numberline {Figure 3.18.}{\ignorespaces Improved magnet design.}\vspace \baselineskip }{38}{}%
+\contentsline {figure}{\numberline {Figure 3.19.}{\ignorespaces \centering Cross section and coils of improved magnet design.}\vspace \baselineskip }{39}{}%
+\contentsline {figure}{\numberline {Figure 3.20.}{\ignorespaces Magnetic field in acceleration plate of improved magnet design.}\vspace \baselineskip }{39}{}%
+\contentsline {figure}{\numberline {Figure 4.1.}{\ignorespaces Core logic loop of the POC.}\vspace \baselineskip }{41}{}%
+\contentsline {figure}{\numberline {Figure 4.2.}{\ignorespaces $\phi _{lag}$ Optimization For Initial Bunch Design.}\vspace \baselineskip }{43}{}%
+\contentsline {figure}{\numberline {Figure 4.3.}{\ignorespaces $\textbf {e}^-$ - $\vec {\textbf {E}}$ interaction logic from Equation \ref {eq:acc_of_E_and_B}.}\vspace \baselineskip }{44}{}%
+\contentsline {figure}{\numberline {Figure 4.4.}{\ignorespaces Example gnuplot renders of Rhodotron Simulation, $P=40$kW, $f=107.5$MHz.}\vspace \baselineskip }{45}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Unsyncronized $\textbf {e}^-$ gun period, $T_g = 5ns$}}}{45}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Syncronized $\textbf {e}^-$ gun period, $T_g = 9.3ns$}}}{45}{}%
+\contentsline {figure}{\numberline {Figure 4.5.}{\ignorespaces Energy gain of $1$MeV bunch in \textbf {B}=$0.1$T.}\vspace \baselineskip }{47}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering $dt=10^{-2}$ns, $\Delta E=2.783$MeV}}}{47}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering $dt=10^{-4}$ns, $\Delta E=0.011$MeV}}}{47}{}%
+\contentsline {figure}{\numberline {Figure 4.6.}{\ignorespaces Comparing Leap-frog, RK4-2 performance on $\textbf {e}^-$ - $\vec {\textbf {B}}$ interaction $E_{in}=1$MeV, \textbf {B}=$0.1$T, $t_{end}=5$ns.}\vspace \baselineskip }{49}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering $dt$ vs $\Delta E$}}}{49}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering $dt$ vs $T_{sim}$}}}{49}{}%
+\contentsline {figure}{\numberline {Figure 4.7.}{\ignorespaces Illustration of test setups.}\vspace \baselineskip }{50}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Setup-1 parallel $\vec {\textbf {E}}$ field}}}{50}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Setup-2, perpendicular $\vec {\textbf {E}}$ field}}}{50}{}%
+\contentsline {figure}{\numberline {Figure 4.8.}{\ignorespaces Render of the test setups. $E_{in}=1$ MeV, $t_{end}=6$ ns.}\vspace \baselineskip }{52}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Setup-1, $\textbf {V}_{\parallel }$=4MV}}}{52}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Setup-2, $\textbf {V}_{\perp }$=4MV}}}{52}{}%
+\contentsline {figure}{\numberline {Figure 4.9.}{\ignorespaces Comparing Leap-frog, RK4-2 performance on $\textbf {e}^-$ - $\vec {\textbf {E}}$ interaction $E_{in}=1$MeV, $\textbf {V}_{\perp }$=4MV, $t_{end}=6$ ns.}\vspace \baselineskip }{53}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering $dt$ vs $\Delta E$}}}{53}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering $dt$ vs $T_{sim}$}}}{53}{}%
+\contentsline {figure}{\numberline {Figure 4.10.}{\ignorespaces An Illustration of the multithreading architecture.}\vspace \baselineskip }{55}{}%
+\contentsline {figure}{\numberline {Figure 4.11.}{\ignorespaces An Illustration of the first GUI design.}\vspace \baselineskip }{58}{}%
+\contentsline {figure}{\numberline {Figure 4.12.}{\ignorespaces Simulate frame of \textit {GUI}.}\vspace \baselineskip }{59}{}%
+\contentsline {figure}{\numberline {Figure 4.13.}{\ignorespaces The configuration frame of implementated first GUI design.}\vspace \baselineskip }{60}{}%
+\contentsline {figure}{\numberline {Figure 4.14.}{\ignorespaces Render frame of GUI.}\vspace \baselineskip }{61}{}%
+\contentsline {figure}{\numberline {Figure 4.15.}{\ignorespaces Analyze frame of GUI E distribution.}\vspace \baselineskip }{62}{}%
+\contentsline {figure}{\numberline {Figure 4.16.}{\ignorespaces Analyze frame of GUI E(t).}\vspace \baselineskip }{63}{}%
+\contentsline {figure}{\numberline {Figure 4.17.}{\ignorespaces Sweep frame of GUI $\phi _{lag}$ $\mu E$ result.}\vspace \baselineskip }{64}{}%
+\contentsline {figure}{\numberline {Figure 4.18.}{\ignorespaces Sweep frame of GUI $\phi _{lag}$ sweep $\sigma E$ result.}\vspace \baselineskip }{65}{}%
+\contentsline {figure}{\numberline {Figure 5.1.}{\ignorespaces Rhodotron in KAHVELab.}\vspace \baselineskip }{66}{}%
+\contentsline {figure}{\numberline {Figure 5.2.}{\ignorespaces Rhodotron cavity and $\textbf {e}^-$ gun.}\vspace \baselineskip }{67}{}%
+\contentsline {figure}{\numberline {Figure 5.3.}{\ignorespaces Vertical cross section of the beam injection line.}\vspace \baselineskip }{68}{}%
+\contentsline {figure}{\numberline {Figure 5.4.}{\ignorespaces Cross section of the acceleration plane.}\vspace \baselineskip }{69}{}%
+\contentsline {figure}{\numberline {Figure 5.5.}{\ignorespaces Technical drawing of the rhodotron cavity \cite {sinan}.}\vspace \baselineskip }{70}{}%
+\contentsline {figure}{\numberline {Figure 5.6.}{\ignorespaces Technical drawing of middle part of the cavity which contains the beam line \cite {sinan}.}\vspace \baselineskip }{71}{}%
+\contentsline {figure}{\numberline {Figure 5.7.}{\ignorespaces Polishing of the inner surface of cavity.}\vspace \baselineskip }{73}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Bottom part of the cavity while polishing}}}{73}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Top part of the cavity after polishing}}}{73}{}%
+\contentsline {figure}{\numberline {Figure 5.8.}{\ignorespaces Deformation prevention measure, 10 mm thick toroidal sheets.}\vspace \baselineskip }{73}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Bottom part of the cavity with the exposed beam line in inner cylinder}}}{73}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Bottom part of the cavity with the beam line assembled}}}{73}{}%
+\contentsline {figure}{\numberline {Figure 5.9.}{\ignorespaces Welded sheet bars.}\vspace \baselineskip }{74}{}%
+\contentsline {figure}{\numberline {Figure 5.10.}{\ignorespaces Middle part of the cavity containing the beam line.}\vspace \baselineskip }{74}{}%
+\contentsline {figure}{\numberline {Figure 5.11.}{\ignorespaces \centering TIG welding.}\vspace \baselineskip }{75}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Welding sheet bars}}}{75}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Welding toroidal sheets}}}{75}{}%
+\contentsline {figure}{\numberline {Figure 5.12.}{\ignorespaces \centering Flanges on the assembled cavity.}\vspace \baselineskip }{75}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Beam enter \& exit flanges}}}{75}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering RF input \& probe flanges}}}{75}{}%
+\contentsline {figure}{\numberline {Figure 5.13.}{\ignorespaces Current stage of the cavity.}\vspace \baselineskip }{76}{}%
+\contentsline {figure}{\numberline {Figure A.1.}{\ignorespaces $L_{out}$ Optimization For Single $\textbf {e}^-$ .}\vspace \baselineskip }{81}{}%
+\contentsline {figure}{\numberline {Figure A.2.}{\ignorespaces $\phi _{lag}$ Optimization For Initial Bunch Design.}\vspace \baselineskip }{82}{}%
+\contentsline {figure}{\numberline {Figure A.3.}{\ignorespaces * and \% operators of \textit {vector3d} class.}\vspace \baselineskip }{82}{}%
+\contentsline {figure}{\numberline {Figure A.4.}{\ignorespaces $\textbf {e}^-$ - $\vec {\textbf {B}}$ interaction logic from Equation \ref {eq:acc_of_E_and_B}.}\vspace \baselineskip }{83}{}%
+\contentsline {figure}{\numberline {Figure A.5.}{\ignorespaces RK4-1 implemenation of $\textbf {e}^-$ -$\vec {\textbf {B}}$}\vspace \baselineskip }{83}{}%
+\contentsline {figure}{\numberline {Figure A.6.}{\ignorespaces Logic of is $\textbf {e}^-$ inside the shape of magnet.}\vspace \baselineskip }{84}{}%
+\contentsline {figure}{\numberline {Figure A.7.}{\ignorespaces RK4-1 implemenation of $\textbf {e}^-$ - \textbf {EM} .}\vspace \baselineskip }{84}{}%
+\contentsline {figure}{\numberline {Figure A.8.}{\ignorespaces RK4-2 implemenation of $\textbf {e}^-$ - \textbf {EM} .}\vspace \baselineskip }{85}{}%
+\contentsline {figure}{\numberline {Figure A.9.}{\ignorespaces Multithreading main-thread logic.}\vspace \baselineskip }{86}{}%
+\contentsline {figure}{\numberline {Figure A.10.}{\ignorespaces Multithreading electron assign logic.}\vspace \baselineskip }{86}{}%
+\contentsline {figure}{\numberline {Figure A.11.}{\ignorespaces Multithreading worker-threads setup logic.}\vspace \baselineskip }{87}{}%
+\contentsline {figure}{\numberline {Figure A.12.}{\ignorespaces Multithreading worker-thread logic.}\vspace \baselineskip }{87}{}%
+\contentsline {figure}{\numberline {Figure A.13.}{\ignorespaces UI-Console handler thread logic.}\vspace \baselineskip }{88}{}%
+\contentsline {figure}{\numberline {Figure A.14.}{\ignorespaces Electron class definition.}\vspace \baselineskip }{89}{}%
+\contentsline {figure}{\numberline {Figure A.15.}{\ignorespaces Bunch class definition.}\vspace \baselineskip }{90}{}%
+\contentsline {figure}{\numberline {Figure A.16.}{\ignorespaces Gun class definition.}\vspace \baselineskip }{91}{}%
+\contentsline {figure}{\numberline {Figure A.17.}{\ignorespaces Simulator class definition.}\vspace \baselineskip }{92}{}%
+\contentsline {figure}{\numberline {Figure A.18.}{\ignorespaces RhodotronSimulator class definition.}\vspace \baselineskip }{93}{}%
+\contentsline {figure}{\numberline {Figure A.19.}{\ignorespaces CoaxialRFField class definition.}\vspace \baselineskip }{94}{}%
+\contentsline {figure}{\numberline {Figure B.1.}{\ignorespaces $\phi _{lag}$, $\rho $ \& $L$ optimization at $P=30$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=1$ns, $E_{in}=40$KeV.}\vspace \baselineskip }{95}{}%
+\contentsline {figure}{\numberline {Figure B.2.}{\ignorespaces $\phi _{lag}$ \& $\rho $ \& $L$ optimization at $P=30$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=0.8$ns, $E_{in}=40$KeV.}\vspace \baselineskip }{96}{}%
+\contentsline {figure}{\numberline {Figure B.3.}{\ignorespaces \centering Energy gain of $1$MeV bunch in \textbf {B}=$0.1$T using RK4-2.}\vspace \baselineskip }{97}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering $dt=10^{-2}$ns, $\Delta E=1.047$MeV}}}{97}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering $dt=10^{-4}$ns, $\Delta E=0.006$MeV}}}{97}{}%
+\contentsline {figure}{\numberline {Figure B.4.}{\ignorespaces An example \textit {config.in} file.}\vspace \baselineskip }{98}{}%
+\contentsline {figure}{\numberline {Figure B.5.}{\ignorespaces Example of console output while simulation is running.}\vspace \baselineskip }{99}{}%
+\contentsline {figure}{\numberline {Figure C.1.}{\ignorespaces \centering Comparing Leap-frog, RK4-1, RK4-2 performance on $\textbf {e}^-$ - $\vec {\textbf {B}}$ interaction $E_{in}=1$MeV, \textbf {B}=$0.1$T, $t_{end}=5$ns.}\vspace \baselineskip }{100}{}%
+\contentsline {figure}{\numberline {Figure C.2.}{\ignorespaces \centering Comparing Leap-frog, RK4-2 performance on $\textbf {e}^-$ - $\vec {\textbf {E}}$ interaction $E_{in}=1$MeV, $\textbf {V}_{\parallel }$=4MV, $t_{end}=6$ns.}\vspace \baselineskip }{101}{}%
+\contentsline {figure}{\numberline {Figure D.1.}{\ignorespaces Technical drawing of upper part of the cavity \cite {sinan}.}\vspace \baselineskip }{108}{}%
+\contentsline {figure}{\numberline {Figure D.2.}{\ignorespaces Render frame of \textit {GUI}.}\vspace \baselineskip }{109}{}%
+\contentsline {figure}{\numberline {Figure D.3.}{\ignorespaces Analyze frame of \textit {GUI} E(t).}\vspace \baselineskip }{110}{}%
+\contentsline {figure}{\numberline {Figure D.4.}{\ignorespaces Sweep frame of \textit {GUI} $\phi _{lag}$ sweep running.}\vspace \baselineskip }{111}{}%
+\contentsline {figure}{\numberline {Figure D.5.}{\ignorespaces Sweep frame of \textit {GUI} $\phi _{lag}$ sweep $\sigma R$ result.}\vspace \baselineskip }{112}{}%

@@ -3,9 +3,9 @@
 \begin{thebibliography}{9}
 
     \bibitem{rhodo_pottier}
-    Jacques Pottier,
-    \emph{A new type of rf electron accelerator: The rhodotron},
-    Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
+    Pottier, J.,
+    A new type of rf electron accelerator: The rhodotron,
+    "Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms,
     Vol. 40–41,
     No 2,
     pp 943-945,
@@ -91,3 +91,27 @@
 \end{thebibliography}
 
 % END OF BIBLIOGRAPHY
+
+@manual{poi-sup,
+    title = {User's Guide for the POISSON / SUPERFISH group of codes},
+    url = {https://lib-extopc.kek.jp/preprints/PDF/1990/9003/9003457.pdf},
+    author = {Los Alamos National Laboratory},
+    year = "1987"
+    note = {Los Alamos National Laboratory, ``User's Guide for the POISSON / SUPERFISH group of codes", 
+    1987, https://lib-extopc.kek.jp/preprints/PDF/1990/9003/9003457.pdf, Accessed on Aug 10, 2023}
+}
+
+@misc{poi-sup,
+    note = {Los Alamos National Laboratory, ``User's Guide for the POISSON/SUPERFISH group of codes", 
+    1987, https://lib-extopc.kek.jp/preprints/PDF/1990/9003/9003457.pdf, Accessed on Aug 10, 2023}
+}
+
+
+@misc{gnuplot,
+    note = {Williams, T., ``Gnuplot 5.4: An Interactive Plotting Program", 2020, http://gnuplot.info, Accessed on Aug 10, 2023}
+}
+
+@manual{root,
+    note = {The European Organization for Nuclear Research, ``ROOT - An Object Oriented Data Analysis Framework Release v6.20/04",
+    2020, https://zenodo.org/record/3895855, Accessed on Aug 10, 2023}
+}

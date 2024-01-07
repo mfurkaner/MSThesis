@@ -1,6 +1,7 @@
 
 \appendix
 \chapter{Intermediate Codes} \label{appendix:intermediate_codes}
+\vspace{30pt}
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
@@ -43,7 +44,7 @@
             }
         \end{minted}
     \end{minipage}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{$L_{out}$ Optimization For Single \e.}
     \label{fig:lout_opt_single_e}
 \end{figure}
@@ -74,11 +75,12 @@
                 return opt_phase;
             }
         \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{$\phi_{lag}$ Optimization For Initial Bunch Design.}
     \label{fig:phlag_opt_n_pass}
 \end{figure}
-\vspace{20pt}
+
+\vspace{5pt}
 \begin{figure}[H]
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
@@ -105,9 +107,26 @@
             }
         \end{minted}
     \end{minipage}
-    \vspace{20pt}
+
+    \vspace{5pt}
     \caption{* and \% operators of \textit{vector3d} class.}
     \label{fig:vector3d_dot_cross_product}
+\end{figure}
+
+\begin{figure}[H]
+        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
+            vector3d MagneticField::actOn(Electron& e){
+                if (isInside(e.pos) == -1)
+                    return vector3d(0,0,0);
+                vector3d Bfield = getField(e.pos);                        // Calculate B vector
+                vector3d F_m = (e.vel % Bfield)*eQMratio;                 // Calculate F/m vector
+                vector3d acc = (F_m)/e.gamma();                           // Calculate a vector
+                return acc;
+            }
+        \end{minted}
+    \vspace{-3pt}
+    \caption{\eB interaction logic from \fromeq{acc_of_E_and_B}.}
+    \label{fig:3D_e_B_interaction_first}
 \end{figure}
 
 
@@ -146,7 +165,7 @@
             return (k1 + k2*2 + k3*2 + k4)/6;
         }
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
 \caption{RK4-1 implemenation of \e-$\vecthreeBF{B}$}
 \label{fig:rk1_B}
 \end{figure}
@@ -164,11 +183,12 @@
             return false;
         }
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
 \caption{Logic of is \e inside the shape of magnet.}
 \label{fig:is_inside_halfsphere}
 \end{figure}
-\vspace{20pt}
+
+\vspace{5pt}
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
@@ -184,7 +204,7 @@
             move(acc, time_interval/2);
         }
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
 \caption{RK4-1 implemenation of \eEM.}
 \label{fig:rk1_EM}
 \end{figure}
@@ -249,7 +269,7 @@
             Et = gamma()*E0;
     }
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
 \caption{RK4-2 implemenation of \eEM.}
 \label{fig:rk2_EM}
 \end{figure}
@@ -287,11 +307,12 @@
             
         }
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{Multithreading main-thread logic.}
     \label{fig:_runMT}
 \end{figure}
-\vspace{20pt}
+
+\vspace{5pt}
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
@@ -317,7 +338,7 @@
             }
         }
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{Multithreading electron assign logic.}
     \label{fig:fireAllWithFireTimesMT}
 \end{figure}
@@ -346,11 +367,12 @@
             }
         }
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{Multithreading worker-threads setup logic.}
     \label{fig:setupPool}
 \end{figure}
-\vspace{20pt}
+
+\vspace{5pt}
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
@@ -383,7 +405,7 @@
             thread_arguments.parent_notifier_mutex->unlock();
         }
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{Multithreading worker-thread logic.}
     \label{fig:threadLoop}
 \end{figure}
@@ -451,7 +473,7 @@
             args.state_mutex->unlock();
         }
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{UI-Console handler thread logic.}
     \label{fig:ui_thread}
 \end{figure}
@@ -502,7 +524,7 @@
             double gamma_inv();
         };
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{Electron class definition.}
     \label{fig:e_class}
 \end{figure}
@@ -558,7 +580,7 @@
             void logPaths(vector<DataStorage>& pathStorage, std::string header);
         };
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{Bunch class definition.}
     \label{fig:bunch_class}
 \end{figure}
@@ -620,7 +642,7 @@
             void logPaths(vector<vector<DataStorage> >& pathsStorage, std::string pathsPath, std::string header);
         };
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{Gun class definition.}
     \label{fig:gun_class}
 \end{figure}
@@ -689,7 +711,8 @@
             shared_ptr<mutex> getUIMutex();
         };
     \end{minted}
-    \vspace{10pt}
+
+    \vspace{5pt}
     \caption{Simulator class definition.}
     \label{fig:sim_class}
 \end{figure}
@@ -734,7 +757,7 @@
             void setState(uint8_t state_);
         };
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{RhodotronSimulator class definition.}
     \label{fig:rhodosim_class}
 \end{figure}
@@ -801,13 +824,14 @@
             };
         \end{minted}
     \end{minipage}
-    \vspace{20pt}
+
+    \vspace{5pt}
     \caption{CoaxialRFField class definition.}
     \label{fig:rf_class}
 \end{figure}
 
 \chapter{Example Simulation Runs} \label{appendix:example_simulation_runs}
-
+\vspace{30pt}
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
@@ -851,7 +875,7 @@
         Simulation finished in : 632050015 us     ( 632.1 s )
         
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
 \caption{$\phi_{lag}$, $\rho$ \& $L$ optimization at $P=30$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=1$ns, $E_{in}=40$KeV.}
 \label{fig:lout_opt_1ns_Erms}
 \end{figure}
@@ -898,7 +922,7 @@
         Total steps calculated : 12455378454
         Simulation finished in : 631136046 us     ( 631.1 s )        
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
 \caption{$\phi_{lag}$ \& $\rho$ \& $L$ optimization at $P=30$KW, $R_1=0.188$m, $R_2=0.753$m, $t_g=0.8$ns, $E_{in}=40$KeV.}
 \label{fig:lout_opt_08ns_Erms}
 \end{figure}
@@ -923,9 +947,10 @@
 \begin{figure}
     \centering
     \subfigure[\centering $dt=10^{-2}$ns, $\Delta E=1.047$MeV]{{\includegraphics[width=0.85\textwidth]{./figures/rhodoSim/mag_rk_001dt.png} }}%
-    \vspace{20pt}
+    \vspace{10pt}
     \subfigure[\centering $dt=10^{-4}$ns, $\Delta E=0.006$MeV]{{\includegraphics[width=0.85\textwidth]{./figures/rhodoSim/mag_rk_00001dt.png} }}%
-    \vspace{20pt}
+    
+    \vspace{5pt}
     \caption{\centering Energy gain of $1$MeV bunch in \textbf{B}=$0.1$T using RK4-2.} 
     \label{fig:mag_rk_render}
 \end{figure}
@@ -995,7 +1020,7 @@
         multh=1
         thcount=10     
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
 \caption{An example \textit{config.in} file.}
 \label{fig:config_file}
 \end{figure}
@@ -1025,13 +1050,13 @@
         V_____________________________________________________V
         [####################################                 ]
     \end{minted}
-    \vspace{20pt}
+    \vspace{0pt}
 \caption{Example of console output while simulation is running.}
 \label{fig:console_output_running}
 \end{figure}
 
 \chapter{Data and Graphs}\label{appendix:data_graph}
-
+\vspace{30pt}
 \iffalse \begin{figure}[H]
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
@@ -1051,9 +1076,10 @@
 \begin{figure}[H]
     \centering
     \subfigure{{\includegraphics[width=0.8\linewidth]{./figures/analiz/lf_rk1_rk2_dt-E_3.png} }}%
-    \vspace{20pt}
+    \vspace{10pt}
     \subfigure{{\includegraphics[width=0.8\linewidth]{./figures/analiz/lf_rk1_rk2_dt-Tsim_3.png} }}%
-    \vspace{20pt}
+    
+    \vspace{0pt}
     \caption{\centering Comparing Leap-frog, RK4-1, RK4-2 performance on \eB interaction $E_{in}=1$MeV, \textbf{B}=$0.1$T, $t_{end}=5$ns.} 
     \label{fig:lf_rk1_rk2_comparison}
 \end{figure}
@@ -1077,9 +1103,10 @@
 \begin{figure}[H]
     \centering
     \subfigure{{\includegraphics[width=0.9\linewidth]{./figures/analiz/staticE_lf_rk2_dt-E.png} }}%
-    \vspace{20pt}
+    \vspace{10pt}
     \subfigure{{\includegraphics[width=0.9\linewidth]{./figures/analiz/staticE_lf_rk2_dt-Tsim.png}}}%
-    \vspace{20pt}
+    
+    \vspace{0pt}
     \caption{\centering Comparing Leap-frog, RK4-2 performance on \eE interaction $E_{in}=1$MeV, $\textbf{V}_{\parallel}$=4MV, $t_{end}=6$ns.} 
     \label{fig:lf_rk2_par_stat_E_comparison}
 \end{figure}
@@ -1283,45 +1310,51 @@
 
 
 \chapter{Supporting Figures} \label{appendix:supp}
+\vspace{30pt}
 \begin{figure}[H]
     \centering
     \includegraphics[angle=270,origin=c, width=.8\linewidth]{./figures/teknikcizim/Rho-A1.1.00.pdf}
-    \vspace{20pt}
+    \vspace{10pt}
     \caption{Technical drawing of upper part of the cavity \cite{sinan}.}
     \label{fig:techd_up}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_simulation_frame.png}
-    \caption{Simulate frame of \textit{GUI}.}
-    \label{fig:gui_simulate_1}
-\end{figure}
-
-\begin{figure}
+\vspace{-30pt}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_render_frame_6.png}
+    
+    \vspace{-20pt}
     \caption{Render frame of \textit{GUI}.}
     \label{fig:gui_render_2}
 \end{figure}
 
-\begin{figure}
+\vspace{-30pt}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_analyze_Et_2.png}
+        
+    \vspace{-20pt}
     \caption{Analyze frame of \textit{GUI} E(t).}
     \label{fig:gui_analyze_Et2}
 \end{figure}
 
-\begin{figure}
+\vspace{-30pt}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_sweep_running.png}
+        
+    \vspace{-20pt}
     \caption{Sweep frame of \textit{GUI}  $\phi_{lag}$ sweep running.}
     \label{fig:gui_sweep_running}
 \end{figure}
 
-\begin{figure}
+\vspace{-30pt}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{./figures/rhodoSim/GUI_sweep_sR_3.png}
+        
+    \vspace{-20pt}
     \caption{Sweep frame of \textit{GUI}  $\phi_{lag}$ sweep $\sigma R$ result.}
     \label{fig:gui_sweep_sR}
 \end{figure}

@@ -261,7 +261,7 @@ FUNCTION {bbl.chapter}
 { "chap." }
 
 FUNCTION {bbl.techrep}
-{ "Tech. Rep." }
+{ "Technical Report" }
 
 FUNCTION {bbl.mthesis}
 { "Master's Thesis" }

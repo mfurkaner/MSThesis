@@ -49,14 +49,18 @@
 A rhodotron with operation frequency of $107.5$ MHz was decided to be built at KAHVELab. 
 Frequency was selected to benefit from the RF power supply units at hand.
 After considering the earlier simulations mentioned in \fromsecs{cavity_design}{magnet_design}, an initial design was created.
+
+\vspace{20pt}
 \begin{figure}[H]
     \centering
     %%\captionsetup{justification=centering}
-    \includegraphics[width=.5\linewidth]{../../../figures/cst/cst_first_design1.png}
-    \vspace{20pt}
+    \includegraphics[width=.7\linewidth]{../../../figures/cst/cst_first_design1.png}
+    \vspace{0pt}
     \caption{Initial design of the proposed rhodotron, $\gamma=9^\circ$.}
     \label{fig:initial_design}
+    \vspace{-10pt}
 \end{figure}
+
 \iffalse \begin{figure}[H]
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
@@ -72,7 +76,7 @@ After considering the earlier simulations mentioned in \fromsecs{cavity_design}{
       \includegraphics[width=.9\linewidth]{../../../figures/cst/cst_first_design2.png}
       \caption{Cross section at acceleration plane.}
     \end{subfigure}
-    \caption{Initial design of the proposed rhodotron.}
+    \caption{Cross sections of initial design.}
     \label{fig:initial_design_cross_section}
 \end{figure} \fi
 \vspace{20pt}
@@ -80,9 +84,10 @@ After considering the earlier simulations mentioned in \fromsecs{cavity_design}{
     \centering
     \subfigure[\centering Axial cross section]{{\includegraphics[width=.46\textwidth]{../../../figures/cst/cst_first_design3.png} }}%
     \qquad\subfigure[\centering Cross section at acceleration plane]{{\includegraphics[width=.45\textwidth]{../../../figures/cst/cst_first_design2.png} }}%
-    \vspace{20pt}
-    \caption{\centering Initial design of the proposed rhodotron.} 
+    \vspace{0pt}
+    \caption{\centering Cross sections of the initial design.} 
     \label{fig:initial_design_cross_section}
+    \vspace{-12pt}
 \end{figure}
 The magnets used in this design is the simplest in terms of design parameters. It consists of an iron casing encapsulating the shape of desired magnetic field, which are created by two coils inside.
 \iffalse \begin{figure}[H]
@@ -101,37 +106,53 @@ The magnets used in this design is the simplest in terms of design parameters. I
     \caption{Initial magnet design.}
     \label{fig:initial_magnet_design}
 \end{figure} \fi
+
+\vspace{18pt}
 \begin{figure}[H]
     \centering
     \subfigure{{\includegraphics[width=.45\textwidth]{../../../figures/cst/cst_first_magnet_design1.png} }}%
     \qquad\subfigure{{\includegraphics[width=.46\textwidth]{../../../figures/cst/cst_first_magnet_design2.png} }}%
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{\centering Initial magnet design.} 
     \label{fig:initial_magnet_design}
 \end{figure}
-\vspace{20pt}
-\begin{figure}[H]
-    \centering
-    %%\captionsetup{justification=centering}
-    \includegraphics[width=.8\linewidth]{../../../figures/cst/cst_first_magnet_design3.png}
-    \vspace{20pt}
-    \caption{Magnetic field in acceleration plate of initial magnet design.}
-    \label{fig:initial_magnet_design_B}
-\end{figure}
-\clearpage
-\fromfig{initial_magnet_design_B} shows that this design provides relatively uniform magnetic field inside, although magnetic field gradient in the openings can be improved.
-After adding two more magnets and using $\gamma=15^\circ$, the second prototype design was created (\fromfig{initial_three_magnet_design}).
 
 \begin{figure}[H]
     \centering
     %%\captionsetup{justification=centering}
-    \includegraphics[width=.8\linewidth]{../../../figures/cst/cst_second_design2.png}
-    \vspace{20pt}
+    \includegraphics[width=.7\linewidth]{../../../figures/cst/cst_first_magnet_design3.png}
+    \vspace{0pt}
+    \caption{Magnetic field in acceleration plate of initial magnet design.}
+    \label{fig:initial_magnet_design_B}
+    \vspace{-10pt}
+\end{figure}
+
+\fromfig{initial_magnet_design_B} shows that this design provides relatively uniform magnetic field inside, although magnetic field gradient in the openings can be improved.
+After adding two more magnets and using $\gamma=15^\circ$, the second prototype design was created (\fromfig{initial_three_magnet_design}).
+
+\vspace{20pt}
+\begin{figure}[H]
+    \centering
+    %%\captionsetup{justification=centering}
+    \includegraphics[width=.6\linewidth]{../../../figures/cst/cst_second_design2.png}
+    \vspace{0pt}
     \caption{Initial cavity with three magnets as shown in \fromfig{initial_magnet_design}, $\gamma=15^\circ$.}
     \label{fig:initial_three_magnet_design}
+    \vspace{-10pt}
 \end{figure}
+
 These designs, together with $40$ keV $e^-$ gun injecting with phase lag of $15^\circ$ for $1$ ns, was simulated at RF power of $12$ kW using CST Studio Particle Module PIC Solver.
 Results of these simulations can be found in \fromfig{initial_designs_PIC_phase_space_monitor}.
+
+The behavior of the beam in the \fromfig{initial_designs_PIC_phase_space_monitor} after the first pass indicates that phase stability is not maintained. 
+When the simulation results are examined further, it was observed that the beam started the second pass at $t \approx 12$ ns after the injection. 
+Considering the starting phase lag $\phi_{lag}=15^\circ$, this would mean phase lag of the second pass was $\phi_{lag2}=120^\circ$.
+This result can be observed in \fromfig{initial_designs_PIC_phase_space_monitor}, as the beam decelerates after a short acceleration in the beginning of the second pass.
+
+After various similar observations in CST similations, underlying cause of this problem was thought to be the $L_{pass} = n \lambda$ approach on magnet design failing in low energies, 
+as anticipated and discussed earlier in the \fromsec{parameter_sweep}.
+The necessity for an alternative tool, capable of aiding researchers in improving beam behavior, was deemed evident.
+
 \iffalse \begin{figure}[H]
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
@@ -153,23 +174,16 @@ Results of these simulations can be found in \fromfig{initial_designs_PIC_phase_
 \begin{figure}[H]
     \centering
     \subfigure[\centering One pass simulation of \fromfig{initial_design}]{{\includegraphics[width=.8\textwidth]{../../../figures/cst/cst_first_design4.png} }}%
-    \vspace{20pt}
+    \vspace{1pt}
     \subfigure[\centering Two pass simulation of \fromfig{initial_three_magnet_design}]{{\includegraphics[width=.8\textwidth]{../../../figures/cst/cst_second_design3.png} }}%
-    \vspace{20pt}
+    \vspace{5pt}
     \caption{\centering $|r|$ vs $Energy$ simulation of initial design.} 
     \label{fig:initial_designs_PIC_phase_space_monitor}
 \end{figure}
-The behavior of the beam in the \fromfig{initial_designs_PIC_phase_space_monitor} after the first pass indicates that phase stability is not maintained. 
-When the simulation results are examined further, it was observed that the beam started the second pass at $t \approx 12$ ns after the injection. 
-Considering the starting phase lag $\phi_{lag}=15^\circ$, this would mean phase lag of the second pass was $\phi_{lag2}=120^\circ$.
-This result can be observed in \fromfig{initial_designs_PIC_phase_space_monitor}, as the beam decelerates after a short acceleration in the beginning of the second pass.
-
-After various similar observations in CST similations, underlying cause of this problem was thought to be the $L_{pass} = n \lambda$ approach on magnet design failing in low energies, 
-as anticipated and discussed earlier in the \fromsec{parameter_sweep}.
-The necessity for an alternative tool, capable of aiding researchers in improving beam behavior, was deemed evident.
 
 Several improvements were made to KAHVELab Rhodotron initial designs \cite{sinan}. These include curved edges on cavity which reduce the power loss on cavity walls, and redesigned iron casing on magnets for ease of production and maintenance.
 Improved designs can be seen in the figures below.
+
 \iffalse \begin{figure}[H]
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
@@ -191,18 +205,20 @@ Improved designs can be seen in the figures below.
     \centering
     \subfigure{{\includegraphics[width=.45\textwidth]{../../../figures/cst/cst_sinan_cavity_design1.png} }}%
     \qquad\subfigure{{\includegraphics[width=.47\textwidth]{../../../figures/cst/cst_sinan_cavity_design2.png} }}%
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{\centering Improved cavity design.} 
     \label{fig:improved_cavity_design}
 \end{figure}
 
+\vspace{10pt}
 \begin{figure}[H]
     \centering
     %%\captionsetup{justification=centering}
     \includegraphics[width=.7\linewidth]{../../../figures/cst/cst_second_magnet_design1.png}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{Improved magnet design.}
     \label{fig:improved_magnet_design}
+    \vspace{5pt}
 \end{figure}
 
 \iffalse \begin{figure}[H]
@@ -225,22 +241,24 @@ Improved designs can be seen in the figures below.
     \centering
     \subfigure{{\includegraphics[width=.475\textwidth]{../../../figures/cst/cst_second_magnet_design2.png} }}%
     \qquad\subfigure{{\includegraphics[width=.443\textwidth]{../../../figures/cst/cst_second_magnet_design3.png} }}%
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{\centering Cross section and coils of improved magnet design.} 
     \label{fig:improved_magnet_design_cross_section}
+    \vspace{5pt}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     %%\captionsetup{justification=centering}
     \includegraphics[width=.8\linewidth]{../../../figures/cst/cst_second_magnet_design4.png}
-    \vspace{20pt}
+    \vspace{0pt}
     \caption{Magnetic field in acceleration plate of improved magnet design.}
     \label{fig:improved_magnet_design_B}
 \end{figure}
+
+\vspace{-10pt}
 From \fromfigs{initial_magnet_design_B}{improved_magnet_design_B}, it can be observed that improved magnet design reduces magnetic field leak in enter and exit openings considerably. 
 This reduction helps containing the spread of entering beam, decreasing the amount of focusing needed further into trajectory. 
-
 
 %%%%%%
 

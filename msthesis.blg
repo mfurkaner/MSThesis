@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: msthesis.aux
+Reallocating 'name_of_file' (item size: 1) to 23 items.
+The style file: styles/fbe_tez_v11.bst.bst
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+Database file #1: msthesis.bib
+Warning--empty title in sinan
+You've used 13 entries,
+            2321 wiz_defined-function locations,
+            596 strings with 6293 characters,
+and the built_in function-call counts, 4731 in all, are:
+= -- 261
+> -- 169
+< -- 19
++ -- 52
+- -- 39
+* -- 270
+:= -- 490
+add.period$ -- 13
+call.type$ -- 13
+change.case$ -- 6
+chr.to.int$ -- 0
+cite$ -- 14
+duplicate$ -- 551
+empty$ -- 454
+format.name$ -- 43
+if$ -- 1055
+int.to.chr$ -- 0
+int.to.str$ -- 13
+missing$ -- 132
+newline$ -- 46
+num.names$ -- 14
+pop$ -- 199
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 143
+stack$ -- 0
+substring$ -- 174
+swap$ -- 383
+text.length$ -- 19
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 25
+width$ -- 15
+write$ -- 117
+(There was 1 warning)
