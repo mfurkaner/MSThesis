@@ -99,7 +99,7 @@ For $\mu E$ considerations, data from the software would be analyzed either manu
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         int phase_opt(int phase_sweep_range){
             double minrms = 1;
             int opt_phase;
@@ -150,7 +150,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
     \begin{subfigure}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d CoaxialRFField::actOn(Electron& e){
                 vector3d Efield = getField(e.pos);                          // Calculate E vector
                 vector3d F_m = Efield*1E6*eQMratio;                         // Calculate F/m vector
@@ -161,7 +161,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
     \end{subfigure}
 
     \begin{subfigure}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d MagneticField::actOn(Electron& e){
                 if (isInside(e.pos) == -1)
                     return vector3d(0,0,0);
@@ -180,7 +180,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
     %%\captionsetup[subfigure]{justification=centering}
     %%\captionsetup{justification=centering}
     \begin{minipage}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d CoaxialRFField::actOn(Electron& e){
                 vector3d Efield = getField(e.pos);                          // Calculate E vector
                 vector3d F_m = Efield*1E6*eQMratio;                         // Calculate F/m vector
@@ -191,7 +191,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
     \end{minipage}
 
     \begin{minipage}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d MagneticField::actOn(Electron& e){
                 if (isInside(e.pos) == -1)
                     return vector3d(0,0,0);
@@ -207,7 +207,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
     \label{fig:3D_e_EM_interaction_first}
 \end{figure}\fi
 \begin{figure}[H]
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
         vector3d CoaxialRFField::actOn(Electron& e){
             vector3d Efield = getField(e.pos);                        // Calculate E vector
             vector3d F_m = Efield*1E6*eQMratio;                       // Calculate F/m vector
@@ -594,7 +594,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
     %\captionsetup{justification=centering}
     \begin{subfigure}{\textwidth}
         \centering
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             for(double i = 2; i < 9; i += dT_out){
                 t_dum += i;
                 double enow = gecis(r_pos, vel, Et, t_dum);
@@ -609,7 +609,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
     \\
     \begin{subfigure}{\textwidth}
         \centering
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm,  fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm,  fontsize=\scriptsize]{c++}
             double gecis(double r_pos, double vel, double Et, double &t){
                 for(; r_pos >= -R2 && r_pos <= R2 ; t+=dT){
                     vel = c*sqrt(Et*Et-E0*E0)/Et;
@@ -637,7 +637,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
         \centering
         %\captionsetup{justification=centering}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             int phase_opt(const vector<double>& Louts, int phase_sweep_range){
                 double minrms = 1;
                 int opt_phase;
@@ -668,7 +668,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
     \begin{subfigure}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             double vector3d::operator* (const vector3d& other){
                 double dot = 0;
                 dot += this->x * other.x;
@@ -680,7 +680,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
     \end{subfigure}
 
     \begin{subfigure}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d vector3d::operator% (const vector3d& other){
                 double x_ = (this->y * other.z) - (this->z * other.y);
                 double y_ = (this->z * other.x) - (this->x * other.z);
@@ -697,7 +697,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         bool isInsideHalfSphere(vector3d e_position, double r, vector3d hs_position){
             vector3d relative = e_position - hs_position;       
             // r/5 can be changed, use this for now                                
@@ -714,7 +714,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         vector3d Electron2D::interactB_RK(const MagneticField& B, double time_interval){
             if (B.isInside(pos) == -1){
                 return vector3d(0,0,0);
@@ -752,7 +752,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         void Electron2D::interactRK_ActorE(const RFField& E, const MagneticField& B, double time_interval){
             vector3d run_kut_E = interactE_RK(E, time_interval);
             vector3d run_kut_B = interactB_RK(B, time_interval);
@@ -771,7 +771,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void Electron2D::interactRK(RFField& E, MagneticField& B, const double time, double time_interval){
             Electron2D e_dummy;
             e_dummy.Et = Et;
@@ -835,7 +835,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void RhodotronSimulator::_runMT(){
             gun.fireAllWithFireTimesMT();
         
@@ -872,7 +872,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void Gun::fireAllWithFireTimesMT(){
             std::random_device rd;
             std::mt19937 e2(rd());
@@ -901,7 +901,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void MultiThreadEngine::setupPool( double _time_interval, double _start_time, double _end_time, Gun& gun, 
             CoaxialRFField& RF, MagneticField& B, vector<shared_ptr<vector<shared_ptr<Electron2D>>>>& e_list){
             threads.reserve(thread_count);
@@ -929,7 +929,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void threadLoop(ThreadArguments thread_arguments){
             uint64_t count = 0;
         
@@ -965,7 +965,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void UIThreadWork(UIThreadArgs args){
             int UI_WORK_PIECE = SIM_WORK_MASK;
             if ( !args.isService ) {
@@ -1034,7 +1034,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         Optimal phase with the least RMS : -5
 
         Simulation settings : 
@@ -1081,7 +1081,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         Optimal phase with the least RMS : 0
 
         Simulation settings : 
@@ -1145,7 +1145,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny, style=staroffice]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny, style=staroffice]{c++}
         #            Rhodotron Simulation Configuration File
         # ================================================================
         #    M.Furkan Er                                     22/09/2022   
@@ -1214,7 +1214,7 @@ The implemenation of multithreading can be found in \fromfigf{_runMT}{fireAllWit
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         -- Simulation Configuration --
         Emax : 0.96     MV/m
         Freq : 107.5    MHz

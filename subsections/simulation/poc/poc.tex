@@ -77,7 +77,7 @@ the results from POC, CST and \fromeq{W_gain_each_pass_pottier} were found to be
 \end{eqnarray}
 
 \begin{figure}[H]
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
         for (double t=0; t<SimuTime; t+=dT){
             double RelBeta  = v/c;
             double RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);

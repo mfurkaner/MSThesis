@@ -23,7 +23,7 @@
 \usepackage{tabu}
 \usepackage{minted}
 \usepackage{xcolor}
-\usepackage{showframe}
+%\usepackage{showframe}
 
 \usemintedstyle{xcode}
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
@@ -157,8 +157,7 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
    \sym{3D}{Three Dimensional}
    \sym{eV}{Electron Volt}
    \sym{Hz}{Hertz}
-   \sym{KAHVELab}{Kandilli Detector Accelerator and \\Instrumentation Laboratory}
-   \vspace{10pt}
+   \sym{KAHVELab}{Kandilli Detector Accelerator and \\Instrumentation Laboratory \vspace{5pt}}
    \sym{LF}{Leap-Frog}
    \sym{Linac}{Linear Particle Accelerator}
    \sym{ODE}{Ordinary Differential Equation}
@@ -199,10 +198,10 @@ Yeni benzetim uygulaması, kabiliyetleri üretilen kavite ile test edildikten so
 \newcommand{\ee}{$\textbf{e}^-$ - $\textbf{e}^-$ }
 
 
-\newcommand{\fromeq}[1]{Equation \ref{eq:#1}}
-\newcommand{\fromeqs}[2]{Equations \ref{eq:#1} and \ref{eq:#2}}
-\newcommand{\fromeqsth}[3]{Equations \ref{eq:#1}, \ref{eq:#2} and \ref{eq:#3}}
-\newcommand{\fromeqsf}[4]{Equations \ref{eq:#1}, \ref{eq:#2}, \ref{eq:#3} and \ref{eq:#4}}
+\newcommand{\fromeq}[1]{Equation (\ref{eq:#1})}
+\newcommand{\fromeqs}[2]{Equations (\ref{eq:#1} and \ref{eq:#2})}
+\newcommand{\fromeqsth}[3]{Equations (\ref{eq:#1}, \ref{eq:#2} and \ref{eq:#3})}
+\newcommand{\fromeqsf}[4]{Equations (\ref{eq:#1}, \ref{eq:#2}, \ref{eq:#3} and \ref{eq:#4})}
 
 \newcommand{\fromfig}[1]{Figure \ref{fig:#1}}
 \newcommand{\fromfigs}[2]{Figures \ref{fig:#1} and \ref{fig:#2}}
@@ -897,8 +896,8 @@ visualization, and storage in the field of high-energy physics, particularly in 
 like the Large Hadron Collider (LHC) \cite{root}. It has become an essential tool in particle physics research, 
 and it is used by physicists around the world to analyze and interpret data.
 
-\subsection{gnuplot}
-GNUPLOT is a popular open-source software used for creating and visualizing data plots and graphs  \cite{gnuplot}. 
+\subsection{Gnuplot}
+Gnuplot is a popular open-source software used for creating and visualizing data plots and graphs  \cite{gnuplot}. 
 It is widely utilized in various fields, including scientific research, data analysis, engineering, and more, 
 to represent and analyze data in a graphical format. 
 
@@ -1352,7 +1351,7 @@ Time spent outside of the RF cavity should be precisely tuned to maximize accele
       \centering
       \includegraphics[width=.9\linewidth]{./figures/design/tt300_mag.png}
     \end{subfigure}
-    \caption{Geometry and modeling, outside trajectory of a rhodotron (TT300) \cite{cite:rhodo_design}.}
+    \caption{Geometry and modeling, outside trajectory of a rhodotron (TT300) \cite{rhodo_design}.}
     \label{fig:magnet_design_illustrations}
 \end{figure} \fi
 \vspace{20pt}
@@ -1361,7 +1360,7 @@ Time spent outside of the RF cavity should be precisely tuned to maximize accele
     \subfigure{{\includegraphics[width=.45\textwidth]{./figures/design/Ltot.png} }}%
     \qquad\subfigure{{\includegraphics[width=.45\textwidth]{./figures/design/tt300_mag.png} }}%
     \vspace{0pt}
-    \caption{\centering Geometry and modeling, outside trajectory of a rhodotron (TT300) \cite{cite:rhodo_design}.} 
+    \caption{\centering Geometry and modeling, outside trajectory of a rhodotron (TT300) \cite{rhodo_design}.} 
     \label{fig:magnet_design_illustrations}
     \vspace{-15pt}
 \end{figure}
@@ -1733,7 +1732,7 @@ the results from POC, CST and \fromeq{W_gain_each_pass_pottier} were found to be
 \end{eqnarray}
 
 \begin{figure}[H]
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
         for (double t=0; t<SimuTime; t+=dT){
             double RelBeta  = v/c;
             double RelGamma = 1.0 / sqrt(1.0-RelBeta*RelBeta);
@@ -1799,7 +1798,7 @@ For $\mu E$ considerations, data from the software would be analyzed either manu
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         int phase_opt(int phase_sweep_range){
             double minrms = 1;
             int opt_phase;
@@ -1850,7 +1849,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
     \begin{subfigure}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d CoaxialRFField::actOn(Electron& e){
                 vector3d Efield = getField(e.pos);                          // Calculate E vector
                 vector3d F_m = Efield*1E6*eQMratio;                         // Calculate F/m vector
@@ -1861,7 +1860,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
     \end{subfigure}
 
     \begin{subfigure}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d MagneticField::actOn(Electron& e){
                 if (isInside(e.pos) == -1)
                     return vector3d(0,0,0);
@@ -1880,7 +1879,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
     %%\captionsetup[subfigure]{justification=centering}
     %%\captionsetup{justification=centering}
     \begin{minipage}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d CoaxialRFField::actOn(Electron& e){
                 vector3d Efield = getField(e.pos);                          // Calculate E vector
                 vector3d F_m = Efield*1E6*eQMratio;                         // Calculate F/m vector
@@ -1891,7 +1890,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
     \end{minipage}
 
     \begin{minipage}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d MagneticField::actOn(Electron& e){
                 if (isInside(e.pos) == -1)
                     return vector3d(0,0,0);
@@ -1907,7 +1906,7 @@ Two of such renders can be seen in \fromfig{example_gnuplot_renders}.
     \label{fig:3D_e_EM_interaction_first}
 \end{figure}\fi
 \begin{figure}[H]
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
         vector3d CoaxialRFField::actOn(Electron& e){
             vector3d Efield = getField(e.pos);                        // Calculate E vector
             vector3d F_m = Efield*1E6*eQMratio;                       // Calculate F/m vector
@@ -2457,7 +2456,7 @@ Technical drawings of the design mentioned in \fromsec{final_design} can be foun
 \vspace{-20pt}
 \begin{figure}[H]
     \centering
-    \includegraphics[angle=270,origin=c, width=.95\linewidth]{./figures/teknikcizim/Rho-A1.0.00.pdf}
+    \includegraphics[angle=90,origin=c, width=.95\linewidth]{./figures/teknikcizim/Rho-A1.0.00.pdf}
     \vspace{5pt}
     \caption{Technical drawing of the rhodotron cavity \cite{sinan}.}
     \label{fig:techd_rhod}
@@ -2465,7 +2464,7 @@ Technical drawings of the design mentioned in \fromsec{final_design} can be foun
 \clearpage
 \begin{figure}[!th]
     \centering
-    \includegraphics[angle=270,origin=c, width=.95\linewidth]{./figures/teknikcizim/Rhodotron Elektron Hizlandirici Sistemi.pdf}
+    \includegraphics[angle=90,origin=c, width=.95\linewidth]{./figures/teknikcizim/Rhodotron Elektron Hizlandirici Sistemi.pdf}
     \vspace{10pt}
     \caption{Technical drawing of middle part of the cavity which contains the beam line \cite{sinan}.}
     \label{fig:techd_mid}
@@ -2721,7 +2720,7 @@ lead to the inference that it holds promise.
     %\captionsetup{justification=centering}
     \begin{minipage}{\textwidth}
         \centering
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             for(double i = 2; i < 9; i += dT_out){
                 t_dum += i;
                 double enow = gecis(r_pos, vel, Et, t_dum);
@@ -2737,7 +2736,7 @@ lead to the inference that it holds promise.
     \vspace{10pt}
     \begin{minipage}{\textwidth}
         \centering
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm,  fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm,  fontsize=\scriptsize]{c++}
             double gecis(double r_pos, double vel, double Et, double &t){
                 for(; r_pos >= -R2 && r_pos <= R2 ; t+=dT){
                     vel = c*sqrt(Et*Et-E0*E0)/Et;
@@ -2766,7 +2765,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
         \centering
         %\captionsetup{justification=centering}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             int phase_opt(const vector<double>& Louts, int phase_sweep_range){
                 double minrms = 1;
                 int opt_phase;
@@ -2799,7 +2798,7 @@ lead to the inference that it holds promise.
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
     \begin{minipage}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             double vector3d::operator* (const vector3d& other){
                 double dot = 0;
                 dot += this->x * other.x;
@@ -2811,7 +2810,7 @@ lead to the inference that it holds promise.
     \end{minipage}
     \vspace{10pt}
     \begin{minipage}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d vector3d::operator% (const vector3d& other){
                 double x_ = (this->y * other.z) - (this->z * other.y);
                 double y_ = (this->z * other.x) - (this->x * other.z);
@@ -2828,7 +2827,7 @@ lead to the inference that it holds promise.
 \end{figure}
 
 \begin{figure}[H]
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
             vector3d MagneticField::actOn(Electron& e){
                 if (isInside(e.pos) == -1)
                     return vector3d(0,0,0);
@@ -2847,7 +2846,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         vector3d Electron2D::interactB_RK(const MagneticField& B, double time_interval){
             if (B.isInside(pos) == -1){
                 return vector3d(0,0,0);
@@ -2887,7 +2886,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         bool isInsideHalfSphere(vector3d e_position, double r, vector3d hs_position){
             vector3d relative = e_position - hs_position;       
             // r/5 can be changed, use this for now                                
@@ -2906,7 +2905,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         void Electron2D::interactRK_ActorE(const RFField& E, const MagneticField& B, double time_interval){
             vector3d run_kut_E = interactE_RK(E, time_interval);
             vector3d run_kut_B = interactB_RK(B, time_interval);
@@ -2926,7 +2925,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void Electron2D::interactRK(RFField& E, MagneticField& B, const double time, double time_interval){
             Electron2D e_dummy;
             e_dummy.Et = Et;
@@ -2991,7 +2990,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void RhodotronSimulator::_runMT(){
             gun.fireAllWithFireTimesMT();
         
@@ -3030,7 +3029,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void Gun::fireAllWithFireTimesMT(){
             std::random_device rd;
             std::mt19937 e2(rd());
@@ -3060,7 +3059,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void MultiThreadEngine::setupPool( double _time_interval, double _start_time, double _end_time, Gun& gun, 
             CoaxialRFField& RF, MagneticField& B, vector<shared_ptr<vector<shared_ptr<Electron2D>>>>& e_list){
             threads.reserve(thread_count);
@@ -3090,7 +3089,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void threadLoop(ThreadArguments thread_arguments){
             uint64_t count = 0;
         
@@ -3127,7 +3126,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void UIThreadWork(UIThreadArgs args){
             int UI_WORK_PIECE = SIM_WORK_MASK;
             if ( !args.isService ) {
@@ -3196,7 +3195,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Electron{
             std::vector<ElectronLog> log;
             uint64_t index;
@@ -3246,7 +3245,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Bunch{
         private:
             int e_count = 0;
@@ -3302,7 +3301,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Gun{
             double Ein;
             double sEin;
@@ -3364,7 +3363,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Simulator{        // E in MV/m,   En in MeV,   B in T,    t in ns
         protected:
             Gun gun;
@@ -3434,7 +3433,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class RhodotronSimulator : public Simulator{
         private:
             double R1;
@@ -3480,7 +3479,7 @@ lead to the inference that it holds promise.
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
     \begin{minipage}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
             class RFField{
             protected:
                 double E;                       // MV/m
@@ -3508,7 +3507,7 @@ lead to the inference that it holds promise.
     \end{minipage}
     \vspace{10pt}
     \begin{minipage}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
             class CoaxialRFField : public RFField{
             private:
                 double r1 = 0.188;                         // m
@@ -3549,7 +3548,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         Optimal phase with the least RMS : -5
 
         Simulation settings : 
@@ -3597,7 +3596,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         Optimal phase with the least RMS : 0
 
         Simulation settings : 
@@ -3672,7 +3671,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny, style=staroffice]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny, style=staroffice]{c++}
         #            Rhodotron Simulation Configuration File
         # ================================================================
         #    M.Furkan Er                                     22/09/2022   
@@ -3742,7 +3741,7 @@ lead to the inference that it holds promise.
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         -- Simulation Configuration --
         Emax : 0.96     MV/m
         Freq : 107.5    MHz
@@ -4027,7 +4026,7 @@ lead to the inference that it holds promise.
 \vspace{30pt}
 \begin{figure}[H]
     \centering
-    \includegraphics[angle=270,origin=c, width=.8\linewidth]{./figures/teknikcizim/Rho-A1.1.00.pdf}
+    \includegraphics[angle=90,origin=c, width=.8\linewidth]{./figures/teknikcizim/Rho-A1.1.00.pdf}
     \vspace{10pt}
     \caption{Technical drawing of upper part of the cavity \cite{sinan}.}
     \label{fig:techd_up}

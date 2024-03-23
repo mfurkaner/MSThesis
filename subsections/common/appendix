@@ -7,7 +7,7 @@
     %\captionsetup{justification=centering}
     \begin{minipage}{\textwidth}
         \centering
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             for(double i = 2; i < 9; i += dT_out){
                 t_dum += i;
                 double enow = gecis(r_pos, vel, Et, t_dum);
@@ -23,7 +23,7 @@
     \vspace{10pt}
     \begin{minipage}{\textwidth}
         \centering
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm,  fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm,  fontsize=\scriptsize]{c++}
             double gecis(double r_pos, double vel, double Et, double &t){
                 for(; r_pos >= -R2 && r_pos <= R2 ; t+=dT){
                     vel = c*sqrt(Et*Et-E0*E0)/Et;
@@ -52,7 +52,7 @@
 \begin{figure}[H]
         \centering
         %\captionsetup{justification=centering}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             int phase_opt(const vector<double>& Louts, int phase_sweep_range){
                 double minrms = 1;
                 int opt_phase;
@@ -85,7 +85,7 @@
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
     \begin{minipage}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             double vector3d::operator* (const vector3d& other){
                 double dot = 0;
                 dot += this->x * other.x;
@@ -97,7 +97,7 @@
     \end{minipage}
     \vspace{10pt}
     \begin{minipage}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
             vector3d vector3d::operator% (const vector3d& other){
                 double x_ = (this->y * other.z) - (this->z * other.y);
                 double y_ = (this->z * other.x) - (this->x * other.z);
@@ -114,7 +114,7 @@
 \end{figure}
 
 \begin{figure}[H]
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\footnotesize]{c++}
             vector3d MagneticField::actOn(Electron& e){
                 if (isInside(e.pos) == -1)
                     return vector3d(0,0,0);
@@ -133,7 +133,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         vector3d Electron2D::interactB_RK(const MagneticField& B, double time_interval){
             if (B.isInside(pos) == -1){
                 return vector3d(0,0,0);
@@ -173,7 +173,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         bool isInsideHalfSphere(vector3d e_position, double r, vector3d hs_position){
             vector3d relative = e_position - hs_position;       
             // r/5 can be changed, use this for now                                
@@ -192,7 +192,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize]{c++}
         void Electron2D::interactRK_ActorE(const RFField& E, const MagneticField& B, double time_interval){
             vector3d run_kut_E = interactE_RK(E, time_interval);
             vector3d run_kut_B = interactB_RK(B, time_interval);
@@ -212,7 +212,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void Electron2D::interactRK(RFField& E, MagneticField& B, const double time, double time_interval){
             Electron2D e_dummy;
             e_dummy.Et = Et;
@@ -277,7 +277,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void RhodotronSimulator::_runMT(){
             gun.fireAllWithFireTimesMT();
         
@@ -316,7 +316,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void Gun::fireAllWithFireTimesMT(){
             std::random_device rd;
             std::mt19937 e2(rd());
@@ -346,7 +346,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void MultiThreadEngine::setupPool( double _time_interval, double _start_time, double _end_time, Gun& gun, 
             CoaxialRFField& RF, MagneticField& B, vector<shared_ptr<vector<shared_ptr<Electron2D>>>>& e_list){
             threads.reserve(thread_count);
@@ -376,7 +376,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void threadLoop(ThreadArguments thread_arguments){
             uint64_t count = 0;
         
@@ -413,7 +413,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         void UIThreadWork(UIThreadArgs args){
             int UI_WORK_PIECE = SIM_WORK_MASK;
             if ( !args.isService ) {
@@ -482,7 +482,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Electron{
             std::vector<ElectronLog> log;
             uint64_t index;
@@ -532,7 +532,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Bunch{
         private:
             int e_count = 0;
@@ -588,7 +588,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Gun{
             double Ein;
             double sEin;
@@ -650,7 +650,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class Simulator{        // E in MV/m,   En in MeV,   B in T,    t in ns
         protected:
             Gun gun;
@@ -720,7 +720,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
         class RhodotronSimulator : public Simulator{
         private:
             double R1;
@@ -766,7 +766,7 @@
     %\captionsetup[subfigure]{justification=centering}
     %\captionsetup{justification=centering}
     \begin{minipage}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
             class RFField{
             protected:
                 double E;                       // MV/m
@@ -794,7 +794,7 @@
     \end{minipage}
     \vspace{10pt}
     \begin{minipage}{\textwidth}
-        \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
+        \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny]{c++}
             class CoaxialRFField : public RFField{
             private:
                 double r1 = 0.188;                         // m
@@ -835,7 +835,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         Optimal phase with the least RMS : -5
 
         Simulation settings : 
@@ -883,7 +883,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         Optimal phase with the least RMS : 0
 
         Simulation settings : 
@@ -958,7 +958,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\tiny, style=staroffice]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\tiny, style=staroffice]{c++}
         #            Rhodotron Simulation Configuration File
         # ================================================================
         #    M.Furkan Er                                     22/09/2022   
@@ -1028,7 +1028,7 @@
 \begin{figure}[H]
     \centering
     %\captionsetup{justification=centering}
-    \begin{minted}[linenos=true, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
+    \begin{minted}[linenos=false, autogobble, frame=lines, framesep=2mm, fontsize=\scriptsize, style=staroffice]{c++}
         -- Simulation Configuration --
         Emax : 0.96     MV/m
         Freq : 107.5    MHz
@@ -1313,7 +1313,7 @@
 \vspace{30pt}
 \begin{figure}[H]
     \centering
-    \includegraphics[angle=270,origin=c, width=.8\linewidth]{./figures/teknikcizim/Rho-A1.1.00.pdf}
+    \includegraphics[angle=90,origin=c, width=.8\linewidth]{./figures/teknikcizim/Rho-A1.1.00.pdf}
     \vspace{10pt}
     \caption{Technical drawing of upper part of the cavity \cite{sinan}.}
     \label{fig:techd_up}

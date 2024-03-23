@@ -3,7 +3,7 @@
 \contentsline {figure}{\numberline {Figure 1.3.}{\ignorespaces $\vec {\textbf {E}}$ and $\vec {\textbf {B}}$ eigenmode field distributions inside a coaxial cavity.}\vspace \baselineskip }{11}{}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering $\vec {\textbf {E}}$ field}}}{11}{}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering $\vec {\textbf {B}}$ field}}}{11}{}%
-\contentsline {figure}{\numberline {Figure 1.4.}{\ignorespaces Illustration of a simple coaxial cavity with the curve \textbf {C} in Equation \ref {eq:p_diss_C_curve}.}\vspace \baselineskip }{12}{}%
+\contentsline {figure}{\numberline {Figure 1.4.}{\ignorespaces Illustration of a simple coaxial cavity with the curve \textbf {C} in Equation (\ref {eq:p_diss_C_curve}).}\vspace \baselineskip }{12}{}%
 \contentsline {figure}{\numberline {Figure 1.5.}{\ignorespaces Optimized characteristics of a rhodotron cavity \cite {rhodo_pottier}.}\vspace \baselineskip }{14}{}%
 \contentsline {figure}{\numberline {Figure 1.6.}{\ignorespaces Energy of a synchronous electron after each pass for both $p=1$ and $p=2$ \cite {rhodo_pottier}.}\vspace \baselineskip }{15}{}%
 \contentsline {figure}{\numberline {Figure 1.7.}{\ignorespaces $[0, \frac {T}{4}]$ time frame of a rhodotron.}\vspace \baselineskip }{15}{}%
@@ -14,13 +14,13 @@
 \contentsline {figure}{\numberline {Figure 2.1.}{\ignorespaces Butcher Tableau.}\vspace \baselineskip }{23}{}%
 \contentsline {figure}{\numberline {Figure 2.2.}{\ignorespaces Butcher tableau of Euler's method.}\vspace \baselineskip }{23}{}%
 \contentsline {figure}{\numberline {Figure 2.3.}{\ignorespaces Butcher Tableau for RK4.}\vspace \baselineskip }{24}{}%
-\contentsline {figure}{\numberline {Figure 3.1.}{\ignorespaces \centering Poission Superfish results for Equation \ref {eq:107_180_MHZ_cavity_design_parameters}.}\vspace \baselineskip }{26}{}%
+\contentsline {figure}{\numberline {Figure 3.1.}{\ignorespaces \centering Poission Superfish results for Equation (\ref {eq:107_180_MHZ_cavity_design_parameters}).}\vspace \baselineskip }{26}{}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering 107.5 MHz}}}{26}{}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering 180 MHz}}}{26}{}%
-\contentsline {figure}{\numberline {Figure 3.2.}{\ignorespaces \centering CST Eigenmode results for Equation \ref {eq:107_180_MHZ_cavity_design_parameters}.}\vspace \baselineskip }{26}{}%
+\contentsline {figure}{\numberline {Figure 3.2.}{\ignorespaces \centering CST Eigenmode results for Equation (\ref {eq:107_180_MHZ_cavity_design_parameters}).}\vspace \baselineskip }{26}{}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering 107.5 MHz}}}{26}{}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering 180 MHz}}}{26}{}%
-\contentsline {figure}{\numberline {Figure 3.3.}{\ignorespaces \centering CST Electric field solutions for Equation \ref {eq:107_180_MHZ_cavity_design_parameters}.}\vspace \baselineskip }{27}{}%
+\contentsline {figure}{\numberline {Figure 3.3.}{\ignorespaces \centering CST Electric field solutions for Equation (\ref {eq:107_180_MHZ_cavity_design_parameters}).}\vspace \baselineskip }{27}{}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering 107.5 MHz}}}{27}{}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering 180 MHz}}}{27}{}%
 \contentsline {figure}{\numberline {Figure 3.4.}{\ignorespaces \centering Poisson Superfish field results of truncated cavities.}\vspace \baselineskip }{27}{}%
@@ -38,7 +38,7 @@
 \contentsline {figure}{\numberline {Figure 3.8.}{\ignorespaces \centering Poisson Superfish calculations with truncated cavities.}\vspace \baselineskip }{29}{}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering 107.5 MHz truncated}}}{29}{}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering 180 MHz truncated}}}{29}{}%
-\contentsline {figure}{\numberline {Figure 3.9.}{\ignorespaces \centering Geometry and modeling, outside trajectory of a rhodotron (TT300) \cite {cite:rhodo_design}.}\vspace \baselineskip }{30}{}%
+\contentsline {figure}{\numberline {Figure 3.9.}{\ignorespaces \centering Geometry and modeling, outside trajectory of a rhodotron (TT300) \cite {rhodo_design}.}\vspace \baselineskip }{30}{}%
 \contentsline {figure}{\numberline {Figure 3.10.}{\ignorespaces Trejectory of a particle in single pass.}\vspace \baselineskip }{31}{}%
 \contentsline {figure}{\numberline {Figure 3.11.}{\ignorespaces Initial design of the proposed rhodotron, $\gamma =9^\circ $.}\vspace \baselineskip }{34}{}%
 \contentsline {figure}{\numberline {Figure 3.12.}{\ignorespaces \centering Cross sections of the initial design.}\vspace \baselineskip }{34}{}%
@@ -56,7 +56,7 @@
 \contentsline {figure}{\numberline {Figure 3.20.}{\ignorespaces Magnetic field in acceleration plate of improved magnet design.}\vspace \baselineskip }{39}{}%
 \contentsline {figure}{\numberline {Figure 4.1.}{\ignorespaces Core logic loop of the POC.}\vspace \baselineskip }{41}{}%
 \contentsline {figure}{\numberline {Figure 4.2.}{\ignorespaces $\phi _{lag}$ Optimization For Initial Bunch Design.}\vspace \baselineskip }{43}{}%
-\contentsline {figure}{\numberline {Figure 4.3.}{\ignorespaces $\textbf {e}^-$ - $\vec {\textbf {E}}$ interaction logic from Equation \ref {eq:acc_of_E_and_B}.}\vspace \baselineskip }{44}{}%
+\contentsline {figure}{\numberline {Figure 4.3.}{\ignorespaces $\textbf {e}^-$ - $\vec {\textbf {E}}$ interaction logic from Equation (\ref {eq:acc_of_E_and_B}).}\vspace \baselineskip }{44}{}%
 \contentsline {figure}{\numberline {Figure 4.4.}{\ignorespaces Example gnuplot renders of Rhodotron Simulation, $P=40$kW, $f=107.5$MHz.}\vspace \baselineskip }{45}{}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Unsyncronized $\textbf {e}^-$ gun period, $T_g = 5ns$}}}{45}{}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Syncronized $\textbf {e}^-$ gun period, $T_g = 9.3ns$}}}{45}{}%
@@ -108,7 +108,7 @@
 \contentsline {figure}{\numberline {Figure A.1.}{\ignorespaces $L_{out}$ Optimization For Single $\textbf {e}^-$ .}\vspace \baselineskip }{81}{}%
 \contentsline {figure}{\numberline {Figure A.2.}{\ignorespaces $\phi _{lag}$ Optimization For Initial Bunch Design.}\vspace \baselineskip }{82}{}%
 \contentsline {figure}{\numberline {Figure A.3.}{\ignorespaces * and \% operators of \textit {vector3d} class.}\vspace \baselineskip }{82}{}%
-\contentsline {figure}{\numberline {Figure A.4.}{\ignorespaces $\textbf {e}^-$ - $\vec {\textbf {B}}$ interaction logic from Equation \ref {eq:acc_of_E_and_B}.}\vspace \baselineskip }{83}{}%
+\contentsline {figure}{\numberline {Figure A.4.}{\ignorespaces $\textbf {e}^-$ - $\vec {\textbf {B}}$ interaction logic from Equation (\ref {eq:acc_of_E_and_B}).}\vspace \baselineskip }{83}{}%
 \contentsline {figure}{\numberline {Figure A.5.}{\ignorespaces RK4-1 implemenation of $\textbf {e}^-$ -$\vec {\textbf {B}}$}\vspace \baselineskip }{83}{}%
 \contentsline {figure}{\numberline {Figure A.6.}{\ignorespaces Logic of is $\textbf {e}^-$ inside the shape of magnet.}\vspace \baselineskip }{84}{}%
 \contentsline {figure}{\numberline {Figure A.7.}{\ignorespaces RK4-1 implemenation of $\textbf {e}^-$ - \textbf {EM} .}\vspace \baselineskip }{84}{}%
